@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin Dashboard | SAFE SAPCR Texas</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://uynnupaoafbwouvgcedj.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_a5-eDlQRhKJkiuDPV0R0pA_TwLXKDyn';
+    </script>
+
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .admin-header {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-header h1 { margin: 0; font-size: 1.5rem; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .stat-card h3 { color: #666; font-size: 0.9rem; margin: 0 0 0.5rem; }
+        .stat-card .number { font-size: 2rem; font-weight: 700; color: #1a365d; }
+        .panel {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .panel h2 { margin: 0 0 1rem; color: #1a365d; }
+        .members-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .members-table th, .members-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .members-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #666;
+            position: sticky;
+            top: 0;
+        }
+        .members-table tr:hover { background: #f8f9fa; }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-yes { background: #d4edda; color: #155724; }
+        .badge-no { background: #f8d7da; color: #721c24; }
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #1a365d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+        .btn:hover { background: #2c5282; }
+        .btn-secondary { background: #6c757d; }
+        .btn-danger { background: #dc3545; }
+        .btn-success { background: #28a745; }
+        .actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .email-form { display: grid; gap: 1rem; }
+        .email-form input, .email-form textarea, .email-form select {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .email-form textarea { min-height: 200px; }
+        .search-box {
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 1rem;
+        }
+        .table-container { overflow-x: auto; }
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .login-container h2 { text-align: center; color: #1a365d; margin-bottom: 1.5rem; }
+        .login-container input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+        .login-container button { width: 100%; }
+        .hidden { display: none; }
+        .error { color: #dc3545; margin-bottom: 1rem; }
+        #memberCount { font-weight: normal; font-size: 0.9rem; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <!-- Login Section -->
+    <div id="loginSection" class="login-container">
+        <h2>Admin Login</h2>
+        <div id="loginError" class="error hidden"></div>
+        <input type="password" id="adminPassword" placeholder="Enter admin password">
+        <button class="btn" onclick="login()">Login</button>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminSection" class="hidden">
+        <header class="admin-header">
+            <div>
+                <h1>SAFE SAPCR Admin Dashboard</h1>
+                <span id="memberCount"></span>
+            </div>
+            <div class="actions">
+                <a href="/" class="btn btn-secondary">View Site</a>
+                <button class="btn btn-danger" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Members</h3>
+                <div class="number" id="totalMembers">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>This Week</h3>
+                <div class="number" id="weekMembers">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>Newsletter Subscribers</h3>
+                <div class="number" id="newsletterSubs">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>Volunteers</h3>
+                <div class="number" id="volunteers">-</div>
+            </div>
+        </div>
+
+        <!-- Email Blast Section -->
+        <div class="panel">
+            <h2>Send Email Blast</h2>
+            <form class="email-form" id="emailForm" onsubmit="sendEmail(event)">
+                <select id="emailAudience">
+                    <option value="all">All Members</option>
+                    <option value="newsletter">Newsletter Subscribers Only</option>
+                    <option value="legislative">Legislative Updates Subscribers</option>
+                    <option value="volunteers">Volunteers Only</option>
+                </select>
+                <input type="text" id="emailSubject" placeholder="Email Subject" required>
+                <textarea id="emailBody" placeholder="Email body (HTML supported)" required></textarea>
+                <div class="actions">
+                    <button type="submit" class="btn btn-success">Send Email</button>
+                    <button type="button" class="btn btn-secondary" onclick="previewEmail()">Preview</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Members Table -->
+        <div class="panel">
+            <h2>Members</h2>
+            <input type="text" class="search-box" id="searchBox" placeholder="Search members..." oninput="filterMembers()">
+            <div class="actions" style="margin-bottom: 1rem;">
+                <button class="btn" onclick="exportCSV()">Export CSV</button>
+                <button class="btn btn-secondary" onclick="loadMembers()">Refresh</button>
+            </div>
+            <div class="table-container">
+                <table class="members-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>City</th>
+                            <th>Involvement</th>
+                            <th>Newsletter</th>
+                            <th>Joined</th>
+                        </tr>
+                    </thead>
+                    <tbody id="membersTableBody">
+                        <tr><td colspan="6">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    const ADMIN_PASSWORD = 'safesapcr2025'; // Change this!
+    let supabase;
+    let allMembers = [];
+
+    function login() {
+        const password = document.getElementById('adminPassword').value;
+        if (password === ADMIN_PASSWORD) {
+            sessionStorage.setItem('adminLoggedIn', 'true');
+            showDashboard();
+        } else {
+            document.getElementById('loginError').textContent = 'Invalid password';
+            document.getElementById('loginError').classList.remove('hidden');
+        }
+    }
+
+    function logout() {
+        sessionStorage.removeItem('adminLoggedIn');
+        location.reload();
+    }
+
+    function showDashboard() {
+        document.getElementById('loginSection').classList.add('hidden');
+        document.getElementById('adminSection').classList.remove('hidden');
+        initSupabase();
+        loadMembers();
+    }
+
+    function initSupabase() {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
+
+    async function loadMembers() {
+        try {
+            const { data, error } = await supabase
+                .from('members')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) throw error;
+
+            allMembers = data || [];
+            renderMembers(allMembers);
+            updateStats(allMembers);
+        } catch (err) {
+            console.error('Error loading members:', err);
+            document.getElementById('membersTableBody').innerHTML =
+                '<tr><td colspan="6">Error loading members. Check console.</td></tr>';
+        }
+    }
+
+    function renderMembers(members) {
+        const tbody = document.getElementById('membersTableBody');
+
+        if (members.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6">No members found</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = members.map(m => `
+            <tr>
+                <td>${m.first_name} ${m.last_name}</td>
+                <td><a href="mailto:${m.email}">${m.email}</a></td>
+                <td>${m.city || '-'}${m.county ? ', ' + m.county : ''}</td>
+                <td>${m.involvement || '-'}</td>
+                <td><span class="badge ${m.newsletter ? 'badge-yes' : 'badge-no'}">${m.newsletter ? 'Yes' : 'No'}</span></td>
+                <td>${new Date(m.created_at).toLocaleDateString()}</td>
+            </tr>
+        `).join('');
+    }
+
+    function updateStats(members) {
+        document.getElementById('totalMembers').textContent = members.length;
+        document.getElementById('memberCount').textContent = `${members.length} total members`;
+
+        const weekAgo = new Date();
+        weekAgo.setDate(weekAgo.getDate() - 7);
+        const weekMembers = members.filter(m => new Date(m.created_at) > weekAgo);
+        document.getElementById('weekMembers').textContent = weekMembers.length;
+
+        const newsletterSubs = members.filter(m => m.newsletter);
+        document.getElementById('newsletterSubs').textContent = newsletterSubs.length;
+
+        const volunteers = members.filter(m => m.involvement === 'volunteer' || m.involvement === 'all');
+        document.getElementById('volunteers').textContent = volunteers.length;
+    }
+
+    function filterMembers() {
+        const query = document.getElementById('searchBox').value.toLowerCase();
+        const filtered = allMembers.filter(m =>
+            m.first_name.toLowerCase().includes(query) ||
+            m.last_name.toLowerCase().includes(query) ||
+            m.email.toLowerCase().includes(query) ||
+            (m.city && m.city.toLowerCase().includes(query))
+        );
+        renderMembers(filtered);
+    }
+
+    function exportCSV() {
+        const headers = ['First Name', 'Last Name', 'Email', 'Phone', 'City', 'County', 'Involvement', 'Newsletter', 'Legislative Updates', 'Joined'];
+        const rows = allMembers.map(m => [
+            m.first_name,
+            m.last_name,
+            m.email,
+            m.phone || '',
+            m.city || '',
+            m.county || '',
+            m.involvement || '',
+            m.newsletter ? 'Yes' : 'No',
+            m.legislative_updates ? 'Yes' : 'No',
+            new Date(m.created_at).toLocaleDateString()
+        ]);
+
+        const csv = [headers, ...rows].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `safesapcr-members-${new Date().toISOString().split('T')[0]}.csv`;
+        a.click();
+    }
+
+    async function sendEmail(e) {
+        e.preventDefault();
+
+        const audience = document.getElementById('emailAudience').value;
+        const subject = document.getElementById('emailSubject').value;
+        const body = document.getElementById('emailBody').value;
+
+        let recipients = allMembers;
+        if (audience === 'newsletter') {
+            recipients = allMembers.filter(m => m.newsletter && !m.unsubscribed);
+        } else if (audience === 'legislative') {
+            recipients = allMembers.filter(m => m.legislative_updates && !m.unsubscribed);
+        } else if (audience === 'volunteers') {
+            recipients = allMembers.filter(m => (m.involvement === 'volunteer' || m.involvement === 'all') && !m.unsubscribed);
+        } else {
+            recipients = allMembers.filter(m => !m.unsubscribed);
+        }
+
+        if (recipients.length === 0) {
+            alert('No recipients found for this audience.');
+            return;
+        }
+
+        if (!confirm(`Send email to ${recipients.length} recipients?`)) return;
+
+        try {
+            const response = await fetch('/.netlify/functions/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    recipients: recipients.map(r => ({ email: r.email, name: `${r.first_name} ${r.last_name}` })),
+                    subject,
+                    html: body
+                })
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                alert(`Email sent to ${recipients.length} recipients!`);
+                document.getElementById('emailForm').reset();
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (err) {
+            console.error('Email error:', err);
+            alert('Error sending email. Check console for details.');
+        }
+    }
+
+    function previewEmail() {
+        const subject = document.getElementById('emailSubject').value;
+        const body = document.getElementById('emailBody').value;
+        const preview = window.open('', '_blank');
+        preview.document.write(`
+            <html>
+            <head><title>Email Preview: ${subject}</title></head>
+            <body style="font-family: sans-serif; max-width: 600px; margin: 50px auto; padding: 20px;">
+                <h2>${subject}</h2>
+                <hr>
+                ${body}
+            </body>
+            </html>
+        `);
+    }
+
+    // Check if already logged in
+    if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+        showDashboard();
+    }
+
+    // Allow Enter key to login
+    document.getElementById('adminPassword').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') login();
+    });
+    </script>
+</body>
+</html>
