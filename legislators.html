@@ -1151,6 +1151,7 @@
         });
     }
 
+    
     // Track legislator contact clicks - sends to Google Analytics and Netlify Forms
     function trackContact(legislator, contactType, contactValue) {
         // Track in Google Analytics
@@ -1181,13 +1182,15 @@
 
         // Handle the action based on contact type
         if (contactType === 'email') {
-            window.location.href = 'mailto:' + contactValue + '?subject=Support%20for%20SAFE%20SAPCR%20Act&body=Dear%20Representative%2FSenator%2C%0A%0AI%20am%20writing%20to%20ask%20for%20your%20support%20of%20the%20SAFE%20SAPCR%20Act%2C%20which%20would%20require%20due%20diligence%20before%20attorneys%20can%20certify%20a%20respondent%27s%20address%20in%20family%20court%20custody%20cases.%0A%0ACurrently%2C%20Texas%20Rule%20239a%20has%20no%20verification%20requirement%2C%20which%20enables%20service%20fraud%20and%20wrongful%20default%20judgments%20that%20separate%20Texas%20families.%0A%0APlease%20support%20legislation%20that%20protects%20parents%27%20due%20process%20rights.%0A%0AThank%20you%20for%20your%20time%20and%20consideration.%0A%0ASincerely%2C%0A%5BYour%20Name%5D%0A%5BYour%20City%2C%20TX%5D';
+            // Open contact modal instead of mailto
+            openContactModal(legislator, contactValue);
         } else if (contactType === 'phone') {
             window.location.href = 'tel:' + contactValue.replace(/-/g, '');
         } else if (contactType === 'capitol') {
             alert('Capitol Office: ' + contactValue + '\nTexas State Capitol, Austin, TX 78701');
         }
     }
+
     </script>
 
     <!-- Hidden form for legislator click tracking -->
@@ -1201,5 +1204,225 @@
         <input type="hidden" name="userAgent">
     </form>
     <script src="/chatbot.js"></script>
+
+    <!-- Contact Legislator Modal -->
+    <div id="contactModal" class="contact-modal hidden">
+        <div class="modal-overlay" onclick="closeContactModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeContactModal()">&times;</button>
+            <h2>Contact <span id="modalLegislatorName"></span></h2>
+            <p class="modal-subtitle">Your message will be sent directly to the legislator's office.</p>
+
+            <form id="legislatorContactForm" class="legislator-contact-form">
+                <input type="hidden" id="legislatorEmail" name="legislatorEmail">
+                <input type="hidden" id="legislatorName" name="legislatorName">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="senderName">Your Name *</label>
+                        <input type="text" id="senderName" name="senderName" required placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="senderEmail">Your Email *</label>
+                        <input type="email" id="senderEmail" name="senderEmail" required placeholder="your@email.com">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="senderCity">Your City *</label>
+                        <input type="text" id="senderCity" name="senderCity" required placeholder="e.g., Houston, Dallas">
+                    </div>
+                    <div class="form-group">
+                        <label for="senderPhone">Phone (optional)</label>
+                        <input type="tel" id="senderPhone" name="senderPhone" placeholder="(555) 123-4567">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="messageSubject">Subject</label>
+                    <input type="text" id="messageSubject" name="messageSubject" value="Support for SAFE SAPCR Act - Family Law Reform" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="messageBody">Your Message *</label>
+                    <textarea id="messageBody" name="messageBody" rows="8" required></textarea>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="sendCopy" name="sendCopy" checked>
+                        Send me a copy of this message
+                    </label>
+                </div>
+
+                <div id="formMessage" class="form-message hidden"></div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeContactModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <style>
+    .contact-modal { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    .contact-modal.hidden { display: none; }
+    .modal-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.7); }
+    .modal-content { position: relative; background: white; border-radius: 12px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; width: 40px; height: 40px; border-radius: 50%; transition: background 0.2s; }
+    .modal-close:hover { background: #f0f0f0; }
+    .modal-content h2 { color: var(--primary); margin-bottom: 0.5rem; padding-right: 2rem; }
+    .modal-subtitle { color: var(--text-light); margin-bottom: 1.5rem; }
+    .legislator-contact-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .legislator-contact-form .form-group { margin-bottom: 1rem; }
+    .legislator-contact-form label { display: block; margin-bottom: 0.25rem; font-weight: 600; color: var(--text); font-size: 0.9rem; }
+    .legislator-contact-form input, .legislator-contact-form textarea { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; font-family: inherit; }
+    .legislator-contact-form input:focus, .legislator-contact-form textarea:focus { outline: none; border-color: var(--primary); }
+    .legislator-contact-form input[readonly] { background: #f5f5f5; color: #666; }
+    .legislator-contact-form textarea { resize: vertical; min-height: 150px; }
+    .legislator-contact-form .checkbox-group { display: flex; align-items: center; }
+    .legislator-contact-form .checkbox-group label { display: flex; align-items: center; gap: 0.5rem; font-weight: normal; cursor: pointer; }
+    .legislator-contact-form .checkbox-group input { width: auto; }
+    .form-actions { display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #eee; }
+    .btn-secondary { background: #f0f0f0; color: var(--text); border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; font-weight: 600; }
+    .btn-secondary:hover { background: #e0e0e0; }
+    .btn-primary { background: var(--primary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; font-weight: 600; }
+    .btn-primary:hover { background: #152a4a; }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+    .form-message { padding: 1rem; border-radius: 6px; margin-bottom: 1rem; }
+    .form-message.hidden { display: none; }
+    .form-message.success { background: #e8f5e9; color: #2e7d32; }
+    .form-message.error { background: #ffebee; color: #c62828; }
+    @media (max-width: 600px) {
+        .legislator-contact-form .form-row { grid-template-columns: 1fr; }
+        .modal-content { padding: 1.5rem; }
+    }
+    </style>
+
+    <script>
+    // Contact Modal Functions
+    const defaultMessage = `Dear [LEGISLATOR_NAME],
+
+I am writing as a constituent from [YOUR_CITY] to respectfully request your support for the SAFE SAPCR Act.
+
+Currently, Texas Rule of Civil Procedure 239a allows attorneys to certify a respondent's "last known address" without any verification requirement. This gap enables custody fraud through improper service of process, allowing parents to lose custody of their children through wrongful default judgments without ever receiving proper notice.
+
+The SAFE SAPCR Act would:
+• Require mandatory constable service in SAPCR (custody) cases
+• Mandate attorney due diligence before certifying addresses
+• Create an automated case registry to prevent forum shopping
+• Establish expedited bill of review hearings for service fraud
+• Add criminal penalties for fraudulent address certification
+
+This is not a partisan issue—it's about protecting Texas families and ensuring due process rights are upheld. Children deserve both of their parents to have a fair opportunity to participate in custody proceedings.
+
+Please support legislation that closes the service fraud loophole and protects Texas families.
+
+Thank you for your time and consideration.
+
+Sincerely,
+[YOUR_NAME]
+[YOUR_CITY], Texas`;
+
+    function openContactModal(legislatorName, legislatorEmail) {
+        const modal = document.getElementById('contactModal');
+        document.getElementById('modalLegislatorName').textContent = legislatorName;
+        document.getElementById('legislatorName').value = legislatorName;
+        document.getElementById('legislatorEmail').value = legislatorEmail;
+
+        // Pre-fill message with template
+        const messageBody = document.getElementById('messageBody');
+        if (!messageBody.value) {
+            messageBody.value = defaultMessage.replace('[LEGISLATOR_NAME]', legislatorName);
+        }
+
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+
+        // Focus first input
+        setTimeout(() => document.getElementById('senderName').focus(), 100);
+    }
+
+    function closeContactModal() {
+        document.getElementById('contactModal').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeContactModal();
+    });
+
+    // Form submission
+    document.getElementById('legislatorContactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const btn = form.querySelector('button[type="submit"]');
+        const messageDiv = document.getElementById('formMessage');
+
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+        messageDiv.classList.add('hidden');
+
+        const formData = {
+            legislatorName: document.getElementById('legislatorName').value,
+            legislatorEmail: document.getElementById('legislatorEmail').value,
+            senderName: document.getElementById('senderName').value,
+            senderEmail: document.getElementById('senderEmail').value,
+            senderCity: document.getElementById('senderCity').value,
+            senderPhone: document.getElementById('senderPhone').value,
+            subject: document.getElementById('messageSubject').value,
+            message: document.getElementById('messageBody').value,
+            sendCopy: document.getElementById('sendCopy').checked
+        };
+
+        try {
+            const response = await fetch('/.netlify/functions/contact-legislator', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            messageDiv.classList.remove('hidden', 'success', 'error');
+
+            if (data.success) {
+                messageDiv.classList.add('success');
+                messageDiv.textContent = 'Your message has been sent! The legislator\'s office will receive your email.';
+
+                // Track in GA
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'legislator_email_sent', {
+                        'event_category': 'engagement',
+                        'event_label': formData.legislatorName
+                    });
+                }
+
+                // Close modal after delay
+                setTimeout(() => {
+                    closeContactModal();
+                    // Reset form
+                    form.reset();
+                    messageDiv.classList.add('hidden');
+                }, 3000);
+            } else {
+                messageDiv.classList.add('error');
+                messageDiv.textContent = data.error || 'Failed to send message. Please try again or use direct email.';
+            }
+        } catch (err) {
+            messageDiv.classList.remove('hidden', 'success', 'error');
+            messageDiv.classList.add('error');
+            messageDiv.textContent = 'Network error. Please try again.';
+        }
+
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+    });
+    </script>
+
 </body>
 </html>
