@@ -1,0 +1,55 @@
+# robots.txt for safesapcrtx.org
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://safesapcrtx.org/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Block WordPress attack paths (honeypot)
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /wp-login.php
+Disallow: /xmlrpc.php
+Disallow: /wp-config.php
+
+# Block common attack vectors
+Disallow: /.env
+Disallow: /.git/
+Disallow: /admin/
+Disallow: /administrator/
+Disallow: /phpmyadmin/
+Disallow: /config/
+Disallow: /backup/
+Disallow: /database/
+Disallow: /sql/
+Disallow: /mysql/
+Disallow: /phpinfo.php
+Disallow: /info.php
+Disallow: /test.php
+Disallow: /shell.php
+Disallow: /cmd.php
+Disallow: /eval/
+Disallow: /cgi-bin/
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: SearchmetricsBot
+Disallow: /
