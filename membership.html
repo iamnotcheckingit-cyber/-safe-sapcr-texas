@@ -36,7 +36,15 @@
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Texas">
     <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://uynnupaoafbwouvgcedj.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_a5-eDlQRhKJkiuDPV0R0pA_TwLXKDyn';
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -359,6 +367,9 @@
     </footer>
 
     <script>
+    // Initialize Supabase
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
     // Mobile menu toggle
     document.addEventListener('DOMContentLoaded', function() {
         const menuToggle = document.getElementById('menuToggle');
@@ -378,6 +389,62 @@
             });
         }
 
+        // Form submission to Supabase
+        const form = document.getElementById('signupForm');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = form.querySelector('.btn-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Joining...';
+            submitBtn.disabled = true;
+
+            const formData = {
+                email: document.getElementById('email').value,
+                first_name: document.getElementById('firstName').value,
+                last_name: document.getElementById('lastName').value,
+                phone: document.getElementById('phone').value || null,
+                city: document.getElementById('city').value,
+                county: document.getElementById('county').value || null,
+                involvement: document.getElementById('involvement').value || null,
+                experience: document.getElementById('experience').value || null,
+                legislative_updates: document.getElementById('legislativeUpdates').checked,
+                newsletter: document.getElementById('newsletter').checked
+            };
+
+            try {
+                const { data, error } = await supabase
+                    .from('members')
+                    .insert([formData]);
+
+                if (error) {
+                    if (error.code === '23505') {
+                        alert('This email is already registered. Thank you for your support!');
+                    } else {
+                        throw error;
+                    }
+                } else {
+                    // Track in Google Analytics
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'sign_up', {
+                            'event_category': 'membership',
+                            'event_label': formData.involvement || 'general'
+                        });
+                    }
+
+                    // Show success message
+                    document.getElementById('signupFormContainer').style.display = 'none';
+                    document.getElementById('successMessage').classList.add('show');
+                    document.querySelector('.signup-section').scrollIntoView({ behavior: 'smooth' });
+                }
+            } catch (err) {
+                console.error('Error:', err);
+                alert('There was an error joining. Please try again.');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
     });
     </script>
 </body>
