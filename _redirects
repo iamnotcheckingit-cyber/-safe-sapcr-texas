@@ -1,0 +1,5 @@
+# Pretty URLs - serve .html files without extension
+/legislation    /legislation.html    200
+/legislators    /legislators.html    200
+/other-states   /other-states.html   200
+/membership     /membership.html     200

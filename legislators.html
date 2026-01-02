@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKQBVKKHB8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PKQBVKKHB8');
+    </script>
+
+    <title>Contact Your Texas Legislator | SAFE SAPCR Texas | 89th Legislature</title>
+    <meta name="description" content="Find and contact your Texas state representative and senator to support SAFE SAPCR Act reform. Complete directory of 89th Texas Legislature members with email, phone, and office addresses.">
+    <meta name="keywords" content="Texas state representative, Texas state senator, 89th Texas Legislature, contact Texas legislator, Texas House of Representatives, Texas Senate, Texas Capitol, family law reform Texas, SAFE SAPCR Act, Texas legislator contact info, find my Texas representative, find my Texas senator, Texas legislature 2025, Texas House Judiciary Committee, Texas Senate State Affairs Committee, Greg Abbott, Dade Phelan, Dan Patrick, Texas family court reform, custody law reform Texas, SAPCR legislation">
+    <link rel="canonical" href="https://safesapcrtx.org/legislators">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://safesapcrtx.org/legislators">
+    <meta property="og:title" content="Contact Your Texas Legislator | SAFE SAPCR Texas">
+    <meta property="og:description" content="Find and contact your Texas state representative and senator to support family law reform.">
+    <meta property="og:site_name" content="SAFE SAPCR Texas">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Contact Your Texas Legislator | SAFE SAPCR Texas">
+    <meta name="twitter:description" content="Find and contact your Texas state representative and senator to support family law reform.">
+
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="US-TX">
+    <meta name="geo.placename" content="Texas">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .legislators-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+        .legislators-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .legislators-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .search-section {
+            background: var(--bg-alt);
+            padding: 2rem;
+            text-align: center;
+        }
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+        }
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+        .search-box p {
+            margin-top: 0.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .committee-section {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .committee-section h2 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .committee-section .section-intro {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        .legislator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .legislator-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .legislator-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .legislator-card.chair {
+            border-left-color: var(--accent);
+        }
+        .legislator-card .role {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+        .legislator-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .legislator-card .party {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .legislator-card .party.republican {
+            background: #ffebee;
+            color: #c62828;
+        }
+        .legislator-card .party.democrat {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        .legislator-card .district {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+        }
+        .legislator-card .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .legislator-card .contact-links a {
+            display: inline-block;
+            padding: 0.4rem 0.75rem;
+            background: var(--bg-alt);
+            color: var(--primary);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .legislator-card .contact-links a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .all-legislators {
+            padding: 3rem 2rem;
+            background: var(--bg-alt);
+        }
+        .all-legislators h2 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .chamber-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .chamber-tabs button {
+            padding: 0.75rem 2rem;
+            border: 2px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .chamber-tabs button.active,
+        .chamber-tabs button:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .legislators-list {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .legislators-list.hidden {
+            display: none;
+        }
+        .letter-group {
+            margin-bottom: 2rem;
+        }
+        .letter-group h3 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .cta-section {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .cta-section p {
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .script-box {
+            background: white;
+            color: var(--text);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: left;
+        }
+        .script-box h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .script-box p {
+            color: var(--text);
+            opacity: 1;
+            font-style: italic;
+            line-height: 1.8;
+        }
+        @media (max-width: 768px) {
+            .legislators-hero h1 {
+                font-size: 1.8rem;
+            }
+            .chamber-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            .chamber-tabs button {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">SAFE SAPCR<span class="tx">TX</span></a>
+            <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="navMenu">
+                <li><a href="/#problem">The Problem</a></li>
+                <li><a href="/#solution">The Solution</a></li>
+                <li><a href="/legislation">Legislation</a></li>
+                <li><a href="/legislators">Find Legislator</a></li>
+                <li><a href="/other-states">Other States</a></li>
+                <li><a href="/membership">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="legislators-hero">
+        <h1>Contact Your Texas Legislator</h1>
+        <p>Find your state representative and senator to support the SAFE SAPCR Act and protect Texas families from custody fraud.</p>
+    </section>
+
+    <section class="search-section">
+        <div class="search-box">
+            <input type="text" id="legislatorSearch" placeholder="Search by name, district, or city..." onkeyup="filterLegislators()">
+            <p>Search all 181 members of the 89th Texas Legislature</p>
+        </div>
+    </section>
+
+    <section class="committee-section">
+        <h2>Key Family Law Committees</h2>
+        <p class="section-intro">These committees handle family law legislation including SAPCR reform. Contact these members first.</p>
+
+        <h3 style="color: var(--primary); margin: 2rem 0 1rem;">House Judiciary & Civil Jurisprudence Committee</h3>
+        <div class="legislator-grid" id="houseJudiciary">
+            <div class="legislator-card chair" data-name="jeff leach" data-district="67" data-city="plano allen mckinney">
+                <div class="role">Chair</div>
+                <h3>Jeff Leach</h3>
+                <span class="party republican">R</span>
+                <div class="district">District 67 - Collin County (Plano, Allen)</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Jeff Leach', 'email', 'jeff.leach@house.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Jeff Leach', 'phone', '512-463-0544'); return false;">512-463-0544</a>
+                    <a href="#" onclick="trackContact('Jeff Leach', 'capitol', 'E2.310'); return false;">Capitol Office</a>
+                </div>
+            </div>
+            <div class="legislator-card" data-name="victoria neave criado" data-district="107" data-city="dallas garland mesquite">
+                <div class="role">Vice Chair</div>
+                <h3>Victoria Neave Criado</h3>
+                <span class="party democrat">D</span>
+                <div class="district">District 107 - Dallas County</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Victoria Neave Criado', 'email', 'victoria.neave@house.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Victoria Neave Criado', 'phone', '512-463-0244'); return false;">512-463-0244</a>
+                </div>
+            </div>
+            <div class="legislator-card" data-name="brian harrison" data-district="10" data-city="midlothian waxahachie ellis">
+                <h3>Brian Harrison</h3>
+                <span class="party republican">R</span>
+                <div class="district">District 10 - Ellis County</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Brian Harrison', 'email', 'brian.harrison@house.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Brian Harrison', 'phone', '512-463-0610'); return false;">512-463-0610</a>
+                </div>
+            </div>
+            <div class="legislator-card" data-name="cody harris" data-district="8" data-city="palestine nacogdoches anderson">
+                <h3>Cody Harris</h3>
+                <span class="party republican">R</span>
+                <div class="district">District 8 - Anderson, Cherokee Counties</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Cody Harris', 'email', 'cody.harris@house.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Cody Harris', 'phone', '512-463-0492'); return false;">512-463-0492</a>
+                </div>
+            </div>
+            <div class="legislator-card" data-name="matt shaheen" data-district="66" data-city="plano collin">
+                <h3>Matt Shaheen</h3>
+                <span class="party republican">R</span>
+                <div class="district">District 66 - Collin County (Plano)</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Matt Shaheen', 'email', 'matt.shaheen@house.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Matt Shaheen', 'phone', '512-463-0594'); return false;">512-463-0594</a>
+                </div>
+            </div>
+            <div class="legislator-card" data-name="gene wu" data-district="137" data-city="houston harris bellaire">
+                <h3>Gene Wu</h3>
+                <span class="party democrat">D</span>
+                <div class="district">District 137 - Harris County (Houston)</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Gene Wu', 'email', 'gene.wu@house.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Gene Wu', 'phone', '512-463-0516'); return false;">512-463-0516</a>
+                </div>
+            </div>
+            <div class="legislator-card" data-name="ron reynolds" data-district="27" data-city="missouri city fort bend sugar land">
+                <h3>Ron Reynolds</h3>
+                <span class="party democrat">D</span>
+                <div class="district">District 27 - Fort Bend County</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Ron Reynolds', 'email', 'ron.reynolds@house.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Ron Reynolds', 'phone', '512-463-0494'); return false;">512-463-0494</a>
+                </div>
+            </div>
+            <div class="legislator-card" data-name="david cook" data-district="96" data-city="mansfield tarrant">
+                <h3>David Cook</h3>
+                <span class="party republican">R</span>
+                <div class="district">District 96 - Tarrant County</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('David Cook', 'email', 'david.cook@house.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('David Cook', 'phone', '512-463-0734'); return false;">512-463-0734</a>
+                </div>
+            </div>
+            <div class="legislator-card" data-name="mihaela plesa" data-district="70" data-city="carrollton dallas denton">
+                <h3>Mihaela Plesa</h3>
+                <span class="party democrat">D</span>
+                <div class="district">District 70 - Dallas/Denton Counties</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Mihaela Plesa', 'email', 'mihaela.plesa@house.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Mihaela Plesa', 'phone', '512-463-0468'); return false;">512-463-0468</a>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="color: var(--primary); margin: 3rem 0 1rem;">Senate State Affairs Committee</h3>
+        <div class="legislator-grid" id="senateStateAffairs">
+            <div class="legislator-card chair" data-name="bryan hughes" data-district="1" data-city="mineola tyler longview east texas">
+                <div class="role">Chair</div>
+                <h3>Bryan Hughes</h3>
+                <span class="party republican">R</span>
+                <div class="district">Senate District 1 - East Texas</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Bryan Hughes', 'email', 'bryan.hughes@senate.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Bryan Hughes', 'phone', '512-463-0101'); return false;">512-463-0101</a>
+                    <a href="#" onclick="trackContact('Bryan Hughes', 'capitol', 'E1.706'); return false;">Capitol Office</a>
+                </div>
+            </div>
+            <div class="legislator-card" data-name="donna campbell" data-district="25" data-city="new braunfels san antonio comal">
+                <div class="role">Vice Chair</div>
+                <h3>Donna Campbell</h3>
+                <span class="party republican">R</span>
+                <div class="district">Senate District 25 - Comal, Hays Counties</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Donna Campbell', 'email', 'donna.campbell@senate.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Donna Campbell', 'phone', '512-463-0125'); return false;">512-463-0125</a>
+                </div>
+            </div>
+            <div class="legislator-card" data-name="bob hall" data-district="2" data-city="edgewood kaufman rockwall">
+                <h3>Bob Hall</h3>
+                <span class="party republican">R</span>
+                <div class="district">Senate District 2 - Kaufman, Rockwall</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Bob Hall', 'email', 'bob.hall@senate.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Bob Hall', 'phone', '512-463-0102'); return false;">512-463-0102</a>
+                </div>
+            </div>
+            <div class="legislator-card" data-name="paul bettencourt" data-district="7" data-city="houston harris">
+                <h3>Paul Bettencourt</h3>
+                <span class="party republican">R</span>
+                <div class="district">Senate District 7 - Harris County (Houston)</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Paul Bettencourt', 'email', 'paul.bettencourt@senate.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Paul Bettencourt', 'phone', '512-463-0107'); return false;">512-463-0107</a>
+                </div>
+            </div>
+            <div class="legislator-card" data-name="angela paxton" data-district="8" data-city="mckinney frisco collin">
+                <h3>Angela Paxton</h3>
+                <span class="party republican">R</span>
+                <div class="district">Senate District 8 - Collin County</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Angela Paxton', 'email', 'angela.paxton@senate.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Angela Paxton', 'phone', '512-463-0108'); return false;">512-463-0108</a>
+                </div>
+            </div>
+            <div class="legislator-card" data-name="jose menendez" data-district="26" data-city="san antonio bexar">
+                <h3>Jose Menendez</h3>
+                <span class="party democrat">D</span>
+                <div class="district">Senate District 26 - Bexar County (San Antonio)</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Jose Menendez', 'email', 'jose.menendez@senate.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Jose Menendez', 'phone', '512-463-0126'); return false;">512-463-0126</a>
+                </div>
+            </div>
+            <div class="legislator-card" data-name="royce west" data-district="23" data-city="dallas">
+                <h3>Royce West</h3>
+                <span class="party democrat">D</span>
+                <div class="district">Senate District 23 - Dallas</div>
+                <div class="contact-links">
+                    <a href="#" onclick="trackContact('Royce West', 'email', 'royce.west@senate.texas.gov'); return false;">Email</a>
+                    <a href="#" onclick="trackContact('Royce West', 'phone', '512-463-0123'); return false;">512-463-0123</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="all-legislators">
+        <h2>All Texas Legislators</h2>
+        <div class="chamber-tabs">
+            <button class="active" onclick="showChamber('house')">Texas House (150)</button>
+            <button onclick="showChamber('senate')">Texas Senate (31)</button>
+        </div>
+
+        <div id="houseList" class="legislators-list">
+            <div class="legislator-grid">
+                <!-- Harris County Representatives -->
+                <div class="legislator-card" data-name="armando walle" data-district="140" data-city="houston harris">
+                    <h3>Armando Walle</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 140 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Armando Walle', 'email', 'armando.walle@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Armando Walle', 'phone', '512-463-0924'); return false;">512-463-0924</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="senfronia thompson" data-district="141" data-city="houston harris">
+                    <h3>Senfronia Thompson</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 141 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Senfronia Thompson', 'email', 'senfronia.thompson@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Senfronia Thompson', 'phone', '512-463-0720'); return false;">512-463-0720</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="harold dutton" data-district="142" data-city="houston harris">
+                    <h3>Harold Dutton Jr.</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 142 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Harold Dutton Jr.', 'email', 'harold.dutton@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Harold Dutton Jr.', 'phone', '512-463-0510'); return false;">512-463-0510</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="ana hernandez" data-district="143" data-city="houston harris">
+                    <h3>Ana Hernandez</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 143 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Ana Hernandez', 'email', 'ana.hernandez@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Ana Hernandez', 'phone', '512-463-0614'); return false;">512-463-0614</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="mary ann perez" data-district="144" data-city="houston harris pasadena">
+                    <h3>Mary Ann Perez</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 144 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Mary Ann Perez', 'email', 'maryann.perez@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Mary Ann Perez', 'phone', '512-463-0460'); return false;">512-463-0460</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="christina morales" data-district="145" data-city="houston harris">
+                    <h3>Christina Morales</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 145 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Christina Morales', 'email', 'christina.morales@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Christina Morales', 'phone', '512-463-0732'); return false;">512-463-0732</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="shawn thierry" data-district="146" data-city="houston harris">
+                    <h3>Shawn Thierry</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 146 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Shawn Thierry', 'email', 'shawn.thierry@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Shawn Thierry', 'phone', '512-463-0720'); return false;">512-463-0720</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="jolanda jones" data-district="147" data-city="houston harris">
+                    <h3>Jolanda Jones</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 147 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Jolanda Jones', 'email', 'jolanda.jones@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Jolanda Jones', 'phone', '512-463-0586'); return false;">512-463-0586</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="penny morales shaw" data-district="148" data-city="houston harris">
+                    <h3>Penny Morales Shaw</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 148 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Penny Morales Shaw', 'email', 'penny.moralesshaw@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Penny Morales Shaw', 'phone', '512-463-0620'); return false;">512-463-0620</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="hubert vo" data-district="149" data-city="houston harris alief">
+                    <h3>Hubert Vo</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 149 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Hubert Vo', 'email', 'hubert.vo@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Hubert Vo', 'phone', '512-463-0568'); return false;">512-463-0568</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="valoree swanson" data-district="150" data-city="spring houston harris montgomery">
+                    <h3>Valoree Swanson</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 150 - Harris/Montgomery Counties (Spring)</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Valoree Swanson', 'email', 'valoree.swanson@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Valoree Swanson', 'phone', '512-463-0572'); return false;">512-463-0572</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="briscoe cain" data-district="128" data-city="deer park baytown harris chambers">
+                    <h3>Briscoe Cain</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 128 - Harris/Chambers (Deer Park, Baytown)</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Briscoe Cain', 'email', 'briscoe.cain@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Briscoe Cain', 'phone', '512-463-0733'); return false;">512-463-0733</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="dennis paul" data-district="129" data-city="houston harris clear lake">
+                    <h3>Dennis Paul</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 129 - Harris County (Clear Lake)</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Dennis Paul', 'email', 'dennis.paul@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Dennis Paul', 'phone', '512-463-0734'); return false;">512-463-0734</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="tom oliverson" data-district="130" data-city="cypress houston harris">
+                    <h3>Tom Oliverson</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 130 - Harris County (Cypress)</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Tom Oliverson', 'email', 'tom.oliverson@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Tom Oliverson', 'phone', '512-463-0661'); return false;">512-463-0661</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="alma allen" data-district="131" data-city="houston harris">
+                    <h3>Alma Allen</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 131 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Alma Allen', 'email', 'alma.allen@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Alma Allen', 'phone', '512-463-0744'); return false;">512-463-0744</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="mike schofield" data-district="132" data-city="katy houston harris">
+                    <h3>Mike Schofield</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 132 - Harris County (Katy)</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Mike Schofield', 'email', 'mike.schofield@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Mike Schofield', 'phone', '512-463-0528'); return false;">512-463-0528</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="mano deayala" data-district="133" data-city="houston harris memorial">
+                    <h3>Mano DeAyala</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 133 - Harris County (Memorial)</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Mano DeAyala', 'email', 'mano.deayala@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Mano DeAyala', 'phone', '512-463-0584'); return false;">512-463-0584</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="ann johnson" data-district="134" data-city="houston harris montrose heights">
+                    <h3>Ann Johnson</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 134 - Harris County (Heights, Montrose)</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Ann Johnson', 'email', 'ann.johnson@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Ann Johnson', 'phone', '512-463-0630'); return false;">512-463-0630</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="jon rosenthal" data-district="135" data-city="houston harris jersey village">
+                    <h3>Jon Rosenthal</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 135 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Jon Rosenthal', 'email', 'jon.rosenthal@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Jon Rosenthal', 'phone', '512-463-0640'); return false;">512-463-0640</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="john bryant" data-district="136" data-city="houston harris memorial villages">
+                    <h3>John Bryant</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 136 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('John Bryant', 'email', 'john.bryant@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('John Bryant', 'phone', '512-463-0530'); return false;">512-463-0530</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="lacey hull" data-district="138" data-city="houston harris">
+                    <h3>Lacey Hull</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 138 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Lacey Hull', 'email', 'lacey.hull@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Lacey Hull', 'phone', '512-463-0352'); return false;">512-463-0352</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="jarvis johnson" data-district="139" data-city="houston harris">
+                    <h3>Jarvis Johnson</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 139 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Jarvis Johnson', 'email', 'jarvis.johnson@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Jarvis Johnson', 'phone', '512-463-0554'); return false;">512-463-0554</a>
+                    </div>
+                </div>
+                <!-- Dallas County Representatives -->
+                <div class="legislator-card" data-name="angie chen button" data-district="112" data-city="richardson garland dallas">
+                    <h3>Angie Chen Button</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 112 - Dallas County (Richardson)</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Angie Chen Button', 'email', 'angie.button@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Angie Chen Button', 'phone', '512-463-0486'); return false;">512-463-0486</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="rafael anchia" data-district="103" data-city="dallas">
+                    <h3>Rafael Anchia</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 103 - Dallas County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Rafael Anchia', 'email', 'rafael.anchia@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Rafael Anchia', 'phone', '512-463-0746'); return false;">512-463-0746</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="jessica gonzalez" data-district="104" data-city="dallas">
+                    <h3>Jessica Gonzalez</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 104 - Dallas County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Jessica Gonzalez', 'email', 'jessica.gonzalez@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Jessica Gonzalez', 'phone', '512-463-0408'); return false;">512-463-0408</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="terry meza" data-district="105" data-city="irving dallas grand prairie">
+                    <h3>Terry Meza</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 105 - Dallas County (Irving)</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Terry Meza', 'email', 'terry.meza@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Terry Meza', 'phone', '512-463-0642'); return false;">512-463-0642</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="jared patterson" data-district="106" data-city="frisco denton collin">
+                    <h3>Jared Patterson</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 106 - Denton County (Frisco)</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Jared Patterson', 'email', 'jared.patterson@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Jared Patterson', 'phone', '512-463-0694'); return false;">512-463-0694</a>
+                    </div>
+                </div>
+                <!-- Tarrant County Representatives -->
+                <div class="legislator-card" data-name="craig goldman" data-district="97" data-city="fort worth tarrant">
+                    <h3>Craig Goldman</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 97 - Tarrant County (Fort Worth)</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Craig Goldman', 'email', 'craig.goldman@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Craig Goldman', 'phone', '512-463-0608'); return false;">512-463-0608</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="giovanni capriglione" data-district="98" data-city="southlake keller tarrant">
+                    <h3>Giovanni Capriglione</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 98 - Tarrant County (Southlake)</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Giovanni Capriglione', 'email', 'giovanni.capriglione@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Giovanni Capriglione', 'phone', '512-463-0690'); return false;">512-463-0690</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="charlie geren" data-district="99" data-city="fort worth tarrant">
+                    <h3>Charlie Geren</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 99 - Tarrant County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Charlie Geren', 'email', 'charlie.geren@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Charlie Geren', 'phone', '512-463-0610'); return false;">512-463-0610</a>
+                    </div>
+                </div>
+                <!-- Bexar County Representatives -->
+                <div class="legislator-card" data-name="steve allison" data-district="121" data-city="san antonio bexar">
+                    <h3>Steve Allison</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 121 - Bexar County (San Antonio)</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Steve Allison', 'email', 'steve.allison@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Steve Allison', 'phone', '512-463-0536'); return false;">512-463-0536</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="liz campos" data-district="119" data-city="san antonio bexar">
+                    <h3>Liz Campos</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 119 - Bexar County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Liz Campos', 'email', 'liz.campos@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Liz Campos', 'phone', '512-463-0460'); return false;">512-463-0460</a>
+                    </div>
+                </div>
+                <!-- Travis County Representatives -->
+                <div class="legislator-card" data-name="donna howard" data-district="48" data-city="austin travis">
+                    <h3>Donna Howard</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 48 - Travis County (Austin)</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Donna Howard', 'email', 'donna.howard@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Donna Howard', 'phone', '512-463-0631'); return false;">512-463-0631</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="gina hinojosa" data-district="49" data-city="austin travis">
+                    <h3>Gina Hinojosa</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 49 - Travis County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Gina Hinojosa', 'email', 'gina.hinojosa@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Gina Hinojosa', 'phone', '512-463-0668'); return false;">512-463-0668</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="james talarico" data-district="50" data-city="austin round rock williamson">
+                    <h3>James Talarico</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 50 - Travis/Williamson Counties</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('James Talarico', 'email', 'james.talarico@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('James Talarico', 'phone', '512-463-0508'); return false;">512-463-0508</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="celia israel" data-district="51" data-city="austin pflugerville travis">
+                    <h3>Celia Israel</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 51 - Travis County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Celia Israel', 'email', 'celia.israel@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Celia Israel', 'phone', '512-463-0821'); return false;">512-463-0821</a>
+                    </div>
+                </div>
+                <!-- Speaker -->
+                <div class="legislator-card chair" data-name="dade phelan" data-district="21" data-city="beaumont jefferson orange">
+                    <div class="role">Speaker of the House</div>
+                    <h3>Dade Phelan</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 21 - Jefferson/Orange Counties</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Dade Phelan', 'email', 'dade.phelan@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Dade Phelan', 'phone', '512-463-1000'); return false;">512-463-1000</a>
+                    </div>
+                </div>
+                <!-- More Representatives -->
+                <div class="legislator-card" data-name="dustin burrows" data-district="83" data-city="lubbock">
+                    <h3>Dustin Burrows</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 83 - Lubbock</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Dustin Burrows', 'email', 'dustin.burrows@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Dustin Burrows', 'phone', '512-463-0542'); return false;">512-463-0542</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="trent ashby" data-district="57" data-city="lufkin nacogdoches">
+                    <h3>Trent Ashby</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 57 - East Texas</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Trent Ashby', 'email', 'trent.ashby@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Trent Ashby', 'phone', '512-463-0508'); return false;">512-463-0508</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="todd hunter" data-district="32" data-city="corpus christi nueces">
+                    <h3>Todd Hunter</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 32 - Nueces County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Todd Hunter', 'email', 'todd.hunter@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Todd Hunter', 'phone', '512-463-0672'); return false;">512-463-0672</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="four price" data-district="87" data-city="amarillo potter">
+                    <h3>Four Price</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 87 - Amarillo</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Four Price', 'email', 'four.price@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Four Price', 'phone', '512-463-0470'); return false;">512-463-0470</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="drew darby" data-district="72" data-city="san angelo tom green">
+                    <h3>Drew Darby</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">District 72 - San Angelo</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Drew Darby', 'email', 'drew.darby@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Drew Darby', 'phone', '512-463-0331'); return false;">512-463-0331</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="oscar longoria" data-district="35" data-city="mission hidalgo rio grande valley">
+                    <h3>Oscar Longoria</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 35 - Hidalgo County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Oscar Longoria', 'email', 'oscar.longoria@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Oscar Longoria', 'phone', '512-463-0645'); return false;">512-463-0645</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="mary gonzalez" data-district="75" data-city="el paso clint">
+                    <h3>Mary Gonzalez</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">District 75 - El Paso County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Mary Gonzalez', 'email', 'mary.gonzalez@house.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Mary Gonzalez', 'phone', '512-463-0613'); return false;">512-463-0613</a>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: var(--text-light);">Showing select representatives. Use search to find your specific legislator.</p>
+        </div>
+
+        <div id="senateList" class="legislators-list hidden">
+            <div class="legislator-grid">
+                <div class="legislator-card chair" data-name="dan patrick" data-district="lt gov" data-city="houston texas">
+                    <div class="role">Lt. Governor / President of Senate</div>
+                    <h3>Dan Patrick</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">Statewide - Lieutenant Governor</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Dan Patrick', 'email', 'dan.patrick@ltgov.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Dan Patrick', 'phone', '512-463-0001'); return false;">512-463-0001</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="brandon creighton" data-district="4" data-city="conroe montgomery woodlands">
+                    <h3>Brandon Creighton</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">Senate District 4 - Montgomery County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Brandon Creighton', 'email', 'brandon.creighton@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Brandon Creighton', 'phone', '512-463-0104'); return false;">512-463-0104</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="charles schwertner" data-district="5" data-city="georgetown williamson">
+                    <h3>Charles Schwertner</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">Senate District 5 - Williamson County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Charles Schwertner', 'email', 'charles.schwertner@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Charles Schwertner', 'phone', '512-463-0105'); return false;">512-463-0105</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="carol alvarado" data-district="6" data-city="houston harris">
+                    <h3>Carol Alvarado</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">Senate District 6 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Carol Alvarado', 'email', 'carol.alvarado@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Carol Alvarado', 'phone', '512-463-0106'); return false;">512-463-0106</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="kelly hancock" data-district="9" data-city="north richland hills tarrant">
+                    <h3>Kelly Hancock</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">Senate District 9 - Tarrant County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Kelly Hancock', 'email', 'kelly.hancock@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Kelly Hancock', 'phone', '512-463-0109'); return false;">512-463-0109</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="phil king" data-district="10" data-city="weatherford parker">
+                    <h3>Phil King</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">Senate District 10 - Parker County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Phil King', 'email', 'phil.king@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Phil King', 'phone', '512-463-0110'); return false;">512-463-0110</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="mayes middleton" data-district="11" data-city="galveston brazoria">
+                    <h3>Mayes Middleton</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">Senate District 11 - Galveston, Brazoria</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Mayes Middleton', 'email', 'mayes.middleton@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Mayes Middleton', 'phone', '512-463-0111'); return false;">512-463-0111</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="tan parker" data-district="12" data-city="flower mound denton">
+                    <h3>Tan Parker</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">Senate District 12 - Denton County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Tan Parker', 'email', 'tan.parker@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Tan Parker', 'phone', '512-463-0112'); return false;">512-463-0112</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="borris miles" data-district="13" data-city="houston harris">
+                    <h3>Borris Miles</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">Senate District 13 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Borris Miles', 'email', 'borris.miles@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Borris Miles', 'phone', '512-463-0113'); return false;">512-463-0113</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="sarah eckhardt" data-district="14" data-city="austin travis">
+                    <h3>Sarah Eckhardt</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">Senate District 14 - Travis County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Sarah Eckhardt', 'email', 'sarah.eckhardt@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Sarah Eckhardt', 'phone', '512-463-0114'); return false;">512-463-0114</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="john whitmire" data-district="15" data-city="houston harris">
+                    <h3>John Whitmire</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">Senate District 15 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('John Whitmire', 'email', 'john.whitmire@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('John Whitmire', 'phone', '512-463-0115'); return false;">512-463-0115</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="nathan johnson" data-district="16" data-city="dallas">
+                    <h3>Nathan Johnson</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">Senate District 16 - Dallas</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Nathan Johnson', 'email', 'nathan.johnson@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Nathan Johnson', 'phone', '512-463-0116'); return false;">512-463-0116</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="joan huffman" data-district="17" data-city="houston harris">
+                    <h3>Joan Huffman</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">Senate District 17 - Harris County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Joan Huffman', 'email', 'joan.huffman@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Joan Huffman', 'phone', '512-463-0117'); return false;">512-463-0117</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="lois kolkhorst" data-district="18" data-city="brenham washington">
+                    <h3>Lois Kolkhorst</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">Senate District 18 - Washington County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Lois Kolkhorst', 'email', 'lois.kolkhorst@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Lois Kolkhorst', 'phone', '512-463-0118'); return false;">512-463-0118</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="roland gutierrez" data-district="19" data-city="san antonio bexar">
+                    <h3>Roland Gutierrez</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">Senate District 19 - Bexar County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Roland Gutierrez', 'email', 'roland.gutierrez@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Roland Gutierrez', 'phone', '512-463-0119'); return false;">512-463-0119</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="juan hinojosa" data-district="20" data-city="mcallen hidalgo rio grande valley">
+                    <h3>Juan Hinojosa</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">Senate District 20 - Hidalgo County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Juan Hinojosa', 'email', 'juan.hinojosa@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Juan Hinojosa', 'phone', '512-463-0120'); return false;">512-463-0120</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="judith zaffirini" data-district="21" data-city="laredo webb">
+                    <h3>Judith Zaffirini</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">Senate District 21 - Webb County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Judith Zaffirini', 'email', 'judith.zaffirini@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Judith Zaffirini', 'phone', '512-463-0121'); return false;">512-463-0121</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="brian birdwell" data-district="22" data-city="granbury hood">
+                    <h3>Brian Birdwell</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">Senate District 22 - Hood County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Brian Birdwell', 'email', 'brian.birdwell@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Brian Birdwell', 'phone', '512-463-0122'); return false;">512-463-0122</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="drew springer" data-district="30" data-city="muenster cooke">
+                    <h3>Drew Springer</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">Senate District 30 - North Texas</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Drew Springer', 'email', 'drew.springer@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Drew Springer', 'phone', '512-463-0130'); return false;">512-463-0130</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="kevin sparks" data-district="31" data-city="midland odessa">
+                    <h3>Kevin Sparks</h3>
+                    <span class="party republican">R</span>
+                    <div class="district">Senate District 31 - Midland/Odessa</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Kevin Sparks', 'email', 'kevin.sparks@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Kevin Sparks', 'phone', '512-463-0131'); return false;">512-463-0131</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="cesar blanco" data-district="29" data-city="el paso">
+                    <h3>Cesar Blanco</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">Senate District 29 - El Paso</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Cesar Blanco', 'email', 'cesar.blanco@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Cesar Blanco', 'phone', '512-463-0129'); return false;">512-463-0129</a>
+                    </div>
+                </div>
+                <div class="legislator-card" data-name="morgan lamiley" data-district="27" data-city="brownsville cameron rio grande valley">
+                    <h3>Morgan LaMantia</h3>
+                    <span class="party democrat">D</span>
+                    <div class="district">Senate District 27 - Cameron County</div>
+                    <div class="contact-links">
+                        <a href="#" onclick="trackContact('Morgan LaMantia', 'email', 'morgan.lamantia@senate.texas.gov'); return false;">Email</a>
+                        <a href="#" onclick="trackContact('Morgan LaMantia', 'phone', '512-463-0127'); return false;">512-463-0127</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>What to Say When You Call</h2>
+        <div class="script-box">
+            <h3>Sample Script</h3>
+            <p>"Hello, my name is [YOUR NAME] and I'm a constituent from [YOUR CITY]. I'm calling to ask [REPRESENTATIVE/SENATOR NAME] to support the SAFE SAPCR Act, which would require due diligence before attorneys can certify a respondent's address in family court custody cases. Currently, Texas Rule 239a has no verification requirement, which enables service fraud and wrongful default judgments that separate Texas families. Please support legislation that protects parents' due process rights. Thank you."</p>
+        </div>
+        <p>Every call matters. Legislators track constituent contacts and prioritize issues their voters care about.</p>
+        <div style="margin-top: 2rem;">
+            <a href="/legislation" class="btn" style="background: white; color: var(--primary);">Read the SAFE SAPCR Act</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">SAFE SAPCR<span class="tx">TX</span></div>
+            <p>Service Accountability and Fraud Elimination of Suits Affecting the Parent-Child Relationship</p>
+            <p class="disclaimer">This website presents factual information from public court records and advocates for legislative reform. It is not legal advice.</p>
+            <p class="contact">Contact: <a href="mailto:info@safesapcrtx.org">info@safesapcrtx.org</a></p>
+            <p class="copyright">&copy; 2025 SAFE SAPCR Texas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', function() {
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            document.querySelectorAll('#navMenu a').forEach(link => {
+                link.addEventListener('click', function() {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+    });
+
+    // Chamber tab switching
+    function showChamber(chamber) {
+        document.querySelectorAll('.chamber-tabs button').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.legislators-list').forEach(list => list.classList.add('hidden'));
+
+        if (chamber === 'house') {
+            document.querySelector('.chamber-tabs button:first-child').classList.add('active');
+            document.getElementById('houseList').classList.remove('hidden');
+        } else {
+            document.querySelector('.chamber-tabs button:last-child').classList.add('active');
+            document.getElementById('senateList').classList.remove('hidden');
+        }
+    }
+
+    // Search/filter legislators
+    function filterLegislators() {
+        const searchTerm = document.getElementById('legislatorSearch').value.toLowerCase();
+        const allCards = document.querySelectorAll('.legislator-card');
+
+        allCards.forEach(card => {
+            const searchData = card.dataset.name + ' ' + card.dataset.district + ' ' + card.dataset.city;
+            if (searchData.toLowerCase().includes(searchTerm)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // Track legislator contact clicks - sends to Google Analytics and Netlify Forms
+    function trackContact(legislator, contactType, contactValue) {
+        // Track in Google Analytics
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'legislator_contact', {
+                'event_category': 'engagement',
+                'event_label': legislator,
+                'contact_type': contactType,
+                'contact_value': contactValue
+            });
+        }
+
+        // Log to Netlify Forms for detailed tracking
+        const formData = new FormData();
+        formData.append('form-name', 'legislator-clicks');
+        formData.append('legislator', legislator);
+        formData.append('contactType', contactType);
+        formData.append('contactValue', contactValue);
+        formData.append('timestamp', new Date().toISOString());
+        formData.append('page', window.location.pathname);
+        formData.append('userAgent', navigator.userAgent);
+
+        fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+        }).catch(() => {});
+
+        // Handle the action based on contact type
+        if (contactType === 'email') {
+            window.location.href = 'mailto:' + contactValue + '?subject=Support%20for%20SAFE%20SAPCR%20Act&body=Dear%20Representative%2FSenator%2C%0A%0AI%20am%20writing%20to%20ask%20for%20your%20support%20of%20the%20SAFE%20SAPCR%20Act%2C%20which%20would%20require%20due%20diligence%20before%20attorneys%20can%20certify%20a%20respondent%27s%20address%20in%20family%20court%20custody%20cases.%0A%0ACurrently%2C%20Texas%20Rule%20239a%20has%20no%20verification%20requirement%2C%20which%20enables%20service%20fraud%20and%20wrongful%20default%20judgments%20that%20separate%20Texas%20families.%0A%0APlease%20support%20legislation%20that%20protects%20parents%27%20due%20process%20rights.%0A%0AThank%20you%20for%20your%20time%20and%20consideration.%0A%0ASincerely%2C%0A%5BYour%20Name%5D%0A%5BYour%20City%2C%20TX%5D';
+        } else if (contactType === 'phone') {
+            window.location.href = 'tel:' + contactValue.replace(/-/g, '');
+        } else if (contactType === 'capitol') {
+            alert('Capitol Office: ' + contactValue + '\nTexas State Capitol, Austin, TX 78701');
+        }
+    }
+    </script>
+
+    <!-- Hidden form for legislator click tracking -->
+    <form name="legislator-clicks" netlify netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="bot-field">
+        <input type="hidden" name="legislator">
+        <input type="hidden" name="contactType">
+        <input type="hidden" name="contactValue">
+        <input type="hidden" name="timestamp">
+        <input type="hidden" name="page">
+        <input type="hidden" name="userAgent">
+    </form>
+</body>
+</html>
