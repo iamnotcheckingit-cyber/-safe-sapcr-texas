@@ -15,7 +15,7 @@
 
     <title>Contact Your Texas Legislator | SAFE SAPCR Texas | 89th Legislature</title>
     <meta name="description" content="Find and contact your Texas state representative and senator to support SAFE SAPCR Act reform. Complete directory of 89th Texas Legislature members with email, phone, and office addresses.">
-    <meta name="keywords" content="Texas state representative, Texas state senator, 89th Texas Legislature, contact Texas legislator, Texas House of Representatives, Texas Senate, Texas Capitol, family law reform Texas, SAFE SAPCR Act, Texas legislator contact info, find my Texas representative, find my Texas senator, Texas legislature 2025, Texas House Judiciary Committee, Texas Senate State Affairs Committee, Greg Abbott, Dade Phelan, Dan Patrick, Texas family court reform, custody law reform Texas, SAPCR legislation">
+        <meta name="keywords" content="Texas state representative, Texas state senator, 89th Texas Legislature, contact Texas legislator, Texas House of Representatives, Texas Senate, Texas Capitol, family law reform Texas, SAFE SAPCR Act, Texas legislator contact info, find my Texas representative, find my Texas senator, Texas legislature 2025, Texas House Judiciary Committee, Texas Senate State Affairs Committee, Greg Abbott, Dade Phelan, Dan Patrick, Texas family court reform, custody law reform Texas, SAPCR legislation, Jeff Leach Texas, Bryan Hughes Texas, Angela Paxton Texas, Gene Wu Texas, Victoria Neave Texas, Texas representative email, Texas senator phone number, Texas legislature address, Austin Capitol building, Texas district map, who represents me Texas, Texas lawmaker contact, family law committee Texas, civil jurisprudence committee, state affairs committee Texas">
     <link rel="canonical" href="https://safesapcrtx.org/legislators">
 
     <!-- Open Graph -->
@@ -248,6 +248,25 @@
             font-style: italic;
             line-height: 1.8;
         }
+
+        .location-prompt { margin-bottom: 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.75rem; }
+        .location-intro { width: 100%; margin: 0 0 0.5rem; color: var(--text-light); font-size: 0.95rem; }
+        .btn-location { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--primary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: background 0.2s, transform 0.1s; }
+        .btn-location:hover { background: #152a4a; transform: translateY(-1px); }
+        .btn-location:active { transform: translateY(0); }
+        .btn-location:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .or-divider { color: var(--text-light); font-size: 0.9rem; }
+        .location-result { margin-top: 1rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid var(--accent); text-align: left; }
+        .location-result.hidden { display: none; }
+        .location-result h4 { margin: 0 0 0.5rem; color: var(--primary); }
+        .location-result p { margin: 0; color: var(--text); font-size: 0.95rem; }
+        .location-result .district-info { display: flex; gap: 1.5rem; margin-top: 0.75rem; flex-wrap: wrap; }
+        .location-result .district-info span { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--text-light); }
+
+        
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .spin { animation: spin 1s linear infinite; }
+
         @media (max-width: 768px) {
             .legislators-hero h1 {
                 font-size: 1.8rem;
@@ -261,6 +280,98 @@
             }
         }
     </style>
+
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "SAFE SAPCR Texas",
+        "url": "https://safesapcrtx.org",
+        "description": "Advocating for Texas family law reform to protect parents from fraudulent service of process in custody cases."
+    }
+    </script>
+
+    <!-- Structured Data - Government Officials Directory -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Texas State Legislators - 89th Legislature",
+        "description": "Complete directory of Texas state representatives and senators for the 89th Texas Legislature",
+        "numberOfItems": 181,
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "@position": 1,
+                "item": {
+                    "@type": "Person",
+                    "name": "Jeff Leach",
+                    "jobTitle": "Texas State Representative, District 67",
+                    "memberOf": {
+                        "@type": "Organization",
+                        "name": "Texas House of Representatives"
+                    },
+                    "workLocation": {
+                        "@type": "Place",
+                        "name": "Texas State Capitol",
+                        "address": "Austin, TX 78701"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "@position": 2,
+                "item": {
+                    "@type": "Person",
+                    "name": "Bryan Hughes",
+                    "jobTitle": "Texas State Senator, District 1",
+                    "memberOf": {
+                        "@type": "Organization",
+                        "name": "Texas Senate"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "@position": 3,
+                "item": {
+                    "@type": "Person",
+                    "name": "Angela Paxton",
+                    "jobTitle": "Texas State Senator, District 8",
+                    "description": "Author of S.B. 2794 (custody interference reform)",
+                    "memberOf": {
+                        "@type": "Organization",
+                        "name": "Texas Senate"
+                    }
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Structured Data - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://safesapcrtx.org/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Contact Your Legislator",
+                "item": "https://safesapcrtx.org/legislators"
+            }
+        ]
+    }
+    </script>
+
 </head>
 <body>
     <header>
@@ -289,8 +400,20 @@
 
     <section class="search-section">
         <div class="search-box">
+            <div class="location-prompt" id="locationPrompt">
+                <p class="location-intro">Find your Texas legislators quickly:</p>
+                <button type="button" class="btn btn-location" onclick="useMyLocation()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M12 2v4m0 12v4m-10-10h4m12 0h4"></path>
+                    </svg>
+                    Use My Location
+                </button>
+                <span class="or-divider">or</span>
+            </div>
             <input type="text" id="legislatorSearch" placeholder="Search by name, district, or city..." onkeyup="filterLegislators()">
             <p>Search all 181 members of the 89th Texas Legislature</p>
+            <div id="locationResult" class="location-result hidden"></div>
         </div>
     </section>
 
