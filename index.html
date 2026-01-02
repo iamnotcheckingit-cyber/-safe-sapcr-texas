@@ -648,6 +648,19 @@
             <div class="footer-logo">SAFE SAPCR<span class="tx">TX</span></div>
             <p>Service Accountability and Fraud Elimination of Suits Affecting the Parent-Child Relationship</p>
             <p>Advocating for Texas family law reform to protect parents and children from fraudulent default judgments in custody and conservatorship cases.</p>
+            
+            <!-- Newsletter Signup -->
+            <div class="newsletter-signup">
+                <h3>Stay Informed</h3>
+                <p>Get updates on legislation, advocacy events, and ways to help reform Texas family law.</p>
+                <form id="newsletterForm" class="newsletter-form">
+                    <input type="email" id="newsletterEmail" name="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-newsletter">Subscribe</button>
+                </form>
+                <p class="newsletter-privacy">We respect your privacy. Unsubscribe anytime.</p>
+                <div id="newsletterMessage" class="newsletter-message hidden"></div>
+            </div>
+
             <p class="disclaimer">This website presents factual information from public court records and advocates for legislative reform. It is not legal advice. Consult a licensed Texas family law attorney for advice on your specific situation.</p>
             <p class="contact">Contact: <a href="mailto:info@safesapcrtx.org">info@safesapcrtx.org</a></p>
             <p class="copyright">© 2025 SAFE SAPCR Texas. All rights reserved.</p>
@@ -709,6 +722,21 @@
     .contact-form.hidden { display: none; }
     .contact-form input { padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
     .contact-form .btn { background: #1a365d; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+    
+    /* Newsletter Signup Styles */
+    .newsletter-signup { margin: 2rem 0; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 8px; text-align: center; }
+    .newsletter-signup h3 { color: white; margin-bottom: 0.5rem; font-size: 1.3rem; }
+    .newsletter-signup > p { opacity: 0.9; margin-bottom: 1rem; }
+    .newsletter-form { display: flex; gap: 0.5rem; max-width: 400px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+    .newsletter-form input { flex: 1; min-width: 200px; padding: 0.75rem 1rem; border: none; border-radius: 6px; font-size: 1rem; }
+    .btn-newsletter { background: var(--accent); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; font-weight: 600; transition: background 0.2s; }
+    .btn-newsletter:hover { background: #c9a227; }
+    .newsletter-privacy { font-size: 0.8rem; opacity: 0.7; margin-top: 0.75rem; }
+    .newsletter-message { margin-top: 1rem; padding: 0.75rem; border-radius: 6px; }
+    .newsletter-message.hidden { display: none; }
+    .newsletter-message.success { background: rgba(76, 175, 80, 0.2); color: #4caf50; }
+    .newsletter-message.error { background: rgba(244, 67, 54, 0.2); color: #f44336; }
+
     </style>
 
     <script>
@@ -951,5 +979,62 @@
             .catch(() => {});
     })();
     </script>
+
+    <!-- Newsletter Signup Handler -->
+    <script>
+    (function() {
+        const form = document.getElementById('newsletterForm');
+        const emailInput = document.getElementById('newsletterEmail');
+        const messageDiv = document.getElementById('newsletterMessage');
+
+        if (form) {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const email = emailInput.value.trim();
+                if (!email) return;
+
+                const btn = form.querySelector('button');
+                const originalText = btn.textContent;
+                btn.textContent = 'Subscribing...';
+                btn.disabled = true;
+
+                try {
+                    const response = await fetch('/.netlify/functions/newsletter-signup', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email })
+                    });
+
+                    const data = await response.json();
+
+                    messageDiv.classList.remove('hidden', 'success', 'error');
+
+                    if (data.success) {
+                        messageDiv.classList.add('success');
+                        messageDiv.textContent = 'Thank you! You\'ve been subscribed to our newsletter.';
+                        emailInput.value = '';
+
+                        // Track in GA
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'newsletter_signup', { 'event_category': 'engagement' });
+                        }
+                    } else {
+                        messageDiv.classList.add('error');
+                        messageDiv.textContent = data.error || 'Something went wrong. Please try again.';
+                    }
+                } catch (err) {
+                    messageDiv.classList.remove('hidden', 'success', 'error');
+                    messageDiv.classList.add('error');
+                    messageDiv.textContent = 'Network error. Please try again.';
+                }
+
+                btn.textContent = originalText;
+                btn.disabled = false;
+            });
+        }
+    })();
+    </script>
+
 </body>
 </html>
