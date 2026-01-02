@@ -65,7 +65,12 @@ nav {
     align-items: center;
 }
 
+/* Logo with image */
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
     font-family: 'Merriweather', serif;
     font-size: 1.5rem;
     font-weight: 700;
@@ -74,14 +79,7 @@ nav {
 }
 
 .logo .tx {
-    color: var(--gold);
-}
-/* Logo with image */
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    text-decoration: none;
+    color: var(--accent);
 }
 
 .logo-img {
