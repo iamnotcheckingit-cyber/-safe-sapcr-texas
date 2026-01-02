@@ -6,15 +6,19 @@
 }
 
 :root {
-    --primary: #1a365d;
-    --primary-light: #2c5282;
-    --accent: #c53030;
-    --accent-light: #e53e3e;
-    --gold: #d69e2e;
+    /* Harvey Balboa Theme - Navy & Orange */
+    --primary: #2d3e50;
+    --primary-light: #3d5066;
+    --primary-dark: #1e2a36;
+    --accent: #e08a3c;
+    --accent-light: #f0a05c;
+    --accent-dark: #c07020;
+    --gold: #e08a3c;
     --text: #2d3748;
     --text-light: #4a5568;
     --bg: #ffffff;
-    --bg-alt: #f7fafc;
+    --bg-alt: #f8f6f3;
+    --bg-cream: #f5f0e8;
     --border: #e2e8f0;
 }
 
@@ -72,6 +76,64 @@ nav {
 .logo .tx {
     color: var(--gold);
 }
+/* Logo with image */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 45px;
+    width: auto;
+}
+
+.logo-text {
+    font-family: 'Merriweather', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.logo-text .tx {
+    color: var(--accent);
+}
+
+/* Hero logo */
+.hero-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
+    animation: fadeInDown 1s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        height: 35px;
+    }
+    .logo-text {
+        font-size: 1.2rem;
+    }
+    .hero-logo {
+        width: 120px;
+    }
+}
+
+
 
 nav ul {
     display: flex;
@@ -1012,4 +1074,31 @@ footer a:hover {
     .resources-grid {
         grid-template-columns: 1fr;
     }
+}
+
+
+/* Footer logo with image */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.footer-logo-img {
+    height: 60px;
+    width: auto;
+    filter: brightness(1.1);
+}
+
+.footer-logo span {
+    font-family: 'Merriweather', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.footer-logo .tx {
+    color: var(--accent);
 }
