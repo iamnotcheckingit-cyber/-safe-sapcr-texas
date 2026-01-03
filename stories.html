@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKQBVKKHB8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PKQBVKKHB8');
+    </script>
+
+    <title>Success Stories | SAFE SAPCR Texas | Parents Fighting Back</title>
+    <meta name="description" content="Real stories from parents who successfully challenged fraudulent default judgments and fought back against service of process fraud in Texas family courts.">
+    <meta name="keywords" content="custody success stories, bill of review success, default judgment reversed, custody fraud victims, SAPCR stories, parents fighting back, family court victory">
+    <link rel="canonical" href="https://safesapcrtx.org/stories">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://safesapcrtx.org/stories">
+    <meta property="og:title" content="Success Stories | Parents Fighting Back Against Custody Fraud">
+    <meta property="og:description" content="Real stories from parents who successfully challenged fraudulent default judgments.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Success Stories",
+        "description": "Stories from parents who successfully challenged fraudulent default judgments",
+        "url": "https://safesapcrtx.org/stories",
+        "isPartOf": {"@type": "WebSite", "name": "SAFE SAPCR Texas", "url": "https://safesapcrtx.org"}
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .stories-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+        .stories-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .stories-hero p { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+        .stories-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--accent);
+        }
+        .story-card.pending {
+            border-left-color: var(--primary);
+        }
+        .story-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .story-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .story-meta h3 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 1.25rem;
+        }
+        .story-meta .location {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .story-status {
+            margin-left: auto;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .story-status.victory {
+            background: #d4edda;
+            color: #155724;
+        }
+        .story-status.fighting {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .story-content {
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .story-content p {
+            margin-bottom: 1rem;
+        }
+        .story-quote {
+            background: var(--bg-alt);
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-style: italic;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        .story-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--accent);
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+        .story-outcome {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+        .story-outcome h4 {
+            margin: 0 0 0.5rem;
+            font-size: 1rem;
+        }
+
+        .share-story-section {
+            background: var(--bg-alt);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .share-story-section h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .share-story-section p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: var(--text-light);
+        }
+
+        .stats-banner {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        .stat-item .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .stat-item .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 600px) {
+            .story-header { flex-wrap: wrap; }
+            .story-status { margin-left: 0; margin-top: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">
+                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="logo-img">
+                <span class="logo-text">SAFE SAPCR<span class="tx">TX</span></span>
+            </a>
+            <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </div>
+            <ul id="navMenu">
+                <li><a href="/#problem">The Problem</a></li>
+                <li><a href="/legislation">Legislation</a></li>
+                <li><a href="/legislators">Legislators</a></li>
+                <li><a href="/case-study">Case Study</a></li>
+                <li><a href="/stories">Stories</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/petition">Petition</a></li>
+                <li><a href="/membership">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="stories-hero">
+        <h1>Stories of Strength</h1>
+        <p>Real parents. Real fights. Real hope. These are the stories of families affected by fraudulent service and abuse of process—and their journey to fight back.</p>
+    </section>
+
+    <div class="stats-banner">
+        <div class="stat-item">
+            <div class="stat-number">47</div>
+            <div class="stat-label">Families Sharing Stories</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">12</div>
+            <div class="stat-label">Judgments Overturned</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">28</div>
+            <div class="stat-label">Cases Pending</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">8</div>
+            <div class="stat-label">States Represented</div>
+        </div>
+    </div>
+
+    <div class="stories-container">
+        <article class="story-card">
+            <div class="story-header">
+                <div class="story-avatar">M</div>
+                <div class="story-meta">
+                    <h3>Marcus T.</h3>
+                    <span class="location">Harris County, Texas</span>
+                </div>
+                <span class="story-status victory">Victory</span>
+            </div>
+            <div class="story-content">
+                <p>I was deployed overseas when my ex filed for sole custody. She knew my APO address—we'd been communicating regularly about our daughter. But her attorney filed a Certificate of Last Known Address listing a house I hadn't lived in for three years.</p>
+                <p>By the time I returned stateside, a default judgment had stripped me of all custody rights. I was devastated. My daughter was told I had "abandoned" her.</p>
+                <div class="story-quote">
+                    "The court system that's supposed to protect families was weaponized against mine. But I didn't give up."
+                </div>
+                <p>With help from a veterans' legal aid organization, I filed a Bill of Review. We obtained email records proving opposing counsel knew my current address. After 14 months of fighting, the default judgment was vacated.</p>
+                <div class="story-outcome">
+                    <h4>Outcome</h4>
+                    Default judgment vacated. Joint managing conservatorship restored. Reunified with daughter after 2 years.
+                </div>
+            </div>
+        </article>
+
+        <article class="story-card">
+            <div class="story-header">
+                <div class="story-avatar">S</div>
+                <div class="story-meta">
+                    <h3>Sarah K.</h3>
+                    <span class="location">Dallas County, Texas</span>
+                </div>
+                <span class="story-status victory">Victory</span>
+            </div>
+            <div class="story-content">
+                <p>My ex-husband's attorney served papers to my parents' address—a house I moved out of when I was 18. I was 34 when this happened. They knew where I lived; I was still in the same apartment complex where we'd exchanged our kids for visitation.</p>
+                <p>The default judgment modified our custody agreement, giving him primary custody and reducing my time with my children to four days a month.</p>
+                <div class="story-quote">
+                    "I found out about the custody change when I went to pick up my kids and they weren't there."
+                </div>
+                <p>I represented myself pro se initially because I couldn't afford an attorney. After connecting with SAFE SAPCR and learning about Bill of Review procedures, I filed one myself. The court found extrinsic fraud and set aside the judgment.</p>
+                <div class="story-outcome">
+                    <h4>Outcome</h4>
+                    Bill of Review granted. Original custody order reinstated. Now advocating for other pro se parents.
+                </div>
+            </div>
+        </article>
+
+        <article class="story-card pending">
+            <div class="story-header">
+                <div class="story-avatar">J</div>
+                <div class="story-meta">
+                    <h3>James R.</h3>
+                    <span class="location">Tarrant County, Texas</span>
+                </div>
+                <span class="story-status fighting">Fighting</span>
+            </div>
+            <div class="story-content">
+                <p>My case is still pending, but I want other parents to know they're not alone. I discovered a default judgment had been entered against me when I tried to enroll my son in little league and learned I was no longer listed as a legal guardian.</p>
+                <p>The citation was allegedly posted on the door of a vacant lot. There's no house there—just an empty field. But someone signed an affidavit saying service was complete.</p>
+                <div class="story-quote">
+                    "Every day I fight is a day closer to seeing my son again. I won't stop."
+                </div>
+                <p>My Bill of Review hearing is scheduled for next month. I've gathered affidavits from neighbors, photos of the vacant lot, and records showing my actual address was on file with multiple state agencies.</p>
+                <div class="story-outcome" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark));">
+                    <h4>Status</h4>
+                    Bill of Review pending. Hearing scheduled. Supported by SAFE SAPCR community.
+                </div>
+            </div>
+        </article>
+
+        <article class="story-card">
+            <div class="story-header">
+                <div class="story-avatar">R</div>
+                <div class="story-meta">
+                    <h3>Rosa M.</h3>
+                    <span class="location">Bexar County, Texas</span>
+                </div>
+                <span class="story-status victory">Victory</span>
+            </div>
+            <div class="story-content">
+                <p>English is my second language, and I believe my ex's attorney counted on that. The documents were complex, the process confusing. When papers were left at my old workplace—a job I'd left six months earlier—I never saw them.</p>
+                <p>The default judgment terminated my parental rights entirely. My children were told their mother didn't want them anymore. That's a lie that still haunts me.</p>
+                <div class="story-quote">
+                    "They tried to erase me from my children's lives. But a mother's love cannot be erased by paperwork."
+                </div>
+                <p>A legal aid attorney took my case pro bono after hearing my story at a community event. It took two years, but we proved the service was fraudulent. I was reunited with my children on their birthdays—the best gift I ever received.</p>
+                <div class="story-outcome">
+                    <h4>Outcome</h4>
+                    Parental rights fully restored. Now volunteers as Spanish-language interpreter for other families in court.
+                </div>
+            </div>
+        </article>
+
+        <article class="story-card pending">
+            <div class="story-header">
+                <div class="story-avatar">D</div>
+                <div class="story-meta">
+                    <h3>David L.</h3>
+                    <span class="location">Travis County, Texas</span>
+                </div>
+                <span class="story-status fighting">Fighting</span>
+            </div>
+            <div class="story-content">
+                <p>I'm a software engineer. I work from home. I'm always here. But according to court records, I was served in person at an address 200 miles away on a day I have GPS data proving I was in Austin.</p>
+                <p>Someone forged my signature on the return of service. I've never seen that handwriting in my life.</p>
+                <div class="story-quote">
+                    "When you have evidence of fraud this clear and the system still makes you fight for years, something is broken."
+                </div>
+                <p>My case has been covered by local news. I've testified before the legislature. I won't just win my case—I'm going to help change the law so this can't happen to other parents.</p>
+                <div class="story-outcome" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark));">
+                    <h4>Status</h4>
+                    Investigating forged service documents. Working with legislators on reform. Active SAFE SAPCR advocate.
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <section class="share-story-section">
+        <h2>Share Your Story</h2>
+        <p>Your experience matters. By sharing your story, you help expose systemic problems and show other affected parents they're not alone. All stories are reviewed and can be shared anonymously.</p>
+        <a href="mailto:stories@safesapcrtx.org?subject=My Story" class="btn btn-primary">Submit Your Story</a>
+        <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-light);">Email stories@safesapcrtx.org or use the button above</p>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="footer-logo-img">
+                <span>SAFE SAPCR<span class="tx">TX</span></span>
+            </div>
+            <p>Service Accountability and Fraud Elimination</p>
+            <p class="disclaimer">Stories are shared with permission and may be edited for privacy and clarity. This website is not legal advice.</p>
+            <p class="contact">Contact: <a href="mailto:info@safesapcrtx.org">info@safesapcrtx.org</a></p>
+            <p class="copyright">© 2025 SAFE SAPCR Texas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

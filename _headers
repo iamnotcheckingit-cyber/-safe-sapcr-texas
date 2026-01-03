@@ -1,39 +1,189 @@
 /*
-  # Security Headers
-  X-Frame-Options: DENY
-  X-Content-Type-Options: nosniff
-  X-XSS-Protection: 1; mode=block
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://identity.netlify.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://ipapi.co;
+  # ============================================
+  # SECURITY HEADERS - COMPREHENSIVE
+  # ============================================
 
-# Block common attack paths
+  # Prevent clickjacking attacks
+  X-Frame-Options: DENY
+
+  # Prevent MIME type sniffing
+  X-Content-Type-Options: nosniff
+
+  # XSS Protection (legacy browsers)
+  X-XSS-Protection: 1; mode=block
+
+  # Control referrer information
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Permissions Policy - restrict browser features
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), autoplay=(), encrypted-media=(self), fullscreen=(self), picture-in-picture=(self)
+
+  # Content Security Policy - strict mode
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://identity.netlify.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://www.google-analytics.com https://*.netlify.app; connect-src 'self' https://www.google-analytics.com https://ipapi.co https://*.netlify.com https://*.netlify.app; frame-ancestors 'none'; form-action 'self' https://*.netlify.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests;
+
+  # Strict Transport Security - force HTTPS for 2 years
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+  # Cross-Origin policies
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: credentialless
+  Cross-Origin-Resource-Policy: same-origin
+
+  # Prevent browser caching of sensitive data
+  X-Permitted-Cross-Domain-Policies: none
+
+  # DNS prefetch control
+  X-DNS-Prefetch-Control: on
+
+# ============================================
+# SEO & CRAWLER OPTIMIZATION
+# ============================================
+
+# HTML pages - crawler friendly
+/*.html
+  X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Homepage
+/
+  X-Robots-Tag: index, follow, max-image-preview:large
+  Link: <https://safesapcrtx.org/>; rel="canonical"
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Case study - priority indexing
+/case-study
+  X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1
+  Link: <https://safesapcrtx.org/case-study>; rel="canonical"
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Legislation page
+/legislation
+  X-Robots-Tag: index, follow, max-image-preview:large
+  Link: <https://safesapcrtx.org/legislation>; rel="canonical"
+
+# FAQ page
+/faq
+  X-Robots-Tag: index, follow, max-image-preview:large
+  Link: <https://safesapcrtx.org/faq>; rel="canonical"
+
+# Petition page
+/petition
+  X-Robots-Tag: index, follow
+  Link: <https://safesapcrtx.org/petition>; rel="canonical"
+
+# Resources page
+/resources
+  X-Robots-Tag: index, follow
+  Link: <https://safesapcrtx.org/resources>; rel="canonical"
+
+# Sitemap - XML content type
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600
+  X-Robots-Tag: noindex
+
+# Robots.txt
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
+
+# ============================================
+# STATIC ASSETS - AGGRESSIVE CACHING
+# ============================================
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Robots-Tag: index
+
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.pdf
+  X-Robots-Tag: index, follow
+  Cache-Control: public, max-age=604800
+
+# ============================================
+# API/FUNCTION SECURITY
+# ============================================
+
+/.netlify/functions/*
+  Access-Control-Allow-Origin: https://safesapcrtx.org
+  Access-Control-Allow-Methods: GET, POST, OPTIONS
+  Access-Control-Allow-Headers: Content-Type
+  Access-Control-Max-Age: 86400
+  X-Content-Type-Options: nosniff
+
+# ============================================
+# HONEYPOT PATHS - BLOCK & LOG ATTACKERS
+# ============================================
+
 /wp-admin/*
   X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
 
 /wp-content/*
   X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
 
 /wp-includes/*
   X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
 
 /wp-login.php
   X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
 
 /xmlrpc.php
   X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
 
 /.env
   X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
 
 /admin/*
   X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
 
 /phpmyadmin/*
   X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
 
 /.git/*
   X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
 
 /config/*
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+
+/.netlify/*
+  X-Robots-Tag: noindex, nofollow
+
+# Block common attack vectors
+/shell.php
+  X-Robots-Tag: noindex, nofollow
+
+/backup.sql
+  X-Robots-Tag: noindex, nofollow
+
+/api/keys.json
+  X-Robots-Tag: noindex, nofollow
+
+/.htaccess
+  X-Robots-Tag: noindex, nofollow
+
+/.htpasswd
+  X-Robots-Tag: noindex, nofollow
+
+/web.config
+  X-Robots-Tag: noindex, nofollow
+
+/composer.json
+  X-Robots-Tag: noindex, nofollow
+
+/package.json
   X-Robots-Tag: noindex, nofollow

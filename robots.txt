@@ -1,41 +1,54 @@
 # robots.txt for safesapcrtx.org
+# Optimized for search engine indexing
+
+# ============================================
+# SEARCH ENGINE CRAWLERS - WELCOME
+# ============================================
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /case-study
+Allow: /news
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Default for all other bots
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Sitemap locations
 Sitemap: https://safesapcrtx.org/sitemap.xml
 
-# Crawl-delay for polite crawling
-Crawl-delay: 1
+# Important pages to index
+# Homepage, Case Study, Legislation, FAQ, Resources, Petition
 
-# Block WordPress attack paths (honeypot)
-Disallow: /wp-admin/
-Disallow: /wp-content/
-Disallow: /wp-includes/
-Disallow: /wp-login.php
-Disallow: /xmlrpc.php
-Disallow: /wp-config.php
+# ============================================
+# BLOCK KNOWN BAD BOTS ONLY
+# ============================================
 
-# Block common attack vectors
-Disallow: /.env
-Disallow: /.git/
-Disallow: /admin/
-Disallow: /administrator/
-Disallow: /phpmyadmin/
-Disallow: /config/
-Disallow: /backup/
-Disallow: /database/
-Disallow: /sql/
-Disallow: /mysql/
-Disallow: /phpinfo.php
-Disallow: /info.php
-Disallow: /test.php
-Disallow: /shell.php
-Disallow: /cmd.php
-Disallow: /eval/
-Disallow: /cgi-bin/
-
-# Block bad bots
 User-agent: AhrefsBot
 Disallow: /
 
@@ -51,5 +64,55 @@ Disallow: /
 User-agent: BLEXBot
 Disallow: /
 
-User-agent: SearchmetricsBot
+User-agent: PetalBot
 Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# ============================================
+# BLOCK AI SCRAPERS
+# ============================================
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+# ============================================
+# HONEYPOT TRAPS (for security scanners)
+# ============================================
+
+# Admin/sensitive (honeypots)
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /administrator/
+Disallow: /.env
+Disallow: /.git/
+Disallow: /config/
+Disallow: /backup/
+Disallow: /phpmyadmin/
+Disallow: /admin/config/
+
+# Netlify internal
+Disallow: /.netlify/
+Disallow: /netlify/functions/

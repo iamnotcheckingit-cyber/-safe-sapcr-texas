@@ -1,20 +1,46 @@
 // Netlify Function to handle newsletter signups
-exports.handler = async (event, context) => {
-  // CORS headers
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Content-Type': 'application/json'
-  };
+// With security enhancements
 
+// Security headers
+const securityHeaders = {
+  'Content-Type': 'application/json',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'Cache-Control': 'no-store, no-cache, must-revalidate',
+  'Access-Control-Allow-Origin': 'https://safesapcrtx.org',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type'
+};
+
+// Validate email format strictly
+function isValidEmail(email) {
+  if (!email || typeof email !== 'string') return false;
+  // Strict email regex
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  return emailRegex.test(email) && email.length >= 5 && email.length <= 254;
+}
+
+// Sanitize email input
+function sanitizeEmail(email) {
+  if (typeof email !== 'string') return '';
+  return email.trim().toLowerCase().slice(0, 254);
+}
+
+exports.handler = async (event, context) => {
   // Handle preflight
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
+    return { statusCode: 200, headers: securityHeaders, body: '' };
   }
 
   // Only allow POST
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, headers, body: JSON.stringify({ success: false, error: 'Method Not Allowed' }) };
+    return { statusCode: 405, headers: securityHeaders, body: JSON.stringify({ success: false, error: 'Method Not Allowed' }) };
+  }
+
+  // Check origin
+  const origin = event.headers.origin || event.headers.Origin || '';
+  if (origin && !origin.includes('safesapcrtx.org') && !origin.includes('netlify.app')) {
+    return { statusCode: 403, headers: securityHeaders, body: JSON.stringify({ success: false, error: 'Forbidden' }) };
   }
 
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -23,19 +49,39 @@ exports.handler = async (event, context) => {
     console.error('RESEND_API_KEY not configured');
     return {
       statusCode: 500,
-      headers,
+      headers: securityHeaders,
       body: JSON.stringify({ success: false, error: 'Email service not configured' })
     };
   }
 
   try {
-    const { email } = JSON.parse(event.body);
+    // Parse body safely
+    let body;
+    try {
+      body = JSON.parse(event.body);
+    } catch (e) {
+      return { statusCode: 400, headers: securityHeaders, body: JSON.stringify({ success: false, error: 'Invalid request' }) };
+    }
 
-    if (!email || !email.includes('@')) {
+    const email = sanitizeEmail(body.email);
+
+    // Strict email validation
+    if (!isValidEmail(email)) {
       return {
         statusCode: 400,
-        headers,
+        headers: securityHeaders,
         body: JSON.stringify({ success: false, error: 'Valid email required' })
+      };
+    }
+
+    // Block disposable email domains (common spam sources)
+    const disposableDomains = ['tempmail.com', 'throwaway.email', 'guerrillamail.com', 'mailinator.com', '10minutemail.com', 'temp-mail.org'];
+    const emailDomain = email.split('@')[1];
+    if (disposableDomains.some(d => emailDomain.includes(d))) {
+      return {
+        statusCode: 400,
+        headers: securityHeaders,
+        body: JSON.stringify({ success: false, error: 'Please use a permanent email address' })
       };
     }
 
@@ -80,7 +126,7 @@ exports.handler = async (event, context) => {
       })
     });
 
-    // Also notify the admin of new signup
+    // Also notify the admin of new signup (sanitized)
     await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -94,8 +140,8 @@ exports.handler = async (event, context) => {
         html: `
           <div style="font-family: Arial, sans-serif;">
             <h2>New Newsletter Signup</h2>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>Email:</strong> ${email.replace(/[<>"'&]/g, '')}</p>
+            <p><strong>Date:</strong> ${new Date().toISOString()}</p>
             <p><strong>Source:</strong> safesapcrtx.org newsletter form</p>
           </div>
         `
@@ -107,14 +153,14 @@ exports.handler = async (event, context) => {
       console.error('Resend error:', error);
       return {
         statusCode: 500,
-        headers,
+        headers: securityHeaders,
         body: JSON.stringify({ success: false, error: 'Failed to send welcome email' })
       };
     }
 
     return {
       statusCode: 200,
-      headers,
+      headers: securityHeaders,
       body: JSON.stringify({ success: true, message: 'Subscribed successfully' })
     };
 
@@ -122,8 +168,8 @@ exports.handler = async (event, context) => {
     console.error('Newsletter signup error:', error);
     return {
       statusCode: 500,
-      headers,
-      body: JSON.stringify({ success: false, error: error.message })
+      headers: securityHeaders,
+      body: JSON.stringify({ success: false, error: 'An error occurred' })
     };
   }
 };

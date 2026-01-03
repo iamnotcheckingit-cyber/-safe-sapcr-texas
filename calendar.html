@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKQBVKKHB8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PKQBVKKHB8');
+    </script>
+
+    <title>Events Calendar | SAFE SAPCR Texas | Legislative Hearings & Advocacy</title>
+    <meta name="description" content="Upcoming legislative hearings, advocacy events, and community meetups for SAFE SAPCR Texas. Stay engaged with the family law reform movement.">
+    <link rel="canonical" href="https://safesapcrtx.org/calendar">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .calendar-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+        .calendar-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+
+        .calendar-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .calendar-filters {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .calendar-filters button {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .calendar-filters button.active, .calendar-filters button:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .month-section {
+            margin-bottom: 3rem;
+        }
+        .month-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .month-header h2 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .month-header .month-line {
+            flex: 1;
+            height: 2px;
+            background: var(--border);
+        }
+
+        .event-card {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            gap: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        .event-card:hover {
+            transform: translateX(5px);
+        }
+        .event-date {
+            text-align: center;
+            padding: 0.75rem;
+            background: var(--accent);
+            border-radius: 8px;
+            color: white;
+        }
+        .event-date .day {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .event-date .month {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+        .event-details h3 {
+            color: var(--primary);
+            margin: 0 0 0.5rem;
+            font-size: 1.1rem;
+        }
+        .event-details .event-meta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        .event-details .event-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .event-type {
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .event-type.legislative { background: #e3f2fd; color: #1565c0; }
+        .event-type.community { background: #e8f5e9; color: #2e7d32; }
+        .event-type.advocacy { background: #fff3e0; color: #e65100; }
+        .event-type.legal { background: #f3e5f5; color: #7b1fa2; }
+
+        .event-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .event-actions a {
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.2s;
+        }
+        .event-actions a:hover {
+            background: var(--primary-dark);
+        }
+        .event-actions a.secondary {
+            background: var(--bg-alt);
+            color: var(--primary);
+        }
+
+        .subscribe-banner {
+            background: var(--bg-alt);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .subscribe-banner h3 {
+            color: var(--primary);
+            margin: 0 0 1rem;
+        }
+
+        .no-events {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 700px) {
+            .event-card {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .event-date {
+                display: flex;
+                gap: 0.5rem;
+                justify-content: center;
+                align-items: center;
+            }
+            .event-actions {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">
+                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="logo-img">
+                <span class="logo-text">SAFE SAPCR<span class="tx">TX</span></span>
+            </a>
+            <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </div>
+            <ul id="navMenu">
+                <li><a href="/#problem">The Problem</a></li>
+                <li><a href="/legislation">Legislation</a></li>
+                <li><a href="/legislators">Legislators</a></li>
+                <li><a href="/case-study">Case Study</a></li>
+                <li><a href="/stories">Stories</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/petition">Petition</a></li>
+                <li><a href="/membership">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="calendar-hero">
+        <h1>Events Calendar</h1>
+        <p>Legislative hearings, advocacy days, and community events</p>
+    </section>
+
+    <div class="calendar-container">
+        <div class="calendar-filters">
+            <button class="active" data-filter="all">All Events</button>
+            <button data-filter="legislative">Legislative</button>
+            <button data-filter="advocacy">Advocacy</button>
+            <button data-filter="community">Community</button>
+            <button data-filter="legal">Legal Clinics</button>
+        </div>
+
+        <div class="month-section">
+            <div class="month-header">
+                <h2>January 2026</h2>
+                <div class="month-line"></div>
+            </div>
+
+            <article class="event-card" data-type="legislative">
+                <div class="event-date">
+                    <div class="day">5</div>
+                    <div class="month">Jan</div>
+                </div>
+                <div class="event-details">
+                    <h3>California & Ohio Legislatures Convene</h3>
+                    <div class="event-meta">
+                        <span>&#128205; Sacramento, CA & Columbus, OH</span>
+                        <span>&#128337; Session Opens</span>
+                    </div>
+                </div>
+                <div class="event-actions">
+                    <span class="event-type legislative">Legislative</span>
+                </div>
+            </article>
+
+            <article class="event-card" data-type="legislative">
+                <div class="event-date">
+                    <div class="day">6</div>
+                    <div class="month">Jan</div>
+                </div>
+                <div class="event-details">
+                    <h3>Pennsylvania Legislature Convenes</h3>
+                    <div class="event-meta">
+                        <span>&#128205; Harrisburg, PA</span>
+                        <span>&#128337; Session Opens</span>
+                    </div>
+                </div>
+                <div class="event-actions">
+                    <span class="event-type legislative">Legislative</span>
+                </div>
+            </article>
+
+            <article class="event-card" data-type="legislative">
+                <div class="event-date">
+                    <div class="day">7</div>
+                    <div class="month">Jan</div>
+                </div>
+                <div class="event-details">
+                    <h3>New York Legislature Convenes</h3>
+                    <div class="event-meta">
+                        <span>&#128205; Albany, NY</span>
+                        <span>&#128337; Session Opens</span>
+                    </div>
+                </div>
+                <div class="event-actions">
+                    <span class="event-type legislative">Legislative</span>
+                </div>
+            </article>
+
+            <article class="event-card" data-type="legislative">
+                <div class="event-date">
+                    <div class="day">12</div>
+                    <div class="month">Jan</div>
+                </div>
+                <div class="event-details">
+                    <h3>Georgia Legislature Convenes</h3>
+                    <div class="event-meta">
+                        <span>&#128205; Atlanta, GA</span>
+                        <span>&#128337; Session Opens</span>
+                    </div>
+                </div>
+                <div class="event-actions">
+                    <span class="event-type legislative">Legislative</span>
+                </div>
+            </article>
+
+            <article class="event-card" data-type="legislative">
+                <div class="event-date">
+                    <div class="day">13</div>
+                    <div class="month">Jan</div>
+                </div>
+                <div class="event-details">
+                    <h3>Florida Legislature Convenes</h3>
+                    <div class="event-meta">
+                        <span>&#128205; Tallahassee, FL</span>
+                        <span>&#128337; Session Opens</span>
+                    </div>
+                </div>
+                <div class="event-actions">
+                    <span class="event-type legislative">Legislative</span>
+                </div>
+            </article>
+
+            <article class="event-card" data-type="legislative">
+                <div class="event-date">
+                    <div class="day">14</div>
+                    <div class="month">Jan</div>
+                </div>
+                <div class="event-details">
+                    <h3>Illinois Legislature Convenes</h3>
+                    <div class="event-meta">
+                        <span>&#128205; Springfield, IL</span>
+                        <span>&#128337; Session Opens</span>
+                    </div>
+                </div>
+                <div class="event-actions">
+                    <span class="event-type legislative">Legislative</span>
+                </div>
+            </article>
+
+            <article class="event-card" data-type="advocacy">
+                <div class="event-date">
+                    <div class="day">18</div>
+                    <div class="month">Jan</div>
+                </div>
+                <div class="event-details">
+                    <h3>SAFE SAPCR Virtual Town Hall</h3>
+                    <div class="event-meta">
+                        <span>&#128187; Online / Zoom</span>
+                        <span>&#128337; 7:00 PM CST</span>
+                    </div>
+                </div>
+                <div class="event-actions">
+                    <a href="#" class="secondary">RSVP</a>
+                    <span class="event-type advocacy">Advocacy</span>
+                </div>
+            </article>
+
+            <article class="event-card" data-type="legal">
+                <div class="event-date">
+                    <div class="day">25</div>
+                    <div class="month">Jan</div>
+                </div>
+                <div class="event-details">
+                    <h3>Pro Se Legal Clinic - Houston</h3>
+                    <div class="event-meta">
+                        <span>&#128205; Houston Bar Center</span>
+                        <span>&#128337; 10:00 AM - 2:00 PM</span>
+                    </div>
+                </div>
+                <div class="event-actions">
+                    <a href="#" class="secondary">Register</a>
+                    <span class="event-type legal">Legal Clinic</span>
+                </div>
+            </article>
+        </div>
+
+        <div class="month-section">
+            <div class="month-header">
+                <h2>February 2026</h2>
+                <div class="month-line"></div>
+            </div>
+
+            <article class="event-card" data-type="advocacy">
+                <div class="event-date">
+                    <div class="day">7</div>
+                    <div class="month">Feb</div>
+                </div>
+                <div class="event-details">
+                    <h3>Advocacy Day - State Capitols</h3>
+                    <div class="event-meta">
+                        <span>&#128205; Multiple State Capitols</span>
+                        <span>&#128337; All Day</span>
+                    </div>
+                </div>
+                <div class="event-actions">
+                    <a href="/legislators">Find Your Rep</a>
+                    <span class="event-type advocacy">Advocacy</span>
+                </div>
+            </article>
+
+            <article class="event-card" data-type="community">
+                <div class="event-date">
+                    <div class="day">14</div>
+                    <div class="month">Feb</div>
+                </div>
+                <div class="event-details">
+                    <h3>Community Support Meetup - Dallas</h3>
+                    <div class="event-meta">
+                        <span>&#128205; TBD - Dallas Area</span>
+                        <span>&#128337; 6:00 PM</span>
+                    </div>
+                </div>
+                <div class="event-actions">
+                    <a href="#" class="secondary">RSVP</a>
+                    <span class="event-type community">Community</span>
+                </div>
+            </article>
+
+            <article class="event-card" data-type="legislative">
+                <div class="event-date">
+                    <div class="day">20</div>
+                    <div class="month">Feb</div>
+                </div>
+                <div class="event-details">
+                    <h3>Judiciary Committee Hearing (Expected)</h3>
+                    <div class="event-meta">
+                        <span>&#128205; State Capitol</span>
+                        <span>&#128337; TBD</span>
+                    </div>
+                </div>
+                <div class="event-actions">
+                    <a href="/templates">Prepare Testimony</a>
+                    <span class="event-type legislative">Legislative</span>
+                </div>
+            </article>
+        </div>
+
+        <div class="subscribe-banner">
+            <h3>Never Miss an Event</h3>
+            <p>Get calendar updates and event reminders delivered to your inbox.</p>
+            <a href="/membership" class="btn btn-primary">Join Our Movement</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="footer-logo-img">
+                <span>SAFE SAPCR<span class="tx">TX</span></span>
+            </div>
+            <p>Service Accountability and Fraud Elimination</p>
+            <p class="contact">Contact: <a href="mailto:info@safesapcrtx.org">info@safesapcrtx.org</a></p>
+            <p class="copyright">© 2025 SAFE SAPCR Texas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Event filtering
+        document.querySelectorAll('.calendar-filters button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.calendar-filters button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.dataset.filter;
+                document.querySelectorAll('.event-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.type === filter) {
+                        card.style.display = 'grid';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

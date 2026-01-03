@@ -1,0 +1,13 @@
+# Security Policy for SAFE SAPCR Texas
+# https://safesapcrtx.org
+
+Contact: mailto:security@safesapcrtx.org
+Contact: mailto:info@safesapcrtx.org
+Expires: 2027-01-01T00:00:00.000Z
+Preferred-Languages: en, es
+Canonical: https://safesapcrtx.org/.well-known/security.txt
+
+# We appreciate responsible disclosure of security vulnerabilities.
+# Please email us with details and we will respond within 48 hours.
+
+Policy: https://safesapcrtx.org/security-policy
