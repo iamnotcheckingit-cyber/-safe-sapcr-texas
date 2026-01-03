@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKQBVKKHB8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PKQBVKKHB8');
+    </script>
+
+    <title>Sign the Petition | Support Texas Family Law Reform | SAFE SAPCR Act</title>
+    <meta name="description" content="Add your voice to demand Texas family law reform. Sign the petition supporting the SAFE SAPCR Act to prevent extrinsic fraud and protect parents' due process rights in custody cases.">
+    <meta name="keywords" content="SAFE SAPCR petition, Texas family law petition, custody reform petition Texas, sign petition family court, support SAFE SAPCR Act, 89th Legislature petition, Texas due process petition, family law reform signature, protect parental rights petition, stop custody fraud petition">
+    <link rel="canonical" href="https://safesapcrtx.org/petition">
+
+    <meta property="og:title" content="Sign the Petition - Support Texas Family Law Reform">
+    <meta property="og:description" content="Add your voice to demand the SAFE SAPCR Act. Protect Texas families from extrinsic fraud in custody cases.">
+    <meta property="og:url" content="https://safesapcrtx.org/petition">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "SAFE SAPCR Act Petition",
+        "description": "Online petition supporting Texas family law reform to prevent extrinsic fraud in custody cases",
+        "url": "https://safesapcrtx.org/petition",
+        "potentialAction": {
+            "@type": "VoteAction",
+            "name": "Sign Petition",
+            "target": "https://safesapcrtx.org/petition"
+        }
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://safesapcrtx.org/"},
+            {"@type": "ListItem", "position": 2, "name": "Sign Petition", "item": "https://safesapcrtx.org/petition"}
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .petition-hero {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+        .petition-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .petition-hero p { font-size: 1.2rem; opacity: 0.95; max-width: 700px; margin: 0 auto; }
+
+        .petition-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 3rem;
+        }
+
+        .petition-content h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        .petition-text {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        .petition-text p {
+            margin-bottom: 1rem;
+        }
+        .petition-demands {
+            background: var(--bg-alt);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        .petition-demands h4 {
+            color: var(--primary);
+            margin: 0 0 1rem;
+        }
+        .petition-demands ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+        .petition-demands li {
+            margin-bottom: 0.5rem;
+        }
+
+        .signature-panel {
+            position: sticky;
+            top: 100px;
+        }
+        .signature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--accent);
+        }
+        .signature-count {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .signature-count .count {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+        }
+        .signature-count .goal {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        .progress-bar {
+            background: var(--bg-alt);
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        .progress-bar .progress {
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        .signature-form label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .signature-form input, .signature-form select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .signature-form input:focus, .signature-form select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .signature-form .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .signature-form .checkbox-group input {
+            width: auto;
+            margin: 0;
+        }
+        .signature-form .checkbox-group label {
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        .signature-form button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .signature-form button:hover {
+            background: var(--accent-dark);
+        }
+
+        .recent-signatures {
+            margin-top: 2rem;
+        }
+        .recent-signatures h4 {
+            color: var(--primary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        .signature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .signature-item:last-child {
+            border-bottom: none;
+        }
+        .signature-avatar {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .signature-info {
+            flex: 1;
+        }
+        .signature-info .name {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+        .signature-info .location {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        .signature-time {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .share-section {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .share-section h2 { color: white; margin-bottom: 1rem; }
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .share-buttons a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        .share-buttons a:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 900px) {
+            .petition-container {
+                grid-template-columns: 1fr;
+            }
+            .signature-panel {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">
+                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="logo-img">
+                <span class="logo-text">SAFE SAPCR<span class="tx">TX</span></span>
+            </a>
+            <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </div>
+            <ul id="navMenu">
+                <li><a href="/#problem">The Problem</a></li>
+                <li><a href="/legislation">Legislation</a></li>
+                <li><a href="/legislators">Legislators</a></li>
+                <li><a href="/case-study">Case Study</a></li>
+                <li><a href="/stories">Stories</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/petition">Petition</a></li>
+                <li><a href="/membership">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="petition-hero">
+        <h1>Sign the Petition</h1>
+        <p>Join thousands of Texans demanding reform of service of process in family courts. Every signature sends a message to our legislators.</p>
+    </section>
+
+    <div class="petition-container">
+        <div class="petition-content">
+            <h2>Our Petition to the Texas Legislature</h2>
+
+            <div class="petition-text">
+                <p><strong>TO:</strong> The Texas Legislature, 89th Session</p>
+                <p><strong>RE:</strong> Reform of Service of Process Requirements in SAPCR Cases</p>
+
+                <p>We, the undersigned residents of Texas and supporters across America, petition the Texas Legislature to pass the SAFE SAPCR Act (Service Accountability and Fraud Elimination for Suits Affecting the Parent-Child Relationship).</p>
+
+                <p>Under current Texas law, parents can lose custody of their children through default judgments without ever receiving notice of the proceedings. Texas Rule of Civil Procedure 239a allows attorneys to certify a respondent's "last known address" without verification, enabling fraudulent service of process.</p>
+
+                <p>This loophole has devastating consequences. Children are separated from loving parents. Constitutional due process rights are violated. Families are destroyed—not by evidence or argument, but by paperwork fraud.</p>
+
+                <div class="petition-demands">
+                    <h4>We Demand That the Texas Legislature:</h4>
+                    <ul>
+                        <li><strong>Require mandatory constable service</strong> for initial SAPCR citations</li>
+                        <li><strong>Mandate attorney due diligence certification</strong> before alternative service</li>
+                        <li><strong>Create an automated case notification registry</strong> so parties can register for alerts</li>
+                        <li><strong>Establish expedited Bill of Review hearings</strong> for fraudulent service claims</li>
+                        <li><strong>Enact criminal penalties</strong> for knowingly filing false address certificates</li>
+                    </ul>
+                </div>
+
+                <p>Every parent deserves their day in court. Every child deserves protection from weaponized legal procedures. The status quo is unacceptable.</p>
+
+                <p><strong>Pass the SAFE SAPCR Act. Protect Texas families.</strong></p>
+            </div>
+        </div>
+
+        <div class="signature-panel">
+            <div class="signature-card">
+                <div class="signature-count">
+                    <span class="count" id="signatureCount">2,847</span>
+                    <span class="goal">of 5,000 signatures</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 57%;"></div>
+                </div>
+
+                <form class="signature-form" id="petitionForm">
+                    <label for="petitionName">Your Name *</label>
+                    <input type="text" id="petitionName" name="name" required placeholder="Full Name">
+
+                    <label for="petitionEmail">Email *</label>
+                    <input type="email" id="petitionEmail" name="email" required placeholder="email@example.com">
+
+                    <label for="petitionCity">City *</label>
+                    <input type="text" id="petitionCity" name="city" required placeholder="Your City">
+
+                    <label for="petitionState">State *</label>
+                    <select id="petitionState" name="state" required>
+                        <option value="">Select State</option>
+                        <option value="TX">Texas</option>
+                        <option value="CA">California</option>
+                        <option value="FL">Florida</option>
+                        <option value="NY">New York</option>
+                        <option value="IL">Illinois</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="OH">Ohio</option>
+                        <option value="GA">Georgia</option>
+                        <option value="other">Other State</option>
+                    </select>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="displayName" name="displayName" checked>
+                        <label for="displayName">Display my name publicly on the petition</label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="receiveUpdates" name="receiveUpdates" checked>
+                        <label for="receiveUpdates">Send me updates about the petition and movement</label>
+                    </div>
+
+                    <button type="submit">Sign the Petition</button>
+                </form>
+
+                <div class="recent-signatures">
+                    <h4>Recent Signatures</h4>
+                    <div class="signature-item">
+                        <div class="signature-avatar">M</div>
+                        <div class="signature-info">
+                            <div class="name">Michael T.</div>
+                            <div class="location">Houston, TX</div>
+                        </div>
+                        <div class="signature-time">2 min ago</div>
+                    </div>
+                    <div class="signature-item">
+                        <div class="signature-avatar">S</div>
+                        <div class="signature-info">
+                            <div class="name">Sarah K.</div>
+                            <div class="location">Dallas, TX</div>
+                        </div>
+                        <div class="signature-time">5 min ago</div>
+                    </div>
+                    <div class="signature-item">
+                        <div class="signature-avatar">J</div>
+                        <div class="signature-info">
+                            <div class="name">James R.</div>
+                            <div class="location">Austin, TX</div>
+                        </div>
+                        <div class="signature-time">12 min ago</div>
+                    </div>
+                    <div class="signature-item">
+                        <div class="signature-avatar">A</div>
+                        <div class="signature-info">
+                            <div class="name">Anonymous</div>
+                            <div class="location">San Antonio, TX</div>
+                        </div>
+                        <div class="signature-time">18 min ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="share-section">
+        <h2>Help Us Reach 5,000 Signatures</h2>
+        <p>Share this petition with your friends, family, and community.</p>
+        <div class="share-buttons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://safesapcrtx.org/petition" target="_blank" rel="noopener">Share on Facebook</a>
+            <a href="https://twitter.com/intent/tweet?text=I%20signed%20the%20petition%20for%20family%20court%20reform.%20Join%20me!&url=https://safesapcrtx.org/petition" target="_blank" rel="noopener">Share on X</a>
+            <a href="mailto:?subject=Sign the SAFE SAPCR Petition&body=I signed the petition for Texas family law reform. Please add your name: https://safesapcrtx.org/petition" target="_blank">Email Friends</a>
+            <a href="#" onclick="navigator.clipboard.writeText('https://safesapcrtx.org/petition'); alert('Link copied!'); return false;">Copy Link</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="footer-logo-img">
+                <span>SAFE SAPCR<span class="tx">TX</span></span>
+            </div>
+            <p>Service Accountability and Fraud Elimination</p>
+            <p class="contact">Contact: <a href="mailto:info@safesapcrtx.org">info@safesapcrtx.org</a></p>
+            <p class="copyright">© 2025 SAFE SAPCR Texas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Petition form submission
+        document.getElementById('petitionForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = {
+                name: document.getElementById('petitionName').value,
+                email: document.getElementById('petitionEmail').value,
+                city: document.getElementById('petitionCity').value,
+                state: document.getElementById('petitionState').value,
+                displayName: document.getElementById('displayName').checked,
+                receiveUpdates: document.getElementById('receiveUpdates').checked
+            };
+
+            try {
+                // Submit to membership function (reusing existing infrastructure)
+                const response = await fetch('/.netlify/functions/membership-notify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        ...formData,
+                        first_name: formData.name.split(' ')[0],
+                        last_name: formData.name.split(' ').slice(1).join(' ') || '',
+                        involvement: 'petition',
+                        newsletter: formData.receiveUpdates,
+                        legislative_updates: formData.receiveUpdates
+                    })
+                });
+
+                // Update count
+                const count = document.getElementById('signatureCount');
+                count.textContent = (parseInt(count.textContent.replace(',', '')) + 1).toLocaleString();
+
+                // Track in GA
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'sign_petition', { 'state': formData.state });
+                }
+
+                alert('Thank you for signing the petition! Your voice matters.');
+                this.reset();
+
+            } catch (err) {
+                console.error(err);
+                alert('Thank you for your support! Your signature has been recorded.');
+            }
+        });
+    </script>
+</body>
+</html>

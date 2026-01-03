@@ -1062,6 +1062,67 @@ footer a:hover {
     margin: 0;
 }
 
+/* Legal Disclaimers Section */
+.legal-disclaimers {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}
+
+.legal-disclaimers h3 {
+    text-align: center;
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--gold);
+}
+
+.disclaimer-box {
+    background: white;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.disclaimer-box:last-child {
+    margin-bottom: 0;
+}
+
+.disclaimer-box h4 {
+    color: var(--primary);
+    font-size: 1rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.disclaimer-box p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.6;
+}
+
+@media (min-width: 769px) {
+    .legal-disclaimers {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .legal-disclaimers h3 {
+        grid-column: 1 / -1;
+    }
+
+    .disclaimer-box {
+        margin-bottom: 0;
+    }
+}
+
 @media (max-width: 968px) {
     .resources-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1071,6 +1132,10 @@ footer a:hover {
 @media (max-width: 600px) {
     .resources-grid {
         grid-template-columns: 1fr;
+    }
+
+    .legal-disclaimers {
+        padding: 1.5rem;
     }
 }
 

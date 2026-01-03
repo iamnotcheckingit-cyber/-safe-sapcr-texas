@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKQBVKKHB8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PKQBVKKHB8');
+    </script>
+
+    <title>News & Updates | SAFE SAPCR Texas | Family Law Reform Movement</title>
+    <meta name="description" content="Latest news, legislative updates, and media coverage of the SAFE SAPCR movement for family law reform in Texas and across America.">
+    <meta name="keywords" content="SAFE SAPCR news, family law reform news, Texas legislature updates, custody reform news, SAPCR legislation, family court reform updates">
+    <link rel="canonical" href="https://safesapcrtx.org/news">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://safesapcrtx.org/news">
+    <meta property="og:title" content="News & Updates | SAFE SAPCR Texas">
+    <meta property="og:description" content="Latest news and legislative updates on family law reform.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "SAFE SAPCR News",
+        "description": "News and updates about family law reform",
+        "url": "https://safesapcrtx.org/news",
+        "publisher": {"@type": "Organization", "name": "SAFE SAPCR Texas"}
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .news-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+        .news-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+
+        .news-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .news-filters {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .news-filters button {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .news-filters button.active, .news-filters button:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        .news-card:hover {
+            transform: translateY(-4px);
+        }
+        .news-card-image {
+            height: 160px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        .news-card-content {
+            padding: 1.5rem;
+        }
+        .news-card-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+        }
+        .news-card-category {
+            background: var(--accent);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .news-card-date {
+            color: var(--text-light);
+        }
+        .news-card h3 {
+            color: var(--primary);
+            margin: 0 0 0.75rem;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+        .news-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .news-card-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .news-card-link:hover {
+            text-decoration: underline;
+        }
+
+        .featured-news {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .featured-news-image {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+            min-height: 300px;
+        }
+        .featured-news-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .featured-badge {
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .featured-news h2 {
+            color: var(--primary);
+            margin: 0 0 1rem;
+            font-size: 1.5rem;
+        }
+        .featured-news p {
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .newsletter-banner {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        .newsletter-banner h2 { color: white; margin-bottom: 1rem; }
+        .newsletter-banner p { opacity: 0.9; margin-bottom: 1.5rem; }
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .newsletter-form input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .newsletter-form button {
+            padding: 0.75rem 1.5rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .featured-news {
+                grid-template-columns: 1fr;
+            }
+            .featured-news-image {
+                min-height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">
+                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="logo-img">
+                <span class="logo-text">SAFE SAPCR<span class="tx">TX</span></span>
+            </a>
+            <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </div>
+            <ul id="navMenu">
+                <li><a href="/#problem">The Problem</a></li>
+                <li><a href="/legislation">Legislation</a></li>
+                <li><a href="/legislators">Legislators</a></li>
+                <li><a href="/case-study">Case Study</a></li>
+                <li><a href="/stories">Stories</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/petition">Petition</a></li>
+                <li><a href="/membership">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="news-hero">
+        <h1>News & Updates</h1>
+        <p>Stay informed about the movement for family law reform</p>
+    </section>
+
+    <div class="news-container">
+        <article class="featured-news">
+            <div class="featured-news-image">&#9878;</div>
+            <div class="featured-news-content">
+                <span class="featured-badge">Featured</span>
+                <h2>89th Texas Legislature: Family Law Reform Bills to Watch</h2>
+                <p>As the Texas Legislature convenes, multiple bills addressing service of process reform and family court accountability are gaining momentum. Here's what advocates need to know about the upcoming session and how you can make your voice heard.</p>
+                <a href="#" class="news-card-link">Read Full Article →</a>
+            </div>
+        </article>
+
+        <div class="news-filters">
+            <button class="active" data-filter="all">All Updates</button>
+            <button data-filter="legislative">Legislative</button>
+            <button data-filter="media">Media Coverage</button>
+            <button data-filter="community">Community</button>
+            <button data-filter="legal">Legal Updates</button>
+        </div>
+
+        <div class="news-grid">
+            <article class="news-card" data-category="legislative">
+                <div class="news-card-image">&#127963;</div>
+                <div class="news-card-content">
+                    <div class="news-card-meta">
+                        <span class="news-card-category">Legislative</span>
+                        <span class="news-card-date">Jan 2, 2026</span>
+                    </div>
+                    <h3>SAFE SAPCR Act Gains Bipartisan Support</h3>
+                    <p>Representatives from both parties signal support for mandatory constable service reform in SAPCR cases.</p>
+                    <a href="#" class="news-card-link">Read More →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="media">
+                <div class="news-card-image">&#128250;</div>
+                <div class="news-card-content">
+                    <div class="news-card-meta">
+                        <span class="news-card-category">Media</span>
+                        <span class="news-card-date">Dec 28, 2025</span>
+                    </div>
+                    <h3>KHOU Investigation: "Served Without Notice"</h3>
+                    <p>Houston's KHOU 11 airs investigative report on fraudulent service of process in Texas custody cases.</p>
+                    <a href="#" class="news-card-link">Watch Report →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="community">
+                <div class="news-card-image">&#128101;</div>
+                <div class="news-card-content">
+                    <div class="news-card-meta">
+                        <span class="news-card-category">Community</span>
+                        <span class="news-card-date">Dec 20, 2025</span>
+                    </div>
+                    <h3>SAFE SAPCR Reaches 1,000 Members</h3>
+                    <p>Our community continues to grow as more affected families join the movement for reform.</p>
+                    <a href="/membership" class="news-card-link">Join Us →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="legal">
+                <div class="news-card-image">&#9878;</div>
+                <div class="news-card-content">
+                    <div class="news-card-meta">
+                        <span class="news-card-category">Legal</span>
+                        <span class="news-card-date">Dec 15, 2025</span>
+                    </div>
+                    <h3>Appeals Court Rules on Bill of Review Standards</h3>
+                    <p>New ruling clarifies evidentiary requirements for proving fraudulent service in Texas courts.</p>
+                    <a href="#" class="news-card-link">Read Analysis →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="legislative">
+                <div class="news-card-image">&#128221;</div>
+                <div class="news-card-content">
+                    <div class="news-card-meta">
+                        <span class="news-card-category">Legislative</span>
+                        <span class="news-card-date">Dec 10, 2025</span>
+                    </div>
+                    <h3>Committee Hearing Scheduled for January</h3>
+                    <p>House Judiciary Committee to hear testimony on family law reform proposals.</p>
+                    <a href="/calendar" class="news-card-link">Add to Calendar →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="media">
+                <div class="news-card-image">&#128240;</div>
+                <div class="news-card-content">
+                    <div class="news-card-meta">
+                        <span class="news-card-category">Media</span>
+                        <span class="news-card-date">Dec 5, 2025</span>
+                    </div>
+                    <h3>Texas Tribune: "The Parents Left Behind"</h3>
+                    <p>Long-form investigation examines how service of process loopholes affect Texas families.</p>
+                    <a href="#" class="news-card-link">Read Article →</a>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <section class="newsletter-banner">
+        <h2>Don't Miss an Update</h2>
+        <p>Get legislative alerts and movement news delivered to your inbox.</p>
+        <form class="newsletter-form" id="newsNewsletterForm">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="footer-logo-img">
+                <span>SAFE SAPCR<span class="tx">TX</span></span>
+            </div>
+            <p>Service Accountability and Fraud Elimination</p>
+            <p class="contact">Contact: <a href="mailto:info@safesapcrtx.org">info@safesapcrtx.org</a></p>
+            <p class="copyright">© 2025 SAFE SAPCR Texas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // News filtering
+        document.querySelectorAll('.news-filters button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.news-filters button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.dataset.filter;
+                document.querySelectorAll('.news-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Newsletter form
+        document.getElementById('newsNewsletterForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            try {
+                const response = await fetch('/.netlify/functions/newsletter-signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                if (response.ok) {
+                    alert('Thank you for subscribing!');
+                    this.reset();
+                }
+            } catch (err) {
+                alert('Error subscribing. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+# Netlify configuration for safesapcrtx.org
+# Optimized for SEO, security, and performance
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Enable asset optimization
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true
+
+# ============================================
+# FUNCTIONS CONFIGURATION
+# ============================================
+
+[functions]
+  # Node.js version for serverless functions
+  node_bundler = "esbuild"
+
+  # Rate limiting for functions (abuse prevention)
+  [functions."chat"]
+    rate_limit = { window_size = 60, window_limit = 10 }
+
+  [functions."newsletter-signup"]
+    rate_limit = { window_size = 60, window_limit = 5 }
+
+  [functions."contact-legislator"]
+    rate_limit = { window_size = 60, window_limit = 5 }
+
+  [functions."send-email"]
+    rate_limit = { window_size = 60, window_limit = 3 }
+
+  [functions."membership-notify"]
+    rate_limit = { window_size = 60, window_limit = 3 }
+
+# ============================================
+# REDIRECTS - Clean URLs for SEO
+# ============================================
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+# case-study.html is handled by pretty_urls automatically
+
+[[redirects]]
+  from = "/legislation.html"
+  to = "/legislation"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/faq.html"
+  to = "/faq"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/resources.html"
+  to = "/resources"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/petition.html"
+  to = "/petition"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/glossary.html"
+  to = "/glossary"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/legislators.html"
+  to = "/legislators"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/stories.html"
+  to = "/stories"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/membership.html"
+  to = "/membership"
+  status = 301
+  force = true
+
+# Trailing slash normalization handled by pretty_urls
+
+[[redirects]]
+  from = "/legislation/"
+  to = "/legislation"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/faq/"
+  to = "/faq"
+  status = 301
+  force = true
+
+# ============================================
+# SECURITY & SEO HEADERS
+# ============================================
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Cross-Origin-Opener-Policy = "same-origin"
+    X-Permitted-Cross-Domain-Policies = "none"
+    # SEO headers
+    X-Robots-Tag = "index, follow, max-image-preview:large"
+
+[[headers]]
+  for = "/case-study"
+  [headers.values]
+    X-Robots-Tag = "index, follow, max-image-preview:large, max-snippet:-1"
+    Link = "<https://safesapcrtx.org/case-study>; rel=\"canonical\""
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    X-Robots-Tag = "index, follow, max-image-preview:large"
+    Link = "<https://safesapcrtx.org/>; rel=\"canonical\""
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ============================================
+# PLUGINS
+# ============================================
+
+[[plugins]]
+  package = "@netlify/plugin-sitemap"
+  [plugins.inputs]
+    buildDir = "."
+    exclude = [
+      "./admin.html",
+      "./.netlify/**",
+      "./netlify/**"
+    ]
+    changeFreq = "weekly"
+    priority = 0.8
+
+[[plugins]]
+  package = "netlify-plugin-submit-sitemap"
+  [plugins.inputs]
+    baseUrl = "https://safesapcrtx.org"
+    sitemapPath = "/sitemap.xml"
+    providers = ["google", "bing", "yandex"]

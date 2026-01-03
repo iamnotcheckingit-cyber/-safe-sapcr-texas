@@ -35,6 +35,22 @@
     <!-- Geo Tags -->
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Texas">
+    <!-- Structured Data - WebPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Join SAFE SAPCR Texas - Become a Member",
+        "description": "Join SAFE SAPCR Texas to support family law reform and protect parents from fraudulent service of process in custody cases.",
+        "url": "https://safesapcrtx.org/membership",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "SAFE SAPCR Texas",
+            "url": "https://safesapcrtx.org"
+        }
+    }
+    </script>
+
     <link rel="stylesheet" href="style.css">
 
     <!-- Supabase Client -->
@@ -233,10 +249,12 @@
             </div>
             <ul id="navMenu">
                 <li><a href="/#problem">The Problem</a></li>
-                <li><a href="/#solution">The Solution</a></li>
                 <li><a href="/legislation">Legislation</a></li>
-                <li><a href="/legislators">Find Legislator</a></li>
-                <li><a href="/other-states">Other States</a></li>
+                <li><a href="/legislators">Legislators</a></li>
+                <li><a href="/case-study">Case Study</a></li>
+                <li><a href="/stories">Stories</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/petition">Petition</a></li>
                 <li><a href="/membership">Join</a></li>
             </ul>
         </nav>
@@ -436,6 +454,17 @@
                             'event_category': 'membership',
                             'event_label': formData.involvement || 'general'
                         });
+                    }
+
+                    // Send email notification
+                    try {
+                        await fetch('/.netlify/functions/membership-notify', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(formData)
+                        });
+                    } catch (emailErr) {
+                        console.error('Email notification failed:', emailErr);
                     }
 
                     // Show success message
