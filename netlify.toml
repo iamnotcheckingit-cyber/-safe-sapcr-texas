@@ -48,76 +48,12 @@
     rate_limit = { window_size = 60, window_limit = 3 }
 
 # ============================================
-# REDIRECTS - Clean URLs for SEO
+# REDIRECTS - Clean URLs handled by _redirects file
 # ============================================
 
 [[redirects]]
   from = "/index.html"
   to = "/"
-  status = 301
-  force = true
-
-# case-study.html is handled by pretty_urls automatically
-
-[[redirects]]
-  from = "/legislation.html"
-  to = "/legislation"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/faq.html"
-  to = "/faq"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/resources.html"
-  to = "/resources"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/petition.html"
-  to = "/petition"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/glossary.html"
-  to = "/glossary"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/legislators.html"
-  to = "/legislators"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/stories.html"
-  to = "/stories"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/membership.html"
-  to = "/membership"
-  status = 301
-  force = true
-
-# Trailing slash normalization handled by pretty_urls
-
-[[redirects]]
-  from = "/legislation/"
-  to = "/legislation"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/faq/"
-  to = "/faq"
   status = 301
   force = true
 
