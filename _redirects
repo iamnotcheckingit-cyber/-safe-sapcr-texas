@@ -13,3 +13,9 @@
 /media          /media.html          200
 /templates      /templates.html      200
 /case-study     /case-study.html     200
+
+# Language pages
+/es             /es/index.html       200
+/de             /de/index.html       200
+/ar             /ar/index.html       200
+/zh             /zh/index.html       200
