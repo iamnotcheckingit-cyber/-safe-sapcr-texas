@@ -1,5 +1,15 @@
 # Pretty URLs - serve .html files without extension
+/faq            /faq.html            200
 /legislation    /legislation.html    200
 /legislators    /legislators.html    200
 /other-states   /other-states.html   200
 /membership     /membership.html     200
+/resources      /resources.html      200
+/petition       /petition.html       200
+/glossary       /glossary.html       200
+/stories        /stories.html        200
+/calendar       /calendar.html       200
+/news           /news.html           200
+/media          /media.html          200
+/templates      /templates.html      200
+/case-study     /case-study.html     200
