@@ -1,0 +1,10 @@
+# GitGuardian configuration
+# These files contain INTENTIONAL fake credentials for honeypot detection
+# They are NOT real secrets - they are decoys to catch attackers
+
+paths-ignore:
+  - ".env"
+  - "config.json"
+  - "backup/**"
+  - "api/v1/config.json"
+  - "debug/**"
