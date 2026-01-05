@@ -1,9 +1,14 @@
 /**
  * Honeypot Sink - Collects and logs honeypot interactions
- * Logs to Netlify Forms for persistence and analysis
+ * Logs to Supabase for persistence and analysis
  */
+const { createClient } = require('@supabase/supabase-js');
+
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://uynnupaoafbwouvgcedj.supabase.co';
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
 
 exports.handler = async (event, context) => {
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
@@ -106,18 +111,22 @@ exports.handler = async (event, context) => {
         // Log to console (appears in Netlify function logs)
         console.log('HONEYPOT_HIT:', JSON.stringify(logEntry, null, 2));
 
-        // Submit to Netlify Forms for persistence
-        const formBody = new URLSearchParams();
-        formBody.append('form-name', 'honeypot-log');
-        for (const [key, value] of Object.entries(logEntry)) {
-            formBody.append(key, String(value));
-        }
-
-        await fetch('https://safesapcrtx.org/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: formBody.toString()
-        }).catch(() => {}); // Ignore form submission errors
+        // Log to Supabase for persistence and analysis
+        await supabase.from('honeypot_log').insert({
+            timestamp: logEntry.timestamp,
+            ip: logEntry.ip,
+            method: logEntry.method,
+            path: logEntry.path,
+            user_agent: logEntry.user_agent,
+            referer: logEntry.referer,
+            country: logEntry.country,
+            source_page: logEntry.source_page,
+            classification: logEntry.classification,
+            bot_signals: logEntry.bot_signals,
+            credentials_attempted: logEntry.credentials_attempted,
+            form_data_keys: logEntry.form_data_keys,
+            raw_payload: logEntry.raw_payload
+        }).catch(err => console.error('Supabase log error:', err));
 
         // Always return success to keep bots engaged
         return {

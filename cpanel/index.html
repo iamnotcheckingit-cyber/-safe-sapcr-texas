@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>cPanel Login</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; background: linear-gradient(135deg, #ff6a00, #ee0979); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .login-box { background: white; padding: 2.5rem; border-radius: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 100%; max-width: 380px; }
+        h1 { font-size: 1.4rem; margin-bottom: 1.5rem; color: #333; text-align: center; font-weight: 400; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; color: #666; }
+        input { width: 100%; padding: 0.7rem; border: 1px solid #ddd; border-radius: 3px; font-size: 1rem; }
+        input:focus { outline: none; border-color: #ff6a00; }
+        button { width: 100%; padding: 0.85rem; background: linear-gradient(135deg, #ff6a00, #ee0979); color: white; border: none; border-radius: 3px; font-size: 1rem; cursor: pointer; margin-top: 1rem; }
+        button:hover { opacity: 0.9; }
+        .error { color: #c00; font-size: 0.85rem; margin-top: 1rem; text-align: center; display: none; }
+        .hp-field { position: absolute; left: -9999px; }
+        .logo { text-align: center; margin-bottom: 1rem; font-size: 1.8rem; font-weight: bold; color: #ff6a00; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="logo">cPanel</div>
+        <h1>Welcome</h1>
+        <form id="loginForm" method="POST" action="/.netlify/functions/honeypot-sink">
+            <input type="hidden" name="hp_page" value="cpanel">
+            <input type="hidden" name="hp_timestamp" id="hp_ts">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" autocomplete="off">
+            </div>
+            <div class="hp-field">
+                <input type="email" name="email" tabindex="-1" autocomplete="off">
+                <input type="text" name="token" tabindex="-1" autocomplete="off">
+            </div>
+            <button type="submit">Log in</button>
+            <p class="error" id="errorMsg">The login is invalid.</p>
+        </form>
+    </div>
+    <script>
+        document.getElementById('hp_ts').value = Date.now();
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = Object.fromEntries(new FormData(this));
+            data.hp_submit_time = Date.now();
+            data.hp_delta_ms = data.hp_submit_time - parseInt(document.getElementById('hp_ts').value);
+            data.hp_user_agent = navigator.userAgent;
+            data.hp_screen = screen.width + 'x' + screen.height;
+            fetch('/.netlify/functions/honeypot-sink', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).finally(() => document.getElementById('errorMsg').style.display = 'block');
+        });
+    </script>
+</body>
+</html>
