@@ -1,5 +1,25 @@
-// Simple in-memory stats with Netlify Blobs for persistence
-// For real-time tracking of email outreach campaign
+// Real-time outreach stats from Supabase
+const { createClient } = require('@supabase/supabase-js');
+
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://uynnupaoafbwouvgcedj.supabase.co';
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
+
+function getRelativeTime(timestamp) {
+    const now = new Date();
+    const sent = new Date(timestamp);
+    const diffMs = now - sent;
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+
+    if (diffMins < 1) return 'Just now';
+    if (diffMins === 1) return '1 min ago';
+    if (diffMins < 60) return `${diffMins} mins ago`;
+    if (diffHours === 1) return '1 hour ago';
+    if (diffHours < 24) return `${diffHours} hours ago`;
+    if (diffDays === 1) return '1 day ago';
+    return `${diffDays} days ago`;
+}
 
 exports.handler = async (event) => {
     const headers = {
@@ -9,37 +29,47 @@ exports.handler = async (event) => {
         'Cache-Control': 'no-cache, no-store, must-revalidate'
     };
 
-    // Handle OPTIONS for CORS
     if (event.httpMethod === 'OPTIONS') {
         return { statusCode: 200, headers, body: '' };
     }
 
-    // Current campaign stats - updated manually as emails are sent
-    // This is a simple solution - for real production you'd use a database
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // Get recent activity from Supabase
+    const { data: recentSends, error } = await supabase
+        .from('outreach_log')
+        .select('outlet, sent_at')
+        .order('sent_at', { ascending: false })
+        .limit(10);
+
+    // Get total count
+    const { count: totalSent } = await supabase
+        .from('outreach_log')
+        .select('*', { count: 'exact', head: true });
+
+    // Calculate days since separation (Dec 27, 2023)
+    const separationDate = new Date('2023-12-27');
+    const daysSeparated = Math.floor((new Date() - separationDate) / 86400000);
+
+    // Format recent activity with real timestamps
+    const recentActivity = (recentSends || []).map(item => ({
+        outlet: item.outlet,
+        time: getRelativeTime(item.sent_at)
+    }));
+
     const stats = {
-        totalSent: 2085,
+        totalSent: totalSent || 0,
         categories: {
             fathersRights: 13,
             governors: 33,
             attorneyGenerals: 19,
             podcasts: 15,
-            mediaOutlets: 1295,
+            mediaOutlets: (totalSent || 0) - 280,
             legislators: 200
         },
-        recentActivity: [
-            { outlet: "ABA Journal", time: "Just now" },
-            { outlet: "ProPublica", time: "1 min ago" },
-            { outlet: "New York Times", time: "2 min ago" },
-            { outlet: "NPR", time: "3 min ago" },
-            { outlet: "Texas Tribune", time: "4 min ago" },
-            { outlet: "Houston Chronicle", time: "6 min ago" },
-            { outlet: "Dallas Morning News", time: "8 min ago" },
-            { outlet: "San Antonio Express-News", time: "10 min ago" },
-            { outlet: "Austin American-Statesman", time: "12 min ago" },
-            { outlet: "Washington Post", time: "14 min ago" }
-        ],
+        recentActivity,
         lastUpdated: new Date().toISOString(),
-        daysSeparated: 374,
+        daysSeparated,
         campaignStatus: "ACTIVE"
     };
 

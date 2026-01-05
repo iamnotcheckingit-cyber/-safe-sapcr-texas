@@ -1,4 +1,8 @@
 const { Resend } = require('resend');
+const { createClient } = require('@supabase/supabase-js');
+
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://uynnupaoafbwouvgcedj.supabase.co';
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
 
 exports.handler = async (event) => {
     // Only allow POST
@@ -7,6 +11,7 @@ exports.handler = async (event) => {
     }
 
     const resend = new Resend(process.env.RESEND_API_KEY);
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
     // Parse request body
     let body;
@@ -44,6 +49,15 @@ exports.handler = async (event) => {
 
             const result = await resend.emails.send(emailPayload);
             results.push({ email: recipient.email, success: true, id: result.data?.id });
+
+            // Log to Supabase with real timestamp
+            await supabase.from('outreach_log').insert({
+                outlet: recipient.outlet || 'Unknown',
+                email: recipient.email,
+                sent_at: new Date().toISOString(),
+                status: 'sent',
+                resend_id: result.data?.id
+            }).catch(() => {}); // Don't fail if logging fails
 
             // Add delay between emails to avoid rate limiting
             if (i < recipients.length - 1) {
