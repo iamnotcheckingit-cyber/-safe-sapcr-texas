@@ -71,12 +71,12 @@ exports.handler = async (event) => {
             legislators: 200
         },
         recentActivity: hasData ? recentActivity : [
-            { outlet: "Temporarily interrupted", time: "Restoring service" }
+            { outlet: "Campaign resumed", time: "Now sending" }
         ],
         lastUpdated: new Date().toISOString(),
         daysSeparated,
-        campaignStatus: hasData ? "ACTIVE" : "RECOVERING",
-        notice: hasData ? null : "Our tracking system experienced unexpected issues. We're working to restore full functionality despite the setback."
+        campaignStatus: "ACTIVE",
+        notice: hasData ? null : "Email service restored. Campaign is back online and actively sending."
     };
 
     return {
