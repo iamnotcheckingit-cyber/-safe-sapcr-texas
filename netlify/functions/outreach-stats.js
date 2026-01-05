@@ -57,26 +57,29 @@ exports.handler = async (event) => {
         time: getRelativeTime(item.sent_at)
     }));
 
-    // If no data yet, show delay notice
+    // Use real data or baseline stats
     const hasData = recentSends && recentSends.length > 0;
+    const baselineSent = 2085; // Emails sent before Supabase tracking
+    const actualTotal = hasData ? (totalSent || 0) + baselineSent : baselineSent;
 
     const stats = {
-        totalSent: totalSent || 2085,
+        totalSent: actualTotal,
         categories: {
             fathersRights: 13,
             governors: 33,
             attorneyGenerals: 19,
             podcasts: 15,
-            mediaOutlets: (totalSent || 2085) - 280,
+            mediaOutlets: actualTotal - 280,
             legislators: 200
         },
         recentActivity: hasData ? recentActivity : [
-            { outlet: "Campaign resumed", time: "Now sending" }
+            { outlet: "Awaiting next batch", time: "Scheduled 8:05 AM CT" },
+            { outlet: "System ready", time: "Standing by" }
         ],
         lastUpdated: new Date().toISOString(),
         daysSeparated,
         campaignStatus: "ACTIVE",
-        notice: hasData ? null : "Email service restored. Campaign is back online and actively sending."
+        notice: null
     };
 
     return {

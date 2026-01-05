@@ -369,7 +369,7 @@
                 <span class="label">Campaign Status</span>
             </div>
             <div class="stat-item">
-                <span class="number">374</span>
+                <span class="number days-separated">374</span>
                 <span class="label">Days Separated</span>
             </div>
         </div>
@@ -741,7 +741,7 @@
                 <li>Accountability works both ways</li>
                 <li>Our children deserve to know we never stopped fighting</li>
             </ul>
-            <p style="margin-top: 1rem;"><strong>374 days</strong> since I've held my children. This page will document every effort to bring them home.</p>
+            <p style="margin-top: 1rem;"><strong><span class="days-separated">374</span> days</strong> since I've held my daughter. This page will document every effort to bring her home.</p>
         </div>
 
         <p class="refresh-note">This page auto-refreshes every 30 seconds. Campaign is LIVE - January 5, 2026</p>
@@ -775,12 +775,31 @@
                 const response = await fetch('/.netlify/functions/outreach-stats');
                 const data = await response.json();
 
-                // Update counter with animation
+                // Update main counter with animation
                 const counter = document.getElementById('live-count');
-                if (counter) {
+                if (counter && data.totalSent) {
                     counter.textContent = data.totalSent.toLocaleString();
                     counter.style.transform = 'scale(1.1)';
                     setTimeout(() => counter.style.transform = 'scale(1)', 200);
+                }
+
+                // Update sent count in stats bar
+                const sentCount = document.getElementById('sent-count');
+                if (sentCount && data.totalSent) {
+                    sentCount.textContent = data.totalSent.toLocaleString() + '+';
+                }
+
+                // Update days separated everywhere
+                if (data.daysSeparated) {
+                    document.querySelectorAll('.days-separated').forEach(el => {
+                        el.textContent = data.daysSeparated;
+                    });
+                }
+
+                // Update category counts
+                if (data.categories) {
+                    const catMedia = document.getElementById('cat-media');
+                    if (catMedia) catMedia.textContent = data.categories.mediaOutlets.toLocaleString() + '+';
                 }
 
                 // Update last update time
@@ -791,7 +810,7 @@
                 }
 
                 // Update activity feed
-                if (data.recentActivity) {
+                if (data.recentActivity && data.recentActivity.length > 0) {
                     const feed = document.getElementById('activity-feed');
                     if (feed) {
                         feed.innerHTML = data.recentActivity.map(item => `
