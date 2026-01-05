@@ -17,7 +17,7 @@ exports.handler = async (event) => {
     // Current campaign stats - updated manually as emails are sent
     // This is a simple solution - for real production you'd use a database
     const stats = {
-        totalSent: 1725,
+        totalSent: 1770,
         categories: {
             fathersRights: 13,
             governors: 33,
