@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="60">
+    <meta http-equiv="refresh" content="30">
     <title>Live Outreach Tracker | SAFE SAPCR Texas</title>
     <meta name="description" content="Real-time tracking of SAFE SAPCR Texas outreach to fathers rights groups, legislators, and media outlets.">
     <link rel="stylesheet" href="style.css">
@@ -125,6 +125,124 @@
             font-size: 0.9rem;
             margin-top: 2rem;
         }
+        .live-ticker {
+            background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .ticker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .ticker-title {
+            color: #00ff88;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .ticker-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: glow 1.5s infinite;
+        }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88; }
+            50% { box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88; }
+        }
+        .main-counter {
+            text-align: center;
+            padding: 2rem 0;
+        }
+        .counter-number {
+            font-size: 5rem;
+            font-weight: 700;
+            color: white;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 20px rgba(255,255,255,0.3);
+            line-height: 1;
+        }
+        .counter-label {
+            color: #888;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 0.5rem;
+        }
+        .activity-feed {
+            max-height: 200px;
+            overflow-y: auto;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1rem;
+        }
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .activity-icon {
+            width: 32px;
+            height: 32px;
+            background: #00ff88;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        .activity-details {
+            flex: 1;
+        }
+        .activity-outlet {
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .activity-time {
+            color: #666;
+            font-size: 0.75rem;
+        }
+        .category-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .category-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+        }
+        .category-count {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00ff88;
+        }
+        .category-name {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
         .why-section {
             background: var(--bg-alt);
             padding: 2rem;
@@ -166,14 +284,89 @@
     </section>
 
     <div class="outreach-container">
+        <!-- Real-Time Live Ticker Widget -->
+        <div class="live-ticker">
+            <div class="ticker-header">
+                <span class="ticker-title">Real-Time Campaign Tracker</span>
+                <span style="color: #666; font-size: 0.8rem;" id="last-update">Updating...</span>
+            </div>
+            <div class="main-counter">
+                <div class="counter-number" id="live-count">1,130</div>
+                <div class="counter-label">Emails Sent Today</div>
+            </div>
+            <div class="activity-feed" id="activity-feed">
+                <div class="activity-item">
+                    <div class="activity-icon">&#x2709;</div>
+                    <div class="activity-details">
+                        <div class="activity-outlet">KELOLAND Sioux Falls</div>
+                        <div class="activity-time">Just now</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">&#x2709;</div>
+                    <div class="activity-details">
+                        <div class="activity-outlet">KARE11 Minneapolis</div>
+                        <div class="activity-time">1 min ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">&#x2709;</div>
+                    <div class="activity-details">
+                        <div class="activity-outlet">Milwaukee Journal Sentinel</div>
+                        <div class="activity-time">3 min ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">&#x2709;</div>
+                    <div class="activity-details">
+                        <div class="activity-outlet">Detroit Free Press</div>
+                        <div class="activity-time">5 min ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">&#x2709;</div>
+                    <div class="activity-details">
+                        <div class="activity-outlet">Boston Globe</div>
+                        <div class="activity-time">8 min ago</div>
+                    </div>
+                </div>
+            </div>
+            <div class="category-breakdown">
+                <div class="category-item">
+                    <div class="category-count" id="cat-media">850+</div>
+                    <div class="category-name">Media Outlets</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-count" id="cat-gov">33</div>
+                    <div class="category-name">Governors</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-count" id="cat-ag">19</div>
+                    <div class="category-name">Attorneys General</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-count" id="cat-fathers">13</div>
+                    <div class="category-name">Fathers Rights Orgs</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-count" id="cat-podcast">15</div>
+                    <div class="category-name">Podcasts</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-count" id="cat-leg">200+</div>
+                    <div class="category-name">Legislators</div>
+                </div>
+            </div>
+        </div>
+
         <div class="stats-bar">
             <div class="stat-item">
-                <span class="number" id="sent-count">200</span>
+                <span class="number" id="sent-count">1,130+</span>
                 <span class="label">Emails Sent</span>
             </div>
             <div class="stat-item">
-                <span class="number" id="pending-count">500+</span>
-                <span class="label">Legislators Queued</span>
+                <span class="number" id="pending-count">Ongoing</span>
+                <span class="label">Campaign Status</span>
             </div>
             <div class="stat-item">
                 <span class="number">374</span>
@@ -551,7 +744,7 @@
             <p style="margin-top: 1rem;"><strong>374 days</strong> since I've held my children. This page will document every effort to bring them home.</p>
         </div>
 
-        <p class="refresh-note">This page auto-refreshes every 60 seconds. Last updated: January 5, 2026</p>
+        <p class="refresh-note">This page auto-refreshes every 30 seconds. Campaign is LIVE - January 5, 2026</p>
     </div>
 
     <footer>
@@ -574,6 +767,69 @@
                 menuToggle.classList.toggle('active');
                 navMenu.classList.toggle('active');
             });
+        }
+
+        // Real-time stats fetching
+        async function fetchStats() {
+            try {
+                const response = await fetch('/.netlify/functions/outreach-stats');
+                const data = await response.json();
+
+                // Update counter with animation
+                const counter = document.getElementById('live-count');
+                if (counter) {
+                    counter.textContent = data.totalSent.toLocaleString();
+                    counter.style.transform = 'scale(1.1)';
+                    setTimeout(() => counter.style.transform = 'scale(1)', 200);
+                }
+
+                // Update last update time
+                const lastUpdate = document.getElementById('last-update');
+                if (lastUpdate) {
+                    const now = new Date();
+                    lastUpdate.textContent = 'Updated: ' + now.toLocaleTimeString();
+                }
+
+                // Update activity feed
+                if (data.recentActivity) {
+                    const feed = document.getElementById('activity-feed');
+                    if (feed) {
+                        feed.innerHTML = data.recentActivity.map(item => `
+                            <div class="activity-item">
+                                <div class="activity-icon">&#x2709;</div>
+                                <div class="activity-details">
+                                    <div class="activity-outlet">${item.outlet}</div>
+                                    <div class="activity-time">${item.time}</div>
+                                </div>
+                            </div>
+                        `).join('');
+                    }
+                }
+            } catch (error) {
+                console.log('Stats fetch pending...');
+            }
+        }
+
+        // Fetch on load and every 10 seconds
+        fetchStats();
+        setInterval(fetchStats, 10000);
+
+        // Animate counter on page load
+        const counter = document.getElementById('live-count');
+        if (counter) {
+            const target = parseInt(counter.textContent.replace(/,/g, ''));
+            let current = 0;
+            const increment = target / 50;
+            const animate = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = Math.floor(current).toLocaleString();
+                    requestAnimationFrame(animate);
+                } else {
+                    counter.textContent = target.toLocaleString();
+                }
+            };
+            animate();
         }
     </script>
 </body>
