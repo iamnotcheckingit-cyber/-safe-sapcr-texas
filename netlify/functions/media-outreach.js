@@ -31,7 +31,7 @@ exports.handler = async (event) => {
 
         try {
             const emailPayload = {
-                from: 'SAFE SAPCR Texas <info@safesapcrtx.org>',
+                from: 'Scott Willis - SAFE SAPCR Texas <info@safesapcrtx.org>',
                 to: recipient.email,
                 subject: subject,
                 html: htmlBody.replace('{{outlet}}', recipient.outlet || 'News Desk')
