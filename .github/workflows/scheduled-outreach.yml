@@ -1,0 +1,31 @@
+name: Scheduled Email Outreach
+
+on:
+  schedule:
+    # 8:05 AM Central Time (14:05 UTC)
+    # Note: GitHub Actions uses UTC, Central is UTC-6 (or UTC-5 during DST)
+    - cron: '5 14 * * *'
+  workflow_dispatch:  # Manual trigger option
+
+jobs:
+  send-outreach:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Legislator Outreach
+        run: |
+          echo "Triggering legislator outreach at $(date)"
+          curl -X POST "https://safesapcrtx.org/.netlify/functions/contact-legislator" \
+            -H "Content-Type: application/json" \
+            -d '{"scheduled": true, "trigger": "github-actions"}' \
+            --max-time 60 || true
+
+      - name: Send Media Outreach
+        run: |
+          echo "Triggering media outreach at $(date)"
+          curl -X POST "https://safesapcrtx.org/.netlify/functions/media-outreach" \
+            -H "Content-Type: application/json" \
+            -d '{"scheduled": true, "trigger": "github-actions"}' \
+            --max-time 60 || true
+
+      - name: Log completion
+        run: echo "Outreach emails triggered at $(date)"
