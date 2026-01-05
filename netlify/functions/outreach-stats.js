@@ -70,7 +70,7 @@ exports.handler = async (event) => {
             attorneyGenerals: 19,
             podcasts: 15,
             mediaOutlets: actualTotal - 280,
-            legislators: 200
+            legislators: 87
         },
         recentActivity: hasData ? recentActivity : [
             { outlet: "Awaiting next batch", time: "Scheduled 8:05 AM CT" },
