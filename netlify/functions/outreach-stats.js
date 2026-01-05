@@ -17,26 +17,26 @@ exports.handler = async (event) => {
     // Current campaign stats - updated manually as emails are sent
     // This is a simple solution - for real production you'd use a database
     const stats = {
-        totalSent: 1525,
+        totalSent: 1650,
         categories: {
             fathersRights: 13,
             governors: 33,
             attorneyGenerals: 19,
             podcasts: 15,
-            mediaOutlets: 1170,
+            mediaOutlets: 1295,
             legislators: 200
         },
         recentActivity: [
-            { outlet: "Washington Post", time: "Just now" },
-            { outlet: "Denver Post", time: "1 min ago" },
-            { outlet: "Salt Lake Tribune", time: "2 min ago" },
-            { outlet: "Las Vegas Review-Journal", time: "3 min ago" },
-            { outlet: "Arizona Republic", time: "4 min ago" },
-            { outlet: "San Diego Union-Tribune", time: "6 min ago" },
-            { outlet: "LA Times", time: "8 min ago" },
-            { outlet: "SF Chronicle", time: "10 min ago" },
-            { outlet: "Seattle Times", time: "12 min ago" },
-            { outlet: "The Oregonian", time: "14 min ago" }
+            { outlet: "ABA Journal", time: "Just now" },
+            { outlet: "ProPublica", time: "1 min ago" },
+            { outlet: "New York Times", time: "2 min ago" },
+            { outlet: "NPR", time: "3 min ago" },
+            { outlet: "Texas Tribune", time: "4 min ago" },
+            { outlet: "Houston Chronicle", time: "6 min ago" },
+            { outlet: "Dallas Morning News", time: "8 min ago" },
+            { outlet: "San Antonio Express-News", time: "10 min ago" },
+            { outlet: "Austin American-Statesman", time: "12 min ago" },
+            { outlet: "Washington Post", time: "14 min ago" }
         ],
         lastUpdated: new Date().toISOString(),
         daysSeparated: 374,
