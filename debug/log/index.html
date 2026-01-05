@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="robots" content="noindex, nofollow">
+    <title>Debug Log</title>
+    <style>
+        body { font-family: monospace; background: #1e1e1e; color: #d4d4d4; padding: 20px; }
+        pre { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>Application Debug Log</h1>
+    <pre>
+[2026-01-04 08:23:15] INFO: Application started
+[2026-01-04 08:23:16] DEBUG: Database connection established
+[2026-01-04 08:23:17] INFO: Cache warmed up
+[2026-01-04 08:24:01] WARN: Rate limit approaching for IP 10.0.0.5
+[2026-01-04 08:25:33] ERROR: Failed login attempt user=admin
+[2026-01-04 08:26:12] DEBUG: Session created sid=abc123fake
+[2026-01-04 08:27:45] INFO: API request to /api/users count=15
+    </pre>
+    <p style="color:#666;margin-top:20px;">This is a honeypot. Access has been logged.</p>
+    <script>
+        // Log this access
+        fetch('/.netlify/functions/honeypot-sink', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                hp_page: 'debug-log',
+                hp_ts: Date.now(),
+                hp_ua: navigator.userAgent,
+                hp_ref: document.referrer
+            })
+        });
+    </script>
+</body>
+</html>

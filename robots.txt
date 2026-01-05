@@ -100,19 +100,67 @@ Disallow: /
 
 # ============================================
 # HONEYPOT TRAPS (for security scanners)
+# These paths serve decoy content to detect malicious reconnaissance
+# Legitimate crawlers obey robots.txt; scanners ignore it
 # ============================================
 
-# Admin/sensitive (honeypots)
+# WordPress-style traps
 Disallow: /wp-admin/
 Disallow: /wp-login.php
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /xmlrpc.php
+
+# Admin/control surfaces (honeypots)
+Disallow: /admin/
+Disallow: /login/
+Disallow: /panel/
+Disallow: /dashboard/
 Disallow: /administrator/
+Disallow: /manage/
+Disallow: /control/
+
+# Sensitive files (honeypots)
 Disallow: /.env
 Disallow: /.git/
-Disallow: /config/
-Disallow: /backup/
-Disallow: /phpmyadmin/
-Disallow: /admin/config/
+Disallow: /config.json
+Disallow: /.htaccess
+Disallow: /.htpasswd
+Disallow: /web.config
 
-# Netlify internal
+# Backup/database traps
+Disallow: /backup/
+Disallow: /backup.sql
+Disallow: /backup.tar.gz
+Disallow: /db.sql
+Disallow: /database.sql
+Disallow: /dump.sql
+
+# Debug/internal traps
+Disallow: /debug/
+Disallow: /debug/log/
+Disallow: /internal-api/
+Disallow: /staging/
+Disallow: /hidden-admin/
+Disallow: /test/
+Disallow: /dev/
+
+# API config traps
+Disallow: /api/v1/config.json
+Disallow: /api/config/
+Disallow: /api/admin/
+Disallow: /api/internal/
+
+# Common exploit targets
+Disallow: /phpmyadmin/
+Disallow: /phpMyAdmin/
+Disallow: /pma/
+Disallow: /mysql/
+Disallow: /adminer.php
+Disallow: /shell.php
+Disallow: /c99.php
+Disallow: /r57.php
+
+# Netlify internal (not honeypots - real restriction)
 Disallow: /.netlify/
 Disallow: /netlify/functions/

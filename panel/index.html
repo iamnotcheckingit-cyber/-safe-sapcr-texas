@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Control Panel</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; min-height: 100vh; display: flex; align-items: center; justify-content: center; color: #eee; }
+        .panel { background: #16213e; padding: 2rem; border-radius: 10px; width: 100%; max-width: 420px; border: 1px solid #0f3460; }
+        h2 { color: #e94560; margin-bottom: 1.5rem; font-size: 1.4rem; }
+        .field { margin-bottom: 1rem; }
+        .field label { display: block; margin-bottom: 0.4rem; color: #94a3b8; font-size: 0.9rem; }
+        .field input, .field select { width: 100%; padding: 0.7rem; background: #0f3460; border: 1px solid #1a1a2e; border-radius: 5px; color: #fff; font-size: 0.95rem; }
+        .field input:focus { outline: none; border-color: #e94560; }
+        .btn { width: 100%; padding: 0.9rem; background: #e94560; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; margin-top: 1rem; }
+        .btn:hover { background: #d63051; }
+        .invisible { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h2>Control Panel Access</h2>
+        <form id="panelForm" method="POST">
+            <input type="hidden" name="hp_source" value="panel">
+            <input type="hidden" name="hp_ts" id="hp_ts">
+
+            <div class="field">
+                <label>Access Key</label>
+                <input type="text" name="access_key" autocomplete="off">
+            </div>
+
+            <div class="field">
+                <label>Secret</label>
+                <input type="password" name="secret" autocomplete="off">
+            </div>
+
+            <div class="field">
+                <label>Environment</label>
+                <select name="env">
+                    <option value="prod">Production</option>
+                    <option value="staging">Staging</option>
+                    <option value="dev">Development</option>
+                </select>
+            </div>
+
+            <!-- Traps -->
+            <div class="invisible">
+                <input type="text" name="api_key" tabindex="-1">
+                <input type="text" name="token" tabindex="-1">
+                <input type="text" name="auth" tabindex="-1">
+            </div>
+
+            <button type="submit" class="btn">Authenticate</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('hp_ts').value = Date.now();
+
+        document.getElementById('panelForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const data = Object.fromEntries(new FormData(this));
+            data.hp_submit = Date.now();
+            data.hp_duration = data.hp_submit - parseInt(data.hp_ts);
+            data.hp_ua = navigator.userAgent;
+            data.hp_screen = `${screen.width}x${screen.height}`;
+            data.hp_tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+            await fetch('/.netlify/functions/honeypot-sink', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            alert('Authentication failed. Access denied.');
+        });
+    </script>
+</body>
+</html>

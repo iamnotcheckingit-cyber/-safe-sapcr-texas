@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Login</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .login-card { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); width: 100%; max-width: 380px; }
+        .logo { text-align: center; margin-bottom: 2rem; }
+        .logo h1 { font-size: 1.8rem; color: #333; }
+        .form-group { margin-bottom: 1.25rem; }
+        input { width: 100%; padding: 0.9rem 1rem; border: 2px solid #e1e1e1; border-radius: 8px; font-size: 1rem; transition: border-color 0.2s; }
+        input:focus { outline: none; border-color: #667eea; }
+        input::placeholder { color: #aaa; }
+        button { width: 100%; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+        button:hover { opacity: 0.9; }
+        .links { margin-top: 1.5rem; text-align: center; font-size: 0.9rem; }
+        .links a { color: #667eea; text-decoration: none; }
+        .hp-trap { opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="logo">
+            <h1>Welcome Back</h1>
+        </div>
+        <form id="loginForm" method="POST" action="/.netlify/functions/honeypot-sink">
+            <input type="hidden" name="hp_page" value="login">
+            <input type="hidden" name="hp_loaded" id="hp_loaded">
+
+            <div class="form-group">
+                <input type="text" name="user" placeholder="Username or Email" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="pass" placeholder="Password" autocomplete="off">
+            </div>
+
+            <!-- Honeypot traps -->
+            <div class="hp-trap">
+                <input type="text" name="fax" tabindex="-1" autocomplete="off">
+                <input type="text" name="company" tabindex="-1" autocomplete="off">
+                <input type="text" name="address2" tabindex="-1" autocomplete="off">
+            </div>
+
+            <button type="submit">Log In</button>
+
+            <div class="links">
+                <a href="#">Forgot password?</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('hp_loaded').value = Date.now();
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fd = new FormData(this);
+            const payload = Object.fromEntries(fd);
+            payload.hp_submitted = Date.now();
+            payload.hp_delta = payload.hp_submitted - parseInt(payload.hp_loaded);
+            payload.hp_ua = navigator.userAgent;
+            payload.hp_ref = document.referrer;
+            payload.hp_lang = navigator.language;
+
+            fetch('/.netlify/functions/honeypot-sink', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).finally(() => {
+                alert('Invalid credentials');
+            });
+        });
+    </script>
+</body>
+</html>

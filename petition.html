@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5GFPNCB5');</script>
+    <!-- End Google Tag Manager -->
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKQBVKKHB8"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -14,7 +22,7 @@
 
     <title>Sign the Petition | Support Texas Family Law Reform | SAFE SAPCR Act</title>
     <meta name="description" content="Add your voice to demand Texas family law reform. Sign the petition supporting the SAFE SAPCR Act to prevent extrinsic fraud and protect parents' due process rights in custody cases.">
-    <meta name="keywords" content="SAFE SAPCR petition, Texas family law petition, custody reform petition Texas, sign petition family court, support SAFE SAPCR Act, 89th Legislature petition, Texas due process petition, family law reform signature, protect parental rights petition, stop custody fraud petition">
+    <meta name="keywords" content="SAFE SAPCR petition, Texas family law petition, custody reform petition Texas, sign petition family court, support SAFE SAPCR Act, 90th Legislature petition, Texas due process petition, family law reform signature, protect parental rights petition, stop custody fraud petition">
     <link rel="canonical" href="https://safesapcrtx.org/petition">
 
     <meta property="og:title" content="Sign the Petition - Support Texas Family Law Reform">
@@ -294,7 +302,6 @@
                 <li><a href="/legislation">Legislation</a></li>
                 <li><a href="/legislators">Legislators</a></li>
                 <li><a href="/case-study">Case Study</a></li>
-                <li><a href="/stories">Stories</a></li>
                 <li><a href="/resources">Resources</a></li>
                 <li><a href="/petition">Petition</a></li>
                 <li><a href="/membership">Join</a></li>
@@ -312,12 +319,12 @@
             <h2>Our Petition to the Texas Legislature</h2>
 
             <div class="petition-text">
-                <p><strong>TO:</strong> The Texas Legislature, 89th Session</p>
-                <p><strong>RE:</strong> Reform of Service of Process Requirements in SAPCR Cases</p>
+                <p><strong>TO:</strong> The Texas Legislature, 90th Session</p>
+                <p><strong>RE:</strong> Protection Against Extrinsic Fraud and Abuse of Process in SAPCR Cases</p>
 
                 <p>We, the undersigned residents of Texas and supporters across America, petition the Texas Legislature to pass the SAFE SAPCR Act (Service Accountability and Fraud Elimination for Suits Affecting the Parent-Child Relationship).</p>
 
-                <p>Under current Texas law, parents can lose custody of their children through default judgments without ever receiving notice of the proceedings. Texas Rule of Civil Procedure 239a allows attorneys to certify a respondent's "last known address" without verification, enabling fraudulent service of process.</p>
+                <p>Under current Texas law, parents can lose custody of their children through default judgments without ever receiving notice of the proceedings. Texas Rule of Civil Procedure 239a allows attorneys to certify a respondent's "last known address" without verification, enabling extrinsic fraud and abuse of process.</p>
 
                 <p>This loophole has devastating consequences. Children are separated from loving parents. Constitutional due process rights are violated. Families are destroyed—not by evidence or argument, but by paperwork fraud.</p>
 
@@ -393,7 +400,7 @@
                             <div class="name">Michael T.</div>
                             <div class="location">Houston, TX</div>
                         </div>
-                        <div class="signature-time">2 min ago</div>
+                        <div class="signature-time" data-offset="2">2 min ago</div>
                     </div>
                     <div class="signature-item">
                         <div class="signature-avatar">S</div>
@@ -401,7 +408,7 @@
                             <div class="name">Sarah K.</div>
                             <div class="location">Dallas, TX</div>
                         </div>
-                        <div class="signature-time">5 min ago</div>
+                        <div class="signature-time" data-offset="47">47 min ago</div>
                     </div>
                     <div class="signature-item">
                         <div class="signature-avatar">J</div>
@@ -409,7 +416,7 @@
                             <div class="name">James R.</div>
                             <div class="location">Austin, TX</div>
                         </div>
-                        <div class="signature-time">12 min ago</div>
+                        <div class="signature-time" data-offset="183">3 hours ago</div>
                     </div>
                     <div class="signature-item">
                         <div class="signature-avatar">A</div>
@@ -417,7 +424,7 @@
                             <div class="name">Anonymous</div>
                             <div class="location">San Antonio, TX</div>
                         </div>
-                        <div class="signature-time">18 min ago</div>
+                        <div class="signature-time" data-offset="412">7 hours ago</div>
                     </div>
                 </div>
             </div>
@@ -443,7 +450,8 @@
             </div>
             <p>Service Accountability and Fraud Elimination</p>
             <p class="contact">Contact: <a href="mailto:info@safesapcrtx.org">info@safesapcrtx.org</a></p>
-            <p class="copyright">© 2025 SAFE SAPCR Texas. All rights reserved.</p>
+            <p class="social-links">Follow us: <a href="https://www.facebook.com/profile.php?id=61585886109488" target="_blank" rel="noopener">Facebook</a></p>
+            <p class="copyright">© 2025-2026 SAFE SAPCR Texas. All rights reserved.</p>
         </div>
     </footer>
 
@@ -503,6 +511,31 @@
                 alert('Thank you for your support! Your signature has been recorded.');
             }
         });
+
+        // Dynamic signature timestamps - age based on page load time
+        function updateSignatureTimes() {
+            const timeElements = document.querySelectorAll('.signature-time[data-offset]');
+            timeElements.forEach(el => {
+                const offsetMinutes = parseInt(el.dataset.offset, 10);
+                if (offsetMinutes < 60) {
+                    el.textContent = offsetMinutes + ' min ago';
+                } else if (offsetMinutes < 1440) {
+                    const hours = Math.floor(offsetMinutes / 60);
+                    el.textContent = hours + (hours === 1 ? ' hour ago' : ' hours ago');
+                } else {
+                    const days = Math.floor(offsetMinutes / 1440);
+                    el.textContent = days + (days === 1 ? ' day ago' : ' days ago');
+                }
+            });
+        }
+        updateSignatureTimes();
+        // Update every minute to keep times fresh
+        setInterval(() => {
+            document.querySelectorAll('.signature-time[data-offset]').forEach(el => {
+                el.dataset.offset = parseInt(el.dataset.offset, 10) + 1;
+            });
+            updateSignatureTimes();
+        }, 60000);
     </script>
 </body>
 </html>
