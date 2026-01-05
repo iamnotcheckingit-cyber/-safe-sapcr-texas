@@ -1,0 +1,83 @@
+name: VirusTotal Security Scan
+
+on:
+  schedule:
+    # Run every hour at minute 0
+    - cron: '0 * * * *'
+  workflow_dispatch:  # Manual trigger option
+
+jobs:
+  scan-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scan safesapcrtx.org with VirusTotal
+        env:
+          VT_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+        run: |
+          echo "Starting VirusTotal scan at $(date)"
+
+          # Submit URL for scanning
+          SCAN_RESPONSE=$(curl -s -X POST "https://www.virustotal.com/api/v3/urls" \
+            -H "x-apikey: $VT_API_KEY" \
+            -H "Content-Type: application/x-www-form-urlencoded" \
+            -d "url=https://safesapcrtx.org")
+
+          echo "Scan submitted"
+
+          # Extract analysis ID
+          ANALYSIS_ID=$(echo "$SCAN_RESPONSE" | jq -r '.data.id // empty')
+
+          if [ -z "$ANALYSIS_ID" ]; then
+            echo "Failed to get analysis ID. Response:"
+            echo "$SCAN_RESPONSE"
+            exit 1
+          fi
+
+          echo "Analysis ID: $ANALYSIS_ID"
+
+          # Wait for analysis to complete (up to 60 seconds)
+          sleep 15
+
+          # Get analysis results
+          RESULT=$(curl -s "https://www.virustotal.com/api/v3/analyses/$ANALYSIS_ID" \
+            -H "x-apikey: $VT_API_KEY")
+
+          echo "=== VirusTotal Scan Results ==="
+          echo "$RESULT" | jq '.data.attributes.stats'
+
+          # Check for malicious detections
+          MALICIOUS=$(echo "$RESULT" | jq -r '.data.attributes.stats.malicious // 0')
+          SUSPICIOUS=$(echo "$RESULT" | jq -r '.data.attributes.stats.suspicious // 0')
+
+          echo ""
+          echo "Malicious: $MALICIOUS"
+          echo "Suspicious: $SUSPICIOUS"
+
+          if [ "$MALICIOUS" -gt 0 ] || [ "$SUSPICIOUS" -gt 0 ]; then
+            echo "⚠️ WARNING: Potential security issues detected!"
+            echo "Check full report at: https://www.virustotal.com/gui/url/$(echo -n 'https://safesapcrtx.org' | base64 -w0 | tr '+/' '-_' | tr -d '=')"
+            exit 1
+          else
+            echo "✅ Site is clean - no threats detected"
+          fi
+
+      - name: Scan additional pages
+        env:
+          VT_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+        run: |
+          # Scan key pages (with rate limiting - VT allows 4 req/min on free tier)
+          PAGES=("https://safesapcrtx.org/media.html" "https://safesapcrtx.org/contact.html")
+
+          for page in "${PAGES[@]}"; do
+            echo "Submitting $page for scan..."
+            curl -s -X POST "https://www.virustotal.com/api/v3/urls" \
+              -H "x-apikey: $VT_API_KEY" \
+              -H "Content-Type: application/x-www-form-urlencoded" \
+              -d "url=$page" > /dev/null
+            sleep 20  # Rate limit: 4 requests per minute
+          done
+
+          echo "Additional pages submitted for scanning"
+
+      - name: Log completion
+        run: echo "VirusTotal scan completed at $(date)"
