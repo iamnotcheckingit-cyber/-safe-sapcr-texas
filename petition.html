@@ -394,39 +394,15 @@
                     <button type="submit">Sign the Petition</button>
                 </form>
 
-                <div class="recent-signatures">
+                <div class="recent-signatures" id="recentSignatures">
                     <h4>Recent Signatures</h4>
-                    <div class="signature-item">
-                        <div class="signature-avatar">M</div>
+                    <div class="signature-item loading-state">
+                        <div class="signature-avatar">...</div>
                         <div class="signature-info">
-                            <div class="name">Michael T.</div>
-                            <div class="location">Houston, TX</div>
+                            <div class="name">Loading recent signatures...</div>
+                            <div class="location"></div>
                         </div>
-                        <div class="signature-time" data-offset="2">2 min ago</div>
-                    </div>
-                    <div class="signature-item">
-                        <div class="signature-avatar">S</div>
-                        <div class="signature-info">
-                            <div class="name">Sarah K.</div>
-                            <div class="location">Dallas, TX</div>
-                        </div>
-                        <div class="signature-time" data-offset="47">47 min ago</div>
-                    </div>
-                    <div class="signature-item">
-                        <div class="signature-avatar">J</div>
-                        <div class="signature-info">
-                            <div class="name">James R.</div>
-                            <div class="location">Austin, TX</div>
-                        </div>
-                        <div class="signature-time" data-offset="183">3 hours ago</div>
-                    </div>
-                    <div class="signature-item">
-                        <div class="signature-avatar">A</div>
-                        <div class="signature-info">
-                            <div class="name">Anonymous</div>
-                            <div class="location">San Antonio, TX</div>
-                        </div>
-                        <div class="signature-time" data-offset="412">7 hours ago</div>
+                        <div class="signature-time"></div>
                     </div>
                 </div>
             </div>
@@ -468,6 +444,49 @@
             });
         }
 
+        // Load real signatures from Supabase
+        async function loadSignatures() {
+            try {
+                const response = await fetch('/.netlify/functions/petition-signatures');
+                const data = await response.json();
+
+                // Update total count
+                const countEl = document.getElementById('signatureCount');
+                if (countEl && data.total) {
+                    countEl.textContent = data.total.toLocaleString();
+                    // Update progress bar (goal is 5000)
+                    const progressEl = document.querySelector('.progress');
+                    if (progressEl) {
+                        const percent = Math.min((data.total / 5000) * 100, 100);
+                        progressEl.style.width = percent + '%';
+                    }
+                }
+
+                // Update recent signatures
+                const container = document.getElementById('recentSignatures');
+                if (container && data.signatures && data.signatures.length > 0) {
+                    container.innerHTML = '<h4>Recent Signatures</h4>' +
+                        data.signatures.map(sig => `
+                            <div class="signature-item">
+                                <div class="signature-avatar">${sig.initial}</div>
+                                <div class="signature-info">
+                                    <div class="name">${sig.name}</div>
+                                    <div class="location">${sig.location}</div>
+                                </div>
+                                <div class="signature-time">${sig.time}</div>
+                            </div>
+                        `).join('');
+                } else if (container && (!data.signatures || data.signatures.length === 0)) {
+                    container.innerHTML = '<h4>Recent Signatures</h4>' +
+                        '<div class="signature-item"><div class="signature-info">' +
+                        '<div class="name">Be the first to sign!</div></div></div>';
+                }
+            } catch (err) {
+                console.error('Failed to load signatures:', err);
+            }
+        }
+        loadSignatures();
+
         // Petition form submission
         document.getElementById('petitionForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -482,23 +501,26 @@
             };
 
             try {
-                // Submit to membership function (reusing existing infrastructure)
-                const response = await fetch('/.netlify/functions/membership-notify', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        ...formData,
-                        first_name: formData.name.split(' ')[0],
-                        last_name: formData.name.split(' ').slice(1).join(' ') || '',
-                        involvement: 'petition',
-                        newsletter: formData.receiveUpdates,
-                        legislative_updates: formData.receiveUpdates
+                // Submit to petition-signatures (Supabase) and membership-notify (email) in parallel
+                await Promise.all([
+                    fetch('/.netlify/functions/petition-signatures', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    }),
+                    fetch('/.netlify/functions/membership-notify', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            ...formData,
+                            first_name: formData.name.split(' ')[0],
+                            last_name: formData.name.split(' ').slice(1).join(' ') || '',
+                            involvement: 'petition',
+                            newsletter: formData.receiveUpdates,
+                            legislative_updates: formData.receiveUpdates
+                        })
                     })
-                });
-
-                // Update count
-                const count = document.getElementById('signatureCount');
-                count.textContent = (parseInt(count.textContent.replace(',', '')) + 1).toLocaleString();
+                ]);
 
                 // Track in GA
                 if (typeof gtag !== 'undefined') {
@@ -508,36 +530,14 @@
                 alert('Thank you for signing the petition! Your voice matters.');
                 this.reset();
 
+                // Reload signatures to show new one
+                loadSignatures();
+
             } catch (err) {
                 console.error(err);
                 alert('Thank you for your support! Your signature has been recorded.');
             }
         });
-
-        // Dynamic signature timestamps - age based on page load time
-        function updateSignatureTimes() {
-            const timeElements = document.querySelectorAll('.signature-time[data-offset]');
-            timeElements.forEach(el => {
-                const offsetMinutes = parseInt(el.dataset.offset, 10);
-                if (offsetMinutes < 60) {
-                    el.textContent = offsetMinutes + ' min ago';
-                } else if (offsetMinutes < 1440) {
-                    const hours = Math.floor(offsetMinutes / 60);
-                    el.textContent = hours + (hours === 1 ? ' hour ago' : ' hours ago');
-                } else {
-                    const days = Math.floor(offsetMinutes / 1440);
-                    el.textContent = days + (days === 1 ? ' day ago' : ' days ago');
-                }
-            });
-        }
-        updateSignatureTimes();
-        // Update every minute to keep times fresh
-        setInterval(() => {
-            document.querySelectorAll('.signature-time[data-offset]').forEach(el => {
-                el.dataset.offset = parseInt(el.dataset.offset, 10) + 1;
-            });
-            updateSignatureTimes();
-        }, 60000);
     </script>
     <script src="/js/auth.js"></script>
 </body>
