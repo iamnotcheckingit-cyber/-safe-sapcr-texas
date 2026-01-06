@@ -543,12 +543,13 @@ nav a.nav-donate:hover {
 /* Action Button - Orange for urgency */
 .btn-action {
     background: var(--accent);
-    color: white;
+    color: #1a1a1a;
     box-shadow: 0 2px 8px rgba(232, 93, 4, 0.3);
 }
 
 .btn-action:hover {
-    background: var(--accent-light);
+    background: var(--accent-dark);
+    color: white;
     box-shadow: 0 4px 15px rgba(232, 93, 4, 0.4);
 }
 
@@ -1520,7 +1521,7 @@ footer a:hover {
 
 .badge-accent {
     background: var(--accent);
-    color: white;
+    color: #1a1a1a;
 }
 
 .badge-success {

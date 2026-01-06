@@ -46,24 +46,45 @@ function initMobileMenu() {
     const navMenu = document.getElementById('navMenu');
 
     if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function() {
-            menuToggle.classList.toggle('active');
+        function toggleMenu() {
+            const isActive = menuToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isActive);
+        }
+
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+
+        // Keyboard support - Enter and Space to toggle
+        menuToggle.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+            }
         });
 
         // Close menu when a link is clicked
         navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
-                menuToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
+            link.addEventListener('click', closeMenu);
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
             if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
-                menuToggle.classList.remove('active');
-                navMenu.classList.remove('active');
+                closeMenu();
+            }
+        });
+
+        // Close menu on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && menuToggle.classList.contains('active')) {
+                closeMenu();
+                menuToggle.focus();
             }
         });
     }
