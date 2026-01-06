@@ -48,6 +48,15 @@
   [functions."membership-notify"]
     rate_limit = { window_size = 60, window_limit = 3 }
 
+  [functions."honeypot-sink"]
+    rate_limit = { window_size = 60, window_limit = 20 }
+
+  [functions."petition-signatures"]
+    rate_limit = { window_size = 60, window_limit = 5 }
+
+  [functions."outreach-stats"]
+    rate_limit = { window_size = 60, window_limit = 30 }
+
 # ============================================
 # REDIRECTS - Clean URLs handled by _redirects file
 # ============================================

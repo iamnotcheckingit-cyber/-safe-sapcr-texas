@@ -199,3 +199,119 @@
 
 /package.json
   X-Robots-Tag: noindex, nofollow
+
+# ============================================
+# ADDITIONAL ATTACK VECTOR BLOCKING
+# ============================================
+
+# Common exploit paths
+/cgi-bin/*
+  X-Robots-Tag: noindex, nofollow
+
+/scripts/*
+  X-Robots-Tag: noindex, nofollow
+
+/.well-known/security.txt
+  Content-Type: text/plain
+
+# Block common scanners
+/actuator/*
+  X-Robots-Tag: noindex, nofollow
+
+/api/v1/*
+  X-Robots-Tag: noindex, nofollow
+
+/console/*
+  X-Robots-Tag: noindex, nofollow
+
+/debug/*
+  X-Robots-Tag: noindex, nofollow
+
+/test/*
+  X-Robots-Tag: noindex, nofollow
+
+/temp/*
+  X-Robots-Tag: noindex, nofollow
+
+/tmp/*
+  X-Robots-Tag: noindex, nofollow
+
+/logs/*
+  X-Robots-Tag: noindex, nofollow
+
+/log/*
+  X-Robots-Tag: noindex, nofollow
+
+/.svn/*
+  X-Robots-Tag: noindex, nofollow
+
+/.hg/*
+  X-Robots-Tag: noindex, nofollow
+
+/CVS/*
+  X-Robots-Tag: noindex, nofollow
+
+/.DS_Store
+  X-Robots-Tag: noindex, nofollow
+
+/Thumbs.db
+  X-Robots-Tag: noindex, nofollow
+
+# Database files
+/*.sql
+  X-Robots-Tag: noindex, nofollow
+
+/*.db
+  X-Robots-Tag: noindex, nofollow
+
+/*.sqlite
+  X-Robots-Tag: noindex, nofollow
+
+# Config files
+/*.yml
+  X-Robots-Tag: noindex, nofollow
+
+/*.yaml
+  X-Robots-Tag: noindex, nofollow
+
+/*.ini
+  X-Robots-Tag: noindex, nofollow
+
+/*.conf
+  X-Robots-Tag: noindex, nofollow
+
+/*.config
+  X-Robots-Tag: noindex, nofollow
+
+# Backup files
+/*.bak
+  X-Robots-Tag: noindex, nofollow
+
+/*.backup
+  X-Robots-Tag: noindex, nofollow
+
+/*.old
+  X-Robots-Tag: noindex, nofollow
+
+/*.orig
+  X-Robots-Tag: noindex, nofollow
+
+/*.swp
+  X-Robots-Tag: noindex, nofollow
+
+# Archive files that shouldn't be public
+/*.tar
+  X-Robots-Tag: noindex, nofollow
+
+/*.tar.gz
+  X-Robots-Tag: noindex, nofollow
+
+/*.zip
+  X-Robots-Tag: noindex, nofollow
+
+/*.rar
+  X-Robots-Tag: noindex, nofollow
+
+# Log files
+/*.log
+  X-Robots-Tag: noindex, nofollow
