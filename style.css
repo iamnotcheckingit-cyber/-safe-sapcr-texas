@@ -996,6 +996,14 @@ footer a:hover {
     color: white;
 }
 
+.sb2794-card.highlight-card li {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.sb2794-card.highlight-card p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
 .penalty-table {
     width: 100%;
     border-collapse: collapse;
