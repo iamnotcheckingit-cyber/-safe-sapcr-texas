@@ -66,6 +66,18 @@
   X-Robots-Tag: index, follow, max-image-preview:large
   Link: <https://safesapcrtx.org/faq>; rel="canonical"
 
+# Greek translation
+/el/
+  X-Robots-Tag: index, follow, max-image-preview:large
+  Link: <https://safesapcrtx.org/el/>; rel="canonical"
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Hebrew translation
+/he/
+  X-Robots-Tag: index, follow, max-image-preview:large
+  Link: <https://safesapcrtx.org/he/>; rel="canonical"
+  Cache-Control: public, max-age=0, must-revalidate
+
 # Petition page
 /petition
   X-Robots-Tag: index, follow
