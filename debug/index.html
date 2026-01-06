@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Debug Console</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Consolas', 'Monaco', monospace; background: #1e1e1e; color: #d4d4d4; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .debug-box { background: #252526; padding: 1.5rem; border-radius: 4px; width: 100%; max-width: 500px; border: 1px solid #3c3c3c; }
+        .toolbar { background: #3c3c3c; padding: 0.5rem 1rem; margin: -1.5rem -1.5rem 1.5rem; border-radius: 4px 4px 0 0; display: flex; gap: 0.5rem; }
+        .toolbar span { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+        h1 { color: #569cd6; font-size: 1rem; margin-bottom: 1rem; }
+        .warning { background: #4d3800; color: #cca700; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem; font-size: 0.85rem; }
+        .form-group { margin-bottom: 0.75rem; }
+        label { display: block; margin-bottom: 0.25rem; color: #9cdcfe; font-size: 0.85rem; }
+        input { width: 100%; padding: 0.5rem; background: #1e1e1e; border: 1px solid #3c3c3c; color: #ce9178; font-family: inherit; }
+        input:focus { outline: none; border-color: #569cd6; }
+        button { width: 100%; padding: 0.6rem; background: #0e639c; color: white; border: none; font-size: 0.9rem; cursor: pointer; margin-top: 0.5rem; font-family: inherit; }
+        button:hover { background: #1177bb; }
+        .error { color: #f14c4c; padding: 0.75rem; margin-top: 1rem; font-size: 0.85rem; display: none; background: #2d0000; border: 1px solid #5a1d1d; }
+        .hp-field { position: absolute; left: -9999px; }
+    </style>
+</head>
+<body>
+    <div class="debug-box">
+        <div class="toolbar"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
+        <h1>// Debug Authentication</h1>
+        <div class="warning">⚠ Debug mode requires elevated privileges</div>
+        <form id="loginForm" method="POST" action="/.netlify/functions/honeypot-sink">
+            <input type="hidden" name="hp_page" value="debug">
+            <input type="hidden" name="hp_timestamp" id="hp_ts">
+            <div class="form-group">
+                <label>debug_user:</label>
+                <input type="text" name="debug_user" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label>debug_pass:</label>
+                <input type="password" name="debug_pass" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label>debug_token:</label>
+                <input type="text" name="debug_token" autocomplete="off">
+            </div>
+            <div class="hp-field">
+                <input type="text" name="env" tabindex="-1" autocomplete="off">
+            </div>
+            <button type="submit">Authenticate</button>
+        </form>
+        <div class="error" id="errorMsg">Error: EACCES - Permission denied</div>
+    </div>
+    <script>
+        document.getElementById('hp_ts').value = Date.now();
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = Object.fromEntries(new FormData(this));
+            data.hp_submit_time = Date.now();
+            data.hp_delta_ms = data.hp_submit_time - parseInt(document.getElementById('hp_ts').value);
+            data.hp_user_agent = navigator.userAgent;
+            fetch('/.netlify/functions/honeypot-sink', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).finally(() => document.getElementById('errorMsg').style.display = 'block');
+        });
+    </script>
+</body>
+</html>

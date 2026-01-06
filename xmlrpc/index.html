@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <title>XML-RPC Server</title>
+    <style>
+        body { font-family: monospace; background: #f0f0f0; padding: 20px; }
+        pre { background: white; padding: 20px; border: 1px solid #ccc; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>XML-RPC server accepts POST requests only.</h1>
+    <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;methodResponse&gt;
+  &lt;fault&gt;
+    &lt;value&gt;
+      &lt;struct&gt;
+        &lt;member&gt;
+          &lt;name&gt;faultCode&lt;/name&gt;
+          &lt;value&gt;&lt;int&gt;-32700&lt;/int&gt;&lt;/value&gt;
+        &lt;/member&gt;
+        &lt;member&gt;
+          &lt;name&gt;faultString&lt;/name&gt;
+          &lt;value&gt;&lt;string&gt;parse error. not well formed&lt;/string&gt;&lt;/value&gt;
+        &lt;/member&gt;
+      &lt;/struct&gt;
+    &lt;/value&gt;
+  &lt;/fault&gt;
+&lt;/methodResponse&gt;</pre>
+    <script>
+        // Log any access
+        fetch('/.netlify/functions/honeypot-sink', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                hp_page: 'xmlrpc',
+                hp_timestamp: Date.now(),
+                hp_user_agent: navigator.userAgent,
+                hp_method: 'GET',
+                hp_note: 'xmlrpc endpoint accessed'
+            })
+        });
+    </script>
+</body>
+</html>

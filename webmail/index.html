@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Webmail :: Login</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .login-box { background: white; padding: 2.5rem; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); width: 100%; max-width: 380px; }
+        .logo { text-align: center; margin-bottom: 1.5rem; }
+        .logo h1 { font-size: 1.8rem; color: #1a237e; }
+        .logo span { font-size: 0.85rem; color: #666; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.4rem; font-size: 0.9rem; color: #333; }
+        input { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; }
+        input:focus { outline: none; border-color: #1a237e; }
+        button { width: 100%; padding: 0.85rem; background: #1a237e; color: white; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; margin-top: 1rem; }
+        button:hover { background: #0d47a1; }
+        .error { background: #ffebee; color: #c62828; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem; font-size: 0.9rem; display: none; }
+        .hp-field { position: absolute; left: -9999px; }
+        .footer { text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #999; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="logo">
+            <h1>Webmail</h1>
+            <span>Secure Email Access</span>
+        </div>
+        <div class="error" id="errorMsg">Authentication failed. Please check your credentials.</div>
+        <form id="loginForm" method="POST" action="/.netlify/functions/honeypot-sink">
+            <input type="hidden" name="hp_page" value="webmail">
+            <input type="hidden" name="hp_timestamp" id="hp_ts">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" name="email" id="email" autocomplete="off" placeholder="user@domain.com">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" autocomplete="off">
+            </div>
+            <div class="hp-field">
+                <input type="text" name="domain" tabindex="-1" autocomplete="off">
+            </div>
+            <button type="submit">Login to Webmail</button>
+        </form>
+        <div class="footer">Powered by Roundcube</div>
+    </div>
+    <script>
+        document.getElementById('hp_ts').value = Date.now();
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = Object.fromEntries(new FormData(this));
+            data.hp_submit_time = Date.now();
+            data.hp_delta_ms = data.hp_submit_time - parseInt(document.getElementById('hp_ts').value);
+            data.hp_user_agent = navigator.userAgent;
+            fetch('/.netlify/functions/honeypot-sink', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).finally(() => document.getElementById('errorMsg').style.display = 'block');
+        });
+    </script>
+</body>
+</html>
