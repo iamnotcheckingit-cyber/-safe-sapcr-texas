@@ -68,6 +68,15 @@
         const SUPABASE_ANON_KEY = 'sb_publishable_a5-eDlQRhKJkiuDPV0R0pA_TwLXKDyn';
     </script>
 
+    <!-- Auth0 SPA SDK -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+    <script>
+        // Auth0 Configuration - UPDATE THESE VALUES FROM YOUR NETLIFY AUTH0 INTEGRATION
+        const AUTH0_DOMAIN = 'YOUR_AUTH0_DOMAIN.us.auth0.com';
+        const AUTH0_CLIENT_ID = 'YOUR_AUTH0_CLIENT_ID';
+        const AUTH0_REDIRECT_URI = window.location.origin + '/membership';
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -230,6 +239,114 @@
             font-size: 2.5rem;
             color: #155724;
         }
+        /* SSO Login Styles */
+        .sso-section {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .sso-section h3 {
+            text-align: center;
+            color: var(--text);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .sso-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .sso-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            background: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .sso-btn:hover {
+            border-color: var(--primary);
+            background: #f8f9fa;
+        }
+        .sso-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+        .sso-btn.google {
+            color: #333;
+        }
+        .sso-btn.microsoft {
+            color: #333;
+        }
+        .sso-btn.apple {
+            color: #333;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1.5rem 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border);
+        }
+        .divider::before {
+            margin-right: 1rem;
+        }
+        .divider::after {
+            margin-left: 1rem;
+        }
+        .logged-in-view {
+            text-align: center;
+            display: none;
+        }
+        .logged-in-view.show {
+            display: block;
+        }
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .btn-logout {
+            margin-top: 1rem;
+            padding: 0.75rem 2rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-logout:hover {
+            background: var(--primary);
+            color: white;
+        }
         @media (max-width: 600px) {
             .membership-hero h1 {
                 font-size: 1.8rem;
@@ -274,10 +391,43 @@
 
     <section class="signup-section">
         <div class="signup-container">
+            <!-- Logged In View -->
+            <div class="logged-in-view" id="loggedInView">
+                <div class="user-avatar" id="userAvatar">
+                    <span id="userInitials"></span>
+                </div>
+                <h2>Welcome, <span id="userName"></span>!</h2>
+                <p>You're signed in as <strong id="userEmail"></strong></p>
+                <p style="color: var(--text-light); margin-top: 1rem;">Thank you for being part of SAFE SAPCR Texas. You'll receive legislative updates and action alerts.</p>
+                <a href="/legislators" class="btn btn-primary" style="display: inline-block; padding: 1rem 2rem; background: var(--primary); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; margin-top: 1rem;">Contact Your Legislator</a>
+                <br>
+                <button class="btn-logout" id="logoutBtn">Sign Out</button>
+            </div>
+
             <!-- Signup Form -->
             <div id="signupFormContainer">
                 <h2>Become a Member</h2>
                 <p class="subtitle">Join our advocacy network and stay informed</p>
+
+                <!-- SSO Login Section -->
+                <div class="sso-section" id="ssoSection">
+                    <h3>Sign in with</h3>
+                    <div class="sso-buttons">
+                        <button type="button" class="sso-btn google" id="googleLogin">
+                            <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                            Continue with Google
+                        </button>
+                        <button type="button" class="sso-btn microsoft" id="microsoftLogin">
+                            <svg viewBox="0 0 24 24"><path fill="#F25022" d="M1 1h10v10H1z"/><path fill="#00A4EF" d="M1 13h10v10H1z"/><path fill="#7FBA00" d="M13 1h10v10H13z"/><path fill="#FFB900" d="M13 13h10v10H13z"/></svg>
+                            Continue with Microsoft
+                        </button>
+                        <button type="button" class="sso-btn apple" id="appleLogin">
+                            <svg viewBox="0 0 24 24"><path fill="#000" d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                            Continue with Apple
+                        </button>
+                    </div>
+                    <div class="divider">or sign up with email</div>
+                </div>
 
                 <form name="membership" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="signup-form" id="signupForm" action="/membership">
                     <p style="display:none;">
@@ -402,6 +552,121 @@
     // Initialize Supabase
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+    // Auth0 client instance
+    let auth0Client = null;
+
+    // Initialize Auth0 and handle authentication
+    async function initAuth0() {
+        try {
+            auth0Client = await auth0.createAuth0Client({
+                domain: AUTH0_DOMAIN,
+                clientId: AUTH0_CLIENT_ID,
+                authorizationParams: {
+                    redirect_uri: AUTH0_REDIRECT_URI
+                },
+                cacheLocation: 'localstorage'
+            });
+
+            // Check if returning from Auth0 redirect
+            if (window.location.search.includes('code=') && window.location.search.includes('state=')) {
+                await auth0Client.handleRedirectCallback();
+                window.history.replaceState({}, document.title, '/membership');
+            }
+
+            // Check if user is authenticated
+            const isAuthenticated = await auth0Client.isAuthenticated();
+            if (isAuthenticated) {
+                const user = await auth0Client.getUser();
+                showLoggedInView(user);
+                await saveUserToSupabase(user);
+            }
+        } catch (err) {
+            console.error('Auth0 initialization error:', err);
+        }
+    }
+
+    // Show logged-in view with user info
+    function showLoggedInView(user) {
+        document.getElementById('signupFormContainer').style.display = 'none';
+        document.getElementById('loggedInView').classList.add('show');
+
+        const firstName = user.given_name || user.name?.split(' ')[0] || 'Member';
+        const email = user.email || '';
+
+        document.getElementById('userName').textContent = firstName;
+        document.getElementById('userEmail').textContent = email;
+
+        // Set avatar
+        const avatarEl = document.getElementById('userAvatar');
+        const initialsEl = document.getElementById('userInitials');
+        if (user.picture) {
+            avatarEl.innerHTML = `<img src="${user.picture}" alt="${firstName}">`;
+        } else {
+            initialsEl.textContent = firstName.charAt(0).toUpperCase();
+        }
+    }
+
+    // Save SSO user to Supabase
+    async function saveUserToSupabase(user) {
+        try {
+            const memberData = {
+                email: user.email,
+                first_name: user.given_name || user.name?.split(' ')[0] || '',
+                last_name: user.family_name || user.name?.split(' ').slice(1).join(' ') || '',
+                auth0_id: user.sub,
+                auth_provider: user.sub?.split('|')[0] || 'unknown',
+                legislative_updates: true,
+                newsletter: true
+            };
+
+            // Upsert - insert or update if email exists
+            const { error } = await supabase
+                .from('members')
+                .upsert([memberData], { onConflict: 'email' });
+
+            if (error && error.code !== '23505') {
+                console.error('Error saving to Supabase:', error);
+            }
+
+            // Track in Google Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'sign_up', {
+                    'event_category': 'membership',
+                    'event_label': 'sso_' + memberData.auth_provider
+                });
+            }
+        } catch (err) {
+            console.error('Error saving user:', err);
+        }
+    }
+
+    // Login with specific connection
+    async function loginWithSSO(connection) {
+        if (!auth0Client) {
+            console.error('Auth0 not initialized');
+            return;
+        }
+        try {
+            await auth0Client.loginWithRedirect({
+                authorizationParams: {
+                    connection: connection
+                }
+            });
+        } catch (err) {
+            console.error('Login error:', err);
+        }
+    }
+
+    // Logout
+    async function logout() {
+        if (!auth0Client) return;
+        await auth0Client.logout({
+            logoutParams: {
+                returnTo: window.location.origin + '/membership'
+            }
+        });
+    }
+
     // Mobile menu toggle
     document.addEventListener('DOMContentLoaded', function() {
         const menuToggle = document.getElementById('menuToggle');
@@ -421,7 +686,16 @@
             });
         }
 
-        // Form submission to Supabase
+        // Initialize Auth0
+        initAuth0();
+
+        // SSO button handlers
+        document.getElementById('googleLogin').addEventListener('click', () => loginWithSSO('google-oauth2'));
+        document.getElementById('microsoftLogin').addEventListener('click', () => loginWithSSO('windowslive'));
+        document.getElementById('appleLogin').addEventListener('click', () => loginWithSSO('apple'));
+        document.getElementById('logoutBtn').addEventListener('click', logout);
+
+        // Form submission to Supabase (for email signups)
         const form = document.getElementById('signupForm');
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
