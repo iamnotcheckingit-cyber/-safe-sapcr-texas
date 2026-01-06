@@ -550,7 +550,7 @@
 
     <script>
     // Initialize Supabase
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     // Auth0 client instance
     let auth0Client = null;
@@ -620,7 +620,7 @@
             };
 
             // Upsert - insert or update if email exists
-            const { error } = await supabase
+            const { error } = await supabaseClient
                 .from('members')
                 .upsert([memberData], { onConflict: 'email' });
 
