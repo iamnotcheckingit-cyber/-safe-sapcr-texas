@@ -1002,6 +1002,11 @@ footer a:hover {
 
 .sb2794-card.highlight-card p {
     color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1rem;
+}
+
+.sb2794-card.highlight-card ul {
+    margin-top: 1rem;
 }
 
 .penalty-table {
