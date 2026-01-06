@@ -71,6 +71,9 @@
     <!-- Auth0 SPA SDK -->
     <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
     <script>
+        // Prevent auth.js from running on this page (we have our own auth)
+        window._siteAuthInitialized = true;
+
         // Auth0 Configuration
         const AUTH0_DOMAIN = 'dev-rdmu3fhvd2ymxyq4.us.auth0.com';
         const AUTH0_CLIENT_ID = 'EtWaElBhwQtSRmUVVEDPT4UH8UfzkUX3';
@@ -616,6 +619,9 @@
         document.getElementById('userName').textContent = firstName;
         document.getElementById('userEmail').textContent = email;
 
+        // Update nav avatar
+        updateNavAvatar(user);
+
         // Set avatar
         const avatarEl = document.getElementById('userAvatar');
         const initialsEl = document.getElementById('userInitials');
@@ -729,6 +735,29 @@
         } catch (err) {
             console.error('Error loading preferences:', err);
         }
+    }
+
+    // Update nav avatar when logged in (replaces Join/Login link)
+    function updateNavAvatar(user) {
+        const navAccount = document.getElementById('navAccount');
+        if (!navAccount) return;
+
+        const firstName = user.given_name || user.name?.split(' ')[0] || 'Member';
+        const avatar = user.picture
+            ? `<img src="${user.picture}" alt="${firstName}" class="nav-avatar">`
+            : `<span class="nav-avatar-initials">${firstName.charAt(0)}</span>`;
+
+        navAccount.innerHTML = `
+            <div class="nav-user" id="navUserDropdown">
+                ${avatar}
+                <div class="nav-dropdown">
+                    <span class="nav-user-name">${firstName}</span>
+                    <a href="/membership">My Account</a>
+                    <button onclick="logout()">Sign Out</button>
+                </div>
+            </div>
+        `;
+        navAccount.classList.add('logged-in');
     }
 
     // Mobile menu toggle
