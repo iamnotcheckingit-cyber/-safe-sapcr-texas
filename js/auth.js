@@ -7,21 +7,31 @@ const AUTH0_CLIENT_ID = 'EtWaElBhwQtSRmUVVEDPT4UH8UfzkUX3';
 let auth0Client = null;
 
 async function initSiteAuth() {
-    // Skip if Auth0 SDK not loaded
-    if (typeof auth0 === 'undefined') return;
+    // Wait for Auth0 SDK to load (retry up to 10 times)
+    let attempts = 0;
+    while (typeof auth0 === 'undefined' && attempts < 10) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        attempts++;
+    }
+
+    if (typeof auth0 === 'undefined') {
+        console.warn('Auth0 SDK not loaded');
+        return;
+    }
 
     try {
         auth0Client = await auth0.createAuth0Client({
             domain: AUTH0_DOMAIN,
             clientId: AUTH0_CLIENT_ID,
             authorizationParams: {
-                redirect_uri: window.location.origin + '/membership'
+                redirect_uri: 'https://safesapcrtx.org/membership'
             },
             cacheLocation: 'localstorage'
         });
 
         // Check if user is authenticated
         const isAuthenticated = await auth0Client.isAuthenticated();
+        console.log('Auth0 authenticated:', isAuthenticated);
         updateNavAuth(isAuthenticated ? await auth0Client.getUser() : null);
     } catch (err) {
         console.error('Auth init error:', err);
