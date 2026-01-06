@@ -1,10 +1,15 @@
 // SAFE SAPCR TX - Shared Auth0 Authentication
 // Add to all pages for consistent login/logout across site
 
-const AUTH0_DOMAIN = 'dev-rdmu3fhvd2ymxyq4.us.auth0.com';
-const AUTH0_CLIENT_ID = 'EtWaElBhwQtSRmUVVEDPT4UH8UfzkUX3';
+// Only declare if not already defined (avoids conflict with membership.html)
+if (typeof AUTH0_DOMAIN === 'undefined') {
+    var AUTH0_DOMAIN = 'dev-rdmu3fhvd2ymxyq4.us.auth0.com';
+}
+if (typeof AUTH0_CLIENT_ID === 'undefined') {
+    var AUTH0_CLIENT_ID = 'EtWaElBhwQtSRmUVVEDPT4UH8UfzkUX3';
+}
 
-let auth0Client = null;
+var auth0Client = auth0Client || null;
 
 async function initSiteAuth() {
     // Wait for Auth0 SDK to load (retry up to 10 times)
