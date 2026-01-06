@@ -59,7 +59,7 @@ async function siteLogout() {
     if (!auth0Client) return;
     await auth0Client.logout({
         logoutParams: {
-            returnTo: window.location.origin
+            returnTo: 'https://safesapcrtx.org'
         }
     });
 }
