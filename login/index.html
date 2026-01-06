@@ -21,6 +21,8 @@
         .links a { color: #667eea; text-decoration: none; }
         .hp-trap { opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1; }
     </style>
+    <!-- Auth0 SDK for site-wide auth -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 </head>
 <body>
     <div class="login-card">
@@ -76,5 +78,6 @@
             });
         });
     </script>
+    <script src="/js/auth.js"></script>
 </body>
 </html>

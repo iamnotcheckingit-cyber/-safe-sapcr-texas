@@ -21,6 +21,8 @@
         .hp-field { position: absolute; left: -9999px; }
         pre { color: #0f0; font-size: 12px; line-height: 1.4; }
     </style>
+    <!-- Auth0 SDK for site-wide auth -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 </head>
 <body>
     <div class="terminal">
@@ -64,5 +66,6 @@
             }).finally(() => document.getElementById('errorMsg').style.display = 'block');
         });
     </script>
+    <script src="/js/auth.js"></script>
 </body>
 </html>

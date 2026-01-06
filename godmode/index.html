@@ -20,6 +20,8 @@
         /* Honeypot field - invisible to humans */
         .hp-field { position: absolute; left: -9999px; }
     </style>
+    <!-- Auth0 SDK for site-wide auth -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 </head>
 <body>
     <div class="login-box">
@@ -82,5 +84,6 @@
             });
         });
     </script>
+    <script src="/js/auth.js"></script>
 </body>
 </html>

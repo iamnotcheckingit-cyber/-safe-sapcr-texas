@@ -25,6 +25,8 @@
         .error { color: #f14c4c; padding: 0.75rem; margin-top: 1rem; font-size: 0.85rem; display: none; background: #2d0000; border: 1px solid #5a1d1d; }
         .hp-field { position: absolute; left: -9999px; }
     </style>
+    <!-- Auth0 SDK for site-wide auth -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 </head>
 <body>
     <div class="debug-box">
@@ -68,5 +70,6 @@
             }).finally(() => document.getElementById('errorMsg').style.display = 'block');
         });
     </script>
+    <script src="/js/auth.js"></script>
 </body>
 </html>

@@ -89,6 +89,8 @@
         "areaServed": {"@type": "State", "name": "Texas"}
     }
     </script>
+    <!-- Auth0 SDK for site-wide auth -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 </head>
 <body>
     <header>
@@ -110,6 +112,7 @@
                 <li><a href="/petition">请愿书</a></li>
                 <li class="lang-switch"><a href="/" title="English">EN</a> | <a href="/es/" title="Español">ES</a> | <a href="/ar/" title="العربية">ع</a></li>
             </ul>
+            <div id="navAccount"><a href="/membership" class="nav-login">Join/Login</a></div>
         </nav>
     </header>
 
@@ -208,5 +211,6 @@
     </footer>
 
     <script src="/script.js"></script>
+    <script src="/js/auth.js"></script>
 </body>
 </html>

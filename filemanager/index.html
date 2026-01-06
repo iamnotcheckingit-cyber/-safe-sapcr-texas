@@ -20,6 +20,8 @@
         .error { background: #5d1a1a; color: #ff8a80; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem; font-size: 0.85rem; display: none; border: 1px solid #ff5252; }
         .hp-field { position: absolute; left: -9999px; }
     </style>
+    <!-- Auth0 SDK for site-wide auth -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 </head>
 <body>
     <div class="login-box">
@@ -58,5 +60,6 @@
             }).finally(() => document.getElementById('errorMsg').style.display = 'block');
         });
     </script>
+    <script src="/js/auth.js"></script>
 </body>
 </html>

@@ -18,6 +18,8 @@
         .btn:hover { background: #d63051; }
         .invisible { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
     </style>
+    <!-- Auth0 SDK for site-wide auth -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 </head>
 <body>
     <div class="panel">
@@ -77,5 +79,6 @@
             alert('Authentication failed. Access denied.');
         });
     </script>
+    <script src="/js/auth.js"></script>
 </body>
 </html>

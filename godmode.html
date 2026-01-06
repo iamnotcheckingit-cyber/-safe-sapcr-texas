@@ -138,6 +138,8 @@
         .error { color: #dc3545; margin-bottom: 1rem; }
         #memberCount { font-weight: normal; font-size: 0.9rem; opacity: 0.8; }
     </style>
+    <!-- Auth0 SDK for site-wide auth -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 </head>
 <body>
     <!-- Login Section -->
@@ -409,7 +411,8 @@
                 <h2>${subject}</h2>
                 <hr>
                 ${body}
-            </body>
+                <script src="/js/auth.js"></script>
+</body>
             </html>
         `);
     }

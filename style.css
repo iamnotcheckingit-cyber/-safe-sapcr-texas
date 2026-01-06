@@ -169,6 +169,109 @@ nav a.nav-donate:hover {
     color: var(--primary);
 }
 
+/* Nav Account/Login */
+#navAccount {
+    margin-left: 1rem;
+}
+
+.nav-login {
+    background: var(--accent);
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.nav-login:hover {
+    background: var(--accent-dark);
+    color: white !important;
+}
+
+.nav-user {
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    object-fit: cover;
+}
+
+.nav-avatar-initials {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.nav-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    padding: 0.5rem 0;
+    min-width: 150px;
+    z-index: 1001;
+    margin-top: 0.5rem;
+}
+
+.nav-user:hover .nav-dropdown {
+    display: block;
+}
+
+.nav-dropdown .nav-user-name {
+    display: block;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+.nav-dropdown a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--text) !important;
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: none;
+}
+
+.nav-dropdown a:hover {
+    background: var(--bg-alt);
+}
+
+.nav-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    text-align: left;
+    color: var(--urgency);
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.nav-dropdown button:hover {
+    background: var(--bg-alt);
+}
+
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
