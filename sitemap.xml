@@ -16,6 +16,8 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://safesapcrtx.org/de/"/>
         <xhtml:link rel="alternate" hreflang="el" href="https://safesapcrtx.org/el/"/>
         <xhtml:link rel="alternate" hreflang="he" href="https://safesapcrtx.org/he/"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://safesapcrtx.org/hi/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://safesapcrtx.org/ja/"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://safesapcrtx.org/"/>
         <image:image>
             <image:loc>https://safesapcrtx.org/images/safe-sapcr-logo.png</image:loc>
@@ -224,6 +226,8 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://safesapcrtx.org/de/"/>
         <xhtml:link rel="alternate" hreflang="el" href="https://safesapcrtx.org/el/"/>
         <xhtml:link rel="alternate" hreflang="he" href="https://safesapcrtx.org/he/"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://safesapcrtx.org/hi/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://safesapcrtx.org/ja/"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://safesapcrtx.org/"/>
     </url>
 
@@ -240,6 +244,8 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://safesapcrtx.org/de/"/>
         <xhtml:link rel="alternate" hreflang="el" href="https://safesapcrtx.org/el/"/>
         <xhtml:link rel="alternate" hreflang="he" href="https://safesapcrtx.org/he/"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://safesapcrtx.org/hi/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://safesapcrtx.org/ja/"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://safesapcrtx.org/"/>
     </url>
 
@@ -256,6 +262,8 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://safesapcrtx.org/de/"/>
         <xhtml:link rel="alternate" hreflang="el" href="https://safesapcrtx.org/el/"/>
         <xhtml:link rel="alternate" hreflang="he" href="https://safesapcrtx.org/he/"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://safesapcrtx.org/hi/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://safesapcrtx.org/ja/"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://safesapcrtx.org/"/>
     </url>
 
@@ -272,6 +280,8 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://safesapcrtx.org/de/"/>
         <xhtml:link rel="alternate" hreflang="el" href="https://safesapcrtx.org/el/"/>
         <xhtml:link rel="alternate" hreflang="he" href="https://safesapcrtx.org/he/"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://safesapcrtx.org/hi/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://safesapcrtx.org/ja/"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://safesapcrtx.org/"/>
     </url>
 
@@ -288,6 +298,8 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://safesapcrtx.org/de/"/>
         <xhtml:link rel="alternate" hreflang="el" href="https://safesapcrtx.org/el/"/>
         <xhtml:link rel="alternate" hreflang="he" href="https://safesapcrtx.org/he/"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://safesapcrtx.org/hi/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://safesapcrtx.org/ja/"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://safesapcrtx.org/"/>
     </url>
 
@@ -304,6 +316,44 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://safesapcrtx.org/de/"/>
         <xhtml:link rel="alternate" hreflang="el" href="https://safesapcrtx.org/el/"/>
         <xhtml:link rel="alternate" hreflang="he" href="https://safesapcrtx.org/he/"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://safesapcrtx.org/hi/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://safesapcrtx.org/ja/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://safesapcrtx.org/"/>
+    </url>
+
+    <!-- Hindi Translation -->
+    <url>
+        <loc>https://safesapcrtx.org/hi/</loc>
+        <lastmod>2026-01-06</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://safesapcrtx.org/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://safesapcrtx.org/es/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://safesapcrtx.org/zh/"/>
+        <xhtml:link rel="alternate" hreflang="ar" href="https://safesapcrtx.org/ar/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://safesapcrtx.org/de/"/>
+        <xhtml:link rel="alternate" hreflang="el" href="https://safesapcrtx.org/el/"/>
+        <xhtml:link rel="alternate" hreflang="he" href="https://safesapcrtx.org/he/"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://safesapcrtx.org/hi/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://safesapcrtx.org/ja/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://safesapcrtx.org/"/>
+    </url>
+
+    <!-- Japanese Translation -->
+    <url>
+        <loc>https://safesapcrtx.org/ja/</loc>
+        <lastmod>2026-01-06</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://safesapcrtx.org/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://safesapcrtx.org/es/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://safesapcrtx.org/zh/"/>
+        <xhtml:link rel="alternate" hreflang="ar" href="https://safesapcrtx.org/ar/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://safesapcrtx.org/de/"/>
+        <xhtml:link rel="alternate" hreflang="el" href="https://safesapcrtx.org/el/"/>
+        <xhtml:link rel="alternate" hreflang="he" href="https://safesapcrtx.org/he/"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://safesapcrtx.org/hi/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://safesapcrtx.org/ja/"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://safesapcrtx.org/"/>
     </url>
 
