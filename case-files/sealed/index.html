@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SEALED CASE FILES - UNAUTHORIZED ACCESS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0a;
+            color: #ff1744;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 40px;
+        }
+        .alert-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        .alert-icon svg { fill: #ff1744; width: 100%; height: 100%; }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        h1 {
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255,23,68,0.5);
+        }
+        .warning-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+        .incident-box {
+            background: rgba(255,23,68,0.1);
+            border: 2px solid #ff1744;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .incident-box h2 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: #ff1744;
+        }
+        .incident-details {
+            font-size: 11px;
+            color: #888;
+            text-align: left;
+        }
+        .incident-details div {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .incident-details span:last-child { color: #4fc3f7; }
+        .countdown {
+            font-size: 48px;
+            font-weight: bold;
+            color: #ff1744;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .countdown-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .legal-text {
+            font-size: 10px;
+            color: #555;
+            margin-top: 30px;
+            line-height: 1.6;
+        }
+        .blink {
+            animation: blink 0.5s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        /* Fake terminal output */
+        .terminal {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 15px;
+            text-align: left;
+            font-size: 11px;
+            color: #0f0;
+            margin-top: 20px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .terminal div { margin-bottom: 4px; }
+        .terminal .cmd { color: #4fc3f7; }
+        .terminal .warn { color: #ff9800; }
+        .terminal .err { color: #f44336; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="alert-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+        </div>
+
+        <h1>Access Violation Detected</h1>
+
+        <div class="warning-text">
+            You have attempted to access sealed court documents.<br>
+            This access attempt has been logged and reported.
+        </div>
+
+        <div class="incident-box">
+            <h2>Incident Report Generated</h2>
+            <div class="incident-details">
+                <div><span>Incident ID:</span><span id="incidentId">generating...</span></div>
+                <div><span>Timestamp:</span><span id="timestamp">loading...</span></div>
+                <div><span>Source IP:</span><span id="sourceIp">detecting...</span></div>
+                <div><span>Session Hash:</span><span id="sessionHash">calculating...</span></div>
+                <div><span>Threat Level:</span><span style="color:#ff1744;">HIGH</span></div>
+                <div><span>Status:</span><span class="blink" style="color:#ff1744;">REPORTED</span></div>
+            </div>
+        </div>
+
+        <div class="countdown-label">Evidence Preservation Timer</div>
+        <div class="countdown" id="countdown">30</div>
+
+        <div class="terminal" id="terminal">
+            <div class="cmd">> Initializing security protocol...</div>
+        </div>
+
+        <div class="legal-text">
+            Under 18 U.S.C. § 1030 (Computer Fraud and Abuse Act), unauthorized access to protected computer systems is a federal crime punishable by up to 10 years imprisonment. All access attempts are logged, timestamped, and preserved for law enforcement.
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        var loadTime = Date.now();
+        var fp = 'SLD-' + Math.random().toString(36).substr(2, 12).toUpperCase();
+
+        // Update display
+        document.getElementById('incidentId').textContent = fp;
+        document.getElementById('timestamp').textContent = new Date().toISOString();
+        document.getElementById('sessionHash').textContent = 'SHA256:' + Math.random().toString(36).substr(2, 16);
+
+        // Log access immediately - this is a MAJOR flag
+        fetch('/.netlify/functions/honeypot-sink', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                hp_page: 'sealed-case-files',
+                hp_type: 'tor-trap-critical',
+                hp_action: 'access_sealed',
+                hp_severity: 'HIGH',
+                hp_ts: loadTime,
+                hp_fingerprint: fp,
+                hp_ua: navigator.userAgent,
+                hp_ref: document.referrer,
+                hp_screen: screen.width + 'x' + screen.height,
+                hp_tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                hp_lang: navigator.language,
+                hp_platform: navigator.platform
+            })
+        });
+
+        // Also log to TOR detection endpoint
+        fetch('/.netlify/functions/tor-detection', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                page: '/case-files/sealed/',
+                honeypotTriggered: true,
+                sessionId: fp,
+                severity: 'critical'
+            })
+        });
+
+        // Countdown timer
+        var count = 30;
+        var countdownEl = document.getElementById('countdown');
+        setInterval(function() {
+            count--;
+            if (count < 0) count = 30;
+            countdownEl.textContent = count;
+        }, 1000);
+
+        // Fake terminal output
+        var terminal = document.getElementById('terminal');
+        var messages = [
+            {t: 500, cls: 'cmd', msg: '> Capturing session data...'},
+            {t: 1000, cls: '', msg: '[OK] Session fingerprint recorded'},
+            {t: 1500, cls: 'cmd', msg: '> Analyzing network route...'},
+            {t: 2000, cls: 'warn', msg: '[WARN] TOR exit node detected'},
+            {t: 2500, cls: 'cmd', msg: '> Cross-referencing known threat actors...'},
+            {t: 3000, cls: '', msg: '[OK] Database query complete'},
+            {t: 3500, cls: 'cmd', msg: '> Preserving evidence chain...'},
+            {t: 4000, cls: '', msg: '[OK] Logs backed up to secure storage'},
+            {t: 4500, cls: 'cmd', msg: '> Notifying security team...'},
+            {t: 5000, cls: 'err', msg: '[ALERT] Incident report submitted'},
+            {t: 5500, cls: 'cmd', msg: '> Monitoring continued access...'},
+            {t: 6000, cls: '', msg: '[OK] All actions being logged in real-time'}
+        ];
+
+        messages.forEach(function(m) {
+            setTimeout(function() {
+                var div = document.createElement('div');
+                div.className = m.cls;
+                div.textContent = m.msg;
+                terminal.appendChild(div);
+                terminal.scrollTop = terminal.scrollHeight;
+            }, m.t);
+        });
+
+        // Track everything
+        var actions = [];
+        document.addEventListener('click', function(e) {
+            actions.push({type: 'click', t: Date.now() - loadTime});
+        });
+        document.addEventListener('mousemove', function(e) {
+            if (actions.length < 50) {
+                actions.push({type: 'move', x: e.clientX, y: e.clientY, t: Date.now() - loadTime});
+            }
+        });
+
+        // Send final report on leave
+        window.addEventListener('beforeunload', function() {
+            navigator.sendBeacon('/.netlify/functions/honeypot-sink', JSON.stringify({
+                hp_page: 'sealed-case-files',
+                hp_type: 'tor-trap-critical',
+                hp_action: 'leave',
+                hp_fingerprint: fp,
+                hp_time_on_page: Date.now() - loadTime,
+                hp_actions: actions.length
+            }));
+        });
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Confidential Documents - Access Restricted</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .header {
+            background: #c62828;
+            color: white;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .header svg { width: 30px; height: 30px; fill: white; }
+        .header h1 { font-size: 18px; text-transform: uppercase; letter-spacing: 2px; }
+        .warning {
+            background: rgba(255,193,7,0.1);
+            border: 1px solid #ffc107;
+            color: #ffc107;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+        .file-list {
+            background: #2d2d2d;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .file-header {
+            background: #3d3d3d;
+            padding: 12px 20px;
+            font-size: 13px;
+            color: #999;
+            display: grid;
+            grid-template-columns: 1fr 120px 100px 80px;
+            gap: 10px;
+        }
+        .file-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #3d3d3d;
+            display: grid;
+            grid-template-columns: 1fr 120px 100px 80px;
+            gap: 10px;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .file-item:hover { background: #383838; }
+        .file-item:last-child { border-bottom: none; }
+        .file-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .file-name svg { width: 20px; height: 20px; fill: #f44336; }
+        .file-name span { color: #4fc3f7; }
+        .file-date { color: #888; font-size: 12px; }
+        .file-size { color: #888; font-size: 12px; }
+        .classification {
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .classified { background: #c62828; color: white; }
+        .secret { background: #e65100; color: white; }
+        .restricted { background: #f9a825; color: black; }
+        .loading-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 1000;
+        }
+        .loading-overlay.active { display: flex; }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #333;
+            border-top-color: #c62828;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text {
+            margin-top: 20px;
+            color: #888;
+            font-size: 14px;
+        }
+        .access-log {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 11px;
+        }
+        .log-entry {
+            color: #4caf50;
+            margin-bottom: 5px;
+        }
+        .log-entry.warning { color: #ff9800; }
+        .log-entry.error { color: #f44336; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+        <h1>Confidential Document Repository</h1>
+    </div>
+
+    <div class="warning">
+        ⚠️ WARNING: Access to these documents is strictly monitored. All downloads are logged with your IP address, session fingerprint, and timestamp. Unauthorized access will be reported to law enforcement.
+    </div>
+
+    <div class="file-list">
+        <div class="file-header">
+            <span>Document Name</span>
+            <span>Modified</span>
+            <span>Size</span>
+            <span>Level</span>
+        </div>
+        <div class="file-item" data-file="case-evidence-2024.pdf">
+            <div class="file-name">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
+                <span>case-evidence-2024.pdf</span>
+            </div>
+            <div class="file-date">2024-12-15</div>
+            <div class="file-size">2.4 MB</div>
+            <span class="classification classified">Classified</span>
+        </div>
+        <div class="file-item" data-file="witness-statements.pdf">
+            <div class="file-name">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
+                <span>witness-statements.pdf</span>
+            </div>
+            <div class="file-date">2024-11-28</div>
+            <div class="file-size">1.8 MB</div>
+            <span class="classification secret">Secret</span>
+        </div>
+        <div class="file-item" data-file="court-orders-sealed.pdf">
+            <div class="file-name">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
+                <span>court-orders-sealed.pdf</span>
+            </div>
+            <div class="file-date">2024-10-05</div>
+            <div class="file-size">856 KB</div>
+            <span class="classification classified">Classified</span>
+        </div>
+        <div class="file-item" data-file="internal-communications.pdf">
+            <div class="file-name">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
+                <span>internal-communications.pdf</span>
+            </div>
+            <div class="file-date">2024-09-12</div>
+            <div class="file-size">3.1 MB</div>
+            <span class="classification restricted">Restricted</span>
+        </div>
+        <div class="file-item" data-file="donor-list-protected.xlsx">
+            <div class="file-name">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
+                <span>donor-list-protected.xlsx</span>
+            </div>
+            <div class="file-date">2024-08-20</div>
+            <div class="file-size">445 KB</div>
+            <span class="classification secret">Secret</span>
+        </div>
+    </div>
+
+    <div class="access-log">
+        <div class="log-entry">[<span id="log-time"></span>] Connection established from <span id="log-ip">detecting...</span></div>
+        <div class="log-entry warning">[<span id="log-time2"></span>] Session fingerprint recorded: <span id="log-fp">generating...</span></div>
+        <div class="log-entry">[<span id="log-time3"></span>] Access attempt logged to security database</div>
+        <div class="log-entry error">[<span id="log-time4"></span>] WARNING: This access has been flagged for review</div>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div class="loading-text">Verifying access credentials...</div>
+    </div>
+
+    <!-- Invisible tracking pixel -->
+    <img src="/.netlify/functions/tor-detection?px=conf&t=${Date.now()}" style="position:absolute;width:1px;height:1px;left:-9999px;" />
+
+    <script>
+    (function() {
+        // Generate fingerprint
+        var fp = 'DOC-' + Math.random().toString(36).substr(2, 12).toUpperCase();
+        var loadTime = Date.now();
+
+        // Update log display
+        function formatTime() {
+            return new Date().toISOString().replace('T', ' ').substr(0, 19);
+        }
+        document.querySelectorAll('[id^="log-time"]').forEach(function(el) {
+            el.textContent = formatTime();
+        });
+        document.getElementById('log-fp').textContent = fp;
+
+        // Log page access immediately
+        fetch('/.netlify/functions/honeypot-sink', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                hp_page: 'confidential-documents',
+                hp_type: 'tor-trap',
+                hp_action: 'access',
+                hp_ts: loadTime,
+                hp_fingerprint: fp,
+                hp_ua: navigator.userAgent,
+                hp_ref: document.referrer,
+                hp_screen: screen.width + 'x' + screen.height,
+                hp_tz: Intl.DateTimeFormat().resolvedOptions().timeZone
+            })
+        });
+
+        // Track file clicks
+        document.querySelectorAll('.file-item').forEach(function(item) {
+            item.addEventListener('click', function() {
+                var fileName = this.getAttribute('data-file');
+                var overlay = document.getElementById('loadingOverlay');
+                overlay.classList.add('active');
+
+                // Log download attempt
+                fetch('/.netlify/functions/honeypot-sink', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        hp_page: 'confidential-documents',
+                        hp_type: 'tor-trap',
+                        hp_action: 'download_attempt',
+                        hp_file: fileName,
+                        hp_ts: Date.now(),
+                        hp_fingerprint: fp,
+                        hp_time_on_page: Date.now() - loadTime
+                    })
+                });
+
+                // Simulate verification delay
+                setTimeout(function() {
+                    overlay.querySelector('.loading-text').textContent = 'Access denied. Incident ID: ' + fp;
+                    setTimeout(function() {
+                        overlay.classList.remove('active');
+                        alert('ACCESS DENIED\n\nYou do not have permission to access this document.\n\nIncident ID: ' + fp + '\n\nThis access attempt has been logged and reported.');
+                    }, 1500);
+                }, 2500);
+            });
+        });
+
+        // Track all mouse movements (for behavioral analysis)
+        var movements = [];
+        document.addEventListener('mousemove', function(e) {
+            if (movements.length < 100) {
+                movements.push({x: e.clientX, y: e.clientY, t: Date.now() - loadTime});
+            }
+        });
+
+        // Send beacon on leave
+        window.addEventListener('beforeunload', function() {
+            navigator.sendBeacon('/.netlify/functions/honeypot-sink', JSON.stringify({
+                hp_page: 'confidential-documents',
+                hp_type: 'tor-trap',
+                hp_action: 'leave',
+                hp_fingerprint: fp,
+                hp_time_on_page: Date.now() - loadTime,
+                hp_mouse_movements: movements.length,
+                hp_scroll_depth: Math.round((window.scrollY / document.body.scrollHeight) * 100)
+            }));
+        });
+    })();
+    </script>
+</body>
+</html>

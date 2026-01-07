@@ -57,6 +57,18 @@
   [functions."outreach-stats"]
     rate_limit = { window_size = 60, window_limit = 30 }
 
+  [functions."tor-detection"]
+    rate_limit = { window_size = 60, window_limit = 100 }
+
+# ============================================
+# EDGE FUNCTIONS CONFIGURATION
+# ============================================
+
+[[edge_functions]]
+  path = "/*"
+  function = "tor-watcher"
+  excludedPath = ["/assets/*", "/images/*", "/css/*", "/js/*", "/.netlify/*", "/fonts/*", "/*.ico", "/*.png", "/*.jpg", "/*.svg", "/*.woff*"]
+
 # ============================================
 # REDIRECTS - Clean URLs handled by _redirects file
 # ============================================

@@ -164,3 +164,45 @@ Disallow: /r57.php
 # Netlify internal (not honeypots - real restriction)
 Disallow: /.netlify/
 Disallow: /netlify/functions/
+
+# ============================================
+# COUNTER-INTELLIGENCE TRAPS
+# These paths don't exist - accessing them flags the visitor
+# Only malicious actors read robots.txt for targets to hit
+# ============================================
+
+# "Sealed" documents - anyone hitting this = flagged
+Disallow: /case-files/sealed/
+Disallow: /case-files/restricted/
+Disallow: /case-files/confidential/
+
+# "Confidential" documents - major flag
+Disallow: /documents/confidential/
+Disallow: /documents/internal/
+Disallow: /documents/leaked/
+
+# Fake credentials files
+Disallow: /credentials/
+Disallow: /secrets/
+Disallow: /.credentials
+Disallow: /api-keys.txt
+
+# Fake member/donor data
+Disallow: /members/export/
+Disallow: /donors/list/
+Disallow: /user-data/
+
+# Legal/court bait
+Disallow: /legal/sealed-orders/
+Disallow: /court/filings/private/
+Disallow: /evidence/exhibits/
+
+# Financial bait
+Disallow: /finance/reports/
+Disallow: /accounting/
+Disallow: /payroll/
+
+# Staff directory bait
+Disallow: /staff/internal/
+Disallow: /employees/
+Disallow: /hr/records/
