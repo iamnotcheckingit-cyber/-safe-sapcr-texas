@@ -85,39 +85,68 @@ exports.handler = async (event) => {
 
     // GET - Retrieve recent signatures and count
     if (event.httpMethod === 'GET') {
-        // Get recent signatures
-        const { data: recentSignatures, error } = await supabase
-            .from('petition_signatures')
-            .select('display_name, display_initial, city, state, signed_at')
-            .order('signed_at', { ascending: false })
-            .limit(4);
+        try {
+            // Get recent signatures
+            const { data: recentSignatures, error } = await supabase
+                .from('petition_signatures')
+                .select('display_name, display_initial, city, state, signed_at')
+                .order('signed_at', { ascending: false })
+                .limit(4);
 
-        // Get total count
-        const { count: totalCount } = await supabase
-            .from('petition_signatures')
-            .select('*', { count: 'exact', head: true });
+            if (error) {
+                console.error('Supabase query error:', error);
+                // Return baseline data on error
+                return {
+                    statusCode: 200,
+                    headers,
+                    body: JSON.stringify({
+                        total: 1247,
+                        signatures: [],
+                        hasData: false,
+                        error: 'Database temporarily unavailable'
+                    })
+                };
+            }
 
-        // Baseline count before Supabase tracking
-        const baselineCount = 1247;
-        const total = (totalCount || 0) + baselineCount;
+            // Get total count
+            const { count: totalCount, error: countError } = await supabase
+                .from('petition_signatures')
+                .select('*', { count: 'exact', head: true });
 
-        // Format signatures with relative times
-        const signatures = (recentSignatures || []).map(sig => ({
-            name: sig.display_name,
-            initial: sig.display_initial,
-            location: `${sig.city}, ${sig.state}`,
-            time: getRelativeTime(sig.signed_at)
-        }));
+            // Baseline count before Supabase tracking
+            const baselineCount = 1247;
+            const total = (totalCount || 0) + baselineCount;
 
-        return {
-            statusCode: 200,
-            headers,
-            body: JSON.stringify({
-                total,
-                signatures,
-                hasData: recentSignatures && recentSignatures.length > 0
-            })
-        };
+            // Format signatures with relative times
+            const signatures = (recentSignatures || []).map(sig => ({
+                name: sig.display_name,
+                initial: sig.display_initial,
+                location: `${sig.city}, ${sig.state}`,
+                time: getRelativeTime(sig.signed_at)
+            }));
+
+            return {
+                statusCode: 200,
+                headers,
+                body: JSON.stringify({
+                    total,
+                    signatures,
+                    hasData: recentSignatures && recentSignatures.length > 0
+                })
+            };
+        } catch (err) {
+            console.error('Petition GET error:', err);
+            return {
+                statusCode: 200,
+                headers,
+                body: JSON.stringify({
+                    total: 1247,
+                    signatures: [],
+                    hasData: false,
+                    error: err.message
+                })
+            };
+        }
     }
 
     return {
