@@ -166,6 +166,11 @@ export default async (request, context) => {
     newHeaders.set('X-TOR-Detected', isTor ? 'yes' : 'no');
     newHeaders.set('X-Session-FP', fingerprint);
 
+    // Bad actors get noindex - don't let them pollute search results
+    if (isTor) {
+        newHeaders.set('X-Robots-Tag', 'noindex, nofollow');
+    }
+
     // Log TOR visitor to console (will appear in Netlify logs)
     if (isTor) {
         console.log(JSON.stringify({
