@@ -148,47 +148,79 @@
   [plugins.inputs]
     buildDir = "."
     exclude = [
-      "./admin.html",
+      # Netlify/build directories
       "./.netlify/**",
       "./netlify/**",
+      "./node_modules/**",
+
+      # WordPress honeypots
       "./wp-admin/**",
       "./wp-content/**",
       "./wp-includes/**",
+      "./wp-login.php",
+      "./wp-login/**",
+      "./wordpress/**",
+      "./xmlrpc/**",
+
+      # CMS/Admin honeypots
+      "./admin.html",
       "./admin/**",
-      "./login/**",
-      "./panel/**",
-      "./dashboard/**",
       "./administrator/**",
-      "./manage/**",
+      "./backend/**",
+      "./cms/**",
+      "./console/**",
       "./control/**",
-      "./backup/**",
-      "./debug/**",
-      "./internal-api/**",
-      "./staging/**",
-      "./hidden-admin/**",
-      "./test/**",
-      "./dev/**",
-      "./api/**",
+      "./controlpanel/**",
+      "./cpanel/**",
+      "./dashboard/**",
+      "./filemanager/**",
+      "./godmode/**",
+      "./godmode.html",
+      "./install/**",
+      "./login/**",
+      "./manage/**",
+      "./manager/**",
+      "./panel/**",
+      "./setup/**",
+      "./shell/**",
+      "./siteadmin/**",
+      "./uploads/**",
+      "./webadmin/**",
+      "./webmail/**",
+
+      # Database honeypots
       "./phpmyadmin/**",
       "./phpMyAdmin/**",
       "./pma/**",
       "./mysql/**",
+
+      # Debug/dev honeypots
+      "./backup/**",
+      "./debug/**",
+      "./dev/**",
+      "./hidden-admin/**",
+      "./internal-api/**",
+      "./staging/**",
+      "./test/**",
+      "./api/**",
+
+      # Sensitive data honeypots
       "./case-files/**",
-      "./documents/**",
-      "./credentials/**",
-      "./secrets/**",
-      "./members/**",
-      "./donors/**",
-      "./user-data/**",
-      "./legal/**",
       "./court/**",
+      "./credentials/**",
+      "./documents/**",
+      "./donors/**",
+      "./employees/**",
       "./evidence/**",
       "./finance/**",
       "./accounting/**",
+      "./hr/**",
+      "./legal/**",
+      "./members/**",
       "./payroll/**",
+      "./secrets/**",
       "./staff/**",
-      "./employees/**",
-      "./hr/**"
+      "./user-data/**"
     ]
     changeFreq = "weekly"
     priority = 0.8
