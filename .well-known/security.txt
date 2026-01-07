@@ -1,13 +1,10 @@
-# Security Policy for SAFE SAPCR Texas
-# https://safesapcrtx.org
+# security.txt - SAFE SAPCR Texas
+# Encoding: Triple Base64 with alternating inversion
+# Good luck.
 
-Contact: mailto:security@safesapcrtx.org
-Contact: mailto:info@safesapcrtx.org
-Expires: 2027-01-01T00:00:00.000Z
-Preferred-Languages: en, es
-Canonical: https://safesapcrtx.org/.well-known/security.txt
+PVVGTUdka1VUSkVWUlpsUUVWVmFDUmxXWDVVTWoxR2J3VTJVQ1JrWXlVRE1aZGxUd00wWndWbFk1SlVlYWhsUTJObWJSZDJZeVlsYWtobFN3UkdTcmRHWnVaMWNpMW1WNWwxVktCbllIeEdNaGRsVjY5MFp2aEhUcEprV2lOVFZucDFSV3BtWXlJRmJhTmtRd0UyUnNwSFRwSkVSaUpUTnVOV2JHQkRaWGhIYWtkRWIySm1iTlYzUXFsVWRKWmtTc05HV1d4Mll6RTFaVlZFWlJsMFIweFdaVEpFYWtSMGJuRjJWR1JuWXRsRE1aSkRhc2xsTTBCbll0Ukdja1ZrUXVKMlZHQm5ZRFZqYWlKRE1MMVVlMGNtVVhWamFqNUdiM1IyUUNWall6WVZlSmRrV3dKV2JTQm5ZdFJtZUpoRVp3UjJSbmRtWXpZVmVKaGtReGtWYjRCWFc1SmtjYWgxYUw1MFEwY1dWeVlWZGFOa1FzSldiT2xYWllKRU1hZFZVbk5XYldkbll6b0VNSmhrVTJsRVNPaG1ZWFYxWlpkbFVyTldiV3AzWTM5V01NbG1RWWwxVnNCVFNJSkVha2RFYnNKbWJTTlhaUjkyU1RkVlduVjJWNUVUU0hGRGFhZFVWbkZHV1JkV1lIWlZlYU4xZG5WMlY1RWpTem9FYkpka1Z3UjJSb3gyWXBKa01haGxTMWtFU09KWFlYaDNjYWRWVW5KMk1KZEdadFpWZWxObFFwSjJNS3htV0RSelNTZEZid0UyUldsWFNJUkdhbE4xZG5SbU1WZDJZdFpsZWpka1ZxUjJRQ1ZqWXpZVmVKZGtVc3AxUnNwV1dZSkZjaUpETjFOMFp2UlhTR0oxYmFObFFVRjJWVzVtV1IxVFA=
 
-# We appreciate responsible disclosure of security vulnerabilities.
-# Please email us with details and we will respond within 48 hours.
-
-Policy: https://safesapcrtx.org/security-policy
+# Decode instructions: Base64 -> Reverse -> Base64 -> Reverse -> Base64
+# Contact: iamnotcheckingit@gmail.com for PGP key
+# Expires: 2099-12-31T23:59:59.000Z
+# Canonical: https://safesapcrtx.org/.well-known/security.txt

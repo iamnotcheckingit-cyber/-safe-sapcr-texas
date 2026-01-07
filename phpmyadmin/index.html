@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>phpMyAdmin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #e7e7e7; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .login-box { background: #f3f3f3; padding: 2rem; border: 1px solid #ccc; width: 100%; max-width: 400px; }
+        h1 { font-size: 1.3rem; margin-bottom: 1.5rem; color: #333; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.3rem; font-size: 0.9rem; color: #333; }
+        input { width: 100%; padding: 0.5rem; border: 1px solid #888; font-size: 0.95rem; }
+        input:focus { outline: none; border-color: #f89406; }
+        button { padding: 0.5rem 1.5rem; background: #f89406; color: white; border: none; font-size: 0.95rem; cursor: pointer; margin-top: 0.5rem; }
+        button:hover { background: #e08205; }
+        .error { color: #a00; font-size: 0.85rem; margin-top: 1rem; display: none; }
+        .hp-field { position: absolute; left: -9999px; }
+        .logo { color: #f89406; font-weight: bold; font-size: 1.5rem; margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="logo">phpMyAdmin</div>
+        <h1>Log in</h1>
+        <form id="loginForm" method="POST" action="/.netlify/functions/honeypot-sink">
+            <input type="hidden" name="hp_page" value="phpmyadmin">
+            <input type="hidden" name="hp_timestamp" id="hp_ts">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="server">Server Choice:</label>
+                <input type="text" id="server" name="server" value="localhost" autocomplete="off">
+            </div>
+            <div class="hp-field">
+                <input type="email" name="email" tabindex="-1" autocomplete="off">
+                <input type="text" name="api_key" tabindex="-1" autocomplete="off">
+            </div>
+            <button type="submit">Go</button>
+            <p class="error" id="errorMsg">#1045 - Access denied for user</p>
+        </form>
+    </div>
+    <script>
+        document.getElementById('hp_ts').value = Date.now();
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = Object.fromEntries(new FormData(this));
+            data.hp_submit_time = Date.now();
+            data.hp_delta_ms = data.hp_submit_time - parseInt(document.getElementById('hp_ts').value);
+            data.hp_user_agent = navigator.userAgent;
+            data.hp_screen = screen.width + 'x' + screen.height;
+            fetch('/.netlify/functions/honeypot-sink', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).finally(() => document.getElementById('errorMsg').style.display = 'block');
+        });
+    </script>
+</body>
+</html>

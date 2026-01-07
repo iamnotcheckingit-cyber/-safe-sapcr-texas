@@ -7,26 +7,8 @@ node_modules/
 .env.*
 !.env.example
 
-# Honeypot/security trap files (not real)
-shell.php
-c99.php
-wp-login.php
-wp-config.php.bak
-xmlrpc.php
-admin.php
-config.php
-phpinfo.php
-info.php
-test.php
-database.sql
-backup.sql
-error_log
-.htaccess
-.htpasswd
-wp-admin/
-phpmyadmin/
-admin/
-api/
+# Honeypot/security trap files - these ARE tracked (they're traps, not real)
+# Keeping them in git to deploy with the site
 
 # OS files
 .DS_Store
