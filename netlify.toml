@@ -79,6 +79,31 @@
   status = 301
   force = true
 
+# WordPress scanner traps - return 410 Gone
+[[redirects]]
+  from = "/wp-admin/*"
+  to = "/404"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/wordpress/*"
+  to = "/404"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/*wlwmanifest.xml"
+  to = "/404"
+  status = 410
+  force = true
+
+# Favicon fallback
+[[redirects]]
+  from = "/favicon.ico"
+  to = "/favicon.svg"
+  status = 200
+
 # ============================================
 # SECURITY & SEO HEADERS
 # ============================================
