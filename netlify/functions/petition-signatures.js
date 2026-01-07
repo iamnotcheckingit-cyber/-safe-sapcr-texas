@@ -33,6 +33,27 @@ exports.handler = async (event) => {
         return { statusCode: 200, headers, body: '' };
     }
 
+    // Check if Supabase is configured
+    if (!SUPABASE_KEY) {
+        console.warn('SUPABASE_KEY not configured, returning baseline data');
+        if (event.httpMethod === 'GET') {
+            return {
+                statusCode: 200,
+                headers,
+                body: JSON.stringify({
+                    total: 1247,
+                    signatures: [],
+                    hasData: false
+                })
+            };
+        }
+        return {
+            statusCode: 500,
+            headers,
+            body: JSON.stringify({ success: false, error: 'Database not configured' })
+        };
+    }
+
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
     // POST - Add new signature
