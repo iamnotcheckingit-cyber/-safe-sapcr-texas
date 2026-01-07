@@ -158,6 +158,8 @@
       "./wp-content/**",
       "./wp-includes/**",
       "./wp-login.php",
+      "**/wp-login.php",
+      "wp-login.php",
       "./wp-login/**",
       "./wordpress/**",
       "./xmlrpc/**",
