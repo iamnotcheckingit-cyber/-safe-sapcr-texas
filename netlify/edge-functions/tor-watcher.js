@@ -2,7 +2,7 @@
 // Detects TOR visitors, adds delays, injects tracking, logs everything
 // They think they're invisible. They're not.
 
-// TOR exit nodes cache - refreshed hourly
+// TOR exit nodes cache - refreshed every 10 minutes
 let torCache = {
     nodes: new Set(),
     lastFetch: 0
@@ -10,7 +10,7 @@ let torCache = {
 
 async function fetchTorNodes() {
     const now = Date.now();
-    const TTL = 3600000; // 1 hour
+    const TTL = 600000; // 10 minutes
 
     if (torCache.nodes.size > 0 && (now - torCache.lastFetch) < TTL) {
         return torCache.nodes;
