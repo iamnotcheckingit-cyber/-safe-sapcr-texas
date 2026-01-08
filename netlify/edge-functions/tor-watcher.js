@@ -106,8 +106,6 @@ const trackingScript = (fingerprint, isTor) => `
     }
 
     window.addEventListener('beforeunload',send);
-    // Also send periodically for long sessions
-    setInterval(function(){send();},60000);
 
     // Invisible tracking pixel
     var px=new Image();px.src='/.netlify/functions/tor-detection?px='+fp+'&t='+Date.now();
