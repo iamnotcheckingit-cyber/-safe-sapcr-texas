@@ -20,6 +20,49 @@ function isProxy(ip) { return proxyPrefixes.some(p => ip.startsWith(p)); }
 function isDatacenter(ip) { return datacenterRanges.some(r => ip.startsWith(r)); }
 function isCloudflareWarp(ip) { return ip.startsWith('2a06:98c0:'); }
 
+// Honeypot path patterns - catch probes immediately on GET
+const honeypotPaths = [
+    '/wp-admin', '/wordpress', '/wp-login', '/wp-content',
+    '/admin', '/administrator', '/phpmyadmin', '/cpanel',
+    '/dashboard', '/manager', '/backend', '/cms',
+    '/controlpanel', '/siteadmin', '/webadmin',
+    '/backup', '/console', '/debug', '/filemanager',
+    '/godmode', '/install', '/login', '/panel',
+    '/shell', '/uploads', '/webmail', '/xmlrpc',
+    '/config', '/documents/confidential', '/case-files/sealed'
+];
+
+function isHoneypotPath(pathname) {
+    const lower = pathname.toLowerCase();
+    return honeypotPaths.some(hp => lower.startsWith(hp));
+}
+
+// Log honeypot probe to Supabase via REST API
+async function logHoneypotProbe(data) {
+    const supabaseUrl = Deno.env.get('SUPABASE_URL') || 'https://uynnupaoafbwouvgcedj.supabase.co';
+    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_KEY');
+
+    if (!supabaseKey) {
+        console.error('SUPABASE_SERVICE_KEY not set for honeypot logging');
+        return;
+    }
+
+    try {
+        await fetch(`${supabaseUrl}/rest/v1/honeypot_log`, {
+            method: 'POST',
+            headers: {
+                'apikey': supabaseKey,
+                'Authorization': `Bearer ${supabaseKey}`,
+                'Content-Type': 'application/json',
+                'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(data)
+        });
+    } catch (e) {
+        console.error('Honeypot log failed:', e);
+    }
+}
+
 // TOR exit nodes cache - refreshed every 10 minutes
 let torCache = {
     nodes: new Set(),
@@ -293,6 +336,44 @@ export default async (request, context) => {
     const isVpnProxy = isProxy(clientIP);
     const isDC = isDatacenter(clientIP);
     const isSuspicious = isTor || isWarp || isVpnProxy || isDC;
+    const isHoneypot = isHoneypotPath(url.pathname);
+
+    // Log honeypot probes immediately - catch scanners that don't execute JS
+    if (isHoneypot) {
+        const probeData = {
+            timestamp: new Date().toISOString(),
+            ip: clientIP,
+            method: request.method,
+            path: url.pathname,
+            user_agent: ua,
+            referer: request.headers.get('referer') || 'direct',
+            country: serverData.cfcountry || 'unknown',
+            source_page: 'edge_probe',
+            classification: isSuspicious ? 'suspicious_probe' : 'probe',
+            bot_signals: [
+                isTor ? 'tor' : null,
+                isWarp ? 'warp' : null,
+                isVpnProxy ? 'vpn' : null,
+                isDC ? 'datacenter' : null
+            ].filter(Boolean).join(', ') || 'none',
+            credentials_attempted: false,
+            form_data_keys: '',
+            raw_payload: JSON.stringify({
+                headers: {
+                    accept: request.headers.get('accept'),
+                    accept_language: serverData.lang,
+                    accept_encoding: serverData.enc,
+                    sec_fetch_dest: serverData.secfetchd,
+                    sec_fetch_mode: serverData.secfetchm,
+                    sec_ch_ua: serverData.secua
+                }
+            })
+        };
+        // Fire and forget - don't block the response
+        logHoneypotProbe(probeData);
+        console.log(JSON.stringify({ event: 'honeypot_probe', ...probeData }));
+    }
+
     // Check VirusTotal reputation (async, non-blocking for normal users)
     let vtReputation = null;
     if (isSuspicious) {
