@@ -26,6 +26,10 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    const body = JSON.parse(event.body);
+    const clientIP = event.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
+    console.log(JSON.stringify({ form_type: 'MEMBERSHIP_SIGNUP', ip: clientIP, city: body.city, timestamp: new Date().toISOString() }));
+
     const {
       email,
       first_name,
@@ -37,7 +41,7 @@ exports.handler = async (event, context) => {
       experience,
       legislative_updates,
       newsletter
-    } = JSON.parse(event.body);
+    } = body;
 
     // Send notification to admin
     const adminResponse = await fetch('https://api.resend.com/emails', {

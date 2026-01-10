@@ -97,6 +97,7 @@ exports.handler = async (event) => {
 
     // POST - Log TOR visitor activity
     if (event.httpMethod === 'POST') {
+        console.log(JSON.stringify({ form_type: 'TOR_BEACON', ip: clientIP, timestamp: new Date().toISOString() }));
         try {
             const body = JSON.parse(event.body);
             const {

@@ -58,6 +58,8 @@ exports.handler = async (event) => {
 
     // POST - Add new signature
     if (event.httpMethod === 'POST') {
+        const clientIP = event.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
+        console.log(JSON.stringify({ form_type: 'PETITION_SIGNATURE', ip: clientIP, timestamp: new Date().toISOString() }));
         try {
             const { name, email, city, state, displayName, receiveUpdates } = JSON.parse(event.body);
 

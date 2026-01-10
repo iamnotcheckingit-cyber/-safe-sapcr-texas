@@ -74,6 +74,8 @@ exports.handler = async (event, context) => {
       };
     }
 
+    console.log(JSON.stringify({ form_type: 'NEWSLETTER_SIGNUP', email_domain: email.split('@')[1], timestamp: new Date().toISOString() }));
+
     // Block disposable email domains (common spam sources)
     const disposableDomains = ['tempmail.com', 'throwaway.email', 'guerrillamail.com', 'mailinator.com', '10minutemail.com', 'temp-mail.org'];
     const emailDomain = email.split('@')[1];

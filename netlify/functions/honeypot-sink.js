@@ -109,7 +109,7 @@ exports.handler = async (event, context) => {
         };
 
         // Log to console (appears in Netlify function logs)
-        console.log('HONEYPOT_HIT:', JSON.stringify(logEntry, null, 2));
+        console.log(JSON.stringify({ form_type: 'HONEYPOT_TRAP', ...logEntry }));
 
         // Log to Supabase for persistence and analysis
         await supabase.from('honeypot_log').insert({

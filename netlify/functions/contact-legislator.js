@@ -29,6 +29,10 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    const body = JSON.parse(event.body);
+    const clientIP = event.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
+    console.log(JSON.stringify({ form_type: 'LEGISLATOR_CONTACT', ip: clientIP, legislator: body.legislatorName, timestamp: new Date().toISOString() }));
+
     const {
       legislatorName,
       legislatorEmail,
@@ -39,7 +43,7 @@ exports.handler = async (event, context) => {
       subject,
       message,
       sendCopy
-    } = JSON.parse(event.body);
+    } = body;
 
     // Validate required fields
     if (!legislatorEmail || !senderName || !senderEmail || !message) {
