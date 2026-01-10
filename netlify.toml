@@ -269,13 +269,19 @@
     sitemapPath = "/sitemap.xml"
     providers = ["google", "bing", "yandex"]
 
-# .well-known redirects
+# well.known redirects
 [[redirects]]
-  from = "/.well-known/*"
-  to = "/.well-known/:splat"
+  from = "/well.known/*"
+  to = "/well.known/:splat"
   status = 200
 
 [[redirects]]
-  from = "/.well-known"
-  to = "/.well-known/index.html"
+  from = "/well.known"
+  to = "/well.known/index.html"
+  status = 200
+
+# Also support standard .well-known
+[[redirects]]
+  from = "/.well-known/*"
+  to = "/well.known/:splat"
   status = 200

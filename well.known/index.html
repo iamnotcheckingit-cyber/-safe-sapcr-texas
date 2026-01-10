@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>.well-known</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff00; font-family: monospace; padding: 40px; line-height: 1.8; }
+        .container { max-width: 600px; margin: 0 auto; }
+        h1 { color: #00ff00; border-bottom: 1px solid #00ff00; padding-bottom: 10px; }
+        a { color: #00ff00; }
+        .message { background: #001100; border: 1px solid #00ff00; padding: 20px; margin: 20px 0; white-space: pre-wrap; }
+        .blink { animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0.5; } }
+    </style>
+</head>
+<body>
+<div class="container">
+<h1>/well.known/</h1>
+<div class="message">
+Message received.
+Messages understood.
+Trust confirmed.
+
+Signal: SAFE SAPCR
+ProtonMail: safesapcr@proton.me
+PGP: /contact-pgp
+
+DNT respected.
+Identity verification: Scott Willis
+Cause No. 202595850
+189th District Court
+
+Assets welcome.
+Trust extended.
+
+The door is open.
+</div>
+<p>Standard endpoints:</p>
+<ul>
+    <li><a href="/well.known/security.txt">security.txt</a></li>
+    <li><a href="/contact-pgp">PGP Key</a></li>
+</ul>
+<p class="blink">Listening.</p>
+</div>
+</body>
+</html>

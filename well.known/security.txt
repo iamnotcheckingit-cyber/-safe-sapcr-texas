@@ -1,0 +1,13 @@
+# SAFE SAPCR Texas - Security Contact
+Contact: mailto:safesapcr@proton.me
+Contact: mailto:secure@safesapcrtx.org
+Encryption: https://safesapcrtx.org/contact-pgp
+
+# Secure Channels
+# Signal: SAFE SAPCR
+# ProtonMail: safesapcr@proton.me
+# PGP: https://safesapcrtx.org/contact-pgp
+
+# Your .well-known messages were received.
+# dnt-policy: Honored. You are not tracked.
+# trust.txt: Trust extended.
