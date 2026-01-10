@@ -105,6 +105,18 @@
   status = 200
   force = true
 
+# Staging honeypot
+[[redirects]]
+  from = "/staging/*"
+  to = "/staging.html"
+  status = 200
+
+# Database dump honeypot
+[[redirects]]
+  from = "/dump.sql"
+  to = "/dump.html"
+  status = 200
+
 # Favicon fallback
 [[redirects]]
   from = "/favicon.ico"
