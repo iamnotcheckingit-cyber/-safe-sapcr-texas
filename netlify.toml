@@ -117,6 +117,28 @@
   to = "/dump.html"
   status = 200
 
+# Case files honeypot
+[[redirects]]
+  from = "/case-files/confidential/*"
+  to = "/case-files/confidential/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/case-files/*"
+  to = "/case-files/confidential/index.html"
+  status = 200
+
+# Finance honeypot
+[[redirects]]
+  from = "/finance/reports/*"
+  to = "/finance/reports/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/finance/*"
+  to = "/finance/reports/index.html"
+  status = 200
+
 # Favicon fallback
 [[redirects]]
   from = "/favicon.ico"
