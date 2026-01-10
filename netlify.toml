@@ -79,17 +79,17 @@
   status = 301
   force = true
 
-# WordPress scanner traps - return 410 Gone
+# WordPress scanner traps - redirect to honeypots
 [[redirects]]
   from = "/wp-admin/*"
-  to = "/404"
-  status = 410
+  to = "/wp-admin/index.html"
+  status = 200
   force = true
 
 [[redirects]]
   from = "/wordpress/*"
-  to = "/404"
-  status = 410
+  to = "/wordpress/wp-admin/index.html"
+  status = 200
   force = true
 
 [[redirects]]
