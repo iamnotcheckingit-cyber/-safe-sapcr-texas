@@ -38,6 +38,7 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
+        "name": "Sign the SAFE SAPCR Petition",
         "@type": "WebPage",
         "name": "SAFE SAPCR Act Petition",
         "description": "Online petition supporting Texas family law reform to prevent extrinsic fraud in custody cases",
@@ -400,12 +401,6 @@
                     <button type="submit">Sign the Petition</button>
                 </form>
 
-                <div class="recent-signatures" id="recentSignatures">
-                    <h4>Recent Signatures</h4>
-                    <div class="signature-item loading-state">
-                        <div class="signature-avatar">...</div>
-                        <div class="signature-info">
-                            <div class="name">Loading recent signatures...</div>
                             <div class="location"></div>
                         </div>
                         <div class="signature-time"></div>
@@ -468,25 +463,7 @@
                     }
                 }
 
-                // Update recent signatures
-                const container = document.getElementById('recentSignatures');
-                if (container && data.signatures && data.signatures.length > 0) {
-                    container.innerHTML = '<h4>Recent Signatures</h4>' +
-                        data.signatures.map(sig => `
-                            <div class="signature-item">
-                                <div class="signature-avatar">${sig.initial}</div>
-                                <div class="signature-info">
-                                    <div class="name">${sig.name}</div>
-                                    <div class="location">${sig.location}</div>
-                                </div>
-                                <div class="signature-time">${sig.time}</div>
-                            </div>
-                        `).join('');
-                } else if (container && (!data.signatures || data.signatures.length === 0)) {
-                    container.innerHTML = '<h4>Recent Signatures</h4>' +
-                        '<div class="signature-item"><div class="signature-info">' +
-                        '<div class="name">Be the first to sign!</div></div></div>';
-                }
+                
             } catch (err) {
                 console.error('Failed to load signatures:', err);
             }

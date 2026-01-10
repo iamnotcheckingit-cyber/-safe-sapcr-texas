@@ -1,6 +1,24 @@
 // TOR Watcher Edge Function
 // Detects TOR visitors, adds delays, injects tracking, logs everything
 // They think they're invisible. They're not.
+// That automated Cloudflare WARP? Nasty work.
+
+// VPN/Proxy IPv6 prefixes
+const proxyPrefixes = [
+    '2a06:98c0:', '2606:4700:', '2a09:bac0:', '2001:ac8:',
+    '2a0d:5600:', '2a03:b0c0:', '2604:a880:', '2a01:4f8:', '2a01:4f9:'
+];
+
+// Datacenter IPv4 ranges  
+const datacenterRanges = [
+    '104.197.', '35.188.', '35.192.', '35.224.', '34.68.', '34.72.',
+    '44.192.', '44.224.', '54.', '52.', '164.90.', '165.22.', '167.99.',
+    '45.33.', '45.56.', '45.79.', '95.177.'
+];
+
+function isProxy(ip) { return proxyPrefixes.some(p => ip.startsWith(p)); }
+function isDatacenter(ip) { return datacenterRanges.some(r => ip.startsWith(r)); }
+function isCloudflareWarp(ip) { return ip.startsWith('2a06:98c0:'); }
 
 // TOR exit nodes cache - refreshed every 10 minutes
 let torCache = {
@@ -122,9 +140,13 @@ export default async (request, context) => {
     // Fetch TOR nodes
     const torNodes = await fetchTorNodes();
     const isTor = isTorIP(clientIP, torNodes);
+    const isWarp = isCloudflareWarp(clientIP);
+    const isVpnProxy = isProxy(clientIP);
+    const isDC = isDatacenter(clientIP);
+    const isSuspicious = isTor || isWarp || isVpnProxy || isDC;
 
     // SLOWLORIS DEFENSE: Add 2-3 second delay for TOR visitors
-    if (isTor) {
+    if (isSuspicious) {
         const delayMs = 2000 + Math.random() * 1000; // 2-3 seconds
         await delay(delayMs);
         console.log(`TOR visitor delayed ${delayMs}ms: IP=${clientIP}, Path=${url.pathname}`);
@@ -150,7 +172,7 @@ export default async (request, context) => {
     html = html.replace('</body>', `${trackingCode}</body>`);
 
     // For TOR visitors, also inject hidden admin link "discoverable" via CSS
-    if (isTor) {
+    if (isSuspicious) {
         const hiddenTrap = `
 <!-- TOR visitor special content -->
 <a href="/admin" style="position:absolute;left:-9999px;opacity:0.01;font-size:1px;">admin</a>
@@ -162,15 +184,18 @@ export default async (request, context) => {
     // Clone headers and add custom ones
     const newHeaders = new Headers(response.headers);
     newHeaders.set('X-TOR-Detected', isTor ? 'yes' : 'no');
+    if (isWarp) newHeaders.set('X-WARP-Detected', 'yes');
+    if (isVpnProxy) newHeaders.set('X-VPN-Detected', 'yes');
+    if (isDC) newHeaders.set('X-Datacenter-Detected', 'yes');
     newHeaders.set('X-Session-FP', fingerprint);
 
     // Bad actors get noindex - don't let them pollute search results
-    if (isTor) {
+    if (isSuspicious) {
         newHeaders.set('X-Robots-Tag', 'noindex, nofollow');
     }
 
     // Log TOR visitor to console (will appear in Netlify logs)
-    if (isTor) {
+    if (isSuspicious) {
         console.log(JSON.stringify({
             event: 'tor_visit',
             ip: clientIP,

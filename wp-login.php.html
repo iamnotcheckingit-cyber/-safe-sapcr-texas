@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="refresh" content="0;url=/wp-admin/">
+    <meta http-equiv="refresh" content="3;url=/wp-admin/">
     <meta name="robots" content="noindex, nofollow">
     <title>Redirecting...</title>
-    <!-- Auth0 SDK for site-wide auth -->
-    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+    <style>
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        body { margin: 0; padding: 0; background: #1a1a1a; color: #ccc; font-family: Arial, sans-serif; }
+    </style>
 </head>
 <body>
-    <p>Redirecting to login...</p>
-    <script>window.location.href = '/wp-admin/';</script>
-    <script src="/js/auth.js"></script>
+    <!-- Siege Banner Ticker -->
+    <div id="siege-banner" style="background: #8B0000; color: white; overflow: hidden; padding: 8px 0; font-family: 'Times New Roman', serif; font-size: 12px; position: fixed; top: 0; width: 100%; z-index: 9999; border-bottom: 2px solid #FFD700;">
+      <div style="display: inline-block; white-space: nowrap; animation: ticker 20s linear infinite;">
+        🍯 There's no honey in those pots — just evidence. &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        To our 508 anonymous requests: We see you. &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        Only timestamps. Only fingerprints. Only truth. &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        That automated Cloudflare WARP? Nasty work. &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        🏰 The siege sees all. &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        🍯 There's no honey in those pots — just evidence. &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        To our 508 anonymous requests: We see you. &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        Only timestamps. Only fingerprints. Only truth. &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        That automated Cloudflare WARP? Nasty work. &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        🏰 The siege sees all.
+      </div>
+    </div>
+
+    <div style="margin-top: 80px; text-align: center; padding: 40px;">
+        <p style="font-size: 18px;">Redirecting to login...</p>
+        <p style="color: #666; font-size: 14px;">🏰 The siege watches all login attempts</p>
+    </div>
+
+    <script>setTimeout(function() { window.location.href = '/wp-admin/'; }, 3000);</script>
 </body>
 </html>
