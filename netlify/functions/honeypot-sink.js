@@ -8,7 +8,6 @@ const SUPABASE_URL = process.env.SUPABASE_URL || 'https://uynnupaoafbwouvgcedj.s
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
 
 exports.handler = async (event, context) => {
-    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
@@ -19,6 +18,18 @@ exports.handler = async (event, context) => {
     if (event.httpMethod === 'OPTIONS') {
         return { statusCode: 200, headers, body: '' };
     }
+
+    // Check if key is available
+    if (!SUPABASE_KEY) {
+        console.error('SUPABASE_KEY not configured');
+        return {
+            statusCode: 200,
+            headers,
+            body: JSON.stringify({ error: 'config_error', debug: 'no_key' })
+        };
+    }
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
     try {
         // Parse incoming data
@@ -112,7 +123,7 @@ exports.handler = async (event, context) => {
         console.log(JSON.stringify({ form_type: 'HONEYPOT_TRAP', ...logEntry }));
 
         // Log to Supabase for persistence and analysis
-        await supabase.from('honeypot_log').insert({
+        const { error: dbError } = await supabase.from('honeypot_log').insert({
             timestamp: logEntry.timestamp,
             ip: logEntry.ip,
             method: logEntry.method,
@@ -126,7 +137,11 @@ exports.handler = async (event, context) => {
             credentials_attempted: logEntry.credentials_attempted,
             form_data_keys: logEntry.form_data_keys,
             raw_payload: logEntry.raw_payload
-        }).catch(err => console.error('Supabase log error:', err));
+        });
+
+        if (dbError) {
+            console.error('Supabase insert error:', dbError);
+        }
 
         // Always return success to keep bots engaged
         return {
@@ -140,11 +155,11 @@ exports.handler = async (event, context) => {
         };
 
     } catch (error) {
-        console.error('Honeypot sink error:', error);
+        console.error('Honeypot sink error:', error.message, error.stack);
         return {
             statusCode: 200,
             headers,
-            body: JSON.stringify({ error: 'internal_error' })
+            body: JSON.stringify({ error: 'internal_error', debug: error.message })
         };
     }
 };
