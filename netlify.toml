@@ -107,15 +107,36 @@
 
 # Staging honeypot
 [[redirects]]
+  from = "/staging"
+  to = "/staging.html"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/staging/*"
   to = "/staging.html"
   status = 200
+  force = true
 
 # Database dump honeypot
 [[redirects]]
   from = "/dump.sql"
   to = "/dump.html"
   status = 200
+  force = true
+
+# Members honeypot
+[[redirects]]
+  from = "/members/*"
+  to = "/members/export/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/members"
+  to = "/members/export/index.html"
+  status = 200
+  force = true
 
 # Case files honeypot
 [[redirects]]
