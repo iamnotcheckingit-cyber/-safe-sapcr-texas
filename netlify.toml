@@ -98,6 +98,13 @@
   status = 410
   force = true
 
+# XML-RPC honeypot
+[[redirects]]
+  from = "/xmlrpc.php"
+  to = "/xmlrpc.html"
+  status = 200
+  force = true
+
 # Favicon fallback
 [[redirects]]
   from = "/favicon.ico"
