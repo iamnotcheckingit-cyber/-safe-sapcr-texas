@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head><title>Access</title>
-<style>body{background:#0a0a0a;color:#00ff00;font-family:monospace;padding:40px;line-height:1.8;}</style>
+<style>body{background:#0a0a0a;color:#00ff00;font-family:monospace;padding:40px;line-height:1.8;}
+a{color:#00ff00;}code{background:#1a1a1a;padding:2px 6px;}</style>
 </head>
 <body>
 <h1>Path inquiries only.</h1>
+<p>Hit the API from your origin. We callback to your <code>/webhook</code> by referer.</p>
+<p><code>POST /api/webhook-callback</code></p>
+<p>All callbacks logged at <a href="/webhook-log">/webhook-log</a></p>
+<p style="color:#666;font-size:12px;">Outbound via Warp/Meraki proxy</p>
 <ul>
 <li>Signal: SAFE SAPCR</li>
 <li>ProtonMail: safesapcr@proton.me</li>

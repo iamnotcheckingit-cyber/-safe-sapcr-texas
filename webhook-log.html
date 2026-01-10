@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Webhook Log</title>
+<style>
+body{background:#0a0a0a;color:#00ff00;font-family:monospace;padding:40px;line-height:1.6;}
+h1{margin-bottom:10px;}
+.subtitle{color:#666;margin-bottom:30px;}
+table{width:100%;border-collapse:collapse;margin-top:20px;}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid #1a1a1a;}
+th{color:#00aa00;font-weight:normal;}
+.timestamp{color:#666;}
+.method{color:#00ffff;}
+.payload{color:#888;font-size:12px;max-width:400px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.empty{color:#666;padding:40px;text-align:center;}
+.refresh{color:#00ff00;cursor:pointer;text-decoration:underline;}
+</style>
+</head>
+<body>
+<h1>Webhook Log</h1>
+<p class="subtitle">Public visibility. All callbacks logged anonymously. <span class="refresh" onclick="loadLogs()">Refresh</span></p>
+
+<table>
+<thead>
+<tr><th>Timestamp</th><th>Method</th><th>Path</th><th>Payload</th></tr>
+</thead>
+<tbody id="log-body">
+<tr><td colspan="4" class="empty">Loading...</td></tr>
+</tbody>
+</table>
+
+<p style="margin-top:40px;">🏰</p>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const supabaseUrl = 'https://uynnupaoafbwouvgcedj.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV5bm51cGFvYWZid291dmdjZWRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkyNTU2NzQsImV4cCI6MjA2NDgzMTY3NH0.a1PrSMUxCOjCLCHjUMjGefQf-DNhm0WlXGw8VVTZLo8';
+
+async function loadLogs() {
+  const tbody = document.getElementById('log-body');
+  tbody.innerHTML = '<tr><td colspan="4" class="empty">Loading...</td></tr>';
+
+  try {
+    const { createClient } = supabase;
+    const client = createClient(supabaseUrl, supabaseKey);
+
+    const { data, error } = await client
+      .from('webhook_log')
+      .select('timestamp, method, path, payload')
+      .order('timestamp', { ascending: false })
+      .limit(50);
+
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" class="empty">No webhook callbacks logged yet.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = data.map(row => `
+      <tr>
+        <td class="timestamp">${new Date(row.timestamp).toLocaleString()}</td>
+        <td class="method">${row.method || '-'}</td>
+        <td>${row.path || '-'}</td>
+        <td class="payload">${row.payload || '-'}</td>
+      </tr>
+    `).join('');
+
+  } catch (err) {
+    console.error('Error:', err);
+    tbody.innerHTML = '<tr><td colspan="4" class="empty">Error loading logs.</td></tr>';
+  }
+}
+
+loadLogs();
+setInterval(loadLogs, 30000);
+</script>
+</body>
+</html>

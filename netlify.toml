@@ -51,6 +51,9 @@
   [functions."honeypot-sink"]
     rate_limit = { window_size = 60, window_limit = 20 }
 
+  [functions."webhook-callback"]
+    rate_limit = { window_size = 60, window_limit = 30 }
+
   [functions."petition-signatures"]
     rate_limit = { window_size = 60, window_limit = 5 }
 
@@ -330,6 +333,19 @@
     baseUrl = "https://safesapcrtx.org"
     sitemapPath = "/sitemap.xml"
     providers = ["google", "bing", "yandex"]
+
+# Webhook callback API
+[[redirects]]
+  from = "/api/webhook-callback"
+  to = "/.netlify/functions/webhook-callback"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/webhook-callback/*"
+  to = "/.netlify/functions/webhook-callback"
+  status = 200
+  force = true
 
 # Hidden admin backchannel
 [[redirects]]
