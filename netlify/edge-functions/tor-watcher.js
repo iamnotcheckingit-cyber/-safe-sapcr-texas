@@ -55,6 +55,72 @@ async function fetchTorNodes() {
 function isTorIP(ip, nodes) {
     return nodes.has(ip);
 }
+// VirusTotal IP reputation cache - 1 hour TTL
+let vtCache = new Map();
+const VT_TTL = 3600000; // 1 hour
+
+async function checkVirusTotal(ip) {
+    // Skip private/internal IPs
+    if (ip === 'unknown' || ip.startsWith('192.168.') || ip.startsWith('10.') || ip.startsWith('127.')) {
+        return null;
+    }
+
+    // Check cache first
+    const cached = vtCache.get(ip);
+    if (cached && (Date.now() - cached.ts) < VT_TTL) {
+        return cached.data;
+    }
+
+    // Get API key from environment
+    const apiKey = Deno.env.get('VIRUSTOTAL_API_KEY');
+    if (!apiKey) {
+        return null;
+    }
+
+    try {
+        const response = await fetch(`https://www.virustotal.com/api/v3/ip_addresses/${ip}`, {
+            headers: { 'x-apikey': apiKey }
+        });
+
+        if (!response.ok) {
+            return null;
+        }
+
+        const json = await response.json();
+        const stats = json.data?.attributes?.last_analysis_stats || {};
+        const rep = json.data?.attributes?.reputation || 0;
+        const asOwner = json.data?.attributes?.as_owner || '';
+        const country = json.data?.attributes?.country || '';
+
+        const result = {
+            malicious: stats.malicious || 0,
+            suspicious: stats.suspicious || 0,
+            harmless: stats.harmless || 0,
+            undetected: stats.undetected || 0,
+            reputation: rep,
+            asOwner: asOwner,
+            country: country,
+            isBad: (stats.malicious || 0) > 0 || (stats.suspicious || 0) > 2
+        };
+
+        // Cache the result
+        vtCache.set(ip, { ts: Date.now(), data: result });
+
+        // Clean old cache entries (keep under 1000)
+        if (vtCache.size > 1000) {
+            const oldest = [...vtCache.entries()]
+                .sort((a, b) => a[1].ts - b[1].ts)
+                .slice(0, 100);
+            oldest.forEach(([k]) => vtCache.delete(k));
+        }
+
+        return result;
+    } catch (e) {
+        console.error('VirusTotal check failed:', e);
+        return null;
+    }
+}
+
 
 // Generate tracking fingerprint
 function genFingerprint(ip, ua, ts) {
@@ -200,6 +266,7 @@ export default async (request, context) => {
     // Capture server-side headers for fingerprinting
     const serverData = {
         ip: clientIP,
+        vt: null, // Will be populated after VT check
         lang: request.headers.get('accept-language') || 'none',
         enc: request.headers.get('accept-encoding') || 'none',
         conn: request.headers.get('connection') || 'none',
@@ -226,6 +293,19 @@ export default async (request, context) => {
     const isVpnProxy = isProxy(clientIP);
     const isDC = isDatacenter(clientIP);
     const isSuspicious = isTor || isWarp || isVpnProxy || isDC;
+    // Check VirusTotal reputation (async, non-blocking for normal users)
+    let vtReputation = null;
+    if (isSuspicious) {
+        // Only do VT lookup for already-suspicious IPs to save API calls
+        vtReputation = await checkVirusTotal(clientIP);
+    }
+
+    if (vtReputation) {
+        serverData.vt = vtReputation;
+    }
+
+
+
 
     // Detect header anomalies
     const headerAnomalies = [];
@@ -279,6 +359,7 @@ export default async (request, context) => {
     if (isDC) newHeaders.set('X-Datacenter-Detected', 'yes');
     newHeaders.set('X-Session-FP', fingerprint);
     if (headerAnomalies.length) newHeaders.set('X-Header-Anomalies', headerAnomalies.join(','));
+    if (vtReputation?.isBad) newHeaders.set('X-VT-Malicious', 'yes');
 
     // Bad actors get noindex - don't let them pollute search results
     if (isSuspicious) {
@@ -294,6 +375,7 @@ export default async (request, context) => {
             path: url.pathname,
             fingerprint: fingerprint,
             serverData: serverData,
+            vtReputation: vtReputation,
             anomalies: headerAnomalies,
             timestamp: new Date().toISOString()
         }));
