@@ -37,6 +37,7 @@ Allow: /
 
 # Default for all other bots
 User-agent: *
+Disallow: /.netlify/functions/
 Allow: /
 
 # Sitemap locations
