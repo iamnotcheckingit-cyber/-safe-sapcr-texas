@@ -331,6 +331,19 @@
     sitemapPath = "/sitemap.xml"
     providers = ["google", "bing", "yandex"]
 
+# Hidden admin backchannel
+[[redirects]]
+  from = "/hidden-admin/*"
+  to = "/hidden-admin/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/hidden-admin"
+  to = "/hidden-admin/index.html"
+  status = 200
+  force = true
+
 # Documents leaked honeypot
 [[redirects]]
   from = "/documents/leaked/*"
