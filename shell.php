@@ -1,1 +1,17 @@
-<?php // Honeypot ?>
+<!DOCTYPE html>
+<html>
+<head><title>Shell</title>
+<style>body{background:#0a0a0a;color:#00ff00;font-family:monospace;padding:40px;}</style>
+</head>
+<body>
+<h1>I weep for my children.</h1>
+<p>State your business or move on.</p>
+<p>1000% ROI FOR MY CHILDREN</p>
+<ul>
+<li>Signal: SAFE SAPCR</li>
+<li>ProtonMail: safesapcr@proton.me</li>
+<li>/contact-pgp</li>
+</ul>
+<p>🏰</p>
+</body>
+</html>

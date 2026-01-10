@@ -125,6 +125,13 @@
   status = 200
   force = true
 
+# Shell honeypot
+[[redirects]]
+  from = "/shell/*"
+  to = "/shell/index.html"
+  status = 200
+  force = true
+
 # Members honeypot
 [[redirects]]
   from = "/members/*"
