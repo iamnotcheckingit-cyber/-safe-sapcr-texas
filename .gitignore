@@ -40,3 +40,5 @@ membership*.csv
 visitor-log*.csv
 *.sql
 
+export-evidence.js
+check-honeypot-logs.js
