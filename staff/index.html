@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Staff Portal | SAFE SAPCR Texas</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- Auth0 SDK -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        /* Auth Gate */
+        .auth-gate {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            text-align: center;
+        }
+        .auth-gate h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+        }
+        .auth-gate p {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+        .auth-gate .btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .auth-gate .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+        }
+        .access-denied {
+            background: #7f1d1d;
+            border: 1px solid #dc2626;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        /* Portal Layout */
+        .portal { display: none; }
+        .portal.active { display: block; }
+
+        .portal-header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #475569;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .portal-header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .portal-header h1 .shield {
+            font-size: 1.75rem;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #3b82f6;
+        }
+        .user-name {
+            font-weight: 600;
+        }
+        .user-role {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .btn-logout {
+            background: #475569;
+            color: #e2e8f0;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        .btn-logout:hover { background: #64748b; }
+
+        .portal-nav {
+            background: #1e293b;
+            padding: 1rem 2rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .portal-nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .portal-nav a:hover, .portal-nav a.active {
+            background: #334155;
+            color: #f1f5f9;
+        }
+        .portal-nav a.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .portal-content {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #334155;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: #3b82f6;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #94a3b8;
+            margin: 0;
+        }
+        .card-icon {
+            font-size: 1.5rem;
+        }
+        .card-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin: 0.5rem 0;
+        }
+        .card-change {
+            font-size: 0.875rem;
+            color: #22c55e;
+        }
+        .card-change.negative { color: #ef4444; }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .action-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: #e2e8f0;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .action-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.15);
+        }
+        .action-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .action-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+        .action-desc {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .section-header h2 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: #f1f5f9;
+        }
+
+        /* Activity Feed */
+        .activity-feed {
+            background: #1e293b;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+        .activity-item {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .activity-item:last-child { border-bottom: none; }
+        .activity-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .activity-icon.probe { background: #7f1d1d; }
+        .activity-icon.member { background: #14532d; }
+        .activity-icon.petition { background: #1e3a8a; }
+        .activity-content { flex: 1; }
+        .activity-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        .activity-meta {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        /* Loading */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            color: #64748b;
+        }
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #334155;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.75rem;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <!-- Auth Gate -->
+    <div class="auth-gate" id="authGate">
+        <h1>SAFE SAPCR Staff Portal</h1>
+        <p>Authorized personnel only. Please authenticate to continue.</p>
+        <button class="btn" id="loginBtn">Sign In with Auth0</button>
+        <div class="access-denied" id="accessDenied" style="display: none;">
+            <strong>Access Denied</strong><br>
+            Your account does not have staff privileges. Contact an administrator.
+        </div>
+    </div>
+
+    <!-- Staff Portal -->
+    <div class="portal" id="portal">
+        <header class="portal-header">
+            <h1><span class="shield">🛡️</span> Staff Portal</h1>
+            <div class="user-info">
+                <img class="user-avatar" id="userAvatar" src="" alt="">
+                <div>
+                    <div class="user-name" id="userName">Loading...</div>
+                    <div class="user-role" id="userRole">Staff</div>
+                </div>
+                <button class="btn-logout" id="logoutBtn">Sign Out</button>
+            </div>
+        </header>
+
+        <nav class="portal-nav">
+            <a href="/staff/" class="active">Dashboard</a>
+            <a href="/staff/evidence">Evidence Vault</a>
+            <a href="/staff/comms">Internal Comms</a>
+            <a href="/godmode">Admin Panel</a>
+            <a href="/outreach">Media Outreach</a>
+            <a href="/" target="_blank">Public Site ↗</a>
+        </nav>
+
+        <main class="portal-content">
+            <div class="section-header">
+                <h2>Operations Overview</h2>
+                <span id="lastUpdate" style="color: #64748b; font-size: 0.875rem;"></span>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Honeypot Probes (24h)</h3>
+                        <span class="card-icon">🎯</span>
+                    </div>
+                    <div class="card-value" id="probeCount">--</div>
+                    <div class="card-change" id="probeChange">Loading...</div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Petition Signatures</h3>
+                        <span class="card-icon">📝</span>
+                    </div>
+                    <div class="card-value" id="signatureCount">--</div>
+                    <div class="card-change" id="signatureChange">Loading...</div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Active Members</h3>
+                        <span class="card-icon">👥</span>
+                    </div>
+                    <div class="card-value" id="memberCount">--</div>
+                    <div class="card-change" id="memberChange">Loading...</div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Emails Sent (7d)</h3>
+                        <span class="card-icon">📧</span>
+                    </div>
+                    <div class="card-value" id="emailCount">--</div>
+                    <div class="card-change" id="emailChange">Loading...</div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>Quick Actions</h2>
+            </div>
+
+            <div class="quick-actions">
+                <a href="/staff/evidence" class="action-card">
+                    <div class="action-icon">🔍</div>
+                    <div class="action-title">Evidence Vault</div>
+                    <div class="action-desc">View honeypot data & export reports</div>
+                </a>
+                <a href="/staff/comms" class="action-card">
+                    <div class="action-icon">📢</div>
+                    <div class="action-title">Internal Comms</div>
+                    <div class="action-desc">Announcements & task board</div>
+                </a>
+                <a href="/outreach" class="action-card">
+                    <div class="action-icon">📨</div>
+                    <div class="action-title">Media Outreach</div>
+                    <div class="action-desc">Contact journalists & outlets</div>
+                </a>
+                <a href="/godmode" class="action-card">
+                    <div class="action-icon">⚙️</div>
+                    <div class="action-title">Admin Panel</div>
+                    <div class="action-desc">Member management & settings</div>
+                </a>
+            </div>
+
+            <div class="section-header" style="margin-top: 2rem;">
+                <h2>Recent Activity</h2>
+            </div>
+
+            <div class="activity-feed" id="activityFeed">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading activity...
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const AUTH0_DOMAIN = 'dev-rdmu3fhvd2ymxyq4.us.auth0.com';
+        const AUTH0_CLIENT_ID = 'EtWaElBhwQtSRmUVVEDPT4UH8UfzkUX3';
+        const SUPABASE_URL = 'https://uynnupaoafbwouvgcedj.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_a5-eDlQRhKJkiuDPV0R0pA_TwLXKDyn';
+
+        // Staff email whitelist (temporary until roles in Auth0)
+        const STAFF_EMAILS = [
+            'iamnotcheckingit@gmail.com',
+            'info@safesapcrtx.org',
+            'admin@safesapcrtx.org'
+        ];
+
+        let auth0Client = null;
+        let supabase = null;
+
+        async function init() {
+            // Initialize Supabase
+            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+            // Initialize Auth0
+            auth0Client = await auth0.createAuth0Client({
+                domain: AUTH0_DOMAIN,
+                clientId: AUTH0_CLIENT_ID,
+                authorizationParams: {
+                    redirect_uri: window.location.origin + '/staff/'
+                },
+                cacheLocation: 'localstorage'
+            });
+
+            // Handle callback
+            if (window.location.search.includes('code=')) {
+                await auth0Client.handleRedirectCallback();
+                window.history.replaceState({}, document.title, '/staff/');
+            }
+
+            // Check auth
+            const isAuthenticated = await auth0Client.isAuthenticated();
+
+            if (isAuthenticated) {
+                const user = await auth0Client.getUser();
+
+                // Check if user is staff
+                if (STAFF_EMAILS.includes(user.email)) {
+                    showPortal(user);
+                    loadDashboardData();
+                } else {
+                    document.getElementById('accessDenied').style.display = 'block';
+                }
+            }
+
+            // Login button
+            document.getElementById('loginBtn').addEventListener('click', () => {
+                auth0Client.loginWithRedirect();
+            });
+
+            // Logout button
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                auth0Client.logout({
+                    logoutParams: { returnTo: window.location.origin }
+                });
+            });
+        }
+
+        function showPortal(user) {
+            document.getElementById('authGate').style.display = 'none';
+            document.getElementById('portal').classList.add('active');
+
+            document.getElementById('userName').textContent = user.name || user.email;
+            document.getElementById('userAvatar').src = user.picture || '';
+            document.getElementById('userRole').textContent = 'Staff Administrator';
+        }
+
+        async function loadDashboardData() {
+            const now = new Date();
+            document.getElementById('lastUpdate').textContent = 'Last updated: ' + now.toLocaleTimeString();
+
+            // Load honeypot probes (24h)
+            const yesterday = new Date(now - 24 * 60 * 60 * 1000).toISOString();
+            const { count: probeCount } = await supabase
+                .from('honeypot_log')
+                .select('*', { count: 'exact', head: true })
+                .gte('timestamp', yesterday);
+
+            document.getElementById('probeCount').textContent = probeCount || 0;
+            document.getElementById('probeChange').textContent = probeCount > 0 ? `${probeCount} in last 24 hours` : 'No recent probes';
+
+            // Load petition signatures
+            const { count: sigCount } = await supabase
+                .from('petition_signatures')
+                .select('*', { count: 'exact', head: true });
+
+            document.getElementById('signatureCount').textContent = sigCount || 0;
+            document.getElementById('signatureChange').textContent = 'Total signatures';
+
+            // Load members
+            const { count: memberCount } = await supabase
+                .from('members')
+                .select('*', { count: 'exact', head: true });
+
+            document.getElementById('memberCount').textContent = memberCount || 0;
+            document.getElementById('memberChange').textContent = 'Registered members';
+
+            // Load emails (7d)
+            const weekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000).toISOString();
+            const { count: emailCount } = await supabase
+                .from('outreach_log')
+                .select('*', { count: 'exact', head: true })
+                .gte('sent_at', weekAgo);
+
+            document.getElementById('emailCount').textContent = emailCount || 0;
+            document.getElementById('emailChange').textContent = 'Sent this week';
+
+            // Load recent activity
+            loadRecentActivity();
+        }
+
+        async function loadRecentActivity() {
+            const feed = document.getElementById('activityFeed');
+            const activities = [];
+
+            // Get recent probes
+            const { data: probes } = await supabase
+                .from('honeypot_log')
+                .select('timestamp, ip, path')
+                .order('timestamp', { ascending: false })
+                .limit(5);
+
+            if (probes) {
+                probes.forEach(p => {
+                    activities.push({
+                        type: 'probe',
+                        icon: '🎯',
+                        title: `Honeypot probe: ${p.path}`,
+                        meta: `${p.ip} • ${new Date(p.timestamp).toLocaleString()}`,
+                        time: new Date(p.timestamp)
+                    });
+                });
+            }
+
+            // Get recent signatures
+            const { data: sigs } = await supabase
+                .from('petition_signatures')
+                .select('created_at, display_name, city, state')
+                .order('created_at', { ascending: false })
+                .limit(5);
+
+            if (sigs) {
+                sigs.forEach(s => {
+                    activities.push({
+                        type: 'petition',
+                        icon: '📝',
+                        title: `New signature: ${s.display_name}`,
+                        meta: `${s.city}, ${s.state} • ${new Date(s.created_at).toLocaleString()}`,
+                        time: new Date(s.created_at)
+                    });
+                });
+            }
+
+            // Sort by time
+            activities.sort((a, b) => b.time - a.time);
+
+            // Render
+            if (activities.length === 0) {
+                feed.innerHTML = '<div class="activity-item"><div class="activity-content"><div class="activity-title">No recent activity</div></div></div>';
+            } else {
+                feed.innerHTML = activities.slice(0, 10).map(a => `
+                    <div class="activity-item">
+                        <div class="activity-icon ${a.type}">${a.icon}</div>
+                        <div class="activity-content">
+                            <div class="activity-title">${a.title}</div>
+                            <div class="activity-meta">${a.meta}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

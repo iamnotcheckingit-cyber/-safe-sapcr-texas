@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Internal Comms | Staff Portal | SAFE SAPCR Texas</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Open Sans', -apple-system, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .auth-gate {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            text-align: center;
+        }
+        .auth-gate h1 { font-size: 2rem; margin-bottom: 1rem; color: #f1f5f9; }
+        .auth-gate p { color: #94a3b8; margin-bottom: 2rem; }
+        .auth-gate .btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .portal { display: none; }
+        .portal.active { display: block; }
+
+        .portal-header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #475569;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .portal-header h1 { margin: 0; font-size: 1.5rem; }
+        .btn-logout {
+            background: #475569;
+            color: #e2e8f0;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .portal-nav {
+            background: #1e293b;
+            padding: 1rem 2rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .portal-nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        .portal-nav a:hover, .portal-nav a.active {
+            background: #334155;
+            color: #f1f5f9;
+        }
+        .portal-nav a.active { background: #3b82f6; color: white; }
+
+        .portal-content {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .comms-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+        }
+        @media (max-width: 1024px) {
+            .comms-grid { grid-template-columns: 1fr; }
+        }
+
+        .panel {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .panel-header {
+            background: #0f172a;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .panel-header h2 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #f1f5f9;
+        }
+        .panel-body { padding: 1.5rem; }
+
+        .btn {
+            background: #3b82f6;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        .btn:hover { background: #2563eb; }
+        .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.8rem; }
+        .btn-success { background: #059669; }
+        .btn-danger { background: #dc2626; }
+        .btn-secondary { background: #475569; }
+
+        /* Announcements */
+        .announcement {
+            border-bottom: 1px solid #334155;
+            padding: 1rem 0;
+        }
+        .announcement:last-child { border-bottom: none; }
+        .announcement-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        .announcement-title {
+            font-weight: 600;
+            color: #f1f5f9;
+            margin: 0;
+        }
+        .announcement-meta {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        .announcement-content {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .priority-high { border-left: 3px solid #ef4444; padding-left: 1rem; }
+        .priority-medium { border-left: 3px solid #f59e0b; padding-left: 1rem; }
+        .priority-low { border-left: 3px solid #22c55e; padding-left: 1rem; }
+
+        /* Task Board */
+        .task-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        @media (max-width: 768px) {
+            .task-columns { grid-template-columns: 1fr; }
+        }
+        .task-column {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 300px;
+        }
+        .task-column-header {
+            font-weight: 600;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .task-column-header .count {
+            background: #334155;
+            padding: 0.125rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+        }
+        .task-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            cursor: grab;
+        }
+        .task-card:hover { border-color: #3b82f6; }
+        .task-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+        }
+        .task-meta {
+            font-size: 0.75rem;
+            color: #64748b;
+            display: flex;
+            justify-content: space-between;
+        }
+        .task-assignee {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Secure Messaging */
+        .messages-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .message {
+            padding: 0.75rem;
+            border-bottom: 1px solid #334155;
+        }
+        .message:last-child { border-bottom: none; }
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.25rem;
+        }
+        .message-sender {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #f1f5f9;
+        }
+        .message-time {
+            font-size: 0.7rem;
+            color: #64748b;
+        }
+        .message-content {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+        .message-input {
+            display: flex;
+            gap: 0.5rem;
+            padding: 1rem;
+            border-top: 1px solid #334155;
+        }
+        .message-input input {
+            flex: 1;
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: #e2e8f0;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .message-input input:focus { outline: none; border-color: #3b82f6; }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: #1e293b;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            margin: 1rem;
+        }
+        .modal-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h3 { margin: 0; color: #f1f5f9; }
+        .modal-close {
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .modal-body { padding: 1.5rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: #e2e8f0;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #334155;
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-gate" id="authGate">
+        <h1>📢 Internal Comms</h1>
+        <p>Staff communications hub. Please authenticate.</p>
+        <button class="btn" id="loginBtn">Sign In</button>
+    </div>
+
+    <div class="portal" id="portal">
+        <header class="portal-header">
+            <h1>📢 Internal Comms</h1>
+            <button class="btn-logout" id="logoutBtn">Sign Out</button>
+        </header>
+
+        <nav class="portal-nav">
+            <a href="/staff/">Dashboard</a>
+            <a href="/staff/evidence">Evidence Vault</a>
+            <a href="/staff/comms" class="active">Internal Comms</a>
+            <a href="/godmode">Admin Panel</a>
+        </nav>
+
+        <main class="portal-content">
+            <div class="comms-grid">
+                <div>
+                    <!-- Announcements -->
+                    <div class="panel" style="margin-bottom: 2rem;">
+                        <div class="panel-header">
+                            <h2>📌 Announcements</h2>
+                            <button class="btn btn-sm" id="newAnnouncementBtn">+ New</button>
+                        </div>
+                        <div class="panel-body" id="announcementsList">
+                            <div class="announcement priority-high">
+                                <div class="announcement-header">
+                                    <h4 class="announcement-title">OPSEC Alert: Key Rotation Complete</h4>
+                                    <span class="announcement-meta">Jan 10, 2026</span>
+                                </div>
+                                <p class="announcement-content">Supabase service key has been rotated and deployed. All functions operational. Evidence vault continues logging probes.</p>
+                            </div>
+                            <div class="announcement priority-medium">
+                                <div class="announcement-header">
+                                    <h4 class="announcement-title">Staff Portal Launch</h4>
+                                    <span class="announcement-meta">Jan 10, 2026</span>
+                                </div>
+                                <p class="announcement-content">Welcome to the new staff portal! Features include Evidence Vault, Internal Comms, and integrated dashboards. Report any issues.</p>
+                            </div>
+                            <div class="announcement priority-low">
+                                <div class="announcement-header">
+                                    <h4 class="announcement-title">PGP Key Available</h4>
+                                    <span class="announcement-meta">Jan 10, 2026</span>
+                                </div>
+                                <p class="announcement-content">Organization PGP key now available at /contact-pgp for encrypted communications. Expires Jan 2028.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Task Board -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h2>📋 Task Board</h2>
+                            <button class="btn btn-sm" id="newTaskBtn">+ Add Task</button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="task-columns">
+                                <div class="task-column" id="todoColumn">
+                                    <div class="task-column-header">
+                                        <span>To Do</span>
+                                        <span class="count" id="todoCount">3</span>
+                                    </div>
+                                    <div class="task-card">
+                                        <div class="task-title">Review honeypot evidence patterns</div>
+                                        <div class="task-meta">
+                                            <span class="task-assignee">Scott</span>
+                                            <span>High</span>
+                                        </div>
+                                    </div>
+                                    <div class="task-card">
+                                        <div class="task-title">Draft media talking points</div>
+                                        <div class="task-meta">
+                                            <span class="task-assignee">Team</span>
+                                            <span>Medium</span>
+                                        </div>
+                                    </div>
+                                    <div class="task-card">
+                                        <div class="task-title">Update legislation timeline</div>
+                                        <div class="task-meta">
+                                            <span class="task-assignee">Scott</span>
+                                            <span>Low</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="task-column" id="inProgressColumn">
+                                    <div class="task-column-header">
+                                        <span>In Progress</span>
+                                        <span class="count" id="progressCount">2</span>
+                                    </div>
+                                    <div class="task-card">
+                                        <div class="task-title">Staff portal development</div>
+                                        <div class="task-meta">
+                                            <span class="task-assignee">Dev</span>
+                                            <span>High</span>
+                                        </div>
+                                    </div>
+                                    <div class="task-card">
+                                        <div class="task-title">Court exhibit preparation</div>
+                                        <div class="task-meta">
+                                            <span class="task-assignee">Legal</span>
+                                            <span>High</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="task-column" id="doneColumn">
+                                    <div class="task-column-header">
+                                        <span>Done</span>
+                                        <span class="count" id="doneCount">4</span>
+                                    </div>
+                                    <div class="task-card">
+                                        <div class="task-title">Rotate Supabase keys</div>
+                                        <div class="task-meta">
+                                            <span class="task-assignee">Scott</span>
+                                            <span>✓</span>
+                                        </div>
+                                    </div>
+                                    <div class="task-card">
+                                        <div class="task-title">Deploy honeypot logging</div>
+                                        <div class="task-meta">
+                                            <span class="task-assignee">Dev</span>
+                                            <span>✓</span>
+                                        </div>
+                                    </div>
+                                    <div class="task-card">
+                                        <div class="task-title">Add psychological headers</div>
+                                        <div class="task-meta">
+                                            <span class="task-assignee">Dev</span>
+                                            <span>✓</span>
+                                        </div>
+                                    </div>
+                                    <div class="task-card">
+                                        <div class="task-title">Create PGP keys</div>
+                                        <div class="task-meta">
+                                            <span class="task-assignee">Scott</span>
+                                            <span>✓</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secure Messaging -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>💬 Secure Chat</h2>
+                    </div>
+                    <div class="messages-list" id="messagesList">
+                        <div class="message">
+                            <div class="message-header">
+                                <span class="message-sender">Scott</span>
+                                <span class="message-time">Today 2:30 PM</span>
+                            </div>
+                            <div class="message-content">Staff portal is live. All systems operational.</div>
+                        </div>
+                        <div class="message">
+                            <div class="message-header">
+                                <span class="message-sender">System</span>
+                                <span class="message-time">Today 1:45 PM</span>
+                            </div>
+                            <div class="message-content">⚠️ 34 honeypot probes detected in the last 24 hours.</div>
+                        </div>
+                        <div class="message">
+                            <div class="message-header">
+                                <span class="message-sender">Scott</span>
+                                <span class="message-time">Today 12:00 PM</span>
+                            </div>
+                            <div class="message-content">Key rotation complete. All functions redeployed.</div>
+                        </div>
+                    </div>
+                    <div class="message-input">
+                        <input type="text" id="messageInput" placeholder="Type a message...">
+                        <button class="btn" id="sendMessageBtn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- New Announcement Modal -->
+    <div class="modal-overlay" id="announcementModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>New Announcement</h3>
+                <button class="modal-close" onclick="closeModal('announcementModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="announcementTitle" placeholder="Announcement title">
+                </div>
+                <div class="form-group">
+                    <label>Content</label>
+                    <textarea id="announcementContent" placeholder="Write your announcement..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Priority</label>
+                    <select id="announcementPriority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('announcementModal')">Cancel</button>
+                <button class="btn" id="postAnnouncementBtn">Post Announcement</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Task Modal -->
+    <div class="modal-overlay" id="taskModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>New Task</h3>
+                <button class="modal-close" onclick="closeModal('taskModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Task Title</label>
+                    <input type="text" id="taskTitle" placeholder="What needs to be done?">
+                </div>
+                <div class="form-group">
+                    <label>Assignee</label>
+                    <input type="text" id="taskAssignee" placeholder="Who's responsible?">
+                </div>
+                <div class="form-group">
+                    <label>Priority</label>
+                    <select id="taskPriority">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('taskModal')">Cancel</button>
+                <button class="btn" id="addTaskBtn">Add Task</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const AUTH0_DOMAIN = 'dev-rdmu3fhvd2ymxyq4.us.auth0.com';
+        const AUTH0_CLIENT_ID = 'EtWaElBhwQtSRmUVVEDPT4UH8UfzkUX3';
+        const STAFF_EMAILS = ['iamnotcheckingit@gmail.com', 'info@safesapcrtx.org', 'admin@safesapcrtx.org'];
+
+        let auth0Client = null;
+        let currentUser = null;
+
+        async function init() {
+            auth0Client = await auth0.createAuth0Client({
+                domain: AUTH0_DOMAIN,
+                clientId: AUTH0_CLIENT_ID,
+                authorizationParams: { redirect_uri: window.location.origin + '/staff/comms' },
+                cacheLocation: 'localstorage'
+            });
+
+            if (window.location.search.includes('code=')) {
+                await auth0Client.handleRedirectCallback();
+                window.history.replaceState({}, document.title, '/staff/comms');
+            }
+
+            const isAuthenticated = await auth0Client.isAuthenticated();
+            if (isAuthenticated) {
+                currentUser = await auth0Client.getUser();
+                if (STAFF_EMAILS.includes(currentUser.email)) {
+                    showPortal();
+                }
+            }
+
+            document.getElementById('loginBtn').addEventListener('click', () => auth0Client.loginWithRedirect());
+            document.getElementById('logoutBtn').addEventListener('click', () => auth0Client.logout({ logoutParams: { returnTo: window.location.origin } }));
+
+            // Modal handlers
+            document.getElementById('newAnnouncementBtn').addEventListener('click', () => openModal('announcementModal'));
+            document.getElementById('newTaskBtn').addEventListener('click', () => openModal('taskModal'));
+            document.getElementById('postAnnouncementBtn').addEventListener('click', postAnnouncement);
+            document.getElementById('addTaskBtn').addEventListener('click', addTask);
+            document.getElementById('sendMessageBtn').addEventListener('click', sendMessage);
+            document.getElementById('messageInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendMessage();
+            });
+        }
+
+        function showPortal() {
+            document.getElementById('authGate').style.display = 'none';
+            document.getElementById('portal').classList.add('active');
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function postAnnouncement() {
+            const title = document.getElementById('announcementTitle').value;
+            const content = document.getElementById('announcementContent').value;
+            const priority = document.getElementById('announcementPriority').value;
+
+            if (!title || !content) return;
+
+            const list = document.getElementById('announcementsList');
+            const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+            list.insertAdjacentHTML('afterbegin', `
+                <div class="announcement priority-${priority}">
+                    <div class="announcement-header">
+                        <h4 class="announcement-title">${title}</h4>
+                        <span class="announcement-meta">${date}</span>
+                    </div>
+                    <p class="announcement-content">${content}</p>
+                </div>
+            `);
+
+            closeModal('announcementModal');
+            document.getElementById('announcementTitle').value = '';
+            document.getElementById('announcementContent').value = '';
+        }
+
+        function addTask() {
+            const title = document.getElementById('taskTitle').value;
+            const assignee = document.getElementById('taskAssignee').value;
+            const priority = document.getElementById('taskPriority').value;
+
+            if (!title) return;
+
+            const column = document.getElementById('todoColumn');
+            column.insertAdjacentHTML('beforeend', `
+                <div class="task-card">
+                    <div class="task-title">${title}</div>
+                    <div class="task-meta">
+                        <span class="task-assignee">${assignee || 'Unassigned'}</span>
+                        <span>${priority}</span>
+                    </div>
+                </div>
+            `);
+
+            // Update count
+            const count = document.getElementById('todoCount');
+            count.textContent = parseInt(count.textContent) + 1;
+
+            closeModal('taskModal');
+            document.getElementById('taskTitle').value = '';
+            document.getElementById('taskAssignee').value = '';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const content = input.value.trim();
+            if (!content) return;
+
+            const list = document.getElementById('messagesList');
+            const time = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+
+            list.insertAdjacentHTML('beforeend', `
+                <div class="message">
+                    <div class="message-header">
+                        <span class="message-sender">${currentUser?.given_name || 'You'}</span>
+                        <span class="message-time">Today ${time}</span>
+                    </div>
+                    <div class="message-content">${content}</div>
+                </div>
+            `);
+
+            list.scrollTop = list.scrollHeight;
+            input.value = '';
+        }
+
+        init();
+    </script>
+</body>
+</html>

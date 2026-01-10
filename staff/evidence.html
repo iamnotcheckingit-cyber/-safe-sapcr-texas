@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Evidence Vault | Staff Portal | SAFE SAPCR Texas</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Open Sans', -apple-system, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .auth-gate {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            text-align: center;
+        }
+        .auth-gate h1 { font-size: 2rem; margin-bottom: 1rem; color: #f1f5f9; }
+        .auth-gate p { color: #94a3b8; margin-bottom: 2rem; }
+        .auth-gate .btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .portal { display: none; }
+        .portal.active { display: block; }
+
+        .portal-header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #475569;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .portal-header h1 { margin: 0; font-size: 1.5rem; }
+        .btn-logout {
+            background: #475569;
+            color: #e2e8f0;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .portal-nav {
+            background: #1e293b;
+            padding: 1rem 2rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .portal-nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        .portal-nav a:hover, .portal-nav a.active {
+            background: #334155;
+            color: #f1f5f9;
+        }
+        .portal-nav a.active { background: #3b82f6; color: white; }
+
+        .portal-content {
+            padding: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .toolbar input, .toolbar select {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #e2e8f0;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .toolbar input:focus, .toolbar select:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        .btn {
+            background: #3b82f6;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn:hover { background: #2563eb; }
+        .btn-secondary { background: #475569; }
+        .btn-success { background: #059669; }
+        .btn-danger { background: #dc2626; }
+
+        .stats-bar {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: #1e293b;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .evidence-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #334155;
+        }
+        .evidence-table th, .evidence-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+            font-size: 0.875rem;
+        }
+        .evidence-table th {
+            background: #0f172a;
+            font-weight: 600;
+            color: #94a3b8;
+            position: sticky;
+            top: 0;
+        }
+        .evidence-table tr:hover { background: #334155; }
+        .evidence-table tr:last-child td { border-bottom: none; }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .badge-cloudflare { background: #f97316; color: white; }
+        .badge-tor { background: #7c3aed; color: white; }
+        .badge-vpn { background: #ec4899; color: white; }
+        .badge-direct { background: #64748b; color: white; }
+        .badge-warp { background: #06b6d4; color: white; }
+
+        .ip-cell {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+        }
+        .path-cell {
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #fbbf24;
+        }
+        .timestamp-cell {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .table-wrapper {
+            max-height: 70vh;
+            overflow-y: auto;
+            border-radius: 12px;
+        }
+
+        .export-panel {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        .export-panel h3 {
+            margin: 0 0 1rem;
+            color: #f1f5f9;
+        }
+        .export-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            color: #64748b;
+        }
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #334155;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.75rem;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .pagination {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        .pagination button {
+            background: #334155;
+            color: #e2e8f0;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .pagination button:hover { background: #475569; }
+        .pagination button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .pagination .current { background: #3b82f6; }
+    </style>
+</head>
+<body>
+    <div class="auth-gate" id="authGate">
+        <h1>🔐 Evidence Vault</h1>
+        <p>Authorized access only. Please authenticate.</p>
+        <button class="btn" id="loginBtn">Sign In</button>
+    </div>
+
+    <div class="portal" id="portal">
+        <header class="portal-header">
+            <h1>🔍 Evidence Vault</h1>
+            <button class="btn-logout" id="logoutBtn">Sign Out</button>
+        </header>
+
+        <nav class="portal-nav">
+            <a href="/staff/">Dashboard</a>
+            <a href="/staff/evidence" class="active">Evidence Vault</a>
+            <a href="/staff/comms">Internal Comms</a>
+            <a href="/godmode">Admin Panel</a>
+        </nav>
+
+        <main class="portal-content">
+            <div class="toolbar">
+                <input type="text" id="searchIP" placeholder="Filter by IP..." style="width: 150px;">
+                <input type="text" id="searchPath" placeholder="Filter by path..." style="width: 200px;">
+                <select id="filterType">
+                    <option value="">All Sources</option>
+                    <option value="cloudflare">Cloudflare</option>
+                    <option value="warp">WARP</option>
+                    <option value="tor">TOR</option>
+                    <option value="direct">Direct</option>
+                </select>
+                <select id="timeRange">
+                    <option value="24h">Last 24 hours</option>
+                    <option value="7d">Last 7 days</option>
+                    <option value="30d">Last 30 days</option>
+                    <option value="all" selected>All time</option>
+                </select>
+                <button class="btn" id="refreshBtn">🔄 Refresh</button>
+            </div>
+
+            <div class="stats-bar" id="statsBar">
+                <div class="stat">
+                    <div class="stat-value" id="totalProbes">--</div>
+                    <div class="stat-label">Total Probes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="uniqueIPs">--</div>
+                    <div class="stat-label">Unique IPs</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="cloudflareCount">--</div>
+                    <div class="stat-label">Cloudflare</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="pathsTargeted">--</div>
+                    <div class="stat-label">Paths Targeted</div>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="evidence-table">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>IP Address</th>
+                            <th>Source</th>
+                            <th>Method</th>
+                            <th>Path</th>
+                            <th>User Agent</th>
+                            <th>Country</th>
+                        </tr>
+                    </thead>
+                    <tbody id="evidenceBody">
+                        <tr><td colspan="7" class="loading"><div class="spinner"></div>Loading evidence...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination" id="pagination"></div>
+
+            <div class="export-panel">
+                <h3>📤 Export Evidence</h3>
+                <div class="export-options">
+                    <button class="btn btn-success" id="exportCSV">Export CSV</button>
+                    <button class="btn btn-secondary" id="exportJSON">Export JSON</button>
+                    <button class="btn" id="generateReport">Generate Court Report</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const AUTH0_DOMAIN = 'dev-rdmu3fhvd2ymxyq4.us.auth0.com';
+        const AUTH0_CLIENT_ID = 'EtWaElBhwQtSRmUVVEDPT4UH8UfzkUX3';
+        const SUPABASE_URL = 'https://uynnupaoafbwouvgcedj.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_a5-eDlQRhKJkiuDPV0R0pA_TwLXKDyn';
+
+        const STAFF_EMAILS = ['iamnotcheckingit@gmail.com', 'info@safesapcrtx.org', 'admin@safesapcrtx.org'];
+
+        let auth0Client = null;
+        let supabase = null;
+        let allData = [];
+        let currentPage = 1;
+        const pageSize = 50;
+
+        async function init() {
+            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+            auth0Client = await auth0.createAuth0Client({
+                domain: AUTH0_DOMAIN,
+                clientId: AUTH0_CLIENT_ID,
+                authorizationParams: { redirect_uri: window.location.origin + '/staff/evidence' },
+                cacheLocation: 'localstorage'
+            });
+
+            if (window.location.search.includes('code=')) {
+                await auth0Client.handleRedirectCallback();
+                window.history.replaceState({}, document.title, '/staff/evidence');
+            }
+
+            const isAuthenticated = await auth0Client.isAuthenticated();
+            if (isAuthenticated) {
+                const user = await auth0Client.getUser();
+                if (STAFF_EMAILS.includes(user.email)) {
+                    showPortal();
+                    loadEvidence();
+                }
+            }
+
+            document.getElementById('loginBtn').addEventListener('click', () => auth0Client.loginWithRedirect());
+            document.getElementById('logoutBtn').addEventListener('click', () => auth0Client.logout({ logoutParams: { returnTo: window.location.origin } }));
+            document.getElementById('refreshBtn').addEventListener('click', loadEvidence);
+            document.getElementById('exportCSV').addEventListener('click', exportCSV);
+            document.getElementById('exportJSON').addEventListener('click', exportJSON);
+            document.getElementById('generateReport').addEventListener('click', generateReport);
+
+            ['searchIP', 'searchPath', 'filterType', 'timeRange'].forEach(id => {
+                document.getElementById(id).addEventListener('change', () => { currentPage = 1; renderTable(); });
+                document.getElementById(id).addEventListener('input', () => { currentPage = 1; renderTable(); });
+            });
+        }
+
+        function showPortal() {
+            document.getElementById('authGate').style.display = 'none';
+            document.getElementById('portal').classList.add('active');
+        }
+
+        async function loadEvidence() {
+            const { data, error } = await supabase
+                .from('honeypot_log')
+                .select('*')
+                .order('timestamp', { ascending: false });
+
+            if (error) {
+                console.error('Error loading evidence:', error);
+                return;
+            }
+
+            allData = data || [];
+            updateStats();
+            renderTable();
+        }
+
+        function getSourceType(ip, botSignals) {
+            if (botSignals?.includes('tor')) return 'tor';
+            if (botSignals?.includes('warp')) return 'warp';
+            if (ip?.startsWith('104.') || ip?.startsWith('162.158.') || ip?.startsWith('172.70.')) return 'cloudflare';
+            return 'direct';
+        }
+
+        function updateStats() {
+            const filtered = getFilteredData();
+            document.getElementById('totalProbes').textContent = filtered.length;
+            document.getElementById('uniqueIPs').textContent = new Set(filtered.map(d => d.ip)).size;
+            document.getElementById('cloudflareCount').textContent = filtered.filter(d => getSourceType(d.ip, d.bot_signals) === 'cloudflare').length;
+            document.getElementById('pathsTargeted').textContent = new Set(filtered.map(d => d.path)).size;
+        }
+
+        function getFilteredData() {
+            const ipFilter = document.getElementById('searchIP').value.toLowerCase();
+            const pathFilter = document.getElementById('searchPath').value.toLowerCase();
+            const typeFilter = document.getElementById('filterType').value;
+            const timeRange = document.getElementById('timeRange').value;
+
+            let cutoff = null;
+            const now = new Date();
+            if (timeRange === '24h') cutoff = new Date(now - 24 * 60 * 60 * 1000);
+            else if (timeRange === '7d') cutoff = new Date(now - 7 * 24 * 60 * 60 * 1000);
+            else if (timeRange === '30d') cutoff = new Date(now - 30 * 24 * 60 * 60 * 1000);
+
+            return allData.filter(d => {
+                if (ipFilter && !d.ip?.toLowerCase().includes(ipFilter)) return false;
+                if (pathFilter && !d.path?.toLowerCase().includes(pathFilter)) return false;
+                if (typeFilter && getSourceType(d.ip, d.bot_signals) !== typeFilter) return false;
+                if (cutoff && new Date(d.timestamp) < cutoff) return false;
+                return true;
+            });
+        }
+
+        function renderTable() {
+            const filtered = getFilteredData();
+            updateStats();
+
+            const start = (currentPage - 1) * pageSize;
+            const pageData = filtered.slice(start, start + pageSize);
+
+            const tbody = document.getElementById('evidenceBody');
+            if (pageData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2rem; color: #64748b;">No evidence found</td></tr>';
+            } else {
+                tbody.innerHTML = pageData.map(d => {
+                    const source = getSourceType(d.ip, d.bot_signals);
+                    const badgeClass = source === 'cloudflare' ? 'badge-cloudflare' : source === 'warp' ? 'badge-warp' : source === 'tor' ? 'badge-tor' : 'badge-direct';
+                    return `
+                        <tr>
+                            <td class="timestamp-cell">${new Date(d.timestamp).toLocaleString()}</td>
+                            <td class="ip-cell">${d.ip || '-'}</td>
+                            <td><span class="badge ${badgeClass}">${source}</span></td>
+                            <td>${d.method || 'GET'}</td>
+                            <td class="path-cell" title="${d.path}">${d.path || '-'}</td>
+                            <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; font-size: 0.75rem;" title="${d.user_agent || ''}">${(d.user_agent || '-').substring(0, 40)}...</td>
+                            <td>${d.country || '-'}</td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+
+            renderPagination(filtered.length);
+        }
+
+        function renderPagination(total) {
+            const totalPages = Math.ceil(total / pageSize);
+            const pagination = document.getElementById('pagination');
+
+            if (totalPages <= 1) {
+                pagination.innerHTML = '';
+                return;
+            }
+
+            let html = `<button ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">← Prev</button>`;
+            html += `<button class="current">${currentPage} / ${totalPages}</button>`;
+            html += `<button ${currentPage === totalPages ? 'disabled' : ''} onclick="changePage(${currentPage + 1})">Next →</button>`;
+            pagination.innerHTML = html;
+        }
+
+        window.changePage = function(page) {
+            currentPage = page;
+            renderTable();
+        };
+
+        function exportCSV() {
+            const filtered = getFilteredData();
+            const headers = ['timestamp', 'ip', 'method', 'path', 'user_agent', 'country', 'referer', 'bot_signals'];
+            const csv = [
+                headers.join(','),
+                ...filtered.map(d => headers.map(h => `"${(d[h] || '').toString().replace(/"/g, '""')}"`).join(','))
+            ].join('\n');
+
+            downloadFile(csv, 'honeypot_evidence_' + new Date().toISOString().slice(0, 10) + '.csv', 'text/csv');
+        }
+
+        function exportJSON() {
+            const filtered = getFilteredData();
+            downloadFile(JSON.stringify(filtered, null, 2), 'honeypot_evidence_' + new Date().toISOString().slice(0, 10) + '.json', 'application/json');
+        }
+
+        function generateReport() {
+            const filtered = getFilteredData();
+            const uniqueIPs = [...new Set(filtered.map(d => d.ip))];
+            const paths = filtered.reduce((acc, d) => { acc[d.path] = (acc[d.path] || 0) + 1; return acc; }, {});
+
+            const report = `HONEYPOT EVIDENCE REPORT
+========================
+Case: SAFESAPCR Texas - Unauthorized Access Documentation
+Generated: ${new Date().toISOString()}
+Custodian: System Administrator
+
+EXECUTIVE SUMMARY
+-----------------
+Total Documented Probes: ${filtered.length}
+Unique Source IPs: ${uniqueIPs.length}
+Date Range: ${filtered.length > 0 ? new Date(filtered[filtered.length - 1].timestamp).toISOString() : 'N/A'} to ${filtered.length > 0 ? new Date(filtered[0].timestamp).toISOString() : 'N/A'}
+
+PATHS TARGETED
+--------------
+${Object.entries(paths).sort((a, b) => b[1] - a[1]).map(([p, c]) => `${c}x ${p}`).join('\n')}
+
+UNIQUE SOURCE IPs
+-----------------
+${uniqueIPs.join('\n')}
+
+EVIDENCE INTEGRITY
+------------------
+- Logs stored in Supabase PostgreSQL with row-level security
+- Timestamps are server-generated (not client-supplied)
+- IP addresses captured at edge (cannot be spoofed by client)
+- Chain of custody maintained via database audit log
+
+This report constitutes Exhibit A for discovery purposes.`;
+
+            downloadFile(report, 'honeypot_evidence_report_' + new Date().toISOString().slice(0, 10) + '.txt', 'text/plain');
+        }
+
+        function downloadFile(content, filename, type) {
+            const blob = new Blob([content], { type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        init();
+    </script>
+</body>
+</html>
