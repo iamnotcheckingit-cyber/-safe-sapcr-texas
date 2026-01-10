@@ -1,0 +1,39 @@
+/*
+  # Security Headers
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://ipapi.co;
+
+# Block common attack paths
+/wp-admin/*
+  X-Robots-Tag: noindex, nofollow
+
+/wp-content/*
+  X-Robots-Tag: noindex, nofollow
+
+/wp-includes/*
+  X-Robots-Tag: noindex, nofollow
+
+/wp-login.php
+  X-Robots-Tag: noindex, nofollow
+
+/xmlrpc.php
+  X-Robots-Tag: noindex, nofollow
+
+/.env
+  X-Robots-Tag: noindex, nofollow
+
+/admin/*
+  X-Robots-Tag: noindex, nofollow
+
+/phpmyadmin/*
+  X-Robots-Tag: noindex, nofollow
+
+/.git/*
+  X-Robots-Tag: noindex, nofollow
+
+/config/*
+  X-Robots-Tag: noindex, nofollow

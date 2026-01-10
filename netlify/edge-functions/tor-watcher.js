@@ -442,6 +442,16 @@ export default async (request, context) => {
     if (headerAnomalies.length) newHeaders.set('X-Header-Anomalies', headerAnomalies.join(','));
     if (vtReputation?.isBad) newHeaders.set('X-VT-Malicious', 'yes');
 
+    // Honeypot visitors get the message
+    if (isHoneypot) {
+        newHeaders.set('X-Welcome', 'Every-request-is-logged');
+        newHeaders.set('X-Honeypot-Status', 'Active');
+        newHeaders.set('X-Evidence-Grade', 'Court-admissible');
+        newHeaders.set('X-Message', 'We-see-you-Cloudflare-Worker');
+        newHeaders.set('X-Preservation-Notice', 'Filed-January-10-2026');
+        newHeaders.set('X-Contact', 'You-have-my-number-Im-always-just-a-phone-call-away');
+    }
+
     // Bad actors get noindex - don't let them pollute search results
     if (isSuspicious) {
         newHeaders.set('X-Robots-Tag', 'noindex, nofollow');

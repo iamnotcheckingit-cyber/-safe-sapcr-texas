@@ -1,0 +1,3 @@
+policyname,cmd,qual
+Auth can read,SELECT,true
+Service role only,ALL,(auth.role() = 'service_role'::text)

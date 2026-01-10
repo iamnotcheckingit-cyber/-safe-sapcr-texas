@@ -1,0 +1,25 @@
+name,ttl,type,value
+"safesapcrtx.org","3600","NETLIFY","safesapcr.netlify.app"
+"www.safesapcrtx.org","3600","NETLIFY","safesapcr.netlify.app"
+"safesapcrtx.org","3600","NETLIFYv6","safesapcr.netlify.app"
+"www.safesapcrtx.org","3600","NETLIFYv6","safesapcr.netlify.app"
+"safesapcrtx.org","3600","TXT","google-site-verification=1Oot0wyvdvYYIlPg1E_gab4mr77LlSEXgGSvgAek4Hg"
+"safesapcrtx.org","3600","MX","mx1.improvmx.com"
+"safesapcrtx.org","3600","MX","mx2.improvmx.com"
+"safesapcrtx.org","3600","TXT","v=spf1 include:spf.improvmx.com ~all"
+"safesapcrtx.org","3600","TXT","resend._domainkey |
+  p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDfBQyFSh9BBbi/O3Roszkaq8/j6J690MIAhUjsBVJYFCvhhHqiEElyDB08HHgGPgA6+0iOLrZ
+  QOGWOuac+DQRn0VQQJUM4uWIL3Qjiu/984W0YkmhKB2l4epyOl+Hn+Ici/ilKuAhW0+1GJSadpXsZryao3pL1P+nEZgFIkjdqQIDAQAB"
+"SEND.safesapcrtx.org","3600","MX","feedback-smtp.us-east-1.amazonses.com"
+"SEND.safesapcrtx.org","3600","TXT","v=spf1 include:amazonses.com ~all"
+"resend._domainkey.safesapcrtx.org","3600","TXT","p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDfBQyFSh9BBbi/O3Roszkaq8/j6J690MIAhUjsBVJYFCvhhHqiEElyDB08HHgGPgA6+0iOLrZ
+  QOGWOuac+DQRn0VQQJUM4uWIL3Qjiu/984W0YkmhKB2l4epyOl+Hn+Ici/ilKuAhW0+1GJSadpXsZryao3pL1P+nEZgFIkjdqQIDAQAB"
+"send.safesapcrtx.org","3600","MX","feedback-smtp.us-east-1.amazonses.com"
+"safesapcrtx.org","3600","TXT","google-site-verification=f7A-0UNMuuvZRytlQ9vCZTortQRw2nm6hQ1cofYqGzQ"
+"drm3z7tckj5a.safesapcrtx.org","3600","CNAME","gv-k3wac4z5wn7cdo.dv.googlehosted.com"
+"safesapcrtx.org","3600","TXT","brevo-code:b44cea9dcb03c1d9bb60c3bc034e7036"
+"brevo1._domainkey.safesapcrtx.org","3600","CNAME","b1.safesapcrtx-org.dkim.brevo.com"
+"brevo2._domainkey.safesapcrtx.org","3600","CNAME","b2.safesapcrtx-org.dkim.brevo.com"
+"_dmarc.safesapcrtx.org","3600","TXT","v=DMARC1; p=none; rua=mailto:rua@dmarc.brevo.com"
+"_dmarc.safesapcrtx.org","3600","TXT","v=DMARC1; p=quarantine; rua=mailto:dmarc@safesapcrtx.org"
+"_dmarc.safesapcrtx.org","3600","TXT","v=DMARC1; p=quarantine; rua=mailto:dmarc@safesapcrtx.org"

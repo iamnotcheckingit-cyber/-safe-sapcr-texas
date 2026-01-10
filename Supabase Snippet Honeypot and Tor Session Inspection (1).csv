@@ -1,0 +1,4 @@
+id,timestamp,ip,method,path,user_agent,referer,country,source_page,classification,bot_signals,credentials_attempted,form_data_keys,raw_payload
+d4252821-6ae4-432b-a60d-8bff8b861133,2026-01-10 14:20:59.169+00,97.178.126.42,POST,/.netlify/functions/honeypot-sink,curl/8.17.0,direct,US,final_test,definite_bot,"fast_submit_500ms, no_ua_reported, sus_ua_curl",true,username,"{""hp_page"":""final_test"",""username"":""testbot"",""hp_delta_ms"":500}"
+28b9bfc2-b1e5-45e7-a961-d881d564e12b,2026-01-10 14:17:25.338+00,192.168.1.1,POST,/test,test-script,null,null,debug_test_1768054645339,test,null,null,null,null
+932cc182-5896-4fa1-acc3-05bbd71161b4,2026-01-10 14:16:05.43+00,127.0.0.1,null,null,null,null,null,local_test,test,null,null,null,null
