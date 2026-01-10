@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5GFPNCB5');</script>
+    <!-- End Google Tag Manager -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKQBVKKHB8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PKQBVKKHB8');
+    </script>
+
+    <title>Secure Contact - PGP Public Key | SAFE SAPCR Texas</title>
+    <meta name="description" content="Send encrypted messages to SAFE SAPCR Texas using our PGP public key. Your privacy matters.">
+    <meta name="keywords" content="PGP, encrypted contact, secure communication, SAFE SAPCR Texas">
+    <link rel="canonical" href="https://safesapcrtx.org/contact-pgp">
+
+    <meta property="og:title" content="Secure Contact - PGP Key | SAFE SAPCR Texas">
+    <meta property="og:description" content="Send encrypted messages to SAFE SAPCR Texas using our PGP public key.">
+    <meta property="og:url" content="https://safesapcrtx.org/contact-pgp">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://safesapcrtx.org/images/og-image.png">
+    <meta property="og:site_name" content="SAFE SAPCR Texas">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Secure Contact - PGP Key">
+    <meta name="twitter:description" content="Send encrypted messages to SAFE SAPCR Texas.">
+    <meta name="twitter:image" content="https://safesapcrtx.org/images/og-image.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .pgp-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .pgp-hero h1 { margin-bottom: 1rem; }
+        .pgp-hero p { opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        .pgp-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .message-received {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .message-received h2 {
+            margin: 0 0 0.5rem;
+            font-size: 1.5rem;
+        }
+        .message-received p {
+            margin: 0;
+            opacity: 0.95;
+        }
+
+        .key-info {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .key-info h2 {
+            color: var(--primary);
+            margin: 0 0 1rem;
+        }
+        .key-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .key-detail {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .key-detail label {
+            display: block;
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+        .key-detail span {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: var(--primary);
+            word-break: break-all;
+        }
+
+        .pgp-key-block {
+            background: #1e293b;
+            color: #22d3ee;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: #334155;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .copy-btn:hover { background: #475569; }
+        .copy-btn.copied { background: #059669; }
+
+        .instructions {
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .instructions h3 {
+            color: #92400e;
+            margin: 0 0 1rem;
+        }
+        .instructions ol {
+            margin: 0;
+            padding-left: 1.5rem;
+            color: #78350f;
+        }
+        .instructions li {
+            margin-bottom: 0.75rem;
+        }
+        .instructions code {
+            background: #fef3c7;
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+    </style>
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">
+                <picture><source srcset="/images/safe-sapcr-logo.webp" type="image/webp"><img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="logo-img" width="45" height="45"></picture>
+                <span class="logo-text">SAFE SAPCR<span class="tx">TX</span></span>
+            </a>
+            <div class="menu-toggle" id="menuToggle" role="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu" tabindex="0">
+                <span></span><span></span><span></span>
+            </div>
+            <ul id="navMenu">
+                <li><a href="/#problem">The Problem</a></li>
+                <li><a href="/legislation">Legislation</a></li>
+                <li><a href="/legislators">Legislators</a></li>
+                <li><a href="/case-study">Case Study</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/petition">Petition</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="pgp-hero">
+        <h1>Secure Contact</h1>
+        <p>Send encrypted messages to SAFE SAPCR Texas. Your privacy is protected.</p>
+    </section>
+
+    <div class="pgp-container">
+        <div class="message-received">
+            <h2>Message Received</h2>
+            <p>Encrypt your message with our public key below and send to <strong>info@safesapcrtx.org</strong></p>
+        </div>
+
+        <div class="key-info">
+            <h2>PGP Public Key Details</h2>
+            <div class="key-details">
+                <div class="key-detail">
+                    <label>Key ID</label>
+                    <span>6A19CB32</span>
+                </div>
+                <div class="key-detail">
+                    <label>Fingerprint</label>
+                    <span>8B34 8A0F 8A2A 37A1 2031 F01B 27DA AFA1 6A19 CB32</span>
+                </div>
+                <div class="key-detail">
+                    <label>Algorithm</label>
+                    <span>RSA 4096-bit</span>
+                </div>
+                <div class="key-detail">
+                    <label>Expires</label>
+                    <span>2028-01-10</span>
+                </div>
+            </div>
+
+            <div class="pgp-key-block" id="pgpKey">
+<button class="copy-btn" onclick="copyKey()">Copy Key</button>
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+GE+tFvSH9GjL
+=zFzG
+-----END PGP PUBLIC KEY BLOCK-----</div>
+        </div>
+
+        <div class="instructions">
+            <h3>How to Send an Encrypted Message</h3>
+            <ol>
+                <li>Copy the public key above</li>
+                <li>Import it into your PGP software (GPG, Kleopatra, or similar)</li>
+                <li>Compose your message and encrypt it using our public key</li>
+                <li>Send the encrypted message to <code>info@safesapcrtx.org</code></li>
+                <li>Include your public key if you'd like an encrypted reply</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <picture><source srcset="/images/safe-sapcr-logo.webp" type="image/webp"><img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="footer-logo-img" width="60" height="60" loading="lazy"></picture>
+                <span>SAFE SAPCR<span class="tx">TX</span></span>
+            </div>
+            <p>Service Accountability and Fraud Elimination</p>
+            <p class="contact">Contact: <a href="mailto:info@safesapcrtx.org">info@safesapcrtx.org</a></p>
+            <p class="social-links">Follow us: <a href="https://www.facebook.com/profile.php?id=61585886109488" target="_blank" rel="noopener">Facebook</a></p>
+            <p class="copyright">&copy; 2025-2026 SAFE SAPCR Texas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        function copyKey() {
+            const keyBlock = document.getElementById('pgpKey');
+            const keyText = keyBlock.innerText.replace('Copy Key', '').trim();
+            navigator.clipboard.writeText(keyText).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copy Key';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+    <script src="/js/auth.js"></script>
+</body>
+</html>
