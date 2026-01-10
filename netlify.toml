@@ -331,6 +331,31 @@
     sitemapPath = "/sitemap.xml"
     providers = ["google", "bing", "yandex"]
 
+# Documents leaked honeypot
+[[redirects]]
+  from = "/documents/leaked/*"
+  to = "/documents-leaked.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/documents/leaked"
+  to = "/documents-leaked.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/leaked/*"
+  to = "/documents-leaked.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/leaked"
+  to = "/documents-leaked.html"
+  status = 200
+  force = true
+
 # well.known redirects
 [[redirects]]
   from = "/well.known/*"
