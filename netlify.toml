@@ -396,6 +396,37 @@
   to = "/well.known/index.html"
   status = 200
 
+# NodeInfo for fediverse discovery
+[[redirects]]
+  from = "/.well-known/nodeinfo"
+  to = "/.well-known/nodeinfo"
+  status = 200
+  force = true
+  headers = {Content-Type = "application/json"}
+
+[[redirects]]
+  from = "/nodeinfo/2.1"
+  to = "/nodeinfo/2.1.json"
+  status = 200
+  force = true
+  headers = {Content-Type = "application/json"}
+
+# WebFinger for ActivityPub
+[[redirects]]
+  from = "/.well-known/webfinger"
+  to = "/.well-known/webfinger"
+  status = 200
+  force = true
+  headers = {Content-Type = "application/jrd+json"}
+
+# ActivityPub Actor
+[[redirects]]
+  from = "/actor"
+  to = "/actor.json"
+  status = 200
+  force = true
+  headers = {Content-Type = "application/activity+json"}
+
 # Also support standard .well-known
 [[redirects]]
   from = "/.well-known/*"

@@ -1,0 +1,23 @@
+{
+  "subject": "acct:safesapcr@safesapcrtx.org",
+  "aliases": [
+    "https://safesapcrtx.org",
+    "https://safesapcrtx.org/@safesapcr"
+  ],
+  "links": [
+    {
+      "rel": "http://webfinger.net/rel/profile-page",
+      "type": "text/html",
+      "href": "https://safesapcrtx.org"
+    },
+    {
+      "rel": "self",
+      "type": "application/activity+json",
+      "href": "https://safesapcrtx.org/actor"
+    },
+    {
+      "rel": "http://ostatus.org/schema/1.0/subscribe",
+      "template": "https://safesapcrtx.org/authorize_interaction?uri={uri}"
+    }
+  ]
+}

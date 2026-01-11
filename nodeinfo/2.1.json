@@ -1,0 +1,50 @@
+{
+  "version": "2.1",
+  "software": {
+    "name": "safesapcr",
+    "version": "1.0.0",
+    "repository": "https://github.com/iamnotcheckingit-cyber/-safe-sapcr-texas",
+    "homepage": "https://safesapcrtx.org"
+  },
+  "protocols": ["activitypub"],
+  "usage": {
+    "users": {
+      "total": 1,
+      "activeMonth": 1,
+      "activeHalfyear": 1
+    },
+    "localPosts": 1
+  },
+  "openRegistrations": false,
+  "metadata": {
+    "nodeName": "SAFE SAPCR Texas",
+    "nodeDescription": "Legislative reform for Texas family courts. One Bread Crumb. One Dollar. Willis v. Rendon Legal PLLC - Cause No. 202595850",
+    "maintainer": {
+      "name": "Scott A. Willis",
+      "email": "safesapcr@proton.me"
+    },
+    "themeColor": "#D4AF37",
+    "bannerUrl": "https://safesapcrtx.org/images/og-image.png",
+    "features": [
+      "correspondence-archive",
+      "public-records",
+      "legislation-tracking",
+      "petition"
+    ],
+    "announcement": {
+      "title": "🍞 ONE BREAD CRUMB. ONE DOLLAR.",
+      "content": "Settlement Deadline: Monday, January 13, 2026 at 5:00 PM CST. Full disclosure begins at 5:01 PM.",
+      "url": "https://safesapcrtx.org/correspondence"
+    },
+    "cause": {
+      "number": "202595850",
+      "court": "189th District Court",
+      "county": "Harris County, Texas",
+      "caption": "Willis v. Rendon Legal PLLC"
+    },
+    "contact": {
+      "signal": "SAFE SAPCR",
+      "protonmail": "safesapcr@proton.me"
+    }
+  }
+}

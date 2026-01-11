@@ -1,0 +1,43 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/security/v1"
+  ],
+  "id": "https://safesapcrtx.org/actor",
+  "type": "Person",
+  "preferredUsername": "safesapcr",
+  "name": "SAFE SAPCR Texas",
+  "summary": "🍞 One Bread Crumb. One Dollar. Legislative reform for Texas family courts. Willis v. Rendon Legal PLLC - Cause No. 202595850. Settlement deadline: Monday, January 13, 2026 at 5:00 PM CST.",
+  "url": "https://safesapcrtx.org",
+  "inbox": "https://safesapcrtx.org/api/inbox",
+  "outbox": "https://safesapcrtx.org/api/outbox",
+  "followers": "https://safesapcrtx.org/api/followers",
+  "following": "https://safesapcrtx.org/api/following",
+  "icon": {
+    "type": "Image",
+    "mediaType": "image/png",
+    "url": "https://safesapcrtx.org/images/og-image.png"
+  },
+  "attachment": [
+    {
+      "type": "PropertyValue",
+      "name": "Website",
+      "value": "<a href=\"https://safesapcrtx.org\">safesapcrtx.org</a>"
+    },
+    {
+      "type": "PropertyValue",
+      "name": "Correspondence",
+      "value": "<a href=\"https://safesapcrtx.org/correspondence\">Public Archive</a>"
+    },
+    {
+      "type": "PropertyValue",
+      "name": "Signal",
+      "value": "SAFE SAPCR"
+    },
+    {
+      "type": "PropertyValue",
+      "name": "ProtonMail",
+      "value": "safesapcr@proton.me"
+    }
+  ]
+}
