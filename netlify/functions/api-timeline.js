@@ -185,6 +185,33 @@ exports.handler = async (event) => {
           }
         },
         significance: "Apparent retaliation for public exposure of fraud - attackers using anonymization to hide identity"
+      },
+      {
+        date: "2026-01-05",
+        type: "countermeasures",
+        title: "Cloudflare WARP Pen Meeting - Stonewall Same Day as Citation Served",
+        description: "Cloudflare WARP penetration meeting stonewalled on same day citation was served",
+        wallDuration: "3 days",
+        note: "Wall left up for three days"
+      },
+      {
+        date: "2026-01-08",
+        type: "legal_action",
+        title: "Litigation Hold Sent to Cloudflare",
+        description: "Litigation hold notice sent to Cloudflare",
+        followUp: {
+          action: "Honeypots opened with logging",
+          database: "SupaDB",
+          status: "Active monitoring"
+        }
+      },
+      {
+        date: "2026-01-08",
+        type: "expansion",
+        title: "Investigation Extended to DE and FR",
+        description: "Initial firm extended investigation tasks to Germany (DE) and France (FR)",
+        jurisdictions: ["DE", "FR"],
+        significance: "International scope of investigation"
       }
     ]
   };
