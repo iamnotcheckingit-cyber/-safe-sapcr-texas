@@ -13,14 +13,8 @@ DEST_DIR = Path(r"C:\Users\swillis\Downloads\SAFESAPCR\public-records\timeline")
 
 # Terms to redact (case-insensitive search)
 REDACT_TERMS = [
-    "JOHN JESUS WILLIS",
-    "John Jesus Willis",
-    "NICOLE ELIZABETH WILLIS",
-    "Nicole Elizabeth Willis",
-    "JOHN WILLIS",
-    "John Willis",
-    "NICOLE WILLIS",
-    "Nicole Willis",
+    # Children's names redacted - stored locally only
+    # See local config for actual terms
     "09/27/2012",
     "9/27/2012",
     "09/28/2012",
