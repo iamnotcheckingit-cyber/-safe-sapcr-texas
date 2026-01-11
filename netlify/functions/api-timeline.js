@@ -222,7 +222,8 @@ exports.handler = async (event) => {
         response: "NO HELP",
         obstruction: [
           "Refused to provide email address",
-          "Cannot forward information electronically"
+          "Cannot forward information electronically",
+          "14:18 HRS - Callback was 'regular deputy on wrong call' - NOT supervisor as requested"
         ],
         timestamp: new Date().toISOString()
       }
