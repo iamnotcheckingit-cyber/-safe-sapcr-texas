@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correspondence Archive | Willis v. Rendon Legal PLLC</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark: #1a1a1a;
+            --darker: #0d0d0d;
+            --text: #e8e8e8;
+            --muted: #888;
+            --accent: #2a5a8a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            background: var(--darker);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #333;
+        }
+
+        .case-number {
+            font-size: 0.85em;
+            color: var(--muted);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            color: var(--gold);
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .warning-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            padding: 20px 25px;
+            margin-bottom: 40px;
+            border-radius: 4px;
+        }
+
+        .warning-box h3 {
+            color: var(--gold);
+            font-size: 1em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .warning-box p {
+            color: var(--muted);
+            font-size: 0.9em;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.1em;
+            color: var(--gold);
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .email-thread {
+            background: var(--dark);
+            border: 1px solid #333;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .email {
+            padding: 25px;
+            border-bottom: 1px solid #333;
+        }
+
+        .email:last-child {
+            border-bottom: none;
+        }
+
+        .email-header {
+            margin-bottom: 20px;
+        }
+
+        .email-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .email-from {
+            color: var(--text);
+            font-weight: bold;
+        }
+
+        .email-time {
+            color: var(--muted);
+            font-size: 0.85em;
+        }
+
+        .email-recipients {
+            font-size: 0.85em;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .email-recipients strong {
+            color: var(--text);
+        }
+
+        .email-subject {
+            font-size: 1.1em;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .email-body {
+            color: var(--text);
+        }
+
+        .email-body p {
+            margin-bottom: 15px;
+        }
+
+        .email-body .signature {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+            color: var(--muted);
+            font-size: 0.9em;
+        }
+
+        .bread-crumb-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .bread-emoji {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .bread-title {
+            font-size: 1.4em;
+            color: var(--gold);
+            letter-spacing: 3px;
+        }
+
+        .recipient-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .recipient-card {
+            background: var(--dark);
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 4px;
+        }
+
+        .recipient-card h4 {
+            color: var(--gold);
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .recipient-card ul {
+            list-style: none;
+            font-size: 0.85em;
+            color: var(--muted);
+        }
+
+        .recipient-card li {
+            padding: 3px 0;
+        }
+
+        .recipient-count {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--darker);
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .attachment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .attachment {
+            background: var(--dark);
+            border: 1px solid #333;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .attachment-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .attachment-name {
+            font-size: 0.85em;
+            color: var(--text);
+            word-break: break-all;
+        }
+
+        .attachment-size {
+            font-size: 0.75em;
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #333;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .timeline-time {
+            font-size: 0.85em;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .timeline-content {
+            color: var(--text);
+        }
+
+        .highlight {
+            background: rgba(212, 175, 55, 0.2);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .deadline-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+            border: 2px solid var(--gold);
+            padding: 30px;
+            text-align: center;
+            border-radius: 4px;
+            margin-top: 40px;
+        }
+
+        .deadline-box h3 {
+            color: var(--gold);
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .deadline-box p {
+            color: var(--text);
+            font-size: 1.1em;
+        }
+
+        .deadline-date {
+            font-size: 1.5em;
+            color: var(--gold);
+            margin: 15px 0;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85em;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .email-meta {
+                flex-direction: column;
+            }
+
+            .recipient-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="case-number">CAUSE NO. 202595850 • 189TH DISTRICT COURT • HARRIS COUNTY, TEXAS</div>
+            <h1>Correspondence Archive</h1>
+            <p class="subtitle">Willis v. Rendon Legal PLLC</p>
+        </header>
+
+        <div class="warning-box">
+            <h3>⚠️ NOTICE TO RECIPIENTS</h3>
+            <p>This page contains the complete email correspondence sent January 10, 2026 regarding settlement negotiations in the above-referenced matter. You received this link because you were included as a recipient. This archive is maintained for transparency and documentation purposes.</p>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">RECIPIENTS</h2>
+            <div class="recipient-grid">
+                <div class="recipient-card">
+                    <h4>OPPOSING COUNSEL <span class="recipient-count">TO</span></h4>
+                    <ul>
+                        <li>laci@rendonlegal.com</li>
+                        <li>office@rendonlegal.com</li>
+                        <li>rendonlaw@outlook.com</li>
+                    </ul>
+                </div>
+                <div class="recipient-card">
+                    <h4>TEXAS LEGISLATORS <span class="recipient-count">CC</span></h4>
+                    <ul>
+                        <li>Harold.Dutton@house.texas.gov</li>
+                        <li>Ann.Johnson@house.texas.gov</li>
+                        <li>Jeff.Leach@house.texas.gov</li>
+                        <li>Lulu.Flores@house.texas.gov</li>
+                        <li>Jessica.Gonzalez@house.texas.gov</li>
+                        <li>+ 11 more legislators</li>
+                    </ul>
+                </div>
+                <div class="recipient-card">
+                    <h4>NATIONAL MEDIA <span class="recipient-count">BCC</span></h4>
+                    <ul>
+                        <li>tips@propublica.org</li>
+                        <li>tips@nytimes.com</li>
+                        <li>lockbox@washpost.com</li>
+                        <li>tips@theintercept.com</li>
+                        <li>tips@nbcuni.com</li>
+                        <li>+ 15 more outlets</li>
+                    </ul>
+                </div>
+                <div class="recipient-card">
+                    <h4>TEXAS MEDIA <span class="recipient-count">BCC</span></h4>
+                    <ul>
+                        <li>tips@chron.com</li>
+                        <li>pitches@texastribune.org</li>
+                        <li>investigates@kprc.com</li>
+                        <li>assignments@khou.com</li>
+                        <li>metro@dallasnews.com</li>
+                        <li>+ 10 more outlets</li>
+                    </ul>
+                </div>
+                <div class="recipient-card">
+                    <h4>INTERNATIONAL <span class="recipient-count">BCC</span></h4>
+                    <ul>
+                        <li>guardian.letters@theguardian.com</li>
+                        <li>newsonline@bbc.co.uk</li>
+                        <li>ajiunit@proton.me (Al Jazeera)</li>
+                        <li>observer.letters@observer.co.uk</li>
+                    </ul>
+                </div>
+                <div class="recipient-card">
+                    <h4>OTHER PARTIES <span class="recipient-count">CC</span></h4>
+                    <ul>
+                        <li>ms.leal77@gmail.com</li>
+                        <li>charleshardy@hhzlaw.com</li>
+                        <li>clankford@sbotfam.org</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">EMAIL THREAD • JANUARY 10, 2026</h2>
+            <div class="email-thread">
+
+                <div class="email">
+                    <div class="email-header">
+                        <div class="email-meta">
+                            <span class="email-from">Scott Willis</span>
+                            <span class="email-time">Sat, Jan 10, 2026 at 6:07 PM CST</span>
+                        </div>
+                        <div class="email-subject">Re: 8/19/2024; $1 Laci; My Children</div>
+                    </div>
+                    <div class="email-body">
+                        <div class="bread-crumb-header">
+                            <div class="bread-emoji">🍞</div>
+                            <div class="bread-title">ONE BREAD CRUMB. ONE DOLLAR.</div>
+                        </div>
+                        <hr style="border: none; border-top: 1px solid #333; margin: 30px 0;">
+                        <p><strong>One Bread Crumb. One Dollar.</strong></p>
+                        <p>Laci,</p>
+                        <p>I am trying to avoid embarrassing my children.</p>
+                        <p>The rest of what I have should have everyone on that property in jail.</p>
+                        <p>You didn't even bother to check if there was another case opened against me.</p>
+                        <p>If my son and daughter cannot enjoy their Christmas presents before I go back to work Monday—the data dump is coming. Along with the evidence of Elizabeth's perjury in both cases. And your fraud.</p>
+                        <p>Your carrier is confused because I don't want money.</p>
+                        <p>Whatever you charged Elizabeth to do this to me is already going to get the law changed.</p>
+                        <p>My children.</p>
+                        <div class="signature">
+                            Scott A. Willis<br>
+                            Pro Se Plaintiff<br>
+                            Willis v. Rendon Legal PLLC<br>
+                            Cause No. 202595850
+                        </div>
+                    </div>
+                </div>
+
+                <div class="email">
+                    <div class="email-header">
+                        <div class="email-meta">
+                            <span class="email-from">Scott Willis</span>
+                            <span class="email-time">Sat, Jan 10, 2026 at 6:41 PM CST</span>
+                        </div>
+                    </div>
+                    <div class="email-body">
+                        <p>This email will be published publicly tomorrow if my children are not in my possession, because the case that stole them should have never been filed to begin with.</p>
+                        <p>Respectfully,<br>SCOTT ALLEN WILLIS</p>
+                    </div>
+                </div>
+
+                <div class="email">
+                    <div class="email-header">
+                        <div class="email-meta">
+                            <span class="email-from">Scott Willis</span>
+                            <span class="email-time">Sat, Jan 10, 2026 at 6:15 PM CST</span>
+                        </div>
+                    </div>
+                    <div class="email-body">
+                        <p>Furthermore,</p>
+                        <p>If I have to go to a visitation center next weekend to reunite with my children after not having seen them for 500 days, it will be a press conference.</p>
+                    </div>
+                </div>
+
+                <div class="email">
+                    <div class="email-header">
+                        <div class="email-meta">
+                            <span class="email-from">Scott Willis</span>
+                            <span class="email-time">Sat, Jan 10, 2026 at 6:49 PM CST</span>
+                        </div>
+                    </div>
+                    <div class="email-body">
+                        <p><strong>4 more bread crumbs</strong></p>
+                        <p>I don't care if I win the case and I don't want your money. This is shifting to a legislative effort.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">PRIOR MESSAGE • JANUARY 9, 2026</h2>
+            <div class="email-thread">
+                <div class="email">
+                    <div class="email-header">
+                        <div class="email-meta">
+                            <span class="email-from">Scott Willis</span>
+                            <span class="email-time">Fri, Jan 9, 2026 at 11:35 PM CST</span>
+                        </div>
+                    </div>
+                    <div class="email-body">
+                        <p>Laci,</p>
+                        <p>Against my better judgment, I am extending the settlement offer to <span class="highlight">Monday, January 13, 2026 at 5:00 PM CST</span>.</p>
+                        <p>Here's why:</p>
+                        <p>Elizabeth has finally re-registered for supervised visitation at the DRO. This means that instead of simply bringing the children to my home — where I bake my own bread and make my own pasta — my children will have to eat fast food. And my son's tooth will still be chipped.</p>
+                        <p>Instead of being with their father, I will be sitting in a waiting room full of parents.</p>
+                        <p>Parents who, statistically speaking, may have found themselves there under circumstances similar to mine.</p>
+                        <p>Every hour I spend at the DRO is an hour I spend networking with potential plaintiffs, petition signers, and witnesses to systemic failure.</p>
+                        <p>You have until Monday.</p>
+                        <p>I can assure you what will be disclosed after the deadline passes will implore you to change your calculus on this promptly.</p>
+                        <p>Act in good faith. End this. Let me be a father without an audience.</p>
+                        <p>Or don't — and watch what happens when a room full of parents learns they're not alone.</p>
+                        <p>P.S. — Given the additional time and resources expended, the pro bono requirement has increased from 40 hours to 80 hours. Details on the SAFE SAPCR Act sponsorship requirements:</p>
+                        <p><a href="https://safesapcrtx.org/legislation?ref=settlement-update-jan13&hours=80" style="color: var(--gold);">https://safesapcrtx.org/legislation</a></p>
+                        <div class="signature">
+                            <strong>Scott A. Willis</strong> Pro Se
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">ATTACHMENTS</h2>
+            <div class="attachment-list">
+                <div class="attachment">
+                    <div class="attachment-icon">📄</div>
+                    <div class="attachment-name">IMG_0273.png</div>
+                    <div class="attachment-size">318 KB</div>
+                </div>
+                <div class="attachment">
+                    <div class="attachment-icon">🖼️</div>
+                    <div class="attachment-name">IMG_0140.png</div>
+                    <div class="attachment-size">202 KB</div>
+                </div>
+                <div class="attachment">
+                    <div class="attachment-icon">🖼️</div>
+                    <div class="attachment-name">IMG_0065.png</div>
+                    <div class="attachment-size">322 KB</div>
+                </div>
+                <div class="attachment">
+                    <div class="attachment-icon">📋</div>
+                    <div class="attachment-name">IMG_0414.jpeg</div>
+                    <div class="attachment-size">2.97 MB • Vacate Notice</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">TIMELINE</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">August 19, 2024</div>
+                    <div class="timeline-content">Original subject date referenced — Default SAPCR judgment signed based on fraudulent Certificate of Last Known Address</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">January 9, 2026 • 11:35 PM</div>
+                    <div class="timeline-content">Settlement deadline extended to Monday, January 13, 2026 at 5:00 PM CST</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">January 10, 2026 • 6:07 PM</div>
+                    <div class="timeline-content">"One Bread Crumb. One Dollar" — $1 settlement demand sent to opposing counsel with media BCC</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">January 10, 2026 • 6:15 PM</div>
+                    <div class="timeline-content">"If I have to go to a visitation center... it will be a press conference"</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">January 10, 2026 • 6:41 PM</div>
+                    <div class="timeline-content">"This email will be published publicly tomorrow"</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">January 10, 2026 • 6:49 PM</div>
+                    <div class="timeline-content">"4 more bread crumbs" — Additional evidence promised</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">January 14, 2026</div>
+                    <div class="timeline-content">89th Texas Legislature convenes — SAFE SAPCR Act introduction</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="deadline-box">
+            <h3>SETTLEMENT DEADLINE</h3>
+            <div class="deadline-date">Monday, January 13, 2026</div>
+            <p>5:00 PM Central Standard Time</p>
+            <p style="margin-top: 15px; color: var(--muted); font-size: 0.9em;">Full disclosure begins at 5:01 PM if no good faith settlement is reached.</p>
+        </div>
+
+        <footer>
+            <p>This correspondence archive is part of the public record in Willis v. Rendon Legal PLLC.</p>
+            <p style="margin-top: 10px;"><a href="https://safesapcrtx.org">safesapcrtx.org</a> • <a href="https://safesapcrtx.org/case-study">Case Study</a> • <a href="https://safesapcrtx.org/legislation">SAFE SAPCR Act</a></p>
+            <p style="margin-top: 20px; font-size: 0.8em;">Scott A. Willis • Pro Se Plaintiff • Harris County, Texas</p>
+        </footer>
+    </div>
+</body>
+</html>
