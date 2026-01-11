@@ -382,22 +382,83 @@
     </header>
 
     <main>
+        <!-- CALL TO ACTION BANNER - TOP OF PAGE -->
+        <section class="call-banner">
+            <div class="call-content">
+                <h2>CALL AND DEMAND THEY ACT IN GOOD FAITH</h2>
+                <p>KIDNAPPING IS KIDNAPPING WHEN YOU BREAK THE LAW TO WIN CUSTODY</p>
+                <div class="call-numbers">
+                    <a href="tel:7137556044" class="call-btn">
+                        <span class="call-label">HCSO</span>
+                        <span class="call-number">(713) 755-6044</span>
+                    </a>
+                    <a href="tel:7132742500" class="call-btn">
+                        <span class="call-label">PRECINCT 3 CONSTABLES</span>
+                        <span class="call-number">(713) 274-2500</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <style>
+        .call-banner {
+            background: #8B0000;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 4px solid #D4AF37;
+        }
+        .call-content { max-width: 800px; margin: 0 auto; }
+        .call-banner h2 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .call-banner p { color: #ffcccc; font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .call-numbers { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+        .call-btn {
+            background: #fff;
+            color: #8B0000;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .call-btn:hover { transform: scale(1.05); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .call-label { font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.25rem; }
+        .call-number { font-size: 1.5rem; font-weight: 700; }
+        @media (max-width: 600px) { .call-banner h2 { font-size: 1.5rem; } .call-number { font-size: 1.2rem; } }
+        </style>
+
         <!-- THE REAL STORY BANNER -->
         <section class="disclosure-banner">
             <div class="disclosure-content">
                 <div class="disclosure-badge">THE REAL STORY</div>
-                <h2>A father separated from his children for <span class="gold">500+ days</span> through a fraudulent default judgment</h2>
+                <h2>Her mom tried to evict him. <span class="gold">FAILED.</span><br>
+                They locked him out. <span class="gold">WRIT OF RE-ENTRY GRANTED.</span><br>
+                She filed habeas corpus. <span class="gold">SHE DIDN'T SHOW UP.</span><br>
+                They charged him with assault. <span class="gold">DEFERRED AND DISCHARGED.</span><br>
+                Then an attorney filed a <span class="gold">FALSE ADDRESS</span> and stole his children.</h2>
+                <div class="disclosure-tagline">500+ days. No contact. A son's tooth chipped for 9 MONTHS — missing extracurriculars. A daughter with no doctor visit for over a YEAR. Told their father wants to kill them.</div>
                 <div class="disclosure-facts">
-                    <span>Eviction: <strong>FAILED</strong></span>
-                    <span>Assault Charge: <strong>DISMISSED</strong></span>
-                    <span>Writ of Re-Entry: <strong>GRANTED</strong></span>
-                    <span>Default Judgment: <strong>FRAUD</strong></span>
+                    <span>Children told their father wanted to <strong>KILL THEM</strong></span>
+                    <span>Messages about being <strong>HUNGRY</strong></span>
+                    <span>Money demanded at <strong>2X RATE</strong></span>
+                    <span>Rubberstamped <strong>EX PARTE MOTION</strong></span>
+                    <span>Notice of Hearing with <strong>NO DATE</strong></span>
+                    <span>2 cases, 2 addresses, <strong>COURT 311</strong></span>
+                    <span>1 DWOP + 1 DEFAULT = <strong>KIDNAPPING BY FRAUD</strong></span>
+                    <span>SAPCR filed while <strong>HABEAS STILL OPEN</strong></span>
                 </div>
+                <div class="disclosure-quote">"I am a father with nothing to lose."</div>
                 <div class="disclosure-links">
-                    <a href="/correspondence" class="btn btn-gold">Read the $1 Settlement Demand</a>
-                    <a href="/evidence" class="btn btn-outline">View Evidence Timeline</a>
+                    <a href="/correspondence" class="btn btn-gold">READ THE $1 SETTLEMENT DEMAND</a>
+                    <a href="/evidence" class="btn btn-outline">VIEW THE EVIDENCE</a>
                 </div>
-                <p class="disclosure-deadline">Settlement Deadline: <strong>Monday, January 13, 2026 at 5:00 PM CST</strong></p>
+                <p class="disclosure-deadline">Settlement Deadline: <strong>Monday, January 13, 2026 at 5:00 PM CST</strong> — Full disclosure begins at 5:01 PM</p>
             </div>
         </section>
 
@@ -433,6 +494,19 @@
         .disclosure-banner h2 .gold {
             color: #D4AF37;
             font-weight: 700;
+        }
+        .disclosure-tagline {
+            color: #ccc;
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+            font-style: italic;
+            line-height: 1.5;
+        }
+        .disclosure-quote {
+            color: #D4AF37;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
         .disclosure-facts {
             display: flex;
