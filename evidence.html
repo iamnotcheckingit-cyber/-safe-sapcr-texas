@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidence Timeline | Willis v. Rendon Legal PLLC</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark: #1a1a1a;
+            --darker: #0d0d0d;
+            --text: #e8e8e8;
+            --muted: #888;
+            --red: #cc4444;
+            --green: #44aa44;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            background: var(--darker);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        header { text-align: center; margin-bottom: 50px; padding-bottom: 30px; border-bottom: 1px solid #333; }
+        .case-number { font-size: 0.85em; color: var(--muted); letter-spacing: 2px; margin-bottom: 10px; }
+        h1 { font-size: 2.2em; color: var(--gold); font-weight: normal; margin-bottom: 10px; }
+        .subtitle { color: var(--muted); font-style: italic; }
+
+        .timeline { position: relative; padding-left: 40px; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--gold), #333);
+        }
+
+        .year-marker {
+            position: relative;
+            margin: 40px 0 20px -40px;
+            padding-left: 40px;
+        }
+        .year-marker h2 {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--darker);
+            padding: 5px 20px;
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+
+        .event {
+            position: relative;
+            background: var(--dark);
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .event::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 25px;
+            width: 14px;
+            height: 14px;
+            background: var(--gold);
+            border-radius: 50%;
+            border: 3px solid var(--darker);
+        }
+        .event.negative::before { background: var(--red); }
+        .event.positive::before { background: var(--green); }
+
+        .event-date {
+            font-size: 0.85em;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        .event-title {
+            font-size: 1.1em;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+        .event-case {
+            font-size: 0.8em;
+            color: var(--muted);
+            font-family: monospace;
+            margin-bottom: 10px;
+        }
+        .event-desc {
+            color: var(--muted);
+            font-size: 0.95em;
+        }
+        .event-desc strong { color: var(--text); }
+
+        .doc-note {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 3px solid var(--gold);
+            font-size: 0.85em;
+            color: var(--muted);
+        }
+
+        .highlight { background: rgba(212, 175, 55, 0.2); padding: 2px 6px; }
+
+        .summary-box {
+            background: var(--dark);
+            border: 2px solid var(--gold);
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 4px;
+        }
+        .summary-box h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .summary-box ul {
+            list-style: none;
+            color: var(--text);
+        }
+        .summary-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+        }
+        .summary-box li:last-child { border-bottom: none; }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85em;
+        }
+        footer a { color: var(--gold); text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="case-number">DOCUMENTED EVIDENCE TIMELINE</div>
+            <h1>The Pattern</h1>
+            <p class="subtitle">How a father lost access to his children through fraudulent legal filings</p>
+        </header>
+
+        <div class="summary-box">
+            <h3>Key Facts</h3>
+            <ul>
+                <li><strong>500+ days</strong> without seeing his children</li>
+                <li><strong>Default judgment</strong> obtained via fraudulent Certificate of Last Known Address</li>
+                <li><strong>Assault charge</strong> filed and later <strong>dismissed</strong></li>
+                <li><strong>Eviction</strong> attempted and <strong>failed</strong> - Take Nothing Judgment</li>
+                <li><strong>Writ of Re-Entry</strong> granted after illegal lockout</li>
+            </ul>
+        </div>
+
+        <div class="timeline">
+
+            <div class="year-marker"><h2>2022</h2></div>
+
+            <div class="event negative">
+                <div class="event-date">October 27, 2022</div>
+                <div class="event-title">Eviction Petition Filed</div>
+                <div class="event-case">Cause No. 223100382686</div>
+                <div class="event-desc">
+                    Elizabeth Alvarado files eviction petition against Scott Willis.
+                    <strong>The pattern begins.</strong>
+                </div>
+            </div>
+
+            <div class="year-marker"><h2>2023</h2></div>
+
+            <div class="event positive">
+                <div class="event-date">February 20, 2023</div>
+                <div class="event-title">TAKE NOTHING JUDGMENT - Eviction Fails</div>
+                <div class="event-case">Cause No. 1196921</div>
+                <div class="event-desc">
+                    Court rules in favor of Scott Willis. <span class="highlight">The eviction fails.</span>
+                    Elizabeth takes nothing.
+                </div>
+                <div class="doc-note">📄 Public record available at /public-records/</div>
+            </div>
+
+            <div class="event positive">
+                <div class="event-date">May 15, 2023</div>
+                <div class="event-title">WRIT OF RE-ENTRY GRANTED</div>
+                <div class="event-case">Cause No. 233100181071</div>
+                <div class="event-desc">
+                    After illegal lockout, court grants <span class="highlight">Writ of Re-Entry</span>.
+                    Scott Willis is restored to possession.
+                </div>
+                <div class="doc-note">📄 Public record available at /public-records/</div>
+            </div>
+
+            <div class="event">
+                <div class="event-date">August 15, 2023</div>
+                <div class="event-title">Petition for Writ of Habeas Corpus Filed</div>
+                <div class="event-case">Cause No. 202353496</div>
+                <div class="event-desc">
+                    Scott Willis files for return of children who were being withheld.
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="event-date">December 27, 2023</div>
+                <div class="event-title">Amended Habeas Corpus Petition</div>
+                <div class="event-case">Cause No. 202353496</div>
+                <div class="event-desc">
+                    Amended petition filed with additional evidence.
+                </div>
+            </div>
+
+            <div class="year-marker"><h2>2024</h2></div>
+
+            <div class="event negative">
+                <div class="event-date">March 19, 2024</div>
+                <div class="event-title">SAPCR Petition Filed by Elizabeth</div>
+                <div class="event-case">Cause No. 202417675 / Court 312</div>
+                <div class="event-desc">
+                    Elizabeth Alvarado, represented by <strong>Laci Rendon of Rendon Legal PLLC</strong>,
+                    files Suit Affecting Parent-Child Relationship.
+                    <br><br>
+                    Petition alleges "history or pattern of child abuse and child neglect" -
+                    <strong>with no evidence provided.</strong>
+                </div>
+            </div>
+
+            <div class="event negative">
+                <div class="event-date">April 12, 2024</div>
+                <div class="event-title">Assault Charge Filed</div>
+                <div class="event-case">Cause No. 250447901010</div>
+                <div class="event-desc">
+                    Criminal assault charge filed against Scott Willis.
+                    <strong>This charge will later be dismissed.</strong>
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="event-date">April 28 - May 9, 2024</div>
+                <div class="event-title">Emails to Laci Rendon</div>
+                <div class="event-desc">
+                    Scott Willis sends multiple emails to Laci Rendon attempting to communicate
+                    about the case and his children. <strong>No substantive response received.</strong>
+                </div>
+            </div>
+
+            <div class="event positive">
+                <div class="event-date">June 4, 2024</div>
+                <div class="event-title">Habeas Corpus DISMISSED FOR WANT OF PROSECUTION</div>
+                <div class="event-case">Cause No. 202353496</div>
+                <div class="event-desc">
+                    The habeas corpus case is dismissed - but not because Scott lost.
+                    The SAPCR case had superseded it.
+                </div>
+            </div>
+
+            <div class="event negative">
+                <div class="event-date">July 19, 2024</div>
+                <div class="event-title">FRAUDULENT CERTIFICATE OF LAST KNOWN ADDRESS</div>
+                <div class="event-case">Cause No. 202417675</div>
+                <div class="event-desc">
+                    Laci Rendon files <span class="highlight">Attorney's Certificate of Last Known Address</span>
+                    that does NOT reflect Scott Willis's actual address.
+                    <br><br>
+                    <strong>This is the fraud.</strong> Scott never received proper notice of the hearing.
+                </div>
+                <div class="doc-note">📄 This document was automatically redacted - 4 redactions applied</div>
+            </div>
+
+            <div class="event negative">
+                <div class="event-date">August 19-20, 2024</div>
+                <div class="event-title">DEFAULT JUDGMENT SIGNED</div>
+                <div class="event-case">Cause No. 202417675</div>
+                <div class="event-desc">
+                    Because Scott Willis was not properly served (due to the fraudulent certificate),
+                    he did not appear at the hearing. <span class="highlight">Default judgment entered against him.</span>
+                    <br><br>
+                    <strong>Result:</strong> Elizabeth Alvarado awarded sole managing conservatorship.
+                    Scott Willis loses access to his children based on a hearing he never knew about.
+                </div>
+            </div>
+
+            <div class="year-marker"><h2>2025</h2></div>
+
+            <div class="event">
+                <div class="event-date">October 16, 2025</div>
+                <div class="event-title">Scott Willis First Learns of Default Judgment</div>
+                <div class="event-case">Cause No. 202417675</div>
+                <div class="event-desc">
+                    <strong>Over a year later</strong>, Scott Willis finally discovers that a default
+                    judgment was entered against him. He had no knowledge of the August 2024 hearing.
+                </div>
+            </div>
+
+            <div class="event positive">
+                <div class="event-date">October 31, 2025</div>
+                <div class="event-title">ASSAULT CHARGE DISMISSED</div>
+                <div class="event-case">Cause No. 250447901010</div>
+                <div class="event-desc">
+                    The assault charge is <span class="highlight">dismissed</span>.
+                    Scott Willis completes community service and the case is discharged.
+                    <br><br>
+                    <strong>The criminal allegation used to paint him as dangerous - dismissed.</strong>
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="event-date">December 12, 2025</div>
+                <div class="event-title">Bill of Review Filed</div>
+                <div class="event-case">Cause No. 202592876</div>
+                <div class="event-desc">
+                    Scott Willis files Bill of Review to set aside the default judgment,
+                    along with Ex Parte Emergency Motion for Temporary Possession of Children.
+                    <br><br>
+                    The fight to reunite with his children begins.
+                </div>
+            </div>
+
+            <div class="year-marker"><h2>2026</h2></div>
+
+            <div class="event">
+                <div class="event-date">January 10, 2026</div>
+                <div class="event-title">$1 Settlement Demand</div>
+                <div class="event-case">Willis v. Rendon Legal PLLC - Cause No. 202595850</div>
+                <div class="event-desc">
+                    Scott Willis sends settlement demand to Laci Rendon: <strong>One dollar.</strong>
+                    <br><br>
+                    "I don't want your money. This is shifting to a legislative effort."
+                </div>
+                <div class="doc-note">📄 Full correspondence at <a href="/correspondence" style="color:var(--gold)">/correspondence</a></div>
+            </div>
+
+            <div class="event">
+                <div class="event-date">January 13, 2026</div>
+                <div class="event-title">Settlement Deadline</div>
+                <div class="event-desc">
+                    5:00 PM Central Standard Time.
+                    <br><br>
+                    <strong>Full disclosure begins at 5:01 PM if no good faith settlement is reached.</strong>
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="event-date">January 14, 2026</div>
+                <div class="event-title">89th Texas Legislature Convenes</div>
+                <div class="event-desc">
+                    The SAFE SAPCR Act will be introduced to prevent this from happening to other families.
+                </div>
+                <div class="doc-note">📄 Learn more at <a href="/legislation" style="color:var(--gold)">/legislation</a></div>
+            </div>
+
+        </div>
+
+        <div class="summary-box">
+            <h3>The Pattern is Clear</h3>
+            <ul>
+                <li>Eviction attempt → <strong>FAILED</strong></li>
+                <li>Illegal lockout → <strong>WRIT OF RE-ENTRY GRANTED</strong></li>
+                <li>Assault charge → <strong>DISMISSED</strong></li>
+                <li>SAPCR with fraudulent service → <strong>DEFAULT JUDGMENT</strong></li>
+                <li>500+ days without seeing his children → <strong>ONGOING</strong></li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>This timeline is constructed from court records in Harris County, Texas.</p>
+            <p style="margin-top: 10px;">
+                <a href="/">safesapcrtx.org</a> •
+                <a href="/correspondence">Correspondence</a> •
+                <a href="/legislation">SAFE SAPCR Act</a> •
+                <a href="/documents/leaked/">Public Records</a>
+            </p>
+            <p style="margin-top: 20px; font-size: 0.8em;">
+                Children's identifying information has been omitted to protect their privacy.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
