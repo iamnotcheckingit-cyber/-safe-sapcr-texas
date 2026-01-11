@@ -72,6 +72,11 @@
   function = "tor-watcher"
   excludedPath = ["/assets/*", "/images/*", "/css/*", "/js/*", "/.netlify/*", "/fonts/*", "/*.ico", "/*.png", "/*.jpg", "/*.svg", "/*.woff*"]
 
+[[edge_functions]]
+  path = "/*"
+  function = "thank-you"
+  excludedPath = ["/assets/*", "/images/*", "/css/*", "/js/*", "/.netlify/*", "/fonts/*", "/*.ico", "/*.png", "/*.jpg", "/*.svg", "/*.woff*"]
+
 # ============================================
 # REDIRECTS - Clean URLs handled by _redirects file
 # ============================================
