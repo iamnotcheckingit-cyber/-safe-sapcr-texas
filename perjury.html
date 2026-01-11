@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERJURY EXPOSED | Elizabeth Alvarado Affidavit vs. Reality</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+        :root {
+            --fire: #ff4500;
+            --fire-dark: #cc0000;
+            --gold: #D4AF37;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --text: #e8e8e8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--darker);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        @keyframes fire-pulse {
+            0%, 100% {
+                box-shadow: 0 0 50px rgba(255,69,0,0.5), 0 0 100px rgba(255,69,0,0.3), inset 0 0 50px rgba(255,69,0,0.1);
+                border-color: #ff4500;
+            }
+            50% {
+                box-shadow: 0 0 80px rgba(255,69,0,0.8), 0 0 150px rgba(255,69,0,0.5), inset 0 0 80px rgba(255,69,0,0.2);
+                border-color: #ff6600;
+            }
+        }
+
+        @keyframes text-fire {
+            0%, 100% { text-shadow: 0 0 20px #ff4500, 0 0 40px #ff4500, 0 0 60px #ff0000; }
+            50% { text-shadow: 0 0 40px #ff6600, 0 0 80px #ff4500, 0 0 120px #ff0000, 0 0 160px #ff0000; }
+        }
+
+        @keyframes flame-flicker {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            25% { opacity: 0.8; transform: scale(1.1); }
+            50% { opacity: 1; transform: scale(0.95); }
+            75% { opacity: 0.9; transform: scale(1.05); }
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1a0000 0%, #330000 30%, #4d0000 50%, #660000 70%, #330000 100%);
+            border-bottom: 8px solid var(--fire);
+            padding: 60px 20px;
+            text-align: center;
+            animation: fire-pulse 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .flame-row {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .flame-row span {
+            animation: flame-flicker 0.5s ease-in-out infinite;
+        }
+        .flame-row span:nth-child(2) { animation-delay: 0.1s; }
+        .flame-row span:nth-child(3) { animation-delay: 0.2s; }
+        .flame-row span:nth-child(4) { animation-delay: 0.3s; }
+        .flame-row span:nth-child(5) { animation-delay: 0.15s; }
+        .flame-row span:nth-child(6) { animation-delay: 0.25s; }
+        .flame-row span:nth-child(7) { animation-delay: 0.35s; }
+
+        .mega-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--fire);
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            animation: text-fire 2s ease-in-out infinite;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #ff9999;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+
+        .intro-box {
+            background: linear-gradient(135deg, #1a0000, #2a0000);
+            border: 3px solid var(--fire);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .intro-box h2 {
+            color: var(--fire);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .claim-section {
+            background: var(--dark);
+            border: 2px solid #333;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .claim-header {
+            background: linear-gradient(135deg, var(--fire-dark), #990000);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .claim-number {
+            background: #000;
+            color: var(--fire);
+            font-size: 1.5rem;
+            font-weight: 900;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--fire);
+        }
+
+        .claim-title {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            flex: 1;
+        }
+
+        .claim-body { padding: 25px; }
+
+        .what-she-swore {
+            background: rgba(255,0,0,0.1);
+            border-left: 4px solid var(--fire);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .what-she-swore h4 {
+            color: var(--fire);
+            font-size: 1rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .what-she-swore blockquote {
+            color: #ffcccc;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin: 0;
+            padding-left: 15px;
+            border-left: 2px solid #ff6666;
+        }
+
+        .the-truth {
+            background: rgba(212,175,55,0.1);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .the-truth h4 {
+            color: var(--gold);
+            font-size: 1rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .evidence-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .evidence-table th {
+            background: rgba(212,175,55,0.2);
+            color: var(--gold);
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .evidence-table td {
+            padding: 12px;
+            border-bottom: 1px solid #333;
+        }
+
+        .evidence-table tr:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .verdict-box {
+            background: linear-gradient(135deg, var(--fire), var(--fire-dark));
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .evidence-links {
+            background: linear-gradient(135deg, #0a0a0a, #151515);
+            border: 3px solid var(--gold);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .evidence-links h3 {
+            color: var(--gold);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .evidence-card {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid #444;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .evidence-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.2);
+        }
+
+        .evidence-card h4 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .evidence-card p {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .evidence-card a {
+            display: inline-block;
+            background: var(--gold);
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .evidence-card a:hover {
+            background: #fff;
+            transform: scale(1.05);
+        }
+
+        .cashapp-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .cashapp-item {
+            background: #111;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .cashapp-item:hover {
+            border-color: var(--gold);
+        }
+
+        .cashapp-item a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .perjury-count {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .perjury-count h3 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .count-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .count-item {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .count-num {
+            background: #fff;
+            color: #cc0000;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        .count-text {
+            color: #fff;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .statute-section {
+            background: #000;
+            border: 4px solid var(--fire);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .statute-section h3 {
+            color: var(--fire);
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+
+        .statute-code {
+            display: inline-block;
+            background: var(--fire);
+            color: #fff;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        footer {
+            background: #000;
+            border-top: 3px solid var(--fire);
+            padding: 30px 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .mega-title { font-size: 3rem; letter-spacing: 5px; }
+            .subtitle { font-size: 1.3rem; }
+            .flame-row { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="flame-row">
+            <span>🔥</span><span>🔥</span><span>🔥</span><span>🔥</span><span>🔥</span><span>🔥</span><span>🔥</span>
+        </div>
+        <h1 class="mega-title">PERJURY EXPOSED</h1>
+        <p class="subtitle">Elizabeth Alvarado's Sworn Statements vs. Reality</p>
+        <p class="tagline">How a mother's perjured affidavit and an attorney's fraudulent certificate separated a father from his children for over 500 days</p>
+        <div class="flame-row" style="margin-top: 20px; margin-bottom: 0;">
+            <span>🔥</span><span>🔥</span><span>🔥</span><span>🔥</span><span>🔥</span><span>🔥</span><span>🔥</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="intro-box">
+            <h2>THE AFFIDAVIT THAT STARTED IT ALL</h2>
+            <p>On <strong>March 19, 2024</strong>, Elizabeth Alvarado signed a sworn affidavit in Cause No. 202417675, making numerous allegations against Scott Allen Willis.</p>
+            <p style="margin-top: 15px;">That affidavit was notarized by <strong style="color: var(--fire);">Laci Rendon</strong> — the same attorney who would later file a <strong>Certificate of Last Known Address</strong> claiming Scott lived at a decade-old, misspelled address.</p>
+            <p style="margin-top: 15px; font-size: 1.2rem; color: var(--gold);">What follows is a point-by-point destruction of her lies.</p>
+        </div>
+
+        <!-- CLAIM 1 -->
+        <div class="claim-section">
+            <div class="claim-header">
+                <div class="claim-number">1</div>
+                <div class="claim-title">"The father disappeared for 9 months with my children"</div>
+            </div>
+            <div class="claim-body">
+                <div class="what-she-swore">
+                    <h4>🔴 What She Swore</h4>
+                    <blockquote>"I am concerned about the safety and welfare of my children... the father of my children disappeared for 9 months with my children."</blockquote>
+                </div>
+                <div class="the-truth">
+                    <h4>✅ The Truth — Hotel Receipts Show SHE WAS THERE</h4>
+                    <table class="evidence-table">
+                        <tr><th>Hotel</th><th>Dates</th><th>Guests</th></tr>
+                        <tr><td>TownePlace Suites Baytown</td><td>June 16-19, 2023</td><td><strong style="color:var(--gold)">4 GUESTS</strong></td></tr>
+                        <tr><td>TownePlace Suites Baytown</td><td>June 30 - July 2, 2023</td><td><strong style="color:var(--gold)">4 GUESTS</strong></td></tr>
+                        <tr><td>Aloft New Orleans</td><td>July 14-16, 2023</td><td><strong style="color:var(--gold)">4 GUESTS</strong></td></tr>
+                        <tr><td>TownePlace Suites Houston</td><td>Sept 27 - Oct 1, 2023</td><td><strong style="color:var(--gold)">4 GUESTS</strong></td></tr>
+                    </table>
+                    <div class="verdict-box">4 GUESTS = SCOTT + ELIZABETH + 2 CHILDREN. SHE WAS ON THE "DISAPPEARANCE" TRIPS.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CLAIM 2 -->
+        <div class="claim-section">
+            <div class="claim-header">
+                <div class="claim-number">2</div>
+                <div class="claim-title">"He threatening to kill the children"</div>
+            </div>
+            <div class="claim-body">
+                <div class="what-she-swore">
+                    <h4>🔴 What She Swore</h4>
+                    <blockquote>"The phone conversation led to him threatening to kill the children and told me I had to choose between him or my family."</blockquote>
+                </div>
+                <div class="the-truth">
+                    <h4>✅ The Truth — ZERO EVIDENCE</h4>
+                    <table class="evidence-table">
+                        <tr><th>Evidence Type</th><th>Status</th></tr>
+                        <tr><td>Police report at time of alleged threat</td><td><strong style="color:var(--fire)">NONE</strong></td></tr>
+                        <tr><td>Protective order filed</td><td><strong style="color:var(--fire)">NONE</strong></td></tr>
+                        <tr><td>Text messages documenting threat</td><td><strong style="color:var(--fire)">NONE</strong></td></tr>
+                        <tr><td>Any contemporaneous documentation</td><td><strong style="color:var(--fire)">NONE</strong></td></tr>
+                    </table>
+                    <div class="verdict-box">FIRST MENTION: Nearly ONE YEAR later, in a custody lawsuit. She continued vacationing with him AFTER the alleged threat.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CLAIM 3 -->
+        <div class="claim-section">
+            <div class="claim-header">
+                <div class="claim-number">3</div>
+                <div class="claim-title">"Scott blocked me... I went weeks without talking to my children"</div>
+            </div>
+            <div class="claim-body">
+                <div class="what-she-swore">
+                    <h4>🔴 What She Swore</h4>
+                    <blockquote>"Scott blocked me from my son's phone so I couldn't call. I went weeks without talking to my children."</blockquote>
+                </div>
+                <div class="the-truth">
+                    <h4>✅ The Truth — 50+ CASH APP TRANSACTIONS</h4>
+                    <table class="evidence-table">
+                        <tr><th>Month</th><th>Scott → Elizabeth</th><th>Elizabeth → Scott</th></tr>
+                        <tr><td>March 2023</td><td>$700</td><td>—</td></tr>
+                        <tr><td>April 2023</td><td>$620</td><td>$608</td></tr>
+                        <tr><td>May 2023</td><td>—</td><td>$100 ("kids")</td></tr>
+                        <tr><td>July 2023</td><td>$375</td><td>$25</td></tr>
+                        <tr><td>September 2023</td><td>$350</td><td>$150</td></tr>
+                        <tr><td>November 2023</td><td>$40</td><td><strong style="color:var(--gold)">$250 "to see my babies 💕"</strong></td></tr>
+                        <tr><td>December 2023</td><td>$330</td><td>$50</td></tr>
+                    </table>
+                    <div class="verdict-box">SHE PAID HIM $250 "TO SEE MY BABIES" — She wasn't blocked, she was COORDINATING.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EVIDENCE LINKS -->
+        <div class="evidence-links">
+            <h3>📁 DOCUMENTARY EVIDENCE</h3>
+
+            <h4 style="color: var(--fire); margin: 30px 0 20px; font-size: 1.5rem;">🏨 HOTEL FOLIOS — PROVE 4 GUESTS</h4>
+            <div class="evidence-grid">
+                <div class="evidence-card">
+                    <h4>Folio 79242</h4>
+                    <p>TownePlace Suites Baytown<br>June 16-19, 2023 — <strong>4 Guests</strong></p>
+                    <a href="/documents/WILLIS_79242.pdf" target="_blank">VIEW PDF</a>
+                </div>
+                <div class="evidence-card">
+                    <h4>Folio 79490</h4>
+                    <p>TownePlace Suites Baytown<br>June 30 - July 2, 2023 — <strong>4 Guests</strong></p>
+                    <a href="/documents/WILLIS_79490.pdf" target="_blank">VIEW PDF</a>
+                </div>
+                <div class="evidence-card">
+                    <h4>Folio 79654</h4>
+                    <p>TownePlace Suites Baytown<br>July 2-3, 2023</p>
+                    <a href="/documents/WILLIS_79654.pdf" target="_blank">VIEW PDF</a>
+                </div>
+                <div class="evidence-card">
+                    <h4>Folio 74641</h4>
+                    <p>TownePlace Suites I-10 East<br>Sept 27 - Oct 1, 2023 — <strong>4 Guests</strong></p>
+                    <a href="/documents/WILLIS_74641.pdf" target="_blank">VIEW PDF</a>
+                </div>
+                <div class="evidence-card">
+                    <h4>Folio 646035</h4>
+                    <p>Aloft New Orleans<br>July 14-16, 2023 — <strong>4 Guests</strong></p>
+                    <a href="/documents/359716Folio-GST_646035.pdf" target="_blank">VIEW PDF</a>
+                </div>
+                <div class="evidence-card">
+                    <h4>Folio 705140</h4>
+                    <p>Aloft New Orleans<br>Aug 19-20, 2023</p>
+                    <a href="/documents/363654Folio-GST_705140.pdf" target="_blank">VIEW PDF</a>
+                </div>
+            </div>
+
+            <h4 style="color: var(--gold); margin: 40px 0 20px; font-size: 1.5rem;">💰 CASH APP RECORDS — PROVE CONTINUOUS CONTACT</h4>
+            <div class="cashapp-gallery">
+                <div class="cashapp-item"><a href="/documents/hungry-evidence/CashApp_01_Jan2024_Dec2023.png" target="_blank">📱 Jan 2024 / Dec 2023</a></div>
+                <div class="cashapp-item"><a href="/documents/hungry-evidence/CashApp_02_Nov2023.png" target="_blank">📱 November 2023</a></div>
+                <div class="cashapp-item"><a href="/documents/hungry-evidence/CashApp_03_Sep2023.png" target="_blank">📱 September 2023</a></div>
+                <div class="cashapp-item"><a href="/documents/hungry-evidence/CashApp_04_May_Apr2023.png" target="_blank">📱 May / April 2023</a></div>
+                <div class="cashapp-item"><a href="/documents/hungry-evidence/CashApp_05_Apr_Mar2023.png" target="_blank">📱 April / March 2023</a></div>
+                <div class="cashapp-item"><a href="/documents/hungry-evidence/CashApp_06_Sep_Aug2023.png" target="_blank">📱 Sept / Aug 2023</a></div>
+                <div class="cashapp-item"><a href="/documents/hungry-evidence/CashApp_07_Jul_Jun2023.png" target="_blank">📱 July / June 2023</a></div>
+            </div>
+        </div>
+
+        <!-- PERJURY COUNT -->
+        <div class="perjury-count">
+            <h3>⚖️ THE COMPLETE PERJURY COUNT</h3>
+            <div class="count-grid">
+                <div class="count-item"><div class="count-num">1</div><div class="count-text">"Disappeared for 9 months" — Hotel receipts show SHE WAS WITH THEM</div></div>
+                <div class="count-item"><div class="count-num">2</div><div class="count-text">"Threatening to kill children" — ZERO documentation; continued vacationing together</div></div>
+                <div class="count-item"><div class="count-num">3</div><div class="count-text">"Unenrolled from school" — Formal TEA-compliant homeschool withdrawal on file</div></div>
+                <div class="count-item"><div class="count-num">4</div><div class="count-text">"Did not educate them" — No evidence; kids now "thriving" by her own words</div></div>
+                <div class="count-item"><div class="count-num">5</div><div class="count-text">"Random places" — MARRIOTT extended-stay hotels with full kitchens</div></div>
+                <div class="count-item"><div class="count-num">6</div><div class="count-text">"Dangerous circumstances" — Daily swimming, family vacations</div></div>
+                <div class="count-item"><div class="count-num">7</div><div class="count-text">"Exposed to drugs" — ZERO evidence of any kind</div></div>
+                <div class="count-item"><div class="count-num">8</div><div class="count-text">"Blocked me" — 50+ Cash App transactions prove constant contact</div></div>
+                <div class="count-item"><div class="count-num">9</div><div class="count-text">"Weeks without talking" — She was staying in hotels with them</div></div>
+                <div class="count-item"><div class="count-num">10</div><div class="count-text">"Kids wanted to leave" — Children didn't want to leave father</div></div>
+                <div class="count-item"><div class="count-num">11</div><div class="count-text">"Scott controlled" — ELIZABETH demanded double repayment</div></div>
+            </div>
+        </div>
+
+        <!-- STATUTE -->
+        <div class="statute-section">
+            <h3>APPLICABLE TEXAS PENAL CODE</h3>
+            <div class="statute-code">§ 37.02 — PERJURY</div>
+            <div class="statute-code">§ 37.03 — AGGRAVATED PERJURY</div>
+            <div class="statute-code">§ 32.46 — SECURING EXECUTION BY DECEPTION</div>
+            <p style="margin-top: 25px; color: #888;">Elements Met: ✓ Statement under oath ✓ Statement is false ✓ Declarant knew false ✓ Material to proceeding</p>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <p style="font-size: 2rem; color: var(--fire); font-weight: 900;">THE TRUTH HAS RECEIPTS.</p>
+            <p style="font-size: 1.5rem; color: var(--gold);">LITERALLY.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Case References: Cause No. 202417675 (SAPCR) • 202353496 (Habeas) • 202592876 (Bill of Review) • 202595850 (Willis v. Rendon)</p>
+        <p style="margin-top: 15px;"><a href="/">safesapcrtx.org</a> • <a href="/evidence">Evidence Timeline</a> • <a href="/correspondence">Correspondence</a></p>
+    </footer>
+</body>
+</html>
