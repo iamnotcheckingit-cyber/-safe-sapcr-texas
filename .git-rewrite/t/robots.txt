@@ -1,0 +1,166 @@
+# robots.txt for safesapcrtx.org
+# Optimized for search engine indexing
+
+# ============================================
+# SEARCH ENGINE CRAWLERS - WELCOME
+# ============================================
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /case-study
+Allow: /news
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Default for all other bots
+User-agent: *
+Allow: /
+
+# Sitemap locations
+Sitemap: https://safesapcrtx.org/sitemap.xml
+
+# Important pages to index
+# Homepage, Case Study, Legislation, FAQ, Resources, Petition
+
+# ============================================
+# BLOCK KNOWN BAD BOTS ONLY
+# ============================================
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# ============================================
+# BLOCK AI SCRAPERS
+# ============================================
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+# ============================================
+# HONEYPOT TRAPS (for security scanners)
+# These paths serve decoy content to detect malicious reconnaissance
+# Legitimate crawlers obey robots.txt; scanners ignore it
+# ============================================
+
+# WordPress-style traps
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /xmlrpc.php
+
+# Admin/control surfaces (honeypots)
+Disallow: /admin/
+Disallow: /login/
+Disallow: /panel/
+Disallow: /dashboard/
+Disallow: /administrator/
+Disallow: /manage/
+Disallow: /control/
+
+# Sensitive files (honeypots)
+Disallow: /.env
+Disallow: /.git/
+Disallow: /config.json
+Disallow: /.htaccess
+Disallow: /.htpasswd
+Disallow: /web.config
+
+# Backup/database traps
+Disallow: /backup/
+Disallow: /backup.sql
+Disallow: /backup.tar.gz
+Disallow: /db.sql
+Disallow: /database.sql
+Disallow: /dump.sql
+
+# Debug/internal traps
+Disallow: /debug/
+Disallow: /debug/log/
+Disallow: /internal-api/
+Disallow: /staging/
+Disallow: /hidden-admin/
+Disallow: /test/
+Disallow: /dev/
+
+# API config traps
+Disallow: /api/v1/config.json
+Disallow: /api/config/
+Disallow: /api/admin/
+Disallow: /api/internal/
+
+# Common exploit targets
+Disallow: /phpmyadmin/
+Disallow: /phpMyAdmin/
+Disallow: /pma/
+Disallow: /mysql/
+Disallow: /adminer.php
+Disallow: /shell.php
+Disallow: /c99.php
+Disallow: /r57.php
+
+# Netlify internal (not honeypots - real restriction)
+Disallow: /.netlify/
+Disallow: /netlify/functions/

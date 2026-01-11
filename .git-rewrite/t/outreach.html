@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="30">
+    <title>Live Outreach Tracker | SAFE SAPCR Texas</title>
+    <meta name="description" content="Real-time tracking of SAFE SAPCR Texas outreach to fathers rights groups, legislators, and media outlets.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .outreach-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 6rem 2rem 3rem;
+            text-align: center;
+        }
+        .outreach-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #dc2626;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+        .live-badge::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .outreach-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-item .number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+        }
+        .stat-item .label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .outreach-section {
+            margin-bottom: 3rem;
+        }
+        .outreach-section h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent);
+        }
+        .outreach-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .outreach-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--accent);
+        }
+        .outreach-item.sent {
+            border-left-color: #16a34a;
+        }
+        .outreach-item.pending {
+            border-left-color: #d97706;
+            opacity: 0.7;
+        }
+        .outreach-item .status {
+            font-size: 1.5rem;
+        }
+        .outreach-item .details {
+            flex: 1;
+        }
+        .outreach-item .org-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .outreach-item .timestamp {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        .refresh-note {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+        .live-ticker {
+            background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .ticker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .ticker-title {
+            color: #00ff88;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .ticker-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: glow 1.5s infinite;
+        }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88; }
+            50% { box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88; }
+        }
+        .main-counter {
+            text-align: center;
+            padding: 2rem 0;
+        }
+        .counter-number {
+            font-size: 5rem;
+            font-weight: 700;
+            color: white;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 20px rgba(255,255,255,0.3);
+            line-height: 1;
+        }
+        .counter-label {
+            color: #888;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 0.5rem;
+        }
+        .activity-feed {
+            max-height: 200px;
+            overflow-y: auto;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1rem;
+        }
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .activity-icon {
+            width: 32px;
+            height: 32px;
+            background: #00ff88;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        .activity-details {
+            flex: 1;
+        }
+        .activity-outlet {
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .activity-time {
+            color: #666;
+            font-size: 0.75rem;
+        }
+        .category-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .category-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+        }
+        .category-count {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00ff88;
+        }
+        .category-name {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .why-section {
+            background: var(--bg-alt);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+        }
+        .why-section h3 {
+            color: var(--primary);
+            margin: 0 0 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">
+                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="logo-img">
+                <span class="logo-text">SAFE SAPCR<span class="tx">TX</span></span>
+            </a>
+            <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </div>
+            <ul id="navMenu">
+                <li><a href="/#problem">The Problem</a></li>
+                <li><a href="/legislation">Legislation</a></li>
+                <li><a href="/legislators">Legislators</a></li>
+                <li><a href="/case-study">Case Study</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/petition">Petition</a></li>
+                <li><a href="/membership">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="outreach-hero">
+        <div class="live-badge">LIVE CAMPAIGN</div>
+        <h1>Outreach Tracker</h1>
+        <p>Real-time tracking of our advocacy outreach. Every voice matters.</p>
+    </section>
+
+    <div class="outreach-container">
+        <!-- Real-Time Live Ticker Widget -->
+        <div class="live-ticker">
+            <div class="ticker-header">
+                <span class="ticker-title">Real-Time Campaign Tracker</span>
+                <span style="color: #666; font-size: 0.8rem;" id="last-update">Updating...</span>
+            </div>
+            <div class="main-counter">
+                <div class="counter-number" id="live-count">1,130</div>
+                <div class="counter-label">Emails Sent Today</div>
+            </div>
+            <div class="activity-feed" id="activity-feed">
+                <div class="activity-item">
+                    <div class="activity-icon">&#x2709;</div>
+                    <div class="activity-details">
+                        <div class="activity-outlet">KELOLAND Sioux Falls</div>
+                        <div class="activity-time">Just now</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">&#x2709;</div>
+                    <div class="activity-details">
+                        <div class="activity-outlet">KARE11 Minneapolis</div>
+                        <div class="activity-time">1 min ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">&#x2709;</div>
+                    <div class="activity-details">
+                        <div class="activity-outlet">Milwaukee Journal Sentinel</div>
+                        <div class="activity-time">3 min ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">&#x2709;</div>
+                    <div class="activity-details">
+                        <div class="activity-outlet">Detroit Free Press</div>
+                        <div class="activity-time">5 min ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">&#x2709;</div>
+                    <div class="activity-details">
+                        <div class="activity-outlet">Boston Globe</div>
+                        <div class="activity-time">8 min ago</div>
+                    </div>
+                </div>
+            </div>
+            <div class="category-breakdown">
+                <div class="category-item">
+                    <div class="category-count" id="cat-media">850+</div>
+                    <div class="category-name">Media Outlets</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-count" id="cat-gov">33</div>
+                    <div class="category-name">Governors</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-count" id="cat-ag">19</div>
+                    <div class="category-name">Attorneys General</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-count" id="cat-fathers">13</div>
+                    <div class="category-name">Fathers Rights Orgs</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-count" id="cat-podcast">15</div>
+                    <div class="category-name">Podcasts</div>
+                </div>
+                <div class="category-item">
+                    <div class="category-count" id="cat-leg">200+</div>
+                    <div class="category-name">Legislators</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="number" id="sent-count">1,130+</span>
+                <span class="label">Emails Sent</span>
+            </div>
+            <div class="stat-item">
+                <span class="number" id="pending-count">Ongoing</span>
+                <span class="label">Campaign Status</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">374</span>
+                <span class="label">Days Separated</span>
+            </div>
+        </div>
+
+        <div class="outreach-section">
+            <h2>Fathers Rights Organizations</h2>
+            <ul class="outreach-list">
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Fathers Help Network</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Dads Evoking Change</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Equal Rights for Fathers of NY</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Fathers 4 Justice</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">National Safe Parents Organization</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Support Fathers Rights Inc / Fathers Guidance</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Families Need Fathers UK</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Fatherhood Institute UK</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">21st Century Dads Foundation</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Fathers Rights Educational Foundation</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Cuyahoga County Fatherhood Initiative (Ohio)</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Stark County Fatherhood Coalition (Ohio)</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">PAS Intervention</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="outreach-section">
+            <h2>Governors (33 States Emailed)</h2>
+            <ul class="outreach-list">
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Alaska, Arizona, Arkansas, California, Colorado</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Delaware, Florida, Georgia, Hawaii, Idaho</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Illinois, Kansas, Kentucky, Maine, Massachusetts</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Missouri, Montana, Nevada, New Hampshire, New Mexico</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">North Carolina, North Dakota, Pennsylvania, South Carolina, South Dakota</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Tennessee, Texas, Utah, Virginia, West Virginia</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Wisconsin, Wyoming, Nebraska</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="outreach-section">
+            <h2>State Attorneys General (19 States)</h2>
+            <ul class="outreach-list">
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Alaska, Arizona, Arkansas, Connecticut, Delaware</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Iowa, Louisiana, Maine, Montana, Nebraska</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Nevada, New Hampshire, North Dakota, Oklahoma, Oregon</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Utah, Vermont, Idaho, Texas</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="outreach-section">
+            <h2>Podcasts & Commentary</h2>
+            <ul class="outreach-list">
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Men's Family Law Podcast (David Pisarra)</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Fathers Rights Playbook (Mark Reel Jr.)</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">For Better, Worse, or Divorce Podcast</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">The Family Disappeared Podcast</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Fractured Families Podcast</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Divorced Dad Podcast</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">The Divorced Dad Diaries</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">The Megyn Kelly Show</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">The Ben Shapiro Show (Daily Wire)</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">The Dan Bongino Show</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Tucker Carlson</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="outreach-section">
+            <h2>State Legislators</h2>
+            <ul class="outreach-list">
+                <li class="outreach-item pending">
+                    <span class="status">&#9203;</span>
+                    <div class="details">
+                        <span class="org-name">All Available State Legislators (500+)</span>
+                        <span class="timestamp">Queued - In progress</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="outreach-section">
+            <h2>Media Outlets & Investigative</h2>
+            <ul class="outreach-list">
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Houston Local Media (KHOU, KPRC, Chronicle)</span>
+                        <span class="timestamp">Pre-release sent previously</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">National Media (ProPublica, AP)</span>
+                        <span class="timestamp">Pre-release sent previously</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">International (BBC, Guardian, Al Jazeera)</span>
+                        <span class="timestamp">Pre-release sent previously</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">FOX 26 Houston</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Texas Tribune</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">ProPublica Tips</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">ACLU Texas</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">Dr. Phil Show</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">National Parents Organization</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+                <li class="outreach-item sent">
+                    <span class="status">&#9989;</span>
+                    <div class="details">
+                        <span class="org-name">National Family Justice</span>
+                        <span class="timestamp">January 5, 2026 - SENT</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="why-section">
+            <h3>Why We're Doing This Publicly</h3>
+            <p>Transparency is at the core of our mission. We're documenting every step of our advocacy because:</p>
+            <ul>
+                <li>The system operates in shadows - we operate in daylight</li>
+                <li>Every father fighting this battle should know they're not alone</li>
+                <li>Accountability works both ways</li>
+                <li>Our children deserve to know we never stopped fighting</li>
+            </ul>
+            <p style="margin-top: 1rem;"><strong>374 days</strong> since I've held my children. This page will document every effort to bring them home.</p>
+        </div>
+
+        <p class="refresh-note">This page auto-refreshes every 30 seconds. Campaign is LIVE - January 5, 2026</p>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="footer-logo-img">
+                <span>SAFE SAPCR<span class="tx">TX</span></span>
+            </div>
+            <p>Service Accountability and Fraud Elimination</p>
+            <p class="contact">Media: <a href="mailto:media@safesapcrtx.org">media@safesapcrtx.org</a></p>
+            <p class="copyright">&copy; 2025-2026 SAFE SAPCR Texas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Real-time stats fetching
+        async function fetchStats() {
+            try {
+                const response = await fetch('/.netlify/functions/outreach-stats');
+                const data = await response.json();
+
+                // Update counter with animation
+                const counter = document.getElementById('live-count');
+                if (counter) {
+                    counter.textContent = data.totalSent.toLocaleString();
+                    counter.style.transform = 'scale(1.1)';
+                    setTimeout(() => counter.style.transform = 'scale(1)', 200);
+                }
+
+                // Update last update time
+                const lastUpdate = document.getElementById('last-update');
+                if (lastUpdate) {
+                    const now = new Date();
+                    lastUpdate.textContent = 'Updated: ' + now.toLocaleTimeString();
+                }
+
+                // Update activity feed
+                if (data.recentActivity) {
+                    const feed = document.getElementById('activity-feed');
+                    if (feed) {
+                        feed.innerHTML = data.recentActivity.map(item => `
+                            <div class="activity-item">
+                                <div class="activity-icon">&#x2709;</div>
+                                <div class="activity-details">
+                                    <div class="activity-outlet">${item.outlet}</div>
+                                    <div class="activity-time">${item.time}</div>
+                                </div>
+                            </div>
+                        `).join('');
+                    }
+                }
+            } catch (error) {
+                console.log('Stats fetch pending...');
+            }
+        }
+
+        // Fetch on load and every 10 seconds
+        fetchStats();
+        setInterval(fetchStats, 10000);
+
+        // Animate counter on page load
+        const counter = document.getElementById('live-count');
+        if (counter) {
+            const target = parseInt(counter.textContent.replace(/,/g, ''));
+            let current = 0;
+            const increment = target / 50;
+            const animate = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = Math.floor(current).toLocaleString();
+                    requestAnimationFrame(animate);
+                } else {
+                    counter.textContent = target.toLocaleString();
+                }
+            };
+            animate();
+        }
+    </script>
+</body>
+</html>

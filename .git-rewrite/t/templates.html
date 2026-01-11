@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5GFPNCB5');</script>
+    <!-- End Google Tag Manager -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKQBVKKHB8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PKQBVKKHB8');
+    </script>
+
+    <title>Document Templates | SAFE SAPCR Texas | Pro Se Resources</title>
+    <meta name="description" content="Free downloadable templates for pro se litigants. Letter templates for legislators, Bill of Review checklists, and advocacy resources.">
+    <meta name="keywords" content="pro se templates, Bill of Review checklist, legislator letter template, custody document templates, family court forms, advocacy templates">
+    <link rel="canonical" href="https://safesapcrtx.org/templates">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .templates-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+        .templates-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+
+        .templates-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .template-category {
+            margin-bottom: 3rem;
+        }
+        .template-category h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .template-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--accent);
+            transition: transform 0.2s;
+        }
+        .template-card:hover {
+            transform: translateY(-4px);
+        }
+        .template-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-alt);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .template-card h3 {
+            color: var(--primary);
+            margin: 0 0 0.75rem;
+            font-size: 1.1rem;
+        }
+        .template-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .template-card .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .template-card .btn:hover {
+            background: var(--primary-dark);
+        }
+        .template-card .btn-secondary {
+            background: var(--bg-alt);
+            color: var(--primary);
+            margin-left: 0.5rem;
+        }
+        .template-card .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .template-preview {
+            background: var(--bg-alt);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            font-family: monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+        }
+        .template-preview.show {
+            display: block;
+        }
+
+        .disclaimer-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .disclaimer-box h3 {
+            color: #856404;
+            margin: 0 0 0.5rem;
+            font-size: 1rem;
+        }
+        .disclaimer-box p {
+            color: #856404;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .checklist-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .checklist-section h3 {
+            color: var(--primary);
+            margin: 0 0 1.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            accent-color: var(--accent);
+        }
+        .checklist-item label {
+            flex: 1;
+        }
+        .checklist-item label strong {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+        .checklist-item label span {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">
+                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="logo-img">
+                <span class="logo-text">SAFE SAPCR<span class="tx">TX</span></span>
+            </a>
+            <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </div>
+            <ul id="navMenu">
+                <li><a href="/#problem">The Problem</a></li>
+                <li><a href="/legislation">Legislation</a></li>
+                <li><a href="/legislators">Legislators</a></li>
+                <li><a href="/case-study">Case Study</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/petition">Petition</a></li>
+                <li><a href="/membership">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="templates-hero">
+        <h1>Document Templates & Resources</h1>
+        <p>Free tools to help you advocate for reform and navigate the legal system</p>
+    </section>
+
+    <div class="templates-container">
+        <div class="disclaimer-box">
+            <h3>Important Disclaimer</h3>
+            <p>These templates are for informational purposes only and do not constitute legal advice. Court filings have strict procedural requirements. Consult with a licensed attorney before filing any legal documents. Templates should be customized for your specific situation.</p>
+        </div>
+
+        <div class="template-category">
+            <h2>Advocacy Templates</h2>
+            <div class="template-grid">
+                <div class="template-card">
+                    <div class="template-icon">&#128220;</div>
+                    <h3>Legislator Letter Template</h3>
+                    <p>A customizable letter to send to your state representative or senator expressing support for family law reform.</p>
+                    <button class="btn" onclick="togglePreview('preview1')">Preview</button>
+                    <button class="btn btn-secondary" onclick="copyTemplate('preview1')">Copy</button>
+                    <div class="template-preview" id="preview1">[DATE]
+
+The Honorable [LEGISLATOR NAME]
+[ADDRESS]
+[CITY, STATE ZIP]
+
+RE: Support for Family Law Service of Process Reform
+
+Dear [Representative/Senator] [LAST NAME],
+
+I am writing as your constituent from [CITY] to urge your support for legislation reforming service of process requirements in Texas family court cases.
+
+Currently, Texas Rule 239a allows attorneys to certify a respondent's "last known address" without verification. This loophole enables fraudulent service, where parents lose custody through default judgments without ever being notified of proceedings.
+
+[OPTIONAL: SHARE YOUR PERSONAL STORY HERE]
+
+I respectfully ask that you support the SAFE SAPCR Act, which would:
+• Require mandatory constable service in SAPCR cases
+• Mandate attorney due diligence certification
+• Create an automated case notification registry
+• Expedite Bill of Review hearings for fraud claims
+• Establish penalties for false address certification
+
+Every Texan deserves their constitutional right to due process. Please help protect Texas families from this systemic abuse.
+
+Thank you for your service to our community. I would welcome the opportunity to discuss this issue further.
+
+Respectfully,
+
+[YOUR NAME]
+[YOUR ADDRESS]
+[YOUR PHONE]
+[YOUR EMAIL]</div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-icon">&#128231;</div>
+                    <h3>Email to Legislator</h3>
+                    <p>A shorter email version for quick electronic communication with your legislators.</p>
+                    <button class="btn" onclick="togglePreview('preview2')">Preview</button>
+                    <button class="btn btn-secondary" onclick="copyTemplate('preview2')">Copy</button>
+                    <div class="template-preview" id="preview2">Subject: [CITY] Constituent: Support Family Law Reform
+
+Dear [Representative/Senator] [LAST NAME],
+
+I'm a constituent from [CITY] writing to urge your support for reforming service of process in Texas family court.
+
+Currently, parents can lose custody through default judgments without ever receiving notice—because attorneys can certify false addresses without verification.
+
+Please support the SAFE SAPCR Act to:
+✓ Require constable service in custody cases
+✓ Mandate address verification before alternative service
+✓ Create expedited hearings for fraud victims
+
+This is a due process issue affecting Texas families. I'd welcome the chance to discuss further.
+
+Thank you,
+[YOUR NAME]
+[YOUR CITY]
+[YOUR PHONE]</div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-icon">&#128227;</div>
+                    <h3>Testimony Template</h3>
+                    <p>A framework for preparing oral or written testimony for legislative hearings.</p>
+                    <button class="btn" onclick="togglePreview('preview3')">Preview</button>
+                    <button class="btn btn-secondary" onclick="copyTemplate('preview3')">Copy</button>
+                    <div class="template-preview" id="preview3">TESTIMONY IN SUPPORT OF [BILL NUMBER]
+
+Chairman [NAME], Members of the Committee:
+
+My name is [YOUR NAME], and I am here today [as a victim of/advocate against] service of process fraud in Texas family courts.
+
+THE PROBLEM:
+[Briefly describe the issue - 2-3 sentences]
+
+MY EXPERIENCE:
+[Share your story - what happened, how it affected your family - 3-4 sentences]
+
+WHY THIS MATTERS:
+• [Key point 1]
+• [Key point 2]
+• [Key point 3]
+
+THE SOLUTION:
+This bill would [explain what the bill does and why it helps].
+
+CLOSING:
+I urge this committee to vote YES on [BILL NUMBER]. Our children and families deserve due process protection.
+
+Thank you for your time and consideration.
+
+[YOUR NAME]
+[YOUR CITY, COUNTY]</div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-icon">&#128240;</div>
+                    <h3>Media Statement Template</h3>
+                    <p>Template for reaching out to journalists or responding to media inquiries.</p>
+                    <button class="btn" onclick="togglePreview('preview4')">Preview</button>
+                    <button class="btn btn-secondary" onclick="copyTemplate('preview4')">Copy</button>
+                    <div class="template-preview" id="preview4">FOR IMMEDIATE RELEASE
+[DATE]
+
+CONTACT: [YOUR NAME]
+[EMAIL] | [PHONE]
+
+[HEADLINE: Texas Parent Speaks Out on Custody Fraud / Advocates Push for Family Court Reform]
+
+[CITY, TX] — [Opening sentence with key message]
+
+[2-3 paragraphs telling your story or explaining the issue]
+
+"[Quote from you or another advocate]," said [NAME], [title/description].
+
+[Background on the SAFE SAPCR Act and reform efforts]
+
+For more information, visit safesapcrtx.org or contact [NAME] at [EMAIL].
+
+###
+
+ABOUT SAFE SAPCR TEXAS
+SAFE SAPCR Texas advocates for reform of service of process requirements in Texas family court to protect parents and children from fraudulent default judgments.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="template-category">
+            <h2>Legal Preparation Checklists</h2>
+
+            <div class="checklist-section">
+                <h3>Bill of Review Evidence Checklist</h3>
+                <p style="color: var(--text-light); margin-bottom: 1.5rem;">Use this checklist to gather evidence for a Bill of Review based on fraudulent service. Check items as you collect them.</p>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check1">
+                    <label for="check1">
+                        <strong>Copy of the Default Judgment</strong>
+                        <span>Obtain from the court clerk. Note the date signed and case number.</span>
+                    </label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check2">
+                    <label for="check2">
+                        <strong>Citation and Return of Service</strong>
+                        <span>Shows how and where you were allegedly served. Look for discrepancies.</span>
+                    </label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check3">
+                    <label for="check3">
+                        <strong>Certificate of Last Known Address</strong>
+                        <span>Filed under Rule 239a. Compare the certified address to your actual address.</span>
+                    </label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check4">
+                    <label for="check4">
+                        <strong>Proof of Your Actual Address</strong>
+                        <span>Utility bills, lease agreements, bank statements, driver's license, voter registration.</span>
+                    </label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check5">
+                    <label for="check5">
+                        <strong>Evidence Opposing Party Knew Your Address</strong>
+                        <span>Emails, texts, prior court filings, child exchange records, prior service at correct address.</span>
+                    </label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check6">
+                    <label for="check6">
+                        <strong>Proof You Weren't at Served Location</strong>
+                        <span>Work records, travel receipts, GPS data, witness statements, photos of vacant lot.</span>
+                    </label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check7">
+                    <label for="check7">
+                        <strong>Prior Court Appearances</strong>
+                        <span>Records showing you appeared when properly served in other proceedings.</span>
+                    </label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check8">
+                    <label for="check8">
+                        <strong>Your Meritorious Defense</strong>
+                        <span>Document what defense you would have presented if you had been served.</span>
+                    </label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check9">
+                    <label for="check9">
+                        <strong>Timeline of Events</strong>
+                        <span>Create a chronological timeline with dates and supporting documents.</span>
+                    </label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check10">
+                    <label for="check10">
+                        <strong>Affidavits from Witnesses</strong>
+                        <span>Sworn statements from people who can attest to your address or whereabouts.</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="template-category">
+            <h2>Quick Reference Guides</h2>
+            <div class="template-grid">
+                <div class="template-card">
+                    <div class="template-icon">&#128203;</div>
+                    <h3>Bill of Review Quick Guide</h3>
+                    <p>Key elements, deadlines, and procedural requirements for filing a Bill of Review in Texas.</p>
+                    <a href="/faq#bill-of-review" class="btn">View Guide</a>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-icon">&#128218;</div>
+                    <h3>Legal Glossary</h3>
+                    <p>Definitions of key terms like SAPCR, conservatorship, extrinsic fraud, and more.</p>
+                    <a href="/glossary" class="btn">View Glossary</a>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-icon">&#128176;</div>
+                    <h3>Legal Aid Directory</h3>
+                    <p>Find free and low-cost legal help in Texas, California, Florida, and 5 other states.</p>
+                    <a href="/legislators" class="btn">Find Help</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="footer-logo-img">
+                <span>SAFE SAPCR<span class="tx">TX</span></span>
+            </div>
+            <p class="disclaimer">Templates are for informational purposes only. Consult an attorney before filing legal documents.</p>
+            <p class="contact">Contact: <a href="mailto:info@safesapcrtx.org">info@safesapcrtx.org</a></p>
+            <p class="social-links">Follow us: <a href="https://www.facebook.com/profile.php?id=61585886109488" target="_blank" rel="noopener">Facebook</a></p>
+            <p class="copyright">© 2025-2026 SAFE SAPCR Texas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Toggle preview
+        function togglePreview(id) {
+            const preview = document.getElementById(id);
+            preview.classList.toggle('show');
+        }
+
+        // Copy template
+        function copyTemplate(id) {
+            const preview = document.getElementById(id);
+            navigator.clipboard.writeText(preview.textContent).then(() => {
+                alert('Template copied to clipboard!');
+            });
+        }
+
+        // Save checklist to localStorage
+        document.querySelectorAll('.checklist-item input').forEach(checkbox => {
+            const saved = localStorage.getItem(checkbox.id);
+            if (saved === 'true') checkbox.checked = true;
+
+            checkbox.addEventListener('change', () => {
+                localStorage.setItem(checkbox.id, checkbox.checked);
+            });
+        });
+    </script>
+</body>
+</html>

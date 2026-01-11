@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+.netlify/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Honeypot/security trap files (not real)
+shell.php
+c99.php
+wp-login.php
+wp-config.php.bak
+xmlrpc.php
+admin.php
+config.php
+phpinfo.php
+info.php
+test.php
+database.sql
+backup.sql
+error_log
+.htaccess
+.htpasswd
+wp-admin/
+phpmyadmin/
+admin/
+api/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temp files
+*.tmp
+*.bak
+
+# Batch processing files
+*-batch*.json
+media-request.json

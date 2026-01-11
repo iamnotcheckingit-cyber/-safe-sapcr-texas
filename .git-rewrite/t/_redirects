@@ -13,13 +13,6 @@
 /media          /media.html          200
 /templates      /templates.html      200
 /case-study     /case-study.html     200
-/evidence       /evidence.html       200
-/about          /about.html          200
-/contact        /contact.html        200
-/contact-pgp    /contact-pgp.html    200
-/correspondence /correspondence.html 200
-/outreach       /outreach.html       200
-/press-release  /press-release.html  200
 
 # Language pages
 /es             /es/index.html       200

@@ -1,0 +1,25 @@
+{
+  "database": {
+    "host": "db.internal.safesapcr.local",
+    "port": 5432,
+    "name": "production",
+    "user": "admin",
+    "password": "P@ssw0rd123!"
+  },
+  "api": {
+    "key": "api_key_fake_honeypot_12345",
+    "secret": "secret_fake_honeypot_67890"
+  },
+  "admin": {
+    "username": "administrator",
+    "password": "Admin@2024!",
+    "email": "admin@safesapcrtx.local"
+  },
+  "aws": {
+    "region": "us-east-1",
+    "access_key": "AKIAFAKEKEYHONEYPOT",
+    "secret_key": "fakeSecretKeyHoneypot123456789"
+  },
+  "debug": true,
+  "version": "2.1.0"
+}
