@@ -223,7 +223,9 @@ exports.handler = async (event) => {
         obstruction: [
           "Refused to provide email address",
           "Cannot forward information electronically",
-          "14:18 HRS - NO CALLER ID - Callback was 'regular deputy on wrong call' - NOT supervisor as requested"
+          "14:18 HRS - NO CALLER ID - Callback was 'regular deputy on wrong call' - NOT supervisor as requested",
+          "LIEUTENANT CALLBACK - Says 'civil matter' - PERJURY IS TEXAS PENAL CODE § 37.02",
+          "Deputy allegedly en route"
         ],
         timestamp: new Date().toISOString()
       }
