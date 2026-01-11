@@ -216,10 +216,14 @@ exports.handler = async (event) => {
       {
         date: "2026-01-11",
         type: "stonewalled",
-        title: "Precinct 4 - No Help",
-        description: "Called Harris County Precinct 4 Constables - received no assistance",
+        title: "Precinct 4 - No Help, Refused Email",
+        description: "Called Harris County Precinct 4 Constables - refused to provide email to forward information",
         agency: "Harris County Precinct 4 Constables",
         response: "NO HELP",
+        obstruction: [
+          "Refused to provide email address",
+          "Cannot forward information electronically"
+        ],
         timestamp: new Date().toISOString()
       }
     ]
