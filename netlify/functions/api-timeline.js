@@ -132,15 +132,16 @@ exports.handler = async (event) => {
       {
         date: "2026-01-01",
         type: "retaliation",
-        title: "Google Account Suspended Minutes After Phone Communication",
-        description: "Google account suspended at 11:46 hrs, exactly 2 minutes after communication to 713-274-2500 at 11:44 hrs",
+        title: "Google Account Disabled 2 Minutes After Call to Deputies",
+        description: "Google account disabled at 11:46 AM, exactly 2 minutes after calling deputies to request to speak to a supervisor",
         timeline: {
-          communication: "11:44 hrs - Call to 713-274-2500",
-          suspension: "11:46 hrs - Google account suspended",
+          call: "11:44 AM - Called deputies requesting to speak to supervisor",
+          disabled: "11:46 AM - Google account disabled",
           gap: "2 minutes"
         },
         phoneNumber: "713-274-2500",
-        significance: "Suspicious timing suggests coordinated retaliation or surveillance"
+        callPurpose: "Request to speak to supervisor",
+        significance: "Account disabled within 2 minutes of law enforcement call - coordinated retaliation"
       },
       {
         date: "2026-01-11",
