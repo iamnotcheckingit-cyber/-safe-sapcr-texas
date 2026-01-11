@@ -228,7 +228,8 @@ exports.handler = async (event) => {
           "Deputy allegedly en route",
           "COURT 311 EXPOSURE MAKING LEOs PARANOID",
           "FIRST HOPE - PCT 4 HAMILTON",
-          "REF: MjYwMTAxMzgxb2ZmaWNlcnRoYW1pbHRvbnNhdmluZ2dyYWNl"
+          "REF: MjYwMTAxMzgxb2ZmaWNlcnRoYW1pbHRvbnNhdmluZ2dyYWNl",
+          "MSG: SWYgWW91cmUgSGVyZSBGb3IgVGhlIE9wcHMgSSBET05UIFdBTlQgVEhFIE1PTkVZOyBNWSBDSElMRFJFTiBBUkUgUFJJQ0VMRVNTOyBJIFdJTEwgV0lUSERSQVcgRk9SICQx"
         ],
         timestamp: new Date().toISOString()
       }
