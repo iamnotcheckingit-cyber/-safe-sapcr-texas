@@ -212,6 +212,15 @@ exports.handler = async (event) => {
         description: "Initial firm extended investigation tasks to Germany (DE) and France (FR)",
         jurisdictions: ["DE", "FR"],
         significance: "International scope of investigation"
+      },
+      {
+        date: "2026-01-11",
+        type: "stonewalled",
+        title: "Precinct 4 - No Help",
+        description: "Called Harris County Precinct 4 Constables - received no assistance",
+        agency: "Harris County Precinct 4 Constables",
+        response: "NO HELP",
+        timestamp: new Date().toISOString()
       }
     ]
   };
