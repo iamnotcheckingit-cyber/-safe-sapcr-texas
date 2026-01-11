@@ -382,75 +382,74 @@
     </header>
 
     <main>
-        <!-- DISCLOSURE CAMPAIGN BANNER -->
+        <!-- THE REAL STORY BANNER -->
         <section class="disclosure-banner">
             <div class="disclosure-content">
-                <div class="disclosure-badge">PUBLIC DISCLOSURE</div>
-                <h2>$1 Settlement Demand Sent to Media</h2>
+                <div class="disclosure-badge">THE REAL STORY</div>
+                <h2>A father separated from his children for <span class="gold">500+ days</span> through a fraudulent default judgment</h2>
                 <div class="disclosure-facts">
-                    <span>500+ Days Separated</span>
-                    <span>Assault Charge DISMISSED</span>
-                    <span>Eviction FAILED</span>
-                    <span>Default Judgment via Fraud</span>
+                    <span>Eviction: <strong>FAILED</strong></span>
+                    <span>Assault Charge: <strong>DISMISSED</strong></span>
+                    <span>Writ of Re-Entry: <strong>GRANTED</strong></span>
+                    <span>Default Judgment: <strong>FRAUD</strong></span>
                 </div>
-                <p class="disclosure-deadline">Settlement Deadline: <strong>Monday, January 13, 2026 at 5:00 PM CST</strong></p>
                 <div class="disclosure-links">
-                    <a href="/correspondence" class="btn btn-gold">Read the Correspondence</a>
+                    <a href="/correspondence" class="btn btn-gold">Read the $1 Settlement Demand</a>
                     <a href="/evidence" class="btn btn-outline">View Evidence Timeline</a>
                 </div>
+                <p class="disclosure-deadline">Settlement Deadline: <strong>Monday, January 13, 2026 at 5:00 PM CST</strong></p>
             </div>
         </section>
 
         <style>
         .disclosure-banner {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            border-bottom: 3px solid #D4AF37;
-            padding: 2.5rem 1rem;
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+            border-bottom: 4px solid #D4AF37;
+            padding: 2rem 1rem;
             text-align: center;
         }
         .disclosure-content {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         .disclosure-badge {
             display: inline-block;
             background: #D4AF37;
-            color: #1a1a1a;
-            padding: 0.4rem 1.2rem;
-            font-size: 0.8rem;
+            color: #0d0d0d;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin-bottom: 1rem;
             border-radius: 3px;
         }
         .disclosure-banner h2 {
             color: #fff;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            margin-bottom: 1.25rem;
             font-weight: 400;
+            line-height: 1.4;
+        }
+        .disclosure-banner h2 .gold {
+            color: #D4AF37;
+            font-weight: 700;
         }
         .disclosure-facts {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
         }
         .disclosure-facts span {
-            background: rgba(212, 175, 55, 0.15);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            color: #D4AF37;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #e8e8e8;
             padding: 0.5rem 1rem;
             font-size: 0.85rem;
             border-radius: 4px;
-            font-weight: 600;
         }
-        .disclosure-deadline {
-            color: #e8e8e8;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-        .disclosure-deadline strong {
+        .disclosure-facts span strong {
             color: #D4AF37;
         }
         .disclosure-links {
@@ -458,10 +457,11 @@
             justify-content: center;
             gap: 1rem;
             flex-wrap: wrap;
+            margin-bottom: 1rem;
         }
         .btn-gold {
             background: #D4AF37;
-            color: #1a1a1a;
+            color: #0d0d0d;
             padding: 0.75rem 1.5rem;
             text-decoration: none;
             font-weight: 600;
@@ -485,9 +485,18 @@
         .btn-outline:hover {
             background: rgba(212, 175, 55, 0.1);
         }
+        .disclosure-deadline {
+            color: #888;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        .disclosure-deadline strong {
+            color: #D4AF37;
+        }
         @media (max-width: 600px) {
-            .disclosure-banner h2 { font-size: 1.4rem; }
+            .disclosure-banner h2 { font-size: 1.2rem; }
             .disclosure-facts span { font-size: 0.75rem; padding: 0.4rem 0.8rem; }
+            .btn-gold, .btn-outline { padding: 0.6rem 1rem; font-size: 0.85rem; }
         }
         </style>
 
