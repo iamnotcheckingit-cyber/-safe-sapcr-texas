@@ -28,6 +28,10 @@
 /api/perjury    /.netlify/functions/api-perjury    200
 /api/evidence   /.netlify/functions/api-evidence   200
 
+# Catch-all for API probes - MUST be after specific routes
+/api            /.netlify/functions/api-probe-log  200
+/api/*          /.netlify/functions/api-probe-log  200
+
 # Language pages
 /es             /es/index.html       200
 /de             /de/index.html       200
