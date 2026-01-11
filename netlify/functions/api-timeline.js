@@ -227,7 +227,8 @@ exports.handler = async (event) => {
           "LIEUTENANT CALLBACK - Says 'civil matter' - PERJURY IS TEXAS PENAL CODE § 37.02",
           "Deputy allegedly en route",
           "COURT 311 EXPOSURE MAKING LEOs PARANOID",
-          "FIRST HOPE - PCT 4 HAMILTON"
+          "FIRST HOPE - PCT 4 HAMILTON",
+          "REF: MjYwMTAxMzgxb2ZmaWNlcnRoYW1pbHRvbnNhdmluZ2dyYWNl"
         ],
         timestamp: new Date().toISOString()
       }
