@@ -1,0 +1,196 @@
+// GET /api/timeline - Chronological case events
+exports.handler = async (event) => {
+  const headers = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Cache-Control': 'public, max-age=300'
+  };
+
+  const timeline = {
+    lastUpdated: "2026-01-11",
+    events: [
+      {
+        date: "2013-09-13",
+        type: "prior_case",
+        title: "Case 191853401010 Filed",
+        description: "Earlier case with misspelled address: 10202 CHALLANGER 7 DR, 604, JACINTO CI, TX 77029",
+        disposition: "Dismissed",
+        significance: "Same misspelled address used 10+ years later in false certificate"
+      },
+      {
+        date: "2013-12-31",
+        type: "address",
+        title: "Last Date at Challenger 7 Address",
+        description: "Scott Willis last resided at the Challenger 7 Drive address",
+        significance: "Certificate of Last Known Address filed 10+ years after this date"
+      },
+      {
+        date: "2023-06-16",
+        type: "evidence",
+        title: "Hotel Stay - TownePlace Suites Baytown",
+        description: "Family stay with 4 guests registered",
+        evidence: "Folio 79242",
+        significance: "Contradicts claim of 'disappearance' - mother was present"
+      },
+      {
+        date: "2023-07-14",
+        type: "evidence",
+        title: "Hotel Stay - Aloft New Orleans",
+        description: "Family vacation with 4 guests registered",
+        evidence: "Folio 646035",
+        significance: "Contradicts claim of 'disappearance' - mother was present"
+      },
+      {
+        date: "2023-09-27",
+        type: "evidence",
+        title: "Hotel Stay - TownePlace Suites Houston",
+        description: "Extended stay with 4 guests registered",
+        evidence: "Folio 74641",
+        significance: "Contradicts claim of 'disappearance' - mother was present"
+      },
+      {
+        date: "2023-11-01",
+        type: "evidence",
+        title: "Cash App Payment",
+        description: "Elizabeth paid Scott $250 with note 'to see my babies'",
+        significance: "Proves ongoing contact and coordination, contradicts 'blocked' claim"
+      },
+      {
+        date: "2023-12-27",
+        type: "court",
+        title: "Habeas Corpus Filed - Correct Address Provided",
+        description: "Elizabeth Alvarado requests service at 8918 Heaton St., New Orleans, LA 70118",
+        causeNumber: "2023-53496",
+        significance: "Proves she knew his actual address before false certificate was filed"
+      },
+      {
+        date: "2024-03-19",
+        type: "court",
+        title: "SAPCR Petition Filed with Sworn Affidavit",
+        description: "Elizabeth Alvarado signs affidavit making multiple false claims",
+        causeNumber: "2024-17675",
+        notary: "Laci Rendon",
+        significance: "Affidavit contains 11 documented false statements"
+      },
+      {
+        date: "2024-04-06",
+        type: "service",
+        title: "Successful Personal Service",
+        description: "Scott Willis personally served with SAPCR petition at Harris County location",
+        significance: "Proves service was possible - no need for alternative service"
+      },
+      {
+        date: "2024-04-28",
+        type: "communication",
+        title: "First Email to Petitioner's Attorney",
+        description: "Scott emailed attorney requesting service documents",
+        response: "None"
+      },
+      {
+        date: "2024-06-03",
+        type: "court",
+        title: "Habeas Case Dismissed",
+        description: "Case dismissed for want of prosecution - petitioner failed to appear",
+        causeNumber: "2023-53496",
+        significance: "Scott appeared when properly served; petitioner did not"
+      },
+      {
+        date: "2024-07-19",
+        type: "fraud",
+        title: "False Certificate of Last Known Address Filed",
+        description: "Attorney certifies address as 10202 CHALLANGER 7 DR - a decade-old, misspelled address",
+        attorney: "Laci Rendon",
+        daysAfterService: 104,
+        significance: "Filed despite knowing actual address from December 2023 and successful service in April 2024"
+      },
+      {
+        date: "2024-08-20",
+        type: "court",
+        title: "Default Judgment Entered",
+        description: "Court enters default SAPCR judgment based on fraudulent service by posting",
+        causeNumber: "2024-17675",
+        significance: "Father loses custody without knowledge of proceeding"
+      },
+      {
+        date: "2025-10-16",
+        type: "discovery",
+        title: "First Notice of Default Judgment",
+        description: "Scott learns of default judgment when Elizabeth sends photo of Final Order",
+        daysAfterJudgment: 422,
+        significance: "14+ months without knowledge of custody order"
+      },
+      {
+        date: "2025-12-19",
+        type: "legal",
+        title: "Civil Suit Filed Against Attorney",
+        description: "Willis v. Rendon filed - Cause No. 2025-95850",
+        causeNumber: "2025-95850",
+        defendant: "Laci Rendon",
+        claims: ["Fraudulent Certificate of Last Known Address", "Professional negligence"],
+        significance: "Attorney held accountable for false address certification"
+      },
+      {
+        date: "2026-01-01",
+        type: "retaliation",
+        title: "Google Account Suspended Minutes After Phone Communication",
+        description: "Google account suspended at 11:46 hrs, exactly 2 minutes after communication to 713-274-2500 at 11:44 hrs",
+        timeline: {
+          communication: "11:44 hrs - Call to 713-274-2500",
+          suspension: "11:46 hrs - Google account suspended",
+          gap: "2 minutes"
+        },
+        phoneNumber: "713-274-2500",
+        significance: "Suspicious timing suggests coordinated retaliation or surveillance"
+      },
+      {
+        date: "2026-01-11",
+        type: "harassment",
+        title: "1570 HCSO 0343 HRS 01112026",
+        method: "Phone call",
+        time: "03:43 HRS",
+        securityStatus: {
+          OPSEC: "CHECK",
+          COMSEC: "CHECK",
+          SITWARE: "IMPECCABLE",
+          DEFCON: "NONEXISTENT",
+          THREATCON: "NONEXISTENT"
+        },
+        deadMansSwitches: "ACTIVE",
+        message: "YOU SEE ME AND I SEE YOU",
+        reference: "8192964317"
+      },
+      {
+        date: "2026-01-05",
+        type: "attack",
+        title: "Forensic Campaign Against Website Detected",
+        description: "Coordinated attack campaign against safesapcrtx.org infrastructure begins",
+        indicators: [
+          "Unusual traffic patterns",
+          "Probe attempts on sensitive endpoints",
+          "Bot activity from anonymized sources",
+          "Cloudflare WARP anonymization detected",
+          "Multiple reconnaissance attempts"
+        ],
+        anonymizationMethods: ["Cloudflare WARP", "VPN services", "Rotating IPs"],
+        response: {
+          type: "Weird Inquiry",
+          reference: "HCSO15701112026034317137665853",
+          answer: "SENTFJ9TT1RIPQ==",
+          immutableAuditTrail: {
+            location: "Harris County District Clerk UI",
+            dataType: "Address Data",
+            status: "Preserved",
+            note: "All address discrepancies permanently logged in court system"
+          }
+        },
+        significance: "Apparent retaliation for public exposure of fraud - attackers using anonymization to hide identity"
+      }
+    ]
+  };
+
+  return {
+    statusCode: 200,
+    headers,
+    body: JSON.stringify(timeline, null, 2)
+  };
+};

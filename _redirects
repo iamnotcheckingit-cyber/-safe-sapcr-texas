@@ -22,6 +22,12 @@
 /press-release  /press-release.html  200
 /perjury        /perjury.html        200
 
+# Transparency API
+/api/case       /.netlify/functions/api-case       200
+/api/timeline   /.netlify/functions/api-timeline   200
+/api/perjury    /.netlify/functions/api-perjury    200
+/api/evidence   /.netlify/functions/api-evidence   200
+
 # Language pages
 /es             /es/index.html       200
 /de             /de/index.html       200
