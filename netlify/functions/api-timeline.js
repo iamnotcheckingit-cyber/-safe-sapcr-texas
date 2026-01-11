@@ -226,7 +226,8 @@ exports.handler = async (event) => {
           "14:18 HRS - NO CALLER ID - Callback was 'regular deputy on wrong call' - NOT supervisor as requested",
           "LIEUTENANT CALLBACK - Says 'civil matter' - PERJURY IS TEXAS PENAL CODE § 37.02",
           "Deputy allegedly en route",
-          "COURT 311 EXPOSURE MAKING LEOs PARANOID"
+          "COURT 311 EXPOSURE MAKING LEOs PARANOID",
+          "FIRST HOPE - PCT 4 HAMILTON"
         ],
         timestamp: new Date().toISOString()
       }
