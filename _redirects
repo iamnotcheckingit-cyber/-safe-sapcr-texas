@@ -23,10 +23,11 @@
 /perjury        /perjury.html        200
 
 # Transparency API
-/api/case       /.netlify/functions/api-case       200
-/api/timeline   /.netlify/functions/api-timeline   200
-/api/perjury    /.netlify/functions/api-perjury    200
-/api/evidence   /.netlify/functions/api-evidence   200
+/api/case              /.netlify/functions/api-case              200
+/api/timeline          /.netlify/functions/api-timeline          200
+/api/perjury           /.netlify/functions/api-perjury           200
+/api/evidence          /.netlify/functions/api-evidence          200
+/api/criminal-referral /.netlify/functions/api-criminal-referral 200
 
 # Catch-all for API probes - MUST be after specific routes
 /api            /.netlify/functions/api-probe-log  200
