@@ -433,6 +433,83 @@
         @media (max-width: 600px) { .call-banner h2 { font-size: 1.5rem; } .call-number { font-size: 1.2rem; } }
         </style>
 
+        <!-- PERJURED AFFIDAVITS COUNTDOWN BANNER -->
+        <section class="affidavit-banner">
+            <div class="affidavit-content">
+                <div class="affidavit-badge">COMING SUNDAY 9:00 AM CST</div>
+                <h2>2 PERJURED AFFIDAVITS WITH EXHIBITS</h2>
+                <p class="affidavit-subtitle">Father has <strong>STILL NEVER BEEN PROPERLY SERVED</strong> the fraudulent default SAPCR order to this day</p>
+                <div class="affidavit-countdown" id="affidavitCountdown"></div>
+            </div>
+        </section>
+        <style>
+        .affidavit-banner {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 4px solid #e94560;
+        }
+        .affidavit-content { max-width: 900px; margin: 0 auto; }
+        .affidavit-badge {
+            display: inline-block;
+            background: #e94560;
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            animation: pulse-badge 2s infinite;
+        }
+        @keyframes pulse-badge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(233, 69, 96, 0.5); }
+        }
+        .affidavit-banner h2 {
+            color: #fff;
+            font-size: 2.2rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .affidavit-subtitle {
+            color: #e94560;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .affidavit-countdown {
+            font-size: 1.5rem;
+            color: #D4AF37;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        @media (max-width: 600px) {
+            .affidavit-banner h2 { font-size: 1.5rem; letter-spacing: 1px; }
+            .affidavit-countdown { font-size: 1.2rem; }
+        }
+        </style>
+        <script>
+        (function() {
+            const targetDate = new Date('2026-01-12T09:00:00-06:00');
+            function updateCountdown() {
+                const now = new Date();
+                const diff = targetDate - now;
+                if (diff <= 0) {
+                    document.getElementById('affidavitCountdown').innerHTML = '<a href="/evidence" style="color:#D4AF37;text-decoration:underline;">VIEW THE AFFIDAVITS NOW</a>';
+                    return;
+                }
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                document.getElementById('affidavitCountdown').textContent =
+                    hours + 'h ' + minutes + 'm ' + seconds + 's until release';
+            }
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        })();
+        </script>
+
         <!-- THE REAL STORY BANNER -->
         <section class="disclosure-banner">
             <div class="disclosure-content">
