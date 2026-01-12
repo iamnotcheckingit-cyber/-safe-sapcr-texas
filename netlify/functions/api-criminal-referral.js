@@ -21,7 +21,8 @@ exports.handler = async (event) => {
       "Harris County District Attorney's Office",
       "Texas Attorney General - Criminal Investigations",
       "FBI - Public Corruption Unit",
-      "Texas State Bar - Disciplinary Division"
+      "Texas State Bar - Disciplinary Division",
+      "Harris County Constable Precinct 4"
     ],
 
     subjects: [
