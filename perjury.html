@@ -478,6 +478,7 @@
     <!-- End Google Tag Manager (noscript) -->
     <!-- Signal Contact Badge -->
     <a href="https://signal.me/#eu/safesapcrtx.26" target="_blank" rel="noopener"
+       onclick="return openSignal(event)"
        style="position: fixed; top: 70px; right: 10px; z-index: 9999;
               background: #3a76f0; color: white; padding: 8px 12px;
               border-radius: 8px; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -706,5 +707,19 @@
         <p>Case References: Cause No. 202417675 (SAPCR) • 202353496 (Habeas) • 202592876 (Bill of Review) • 202595850 (Willis v. Rendon)</p>
         <p style="margin-top: 0.75rem;"><a href="/">safesapcrtx.org</a> • <a href="/evidence">Evidence Timeline</a> • <a href="/correspondence">Correspondence</a></p>
     </footer>
+
+    <script>
+    function openSignal(e) {
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            e.preventDefault();
+            var appUrl = 'sgnl://signal.me/#eu/safesapcrtx.26';
+            var webUrl = 'https://signal.me/#eu/safesapcrtx.26';
+            window.location.href = appUrl;
+            setTimeout(function() { window.location.href = webUrl; }, 1500);
+            return false;
+        }
+        return true;
+    }
+    </script>
 </body>
 </html>
