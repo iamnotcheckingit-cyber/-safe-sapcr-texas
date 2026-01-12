@@ -6,23 +6,24 @@
 }
 
 :root {
-    /* Engagement-Optimized Theme - Trust Blue & Action Orange */
-    --primary: #1e3a5f;          /* Deep trust blue - authority, reliability */
-    --primary-light: #2d5a87;    /* Lighter blue for hover states */
-    --primary-dark: #0f2744;     /* Darker blue for depth */
-    --accent: #e85d04;           /* Vibrant orange - urgency, action, energy */
-    --accent-light: #f48c06;     /* Warm orange - optimism */
-    --accent-dark: #c44200;      /* Deep orange for hover */
-    --gold: #f59e0b;             /* Gold - value, importance */
+    /* Professional Legal Theme - Navy & Gold (from logo) */
+    --primary: #0d2240;          /* Deep navy blue - authority, trust */
+    --primary-light: #1a3a5c;    /* Lighter navy for hover states */
+    --primary-dark: #081829;     /* Darker navy for depth */
+    --accent: #d4a429;           /* Gold/amber - justice, importance */
+    --accent-light: #e6b84a;     /* Light gold for hover */
+    --accent-dark: #b8922a;      /* Dark gold for pressed */
+    --secondary: #4a7cb8;        /* Medium blue - from parent figure */
+    --gold: #d4a429;             /* Gold - matching accent */
     --success: #059669;          /* Green - hope, progress */
-    --urgency: #dc2626;          /* Red - critical attention */
+    --urgency: #b43232;          /* Deep red - critical attention */
     --text: #1f2937;             /* Near-black for readability */
     --text-light: #4b5563;       /* Gray for secondary text */
     --bg: #ffffff;
-    --bg-alt: #f8fafc;           /* Very light blue-gray - clean, modern */
-    --bg-cream: #fffbeb;         /* Warm cream - welcoming */
-    --bg-highlight: #fef3c7;     /* Yellow highlight for emphasis */
-    --border: #e5e7eb;
+    --bg-alt: #f0f4f8;           /* Light blue-gray - clean, professional */
+    --bg-cream: #faf8f0;         /* Warm cream - welcoming */
+    --bg-highlight: #fef3c7;     /* Gold highlight for emphasis */
+    --border: #d1d5db;
 }
 
 html {
@@ -34,7 +35,7 @@ body {
     color: var(--text);
     line-height: 1.6;
     background: var(--bg);
-    padding-top: 100px; /* Account for fixed header */
+    padding-top: 70px; /* Account for fixed header */
 }
 
 h1, h2, h3, h4 {
@@ -53,7 +54,7 @@ a:hover {
 /* Header & Navigation */
 header {
     background: var(--primary);
-    padding: 1rem 2rem;
+    padding: 0.6rem 1.5rem;
     position: fixed;
     width: 100%;
     top: 0;
@@ -73,13 +74,13 @@ nav {
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
     text-decoration: none;
     font-family: 'Merriweather', serif;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: white;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .logo .tx {
@@ -87,16 +88,16 @@ nav {
 }
 
 .logo-img {
-    height: 45px;
+    height: 38px;
     width: auto;
 }
 
 .logo-text {
     font-family: 'Merriweather', serif;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: white;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .logo-text .tx {
@@ -140,16 +141,16 @@ nav {
 nav ul {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 nav a {
     color: white;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     transition: color 0.3s;
 }
 
