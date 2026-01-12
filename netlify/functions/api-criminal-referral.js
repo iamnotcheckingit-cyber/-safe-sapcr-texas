@@ -1,5 +1,22 @@
 // Criminal Referral with TAR Exhibit Payload
 exports.handler = async (event) => {
+  // Log access for tracking
+  const accessLog = {
+    timestamp: new Date().toISOString(),
+    endpoint: '/api/criminal-referral',
+    ip: event.headers['x-forwarded-for'] || event.headers['client-ip'] || 'unknown',
+    userAgent: event.headers['user-agent'] || 'unknown',
+    referer: event.headers['referer'] || event.headers['referrer'] || 'direct',
+    country: event.headers['x-country'] || event.headers['x-nf-client-connection-ip'] || 'unknown',
+    method: event.httpMethod,
+    path: event.path,
+    queryString: event.queryStringParameters || {}
+  };
+
+  console.log('=== CRIMINAL REFERRAL ACCESS ===');
+  console.log(JSON.stringify(accessLog, null, 2));
+  console.log('================================');
+
   const headers = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
