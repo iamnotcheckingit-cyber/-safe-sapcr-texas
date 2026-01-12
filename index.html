@@ -397,140 +397,128 @@
     </header>
 
     <main>
-        <!-- PERJURY EXPOSED - MAIN STORY -->
-        <section class="perjury-hero">
-            <h1 class="perjury-title">Perjury Exposed</h1>
-            <h2 class="perjury-subtitle">How 2 Cases in 1 Courtroom — Perjury and Fraud Was Weaponized Against Me</h2>
-            <div class="perjury-summary">
-                <div class="perjury-row">
-                    <div class="perjury-claim"><span class="label">Sworn:</span> "He disappeared with my children for 9 months"</div>
-                    <div class="perjury-truth"><span class="label">Evidence:</span> Hotel receipts show <strong>4 guests</strong> — she was there</div>
+        <!-- CASE OVERVIEW - LEGAL SUMMARY -->
+        <section class="case-banner">
+            <div class="case-banner-content">
+                <div class="case-header">
+                    <span class="case-label">Active Litigation</span>
+                    <h1 class="case-title">Documented Fraud in Harris County SAPCR</h1>
                 </div>
-                <div class="perjury-row">
-                    <div class="perjury-claim"><span class="label">Sworn:</span> "He threatened to kill the children"</div>
-                    <div class="perjury-truth"><span class="label">Evidence:</span> Zero documentation. Continued vacationing together after.</div>
+                <div class="case-facts">
+                    <div class="fact-item">
+                        <span class="fact-num">11</span>
+                        <span class="fact-desc">False Statements in Sworn Affidavit</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-num">104</span>
+                        <span class="fact-desc">Days After Service — False LKA Filed</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-num">422</span>
+                        <span class="fact-desc">Days Without Notice of Judgment</span>
+                    </div>
                 </div>
-                <div class="perjury-row">
-                    <div class="perjury-claim"><span class="label">Sworn:</span> "He blocked me from my children"</div>
-                    <div class="perjury-truth"><span class="label">Evidence:</span> 50+ Cash App transactions for visits</div>
+                <p class="case-summary">Default judgment obtained through fraudulent Certificate of Last Known Address filed 104 days after successful personal service. Petitioner's own habeas filing proves knowledge of correct address.</p>
+                <div class="case-actions">
+                    <a href="/perjury" class="btn-case">Perjury Analysis</a>
+                    <a href="/case-study" class="btn-case-alt">Full Case Study</a>
+                    <a href="/api/criminal-referral" class="btn-case-alt">Criminal Referral</a>
                 </div>
-            </div>
-            <div class="perjury-count-box">
-                <span class="count-number">11</span>
-                <span class="count-label">Documented False Statements</span>
-            </div>
-            <div class="perjury-cta">
-                <a href="/perjury" class="btn-primary">View Full Breakdown</a>
-                <a href="/evidence" class="btn-outline">Evidence Timeline</a>
             </div>
         </section>
         <style>
-        .perjury-hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            border-bottom: 3px solid #c9a227;
-            padding: 3rem 1.5rem;
-            text-align: center;
+        .case-banner {
+            background: #0d1117;
+            border-bottom: 2px solid #c9a227;
+            padding: 2.5rem 1.5rem;
         }
-        .perjury-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 8px;
+        .case-banner-content {
+            max-width: 900px;
+            margin: 0 auto;
         }
-        .perjury-subtitle {
-            font-size: 1.2rem;
-            color: #c9a227;
-            margin-bottom: 2rem;
-            font-weight: 400;
+        .case-header {
+            margin-bottom: 1.5rem;
         }
-        .perjury-summary {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-        .perjury-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        .perjury-claim, .perjury-truth {
-            padding: 1rem;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            text-align: left;
-        }
-        .perjury-claim {
-            background: rgba(180,50,50,0.2);
-            border-left: 3px solid #b43232;
-            color: #ecc;
-        }
-        .perjury-truth {
-            background: rgba(201,162,39,0.15);
-            border-left: 3px solid #c9a227;
-            color: #fff;
-        }
-        .perjury-claim .label { color: #e57373; font-weight: 600; }
-        .perjury-truth .label { color: #c9a227; font-weight: 600; }
-        .perjury-count-box {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: #b43232;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-        }
-        .count-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #fff;
-        }
-        .count-label {
-            font-size: 1rem;
-            color: #fff;
-            font-weight: 500;
-        }
-        .perjury-cta {
-            margin-top: 1.5rem;
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .btn-primary {
+        .case-label {
+            display: inline-block;
             background: #c9a227;
             color: #000;
-            padding: 14px 28px;
-            font-size: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 10px;
+            border-radius: 3px;
+            margin-bottom: 8px;
+        }
+        .case-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #fff;
+            margin: 0;
+            line-height: 1.3;
+        }
+        .case-facts {
+            display: flex;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        .fact-item {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .fact-num {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #c9a227;
+            font-family: 'Georgia', serif;
+        }
+        .fact-desc {
+            font-size: 0.85rem;
+            color: #8b949e;
+            max-width: 140px;
+            line-height: 1.3;
+        }
+        .case-summary {
+            color: #c9d1d9;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 1.5rem 0;
+            border-left: 2px solid #30363d;
+            padding-left: 1rem;
+        }
+        .case-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .btn-case {
+            background: #c9a227;
+            color: #000;
+            padding: 10px 20px;
+            font-size: 0.9rem;
             font-weight: 600;
             text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.2s;
+            border-radius: 4px;
         }
-        .btn-primary:hover {
-            background: #d4af37;
-            transform: translateY(-2px);
-        }
-        .btn-outline {
+        .btn-case:hover { background: #d4af37; }
+        .btn-case-alt {
             background: transparent;
-            color: #fff;
-            border: 2px solid #fff;
-            padding: 12px 24px;
-            font-size: 1rem;
-            font-weight: 500;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+            padding: 10px 20px;
+            font-size: 0.9rem;
             text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.2s;
+            border-radius: 4px;
         }
-        .btn-outline:hover {
-            background: #fff;
-            color: #1a1a2e;
-        }
+        .btn-case-alt:hover { border-color: #c9a227; color: #fff; }
         @media (max-width: 768px) {
-            .perjury-title { font-size: 1.8rem; }
-            .perjury-subtitle { font-size: 1rem; }
-            .perjury-row { grid-template-columns: 1fr; }
-            .count-number { font-size: 2rem; }
+            .case-title { font-size: 1.4rem; }
+            .case-facts { gap: 1.5rem; }
+            .fact-num { font-size: 1.5rem; }
         }
         </style>
 
