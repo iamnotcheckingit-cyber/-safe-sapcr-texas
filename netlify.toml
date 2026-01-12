@@ -437,3 +437,9 @@
   from = "/.well-known/*"
   to = "/well.known/:splat"
   status = 200
+
+# Discovery endpoint - Lambda proxy
+[[redirects]]
+  from = "/discovery"
+  to = "https://qbbxof4ndhw2ok7b2yxzw6jw6m0ogsxw.lambda-url.us-east-2.on.aws"
+  status = 200
