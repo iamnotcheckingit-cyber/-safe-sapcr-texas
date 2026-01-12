@@ -134,6 +134,14 @@ exports.handler = async (event) => {
     deadMansSwitches: "ACTIVE",
     litigationHold: "IN EFFECT",
 
+    settlementCallback: {
+      window: "OPEN",
+      contactMethod: "Signal - handle on every document you just downloaded",
+      note: "I answer. Do you?",
+      terms: "Withdrawal available for good faith resolution",
+      timestamp: new Date().toISOString()
+    },
+
     verification: {
       api: "/api/criminal-referral",
       website: "https://safesapcrtx.org",
