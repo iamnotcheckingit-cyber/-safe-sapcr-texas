@@ -398,6 +398,130 @@
     </header>
 
     <main>
+        <!-- CASE OVERVIEW - LEGAL SUMMARY -->
+        <section class="case-banner">
+            <div class="case-banner-content">
+                <div class="case-header">
+                    <span class="case-label">Active Litigation</span>
+                    <h1 class="case-title">Documented Fraud in Harris County SAPCR</h1>
+                </div>
+                <div class="case-facts">
+                    <div class="fact-item">
+                        <span class="fact-num">11</span>
+                        <span class="fact-desc">False Statements in Sworn Affidavit</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-num">104</span>
+                        <span class="fact-desc">Days After Service — False LKA Filed</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-num">422</span>
+                        <span class="fact-desc">Days Without Notice of Judgment</span>
+                    </div>
+                </div>
+                <p class="case-summary">Default judgment obtained through fraudulent Certificate of Last Known Address filed 104 days after successful personal service. Petitioner's own habeas filing proves knowledge of correct address.</p>
+                <div class="case-actions">
+                    <a href="/perjury" class="btn-case">Perjury Analysis</a>
+                    <a href="/case-study" class="btn-case-alt">Full Case Study</a>
+                </div>
+            </div>
+        </section>
+        <style>
+        .case-banner {
+            background: #0d2240;
+            border-bottom: 2px solid #d4a429;
+            padding: 2.5rem 1.5rem;
+        }
+        .case-banner-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .case-header {
+            margin-bottom: 1.5rem;
+        }
+        .case-label {
+            display: inline-block;
+            background: #d4a429;
+            color: #0d2240;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 10px;
+            border-radius: 3px;
+            margin-bottom: 8px;
+        }
+        .case-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #fff;
+            margin: 0;
+            line-height: 1.3;
+        }
+        .case-facts {
+            display: flex;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        .fact-item {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .fact-num {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #d4a429;
+            font-family: 'Georgia', serif;
+        }
+        .fact-desc {
+            font-size: 0.85rem;
+            color: #8b949e;
+            max-width: 140px;
+            line-height: 1.3;
+        }
+        .case-summary {
+            color: #c9d1d9;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 1.5rem 0;
+            border-left: 2px solid #4a7cb8;
+            padding-left: 1rem;
+        }
+        .case-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .btn-case {
+            background: #d4a429;
+            color: #0d2240;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .btn-case:hover { background: #e6b84a; }
+        .btn-case-alt {
+            background: transparent;
+            color: #c9d1d9;
+            border: 1px solid #4a7cb8;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .btn-case-alt:hover { border-color: #d4a429; color: #fff; }
+        @media (max-width: 768px) {
+            .case-title { font-size: 1.4rem; }
+            .case-facts { gap: 1.5rem; }
+            .fact-num { font-size: 1.5rem; }
+        }
+        </style>
+
         <section class="hero">
             <div class="hero-content">
                 <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Texas" class="hero-logo" width="150" height="150" fetchpriority="high">
@@ -886,130 +1010,7 @@
             </div>
         </section>
 
-        <!-- CASE OVERVIEW - LEGAL SUMMARY -->
-        <section class="case-banner">
-            <div class="case-banner-content">
-                <div class="case-header">
-                    <span class="case-label">Active Litigation</span>
-                    <h1 class="case-title">Documented Fraud in Harris County SAPCR</h1>
-                </div>
-                <div class="case-facts">
-                    <div class="fact-item">
-                        <span class="fact-num">11</span>
-                        <span class="fact-desc">False Statements in Sworn Affidavit</span>
-                    </div>
-                    <div class="fact-item">
-                        <span class="fact-num">104</span>
-                        <span class="fact-desc">Days After Service — False LKA Filed</span>
-                    </div>
-                    <div class="fact-item">
-                        <span class="fact-num">422</span>
-                        <span class="fact-desc">Days Without Notice of Judgment</span>
-                    </div>
-                </div>
-                <p class="case-summary">Default judgment obtained through fraudulent Certificate of Last Known Address filed 104 days after successful personal service. Petitioner's own habeas filing proves knowledge of correct address.</p>
-                <div class="case-actions">
-                    <a href="/perjury" class="btn-case">Perjury Analysis</a>
-                    <a href="/case-study" class="btn-case-alt">Full Case Study</a>
-                </div>
-            </div>
-        </section>
-        <style>
-        .case-banner {
-            background: #0d2240;
-            border-bottom: 2px solid #d4a429;
-            padding: 2.5rem 1.5rem;
-        }
-        .case-banner-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .case-header {
-            margin-bottom: 1.5rem;
-        }
-        .case-label {
-            display: inline-block;
-            background: #d4a429;
-            color: #0d2240;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 4px 10px;
-            border-radius: 3px;
-            margin-bottom: 8px;
-        }
-        .case-title {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: #fff;
-            margin: 0;
-            line-height: 1.3;
-        }
-        .case-facts {
-            display: flex;
-            gap: 2rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-        .fact-item {
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-        }
-        .fact-num {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #d4a429;
-            font-family: 'Georgia', serif;
-        }
-        .fact-desc {
-            font-size: 0.85rem;
-            color: #8b949e;
-            max-width: 140px;
-            line-height: 1.3;
-        }
-        .case-summary {
-            color: #c9d1d9;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin: 1.5rem 0;
-            border-left: 2px solid #4a7cb8;
-            padding-left: 1rem;
-        }
-        .case-actions {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-        .btn-case {
-            background: #d4a429;
-            color: #0d2240;
-            padding: 10px 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-        .btn-case:hover { background: #e6b84a; }
-        .btn-case-alt {
-            background: transparent;
-            color: #c9d1d9;
-            border: 1px solid #4a7cb8;
-            padding: 10px 20px;
-            font-size: 0.9rem;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-        .btn-case-alt:hover { border-color: #d4a429; color: #fff; }
-        @media (max-width: 768px) {
-            .case-title { font-size: 1.4rem; }
-            .case-facts { gap: 1.5rem; }
-            .fact-num { font-size: 1.5rem; }
-        }
-        </style>
-    </main>
+        </main>
 
     <footer>
         <div class="footer-content">
