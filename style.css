@@ -278,7 +278,7 @@ nav a.nav-donate:hover {
 .hero {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     color: white;
-    padding: 10rem 2rem 6rem;
+    padding: 4rem 2rem 6rem;
     text-align: center;
 }
 
