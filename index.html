@@ -351,6 +351,90 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Auth0 SDK for site-wide auth -->
     <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+
+    <!-- LocalBusiness Schema for Texas SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LegalService",
+        "name": "SAFE SAPCR Texas",
+        "description": "Texas family law advocacy organization providing resources for parents affected by SAPCR custody fraud, default judgments, and improper service of process",
+        "url": "https://safesapcrtx.org",
+        "telephone": "",
+        "email": "info@safesapcrtx.org",
+        "areaServed": [
+            {
+                "@type": "State",
+                "name": "Texas",
+                "containsPlace": [
+                    {"@type": "City", "name": "Houston"},
+                    {"@type": "City", "name": "Dallas"},
+                    {"@type": "City", "name": "San Antonio"},
+                    {"@type": "City", "name": "Austin"},
+                    {"@type": "City", "name": "Fort Worth"}
+                ]
+            }
+        ],
+        "serviceArea": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": 31.9686,
+                "longitude": -99.9018
+            },
+            "geoRadius": "500 miles"
+        },
+        "knowsAbout": [
+            "SAPCR Texas",
+            "Texas custody law",
+            "Bill of Review Texas",
+            "SAPCR default judgment",
+            "Texas custody fraud",
+            "Certificate of Last Known Address",
+            "Harris County custody",
+            "Dallas County custody",
+            "Bexar County custody",
+            "Travis County custody"
+        ],
+        "serviceType": [
+            "Family Law Advocacy",
+            "SAPCR Resources",
+            "Custody Rights Information",
+            "Bill of Review Guidance",
+            "Legislative Reform Advocacy"
+        ]
+    }
+    </script>
+
+
+    <!-- Article Schema for Main Content -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "What is SAPCR in Texas? Complete Guide to Custody Petitions 2025",
+        "description": "Complete guide to SAPCR meaning, how to file a SAPCR petition in Texas, default judgments, and Bill of Review procedures for challenging custody fraud.",
+        "author": {
+            "@type": "Organization",
+            "name": "SAFE SAPCR Texas",
+            "url": "https://safesapcrtx.org"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "SAFE SAPCR Texas",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://safesapcrtx.org/images/safe-sapcr-logo.png"
+            }
+        },
+        "datePublished": "2024-12-01",
+        "dateModified": "2026-01-13",
+        "mainEntityOfPage": "https://safesapcrtx.org/",
+        "articleSection": ["Texas Family Law", "SAPCR", "Custody", "Bill of Review"],
+        "keywords": "SAPCR, Texas SAPCR, SAPCR meaning, how to file SAPCR Texas, SAPCR default judgment, Bill of Review Texas, Texas custody fraud, Certificate of Last Known Address"
+    }
+    </script>
+
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -386,6 +470,7 @@
             </div>
             <ul id="navMenu">
                 <li><a href="/#problem">The Problem</a></li>
+                <li><a href="/#sapcr-explained">SAPCR Guide</a></li>
                 <li><a href="/legislation">Legislation</a></li>
                 <li><a href="/legislators">Legislators</a></li>
                 <li><a href="/case-study">Case Study</a></li>
@@ -520,6 +605,76 @@
             .case-facts { gap: 1.5rem; }
             .fact-num { font-size: 1.5rem; }
         }
+
+        /* SAPCR Explainer Section Styles */
+        .sapcr-explainer {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .sapcr-explainer h3 {
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        .sapcr-explainer ul, .sapcr-explainer ol {
+            margin: 1rem 0 1.5rem 1.5rem;
+        }
+        .sapcr-explainer li {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+        .sapcr-explainer p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+
+        /* Texas Counties Section */
+        .county-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .county-card {
+            background: var(--bg-card, #f8f9fa);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary, #2d5a3d);
+        }
+        .county-card h3 {
+            color: var(--primary, #2d5a3d);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .county-card p {
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Bill of Review Section Styles */
+        .bill-review-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .bill-review-content h3 {
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        .bill-review-content ul, .bill-review-content ol {
+            margin: 1rem 0 1.5rem 1.5rem;
+        }
+        .bill-review-content li {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+        .bill-review-content p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
         </style>
 
         <section class="hero">
@@ -561,7 +716,56 @@
             </div>
         </section>
 
-        <article id="problem" class="content-section">
+        <article id="sapcr-explained" class="content-section">
+            <h2>What is SAPCR in Texas? Complete Guide to Custody Petitions</h2>
+            <p class="section-intro">Understanding <strong>SAPCR (Suit Affecting the Parent-Child Relationship)</strong> is essential for any Texas parent facing custody issues. This comprehensive guide explains what SAPCR means, how to file, and how to protect your parental rights.</p>
+
+            <div class="sapcr-explainer">
+                <h3>SAPCR Meaning and Definition</h3>
+                <p><strong>SAPCR</strong> stands for <em>Suit Affecting the Parent-Child Relationship</em>. In Texas family law, a SAPCR is the legal proceeding used to establish, modify, or enforce orders related to:</p>
+                <ul>
+                    <li><strong>Conservatorship</strong> — Who has legal rights and duties regarding the child (Texas's term for custody)</li>
+                    <li><strong>Possession and Access</strong> — When each parent has physical time with the child (visitation schedules)</li>
+                    <li><strong>Child Support</strong> — Financial obligations for the child's care and welfare</li>
+                    <li><strong>Medical Support</strong> — Health insurance and medical expense responsibilities</li>
+                    <li><strong>Paternity</strong> — Legal determination of a child's father when parents are unmarried</li>
+                </ul>
+                <p>SAPCR cases are governed by <a href="https://statutes.capitol.texas.gov/Docs/FA/htm/FA.102.htm" target="_blank" rel="noopener">Texas Family Code Chapter 102</a>, which specifies who has standing to file and what the court must consider when making custody decisions.</p>
+
+                <h3>How to File a SAPCR in Texas</h3>
+                <p>Filing a SAPCR petition in Texas requires several steps:</p>
+                <ol>
+                    <li><strong>Determine Venue</strong> — File in the county where the child has resided for at least six months (or since birth if under six months)</li>
+                    <li><strong>Complete Required Forms</strong> — The <a href="https://www.txcourts.gov/programs-services/self-help/" target="_blank" rel="noopener">Texas Courts Self-Help Center</a> provides official SAPCR petition forms</li>
+                    <li><strong>Pay Filing Fees</strong> — Fees vary by county (typically $300-$400); fee waivers available for those who qualify</li>
+                    <li><strong>Serve the Other Party</strong> — The respondent must receive proper legal notice of the lawsuit</li>
+                    <li><strong>Attend Hearings</strong> — Temporary orders, mediation, and final trial may all be required</li>
+                </ol>
+
+                <h3>Who Can File a SAPCR in Texas?</h3>
+                <p>Texas Family Code § 102.003 grants standing to file a SAPCR to:</p>
+                <ul>
+                    <li>A parent of the child</li>
+                    <li>The child (through a representative)</li>
+                    <li>A custodian or person with substantial past contact with the child</li>
+                    <li>A grandparent (in limited circumstances)</li>
+                    <li>A governmental entity or authorized agency</li>
+                    <li>A person designated as a managing conservator in an existing order</li>
+                </ul>
+
+                <h3>SAPCR Default Judgment: What Happens If You Don't Respond</h3>
+                <p>A <strong>SAPCR default judgment</strong> occurs when one party fails to respond to the petition or appear in court. The consequences are severe:</p>
+                <ul>
+                    <li>The court can grant the petitioner everything they requested</li>
+                    <li>You may lose conservatorship rights without presenting your side</li>
+                    <li>Child support and possession orders become final and enforceable</li>
+                    <li>Challenging a default judgment requires a difficult <a href="/resources#bill-of-review">Bill of Review</a> process</li>
+                </ul>
+                <p><strong>This is why proper service of process is critical.</strong> If you were never properly served, you never had a fair chance to defend your rights. The SAFE SAPCR Act addresses this exact vulnerability in Texas law.</p>
+            </div>
+        </article>
+
+        <article id="problem" class="content-section alt-bg">
             <h2>This Isn't Just a Loophole. It's How Families Are Destroyed.</h2>
             <p class="section-intro">Right now, Texas law lets attorneys certify a "last known address" with <strong>zero verification</strong>. No proof required. No penalty for lying. The result? Parents lose their children without ever knowing there was a court case.</p>
             <div class="problem-grid">
@@ -575,7 +779,7 @@
                 </div>
                 <div class="problem-card">
                     <h3>No Meaningful Penalty for Service Fraud</h3>
-                    <p>The only recourse for false certification is a full civil lawsuit or bill of review — which most parents cannot afford to bring. There is no automatic review, no criminal penalty, no expedited remedy.</p>
+                    <p>The only recourse for false certification is a full civil lawsuit or <a href="#bill-of-review">bill of review</a> — which most parents cannot afford to bring. There is no automatic review, no criminal penalty, no expedited remedy. Learn about <a href="/legislation">the SAFE SAPCR Act</a> that would change this.</p>
                 </div>
                 <div class="problem-card">
                     <h3>Children Suffer When Parents Are Fraudulently Removed</h3>
@@ -620,7 +824,7 @@
                     <div class="timeline-date">August 20, 2024</div>
                     <div class="timeline-content">
                         <h3>Default Judgment Entered Without Notice</h3>
-                        <p>Court enters default SAPCR judgment based on service by posting to the decade-old address. Respondent has no knowledge of the proceeding, no opportunity to defend his parental rights.</p>
+                        <p>Court enters default <a href="#sapcr-explained">SAPCR</a> judgment based on service by posting to the decade-old address. Respondent has no knowledge of the proceeding, no opportunity to defend his parental rights.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -986,6 +1190,87 @@
                     <h4>Advocacy Purpose</h4>
                     <p>This website advocates for legislative reform to Texas family law. The case study and statistics presented are based on public court records and are used to illustrate systemic issues, not to provide guidance for any specific case.</p>
                 </div>
+            </div>
+        </article>
+
+        <article id="texas-counties" class="content-section alt-bg">
+            <h2>SAPCR Custody Cases by Texas County</h2>
+            <p class="section-intro">Custody fraud affects parents across Texas. Here's what you need to know about filing SAPCR cases and bills of review in major Texas counties.</p>
+
+            <div class="county-grid">
+                <div class="county-card">
+                    <h3>Harris County SAPCR Cases (Houston)</h3>
+                    <p>Harris County is the largest county in Texas and handles thousands of SAPCR cases annually. The <strong>Harris County District Courts</strong> handle family law matters, with multiple courts dedicated to family cases. If you're facing a default judgment in Harris County, you can file a Bill of Review in the same court that entered the original order.</p>
+                    <p><strong>Key Courts:</strong> 245th, 246th, 247th, 257th, 308th, 309th, 310th, 311th, 312th, 313th, 314th, and 315th District Courts handle family law matters.</p>
+                </div>
+
+                <div class="county-card">
+                    <h3>Dallas County SAPCR Cases</h3>
+                    <p>Dallas County family courts process SAPCR petitions, modifications, and enforcement actions. The <strong>Dallas County Family Courts</strong> are located in the George Allen Sr. Courts Building. Service of process requirements and bill of review procedures follow Texas Family Code and Rules of Civil Procedure.</p>
+                </div>
+
+                <div class="county-card">
+                    <h3>Bexar County SAPCR Cases (San Antonio)</h3>
+                    <p>Bexar County handles SAPCR cases through its District Courts. Parents in San Antonio facing custody fraud can pursue bills of review in Bexar County courts. The county has specific local rules that complement state procedures.</p>
+                </div>
+
+                <div class="county-card">
+                    <h3>Travis County SAPCR Cases (Austin)</h3>
+                    <p>Travis County family courts in Austin handle SAPCR matters including custody, support, and conservatorship. As the state capital, Travis County courts often set precedents followed by other Texas jurisdictions.</p>
+                </div>
+
+                <div class="county-card">
+                    <h3>Tarrant County SAPCR Cases (Fort Worth)</h3>
+                    <p>Tarrant County family courts serve the Fort Worth area for all SAPCR proceedings. The county has robust family court services and resources for pro se litigants navigating custody matters.</p>
+                </div>
+
+                <div class="county-card">
+                    <h3>Need Help in Your County?</h3>
+                    <p>Regardless of which Texas county your case is in, the fundamental problems with service of process rules affect parents statewide. The <a href="/legislation">SAFE SAPCR Act</a> would establish uniform protections for all Texas parents. <a href="/legislators">Contact your legislators</a> to demand reform.</p>
+                </div>
+            </div>
+        </article>
+
+        <article id="bill-of-review" class="content-section">
+            <h2>Bill of Review in Texas: How to Challenge a Default Custody Judgment</h2>
+            <p class="section-intro">If you lost custody through a <strong>SAPCR default judgment</strong> without proper notice, a <strong>Bill of Review</strong> may be your path to justice. This legal remedy allows Texas courts to set aside judgments obtained through fraud or improper service.</p>
+
+            <div class="bill-review-content">
+                <h3>What is a Bill of Review?</h3>
+                <p>A <strong>Bill of Review</strong> is an independent equitable proceeding to set aside a judgment that is no longer subject to challenge by direct appeal or motion for new trial. In Texas, it is the primary remedy when a default judgment was obtained through extrinsic fraud, including:</p>
+                <ul>
+                    <li>Fraudulent service of process</li>
+                    <li>False Certificate of Last Known Address under <a href="https://www.txcourts.gov/rules-forms/rules-standards/" target="_blank" rel="noopener">Texas Rule of Civil Procedure 239a</a></li>
+                    <li>Deliberate concealment of the lawsuit from the defendant</li>
+                    <li>Service at an address known to be incorrect</li>
+                </ul>
+
+                <h3>The Three Elements Required for a Bill of Review</h3>
+                <p>To succeed on a Bill of Review in Texas, you must prove all three elements established by Texas courts:</p>
+                <ol>
+                    <li><strong>Meritorious Defense</strong> — You must show that you have a valid defense to the original lawsuit. In a SAPCR case, this typically means demonstrating that you would have contested custody, conservatorship, or support arrangements had you been properly served.</li>
+                    <li><strong>Prevented by Fraud, Accident, or Wrongful Act</strong> — You must prove that you were prevented from presenting your defense by the fraud, accident, or wrongful act of the opposing party. Improper service or a false Certificate of Last Known Address satisfies this element as extrinsic fraud.</li>
+                    <li><strong>No Negligence on Your Part</strong> — You must show that your failure to appear was not due to your own negligence. If you were served at an incorrect address or never received proper notice, this element is typically satisfied.</li>
+                </ol>
+
+                <h3>Texas Custody Fraud: How Default Judgments Are Abused</h3>
+                <p>The combination of weak service requirements and lack of verification creates opportunities for abuse in Texas custody cases:</p>
+                <ul>
+                    <li><strong>Address Gaming</strong> — Filing false LKA certificates to obtain service by publication or posting instead of personal service</li>
+                    <li><strong>Forum Shopping</strong> — Filing in counties where the respondent doesn't live to avoid proper notice</li>
+                    <li><strong>Sewer Service</strong> — Process servers who falsely claim to have served papers</li>
+                    <li><strong>Notice Manipulation</strong> — Deliberately using outdated addresses or addresses of relatives rather than the respondent's actual residence</li>
+                </ul>
+                <p>These tactics result in custody orders that strip parental rights without due process — the exact injustice the <a href="/legislation">SAFE SAPCR Act</a> is designed to prevent.</p>
+
+                <h3>Timeline for Filing a Bill of Review in Texas</h3>
+                <p>Texas law imposes strict deadlines for Bill of Review filings:</p>
+                <ul>
+                    <li><strong>Four-Year Limitation</strong> — Generally, a Bill of Review must be filed within four years of the date the judgment was signed</li>
+                    <li><strong>Discovery Exception</strong> — The four-year period may be tolled if you did not discover and could not have discovered the fraud within that time</li>
+                    <li><strong>No Direct Appeal Substitute</strong> — A Bill of Review cannot be used as a substitute for a timely direct appeal if you had actual notice of the judgment</li>
+                </ul>
+                <p><strong>Important:</strong> Consult a <a href="/resources#legal-aid">Texas family law attorney</a> immediately if you believe you are a victim of custody fraud. Time limits are strictly enforced.</p>
             </div>
         </article>
 
