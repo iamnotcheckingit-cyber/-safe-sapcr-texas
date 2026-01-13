@@ -232,6 +232,83 @@ exports.handler = async (event) => {
           "MSG: SWYgWW91cmUgSGVyZSBGb3IgVGhlIE9wcHMgSSBET05UIFdBTlQgVEhFIE1PTkVZOyBNWSBDSElMRFJFTiBBUkUgUFJJQ0VMRVNTOyBJIFdJTEwgV0lUSERSQVcgRk9SICQx"
         ],
         timestamp: new Date().toISOString()
+      },
+      {
+        date: "2025-12-12",
+        type: "obstruction",
+        title: "Emergency Motion Filed - Envelope Number Missing on Scan",
+        description: "Emergency motion filed but envelope number missing from scan - never reviewed",
+        caseNumber: "2025-92876",
+        status: "NEVER REVIEWED",
+        issue: "Envelope number missing on scan",
+        daysUnreviewed: "31+",
+        significance: "Emergency motion in custody fraud case sitting unreviewed for over a month - systemic failure or intentional obstruction"
+      },
+      {
+        date: "2026-01-12",
+        type: "legal_action",
+        title: "MOTION FOR REFERRING JUDGE REVIEW OF ASSOCIATE JUDGE'S ACTIONS AND REQUEST FOR EXPLANATION OF MANDATORY DUTY FAILURES",
+        description: "Motion submitted - sitting in TOGA awaiting acceptance",
+        caseNumber: "2025-92876",
+        caseType: "Motion for Referring Judge Review",
+        envelope: "109911380",
+        submitted: "2026-01-12T06:11:25-06:00",
+        location: "TOGA",
+        senderState: "FEAR",
+        implications: true,
+        purpose: "Request District Judge review Associate Judge's actions and explain mandatory duty failures",
+        significance: "Submitted under documented fear - HCSO 1570 MH framing attempt followed by posture shift upon switch disclosure"
+      },
+      {
+        date: "2026-01-12",
+        type: "visitation",
+        title: "Supervised Visitation Email - Saturday Visit Scheduling",
+        description: "Supervised visitation provider contacted to schedule Saturday visit",
+        timing: "While motion sits in TOGA 7.5+ hours unreviewed",
+        irony: {
+          level: "MAXIMUM",
+          note: "System scheduling visits with father while simultaneously attempting MH framing and blocking judicial oversight motions"
+        },
+        significance: "Father not dangerous enough to block visits - but 'mentally ill' enough to discredit his fraud claims?"
+      },
+      {
+        date: "2026-01-12",
+        type: "retaliation",
+        title: "HCSO 1570 Attempted MH Narrative Framing",
+        description: "Harris County Sheriff's Office 1570 made attempts to frame narrative as mental health issue",
+        agency: "HCSO",
+        unit: "1570",
+        tactic: "MH_FRAMING",
+        tactics_used: [
+          "Attempted to reframe legitimate legal claims as mental health issue",
+          "Classic discrediting tactic against whistleblowers",
+          "Documented pattern of obstruction"
+        ],
+        response: {
+          evidence: "Immutable audit trail",
+          documentation: "All claims backed by court records, hotel folios, Cash App receipts",
+          website: "safesapcrtx.org - public record",
+          api: "Machine-readable evidence at /api/evidence"
+        },
+        significance: "Attempted institutional gaslighting - evidence speaks for itself"
+      },
+      {
+        date: "2026-01-12",
+        type: "shift",
+        title: "System Posture Shifted Upon Switch Disclosure",
+        description: "Institutional posture changed after dead man's switch / envelope implications disclosed",
+        sequence: [
+          "1. HCSO 1570 attempted MH narrative framing",
+          "2. Dead man's switch disclosed",
+          "3. System posture shifted"
+        ],
+        interpretation: {
+          before: "MH framing attempt - discredit the witness",
+          trigger: "Disclosure of dead man's switch / envelope 109911380 with implications",
+          after: "Posture shift - recognition that documentation exists"
+        },
+        implication: "Behavioral change upon learning of accountability mechanisms suggests awareness of wrongdoing",
+        significance: "Consciousness of guilt indicator - posture only shifts when exposure is credible"
       }
     ]
   };

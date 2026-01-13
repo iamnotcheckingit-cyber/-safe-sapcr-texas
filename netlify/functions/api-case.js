@@ -50,9 +50,12 @@ exports.handler = async (event) => {
         causeNumber: "2025-92876",
         type: "Bill of Review",
         court: "Harris County District Court",
-        status: "Pending",
+        status: "SUBMITTED",
         filed: "2025",
-        description: "Petition to set aside default judgment based on extrinsic fraud"
+        submitted: "2026-01-12T06:11:25-06:00",
+        envelope: "109911380",
+        description: "Petition to set aside default judgment based on extrinsic fraud",
+        note: "Submitted under documented fear state - HCSO 1570 MH framing attempt"
       },
       {
         causeNumber: "2025-95850",
@@ -91,7 +94,8 @@ exports.handler = async (event) => {
         case: "/api/case",
         timeline: "/api/timeline",
         perjury: "/api/perjury",
-        evidence: "/api/evidence"
+        evidence: "/api/evidence",
+        ticking: "/api/ticking"
       }
     }
   };
