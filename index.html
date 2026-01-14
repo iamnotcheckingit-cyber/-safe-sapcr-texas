@@ -484,12 +484,13 @@
 
     <main>
         <!-- CASE OVERVIEW - LEGAL SUMMARY -->
-        <section class="case-banner">
+        <section class="case-banner collapsed" id="caseBanner">
             <div class="case-banner-content">
                 <div class="case-header">
-                    <span class="case-label">Active Litigation</span>
+                    <button class="case-label" id="caseToggle" aria-expanded="false" aria-controls="caseDetails">Active Litigation <span class="toggle-icon">▼</span></button>
                     <h1 class="case-title">Documented Fraud in Harris County SAPCR</h1>
                 </div>
+                <div class="case-details" id="caseDetails">
                 <div class="case-facts">
                     <div class="fact-item">
                         <span class="fact-num">11</span>
@@ -509,23 +510,29 @@
                     <a href="/perjury" class="btn-case">Perjury Analysis</a>
                     <a href="/case-study" class="btn-case-alt">Full Case Study</a>
                 </div>
+                </div>
             </div>
         </section>
         <style>
         .case-banner {
             background: #0d2240;
             border-bottom: 2px solid #d4a429;
-            padding: 8rem 1.5rem 2.5rem 1.5rem;
+            padding: 5rem 1.5rem 1rem 1.5rem;
+            transition: padding 0.3s ease;
         }
         .case-banner-content {
             max-width: 900px;
             margin: 0 auto;
         }
         .case-header {
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
         }
         .case-label {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: none;
+            cursor: pointer;
             background: #d4a429;
             color: #0d2240;
             font-size: 0.75rem;
@@ -535,6 +542,26 @@
             padding: 4px 10px;
             border-radius: 3px;
             margin-bottom: 8px;
+        }
+        .case-label:hover { background: #e6b84a; }
+        .toggle-icon {
+            font-size: 0.65rem;
+            transition: transform 0.3s ease;
+        }
+        .case-banner.expanded .toggle-icon {
+            transform: rotate(180deg);
+        }
+        .case-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+        .case-banner.expanded .case-details {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 1rem;
         }
         .case-title {
             font-size: 1.75rem;
@@ -1748,7 +1775,11 @@
         display: none;
     }
     .visitor-indicator .vpn-badge {
-        display: inline-block;
+        display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: none;
+            cursor: pointer;
         padding: 0.15rem 0.4rem;
         margin-left: 0.5rem;
         background: rgba(255,193,7,0.3);
@@ -1857,5 +1888,26 @@
     </script>
     <script src="/js/auth.js"></script>
     <script src="/js/header.js"></script>
+    <script>
+    // Case Banner Toggle
+    (function() {
+        const toggle = document.getElementById("caseToggle");
+        const banner = document.getElementById("caseBanner");
+        if (toggle && banner) {
+            toggle.addEventListener("click", function() {
+                const isExpanded = banner.classList.contains("expanded");
+                if (isExpanded) {
+                    banner.classList.remove("expanded");
+                    banner.classList.add("collapsed");
+                    toggle.setAttribute("aria-expanded", "false");
+                } else {
+                    banner.classList.remove("collapsed");
+                    banner.classList.add("expanded");
+                    toggle.setAttribute("aria-expanded", "true");
+                }
+            });
+        }
+    })();
+    </script>
 </body>
 </html>
