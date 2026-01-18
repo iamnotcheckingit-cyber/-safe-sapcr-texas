@@ -437,6 +437,9 @@
 
 </head>
 <body>
+    <!-- Skip Navigation for Accessibility -->
+    <a href="#main-content" class="skip-to-main" style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 9999; padding: 1rem; background: #1a365d; color: white; text-decoration: none; font-weight: bold;" onfocus="this.style.cssText='position:fixed;left:1rem;top:1rem;width:auto;height:auto;overflow:visible;z-index:9999;padding:1rem;background:#1a365d;color:white;text-decoration:none;font-weight:bold;border-radius:4px;'" onblur="this.style.cssText='position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;'">Skip to Main Content</a>
+
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5GFPNCB5"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -483,7 +486,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <!-- CASE OVERVIEW - LEGAL SUMMARY -->
         <section class="case-banner collapsed" id="caseBanner">
             <div class="case-banner-content">
@@ -712,7 +715,7 @@
                 <p class="tagline">Every day, parents lose custody through fraudulent default judgments. We're demanding accountability. Join the movement.</p>
                 <div class="hero-cta">
                     <a href="/petition" class="btn btn-action btn-lg btn-arrow">Sign the Petition</a>
-                    <a href="#start-here" class="btn btn-lg">Find Your Path</a>
+                    <a href="#start-here" class="btn btn-lg">What's My Situation?</a>
                 </div>
             </div>
         </section>
@@ -743,6 +746,15 @@
                 <span id="clock-minutes">00</span>m 
                 <span id="clock-seconds">00</span>s
                 <div class="clock-label">Since a father lost custody through fraud</div>
+            </div>
+            <div class="ticker-action" style="text-align: center; padding: 1rem 0 0.5rem; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 1rem;">
+                <strong style="color: #1a365d;">What can you do?</strong>
+                <span style="color: #555; margin: 0 0.5rem;">→</span>
+                <a href="/petition" style="color: #b8860b; font-weight: 600; text-decoration: underline;">Sign the petition</a>
+                <span style="color: #ccc; margin: 0 0.75rem;">|</span>
+                <a href="/case-study" style="color: #b8860b; font-weight: 600; text-decoration: underline;">See the evidence</a>
+                <span style="color: #ccc; margin: 0 0.75rem;">|</span>
+                <a href="/legislators" style="color: #b8860b; font-weight: 600; text-decoration: underline;">Contact your legislator</a>
             </div>
         </section>
 
