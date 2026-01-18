@@ -100,19 +100,18 @@ exports.handler = async (event) => {
         console.log(JSON.stringify({ form_type: 'TOR_BEACON', ip: clientIP, timestamp: new Date().toISOString() }));
         try {
             const body = JSON.parse(event.body);
-            const {
-                page,
-                referrer,
-                scrollDepth,
-                timeOnPage,
-                formInteraction,
-                honeypotTriggered,
-                canvasFingerprint,
-                audioFingerprint,
-                screenRes,
-                timezone,
-                sessionId
-            } = body;
+            // Map minified field names from edge function to verbose names
+            const page = body.pg || body.page;
+            const referrer = body.ref || body.referrer;
+            const scrollDepth = body.sd || body.scrollDepth;
+            const timeOnPage = body.t || body.timeOnPage;
+            const formInteraction = body.fi || body.formInteraction;
+            const honeypotTriggered = body.hp || body.honeypotTriggered;
+            const canvasFingerprint = body.cf || body.canvasFingerprint;
+            const audioFingerprint = body.af || body.audioFingerprint;
+            const screenRes = body.sr || body.screenRes;
+            const timezone = body.tz || body.timezone;
+            const sessionId = body.fp || body.sessionId;
 
             const userAgent = event.headers['user-agent'] || 'unknown';
             const nodes = await fetchTorExitNodes();
