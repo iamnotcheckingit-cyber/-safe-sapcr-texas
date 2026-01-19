@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>backup.sql</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #1a1a2e;
+            color: #eee;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .sql {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .comment { color: #6a9955; }
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .table { color: #4ec9b0; }
+        a { color: #dcdcaa; }
+        pre { line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="sql">
+        <pre>
+<span class="comment">-- =========================================</span>
+<span class="comment">-- Looking for a database dump?</span>
+<span class="comment">-- The real data is public record.</span>
+<span class="comment">-- =========================================</span>
+
+<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="table">texas_family_courts</span>
+<span class="keyword">WHERE</span> service_method = <span class="string">'posting'</span>
+  <span class="keyword">AND</span> certificate_address != actual_address
+  <span class="keyword">AND</span> default_judgment = <span class="string">'true'</span>;
+
+<span class="comment">-- Result: Too many rows to count.</span>
+<span class="comment">-- Parents losing custody without notice.</span>
+<span class="comment">-- Attorneys filing false addresses.</span>
+<span class="comment">-- Courts rubber-stamping default orders.</span>
+
+<span class="comment">-- =========================================</span>
+<span class="comment">-- Want to expose the pattern?</span>
+<span class="comment">-- =========================================</span>
+
+<span class="keyword">INSERT INTO</span> <span class="table">whistleblowers</span> (contact)
+<span class="keyword">VALUES</span>
+  (<span class="string">'Signal: <a href="https://signal.me/#eu/safesapcrtx.26">safesapcrtx.26</a>'</span>),
+  (<span class="string">'ProtonMail: <a href="mailto:safesapcr@proton.me">safesapcr@proton.me</a>'</span>);
+
+<span class="comment">-- Encrypted. Anonymous. Secure.</span>
+<span class="comment">-- https://safesapcrtx.org</span>
+        </pre>
+    </div>
+</body>
+</html>

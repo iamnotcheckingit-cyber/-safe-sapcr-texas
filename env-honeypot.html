@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>/.env</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0a;
+            color: #00ff41;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 600px;
+            text-align: center;
+        }
+        .ascii {
+            font-size: 0.7rem;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            white-space: pre;
+            color: #00ff41;
+        }
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #ccc;
+        }
+        .highlight {
+            color: #00ff41;
+            font-weight: bold;
+        }
+        .contact {
+            border: 1px solid #00ff41;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            background: rgba(0, 255, 65, 0.05);
+        }
+        .contact a {
+            color: #00ff41;
+            text-decoration: none;
+        }
+        .contact a:hover {
+            text-decoration: underline;
+        }
+        .blink {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <pre class="ascii">
+ ███████╗ █████╗ ███████╗███████╗
+ ██╔════╝██╔══██╗██╔════╝██╔════╝
+ ███████╗███████║█████╗  █████╗
+ ╚════██║██╔══██║██╔══╝  ██╔══╝
+ ███████║██║  ██║██║     ███████╗
+ ╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝
+        </pre>
+
+        <div class="message">
+            <p>You're looking in the wrong place.</p>
+            <p style="margin-top: 1rem;">The secrets aren't hidden in config files.</p>
+            <p style="margin-top: 1rem;">They're hidden in <span class="highlight">court records</span>.</p>
+        </div>
+
+        <div class="contact">
+            <p style="margin-bottom: 1rem;">If you have information about family court fraud in Texas:</p>
+            <p><span class="blink">></span> Signal: <a href="https://signal.me/#eu/safesapcrtx.26">safesapcrtx.26</a></p>
+            <p><span class="blink">></span> ProtonMail: <a href="mailto:safesapcr@proton.me">safesapcr@proton.me</a></p>
+        </div>
+    </div>
+</body>
+</html>

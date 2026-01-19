@@ -22,6 +22,12 @@
 /press-release  /press-release.html  200
 /perjury        /perjury.html        200
 
+# Honeypot files - cryptic messages with secure contact
+/.env           /.env.html           200
+/backup.sql     /backup.sql.html     200
+/api/keys.json  /api/keys.json.html  200
+/get-started    /get-started.html    200
+
 # Transparency API
 /api/case              /.netlify/functions/api-case              200
 /api/timeline          /.netlify/functions/api-timeline          200
