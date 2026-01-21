@@ -3,3 +3,13 @@
 /legislators    /legislators.html    200
 /other-states   /other-states.html   200
 /membership     /membership.html     200
+/admin          /admin.html          200
+
+# State pages
+/states/california    /states/california.html    200
+/states/florida       /states/florida.html       200
+/states/georgia       /states/georgia.html       200
+/states/illinois      /states/illinois.html      200
+/states/new-york      /states/new-york.html      200
+/states/ohio          /states/ohio.html          200
+/states/pennsylvania  /states/pennsylvania.html  200

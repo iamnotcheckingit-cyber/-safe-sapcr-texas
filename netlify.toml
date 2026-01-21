@@ -1,0 +1,19 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[[edge_functions]]
+  function = "block-bots"
+  path = "/*"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/.git/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
