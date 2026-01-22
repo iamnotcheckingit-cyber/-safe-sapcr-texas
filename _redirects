@@ -4,6 +4,7 @@
 /other-states   /other-states.html   200
 /membership     /membership.html     200
 /admin          /admin.html          200
+/privacy-policy /privacy-policy.html 200
 
 # State pages
 /states/california    /states/california.html    200
