@@ -158,16 +158,17 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
 </head>
 <body>
     <header></header>
-    <script src="/js/header.js"></script>
+    <script src="/js/header.js" defer></script>
 
     <main>
         <section class="hero">
             <div class="hero-content">
-                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Texas - Service Accountability and Fraud Elimination" class="hero-logo">
+                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Texas - Service Accountability and Fraud Elimination" class="hero-logo" width="200" height="200" fetchpriority="high">
                 <h1>Did You Lose Custody Without Ever Knowing There Was a Case?</h1>
                 <p class="tagline">You're not alone. And it shouldn't have happened. We're fighting to change Texas law so it never happens again.</p>
             </div>
@@ -726,7 +727,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="footer-logo-img">
+                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="footer-logo-img" width="60" height="60" loading="lazy">
                 <span>SAFE SAPCR<span class="tx">TX</span></span>
             </div>
             <p>Service Accountability and Fraud Elimination of Suits Affecting the Parent-Child Relationship</p>
