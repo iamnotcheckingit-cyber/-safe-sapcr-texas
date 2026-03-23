@@ -34,6 +34,10 @@
 /possession-order-texas  /possession-order-texas.html  200
 /bill-of-review-texas-custody  /bill-of-review-texas-custody.html  200
 /modifying-sapcr-order-texas  /modifying-sapcr-order-texas.html  200
+/missed-custody-court-date-texas  /missed-custody-court-date-texas.html  200
+/no-response-sapcr-texas  /no-response-sapcr-texas.html  200
+/overturn-custody-order-texas  /overturn-custody-order-texas.html  200
+/improper-service-texas-custody  /improper-service-texas-custody.html  200
 
 # Honeypot files - cryptic messages with secure contact
 /.env           /env-honeypot.html           200
