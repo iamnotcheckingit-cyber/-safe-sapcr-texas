@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://safesapcrtx.org/</loc>
-    <lastmod>2026-03-21T00:00:00Z</lastmod>
+    <lastmod>2026-03-22T00:00:00Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -22,7 +22,7 @@
     <loc>https://safesapcrtx.org/membership</loc>
     <lastmod>2026-03-21T00:00:00Z</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://safesapcrtx.org/other-states</loc>
@@ -34,48 +34,48 @@
     <loc>https://safesapcrtx.org/privacy-policy</loc>
     <lastmod>2026-03-21T00:00:00Z</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.2</priority>
   </url>
   <url>
     <loc>https://safesapcrtx.org/states/california</loc>
     <lastmod>2026-03-21T00:00:00Z</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://safesapcrtx.org/states/florida</loc>
     <lastmod>2026-03-21T00:00:00Z</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://safesapcrtx.org/states/georgia</loc>
     <lastmod>2026-03-21T00:00:00Z</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://safesapcrtx.org/states/illinois</loc>
     <lastmod>2026-03-21T00:00:00Z</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://safesapcrtx.org/states/new-york</loc>
     <lastmod>2026-03-21T00:00:00Z</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://safesapcrtx.org/states/ohio</loc>
     <lastmod>2026-03-21T00:00:00Z</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://safesapcrtx.org/states/pennsylvania</loc>
     <lastmod>2026-03-21T00:00:00Z</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
 </urlset>
