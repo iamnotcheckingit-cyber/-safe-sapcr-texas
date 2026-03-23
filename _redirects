@@ -21,6 +21,11 @@
 /outreach       /outreach.html       200
 /press-release  /press-release.html  200
 /perjury        /perjury.html        200
+/rule-239a-texas          /rule-239a-texas.html          200
+/default-judgment-custody-texas  /default-judgment-custody-texas.html  200
+/kerr-wilson-pc           /kerr-wilson-pc.html           200
+/extrinsic-fraud-texas    /extrinsic-fraud-texas.html    200
+/attorney-bar-complaint-texas  /attorney-bar-complaint-texas.html  200
 
 # Honeypot files - cryptic messages with secure contact
 /.env           /env-honeypot.html           200

@@ -349,7 +349,9 @@
 
       # Misc honeypots
       "./well.known/**",
-      "./nosetoprose/**"
+      "./nosetoprose/**",
+      "./templates.html",
+      "./templates/**"
     ]
     changeFreq = "weekly"
     priority = 0.8
