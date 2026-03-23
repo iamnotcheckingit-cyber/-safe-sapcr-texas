@@ -3,7 +3,7 @@
     const HEADER_HTML = `
         <nav>
             <a href="/" class="logo">
-                <img src="/images/safe-sapcr-logo.png" alt="SAFE SAPCR Logo" class="logo-img" width="45" height="45">
+                <img src="/images/safe-sapcr-logo-400.webp" alt="SAFE SAPCR Logo" class="logo-img" width="45" height="45">
                 <span class="logo-text">SAFE SAPCR<span class="tx">TX</span></span>
             </a>
             <div class="menu-toggle" id="menuToggle" role="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu" tabindex="0">

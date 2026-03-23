@@ -106,11 +106,11 @@
   status = 410
   force = true
 
-# XML-RPC honeypot
+# XML-RPC block - return 410 Gone
 [[redirects]]
   from = "/xmlrpc.php"
-  to = "/xmlrpc.html"
-  status = 200
+  to = "/404"
+  status = 410
   force = true
 
 # Staging honeypot
