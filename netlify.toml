@@ -268,6 +268,7 @@
       "./wp-login/**",
       "./wordpress/**",
       "./xmlrpc/**",
+      "./xmlrpc.html",
 
       # CMS/Admin honeypots
       "./admin.html",
@@ -300,6 +301,11 @@
       "./phpMyAdmin/**",
       "./pma/**",
       "./mysql/**",
+      "./dump.html",
+      "./dump/**",
+      "./backup.sql.html",
+      "./database/**",
+      "./database.html",
 
       # Debug/dev honeypots
       "./backup/**",
@@ -308,17 +314,22 @@
       "./hidden-admin/**",
       "./internal-api/**",
       "./staging/**",
+      "./staging.html",
       "./test/**",
       "./api/**",
+
+      # Environment file honeypots
+      "./env-honeypot.html",
+      "./env-honeypot/**",
 
       # Sensitive data honeypots
       "./case-files/**",
       "./court/**",
       "./credentials/**",
       "./documents/**",
+      "./documents-leaked.html",
       "./donors/**",
       "./employees/**",
-      "./evidence/**",
       "./finance/**",
       "./accounting/**",
       "./hr/**",
@@ -327,7 +338,15 @@
       "./payroll/**",
       "./secrets/**",
       "./staff/**",
-      "./user-data/**"
+      "./user-data/**",
+
+      # Webhook/logging honeypots
+      "./webhook-log/**",
+      "./webhook-log.html",
+
+      # Misc honeypots
+      "./well.known/**",
+      "./nosetoprose/**"
     ]
     changeFreq = "weekly"
     priority = 0.8
