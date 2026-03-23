@@ -12,7 +12,7 @@
                 <span></span>
             </div>
             <ul id="navMenu">
-                <li><a href="/#sapcr-guide">SAPCR Guide</a></li>
+                <li><a href="/sapcr-texas-guide">SAPCR Guide</a></li>
                 <li><a href="/legislation">Legislation</a></li>
                 <li><a href="/legislators">Legislators</a></li>
                 <li><a href="/case-study">Case Study</a></li>
