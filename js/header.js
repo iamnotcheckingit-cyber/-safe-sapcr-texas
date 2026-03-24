@@ -6,11 +6,11 @@
                 <img src="/images/safe-sapcr-logo-400.webp" alt="SAFE SAPCR Logo" class="logo-img" width="45" height="45">
                 <span class="logo-text">SAFE SAPCR<span class="tx">TX</span></span>
             </a>
-            <div class="menu-toggle" id="menuToggle" role="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu" tabindex="0">
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
             <ul id="navMenu">
                 <li><a href="/sapcr-texas-guide">SAPCR Guide</a></li>
                 <li><a href="/legislation">Legislation</a></li>
@@ -19,8 +19,9 @@
                 <li><a href="/resources">Resources</a></li>
                 <li><a href="/petition">Petition</a></li>
                 <li class="lang-switch"><a href="/es/" title="Español">ES</a> | <a href="/zh/" title="中文">中文</a> | <a href="/ar/" title="العربية">ع</a> | <a href="/de/" title="Deutsch">DE</a> | <a href="/el/" title="Ελληνικά">ΕΛ</a> | <a href="/he/" title="עברית">עב</a> | <a href="/hi/" title="हिंदी">हिं</a> | <a href="/ja/" title="日本語">日</a></li>
+                <li class="nav-account-mobile" id="navAccountMobile"><a href="/membership" class="nav-login">Join/Login</a></li>
             </ul>
-            <div id="navAccount"><a href="/membership" class="nav-login">Join/Login</a></div>
+            <div id="navAccount" class="nav-account-desktop"><a href="/membership" class="nav-login">Join/Login</a></div>
         </nav>
     `;
 
@@ -59,11 +60,13 @@
                 }
             });
 
-            // Keyboard accessibility
-            menuToggle.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    menuToggle.click();
+            // Close menu on Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.focus();
                 }
             });
         }

@@ -39,6 +39,7 @@
 
     function updateNavAuth(user) {
         const navAccount = document.getElementById('navAccount');
+        const navAccountMobile = document.getElementById('navAccountMobile');
         if (!navAccount) return;
 
         if (user) {
@@ -58,9 +59,15 @@
                 </div>
             `;
             navAccount.classList.add('logged-in');
+            if (navAccountMobile) {
+                navAccountMobile.innerHTML = `<a href="/membership" class="nav-login">My Account</a>`;
+            }
         } else {
             navAccount.innerHTML = `<a href="/membership" class="nav-login">Join/Login</a>`;
             navAccount.classList.remove('logged-in');
+            if (navAccountMobile) {
+                navAccountMobile.innerHTML = `<a href="/membership" class="nav-login">Join/Login</a>`;
+            }
         }
     }
 

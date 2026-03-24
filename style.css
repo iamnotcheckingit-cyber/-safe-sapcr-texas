@@ -972,6 +972,18 @@ footer a:hover {
     cursor: pointer;
     padding: 10px;
     z-index: 1001;
+    /* Button reset for Safari compatibility */
+    background: none;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Desktop: hide mobile account link, show desktop one */
+.nav-account-mobile {
+    display: none !important;
 }
 
 .menu-toggle span {
@@ -1176,28 +1188,47 @@ footer a:hover {
         display: flex;
     }
 
+    /* Hide desktop Join/Login on mobile, show it inside the menu */
+    .nav-account-desktop {
+        display: none !important;
+    }
+
+    .nav-account-mobile {
+        display: list-item !important;
+    }
+
     nav ul {
         display: none;
-        position: fixed;
-        top: 0;
+        position: absolute;
+        top: 100%;
         left: 0;
         right: 0;
-        bottom: 0;
         background: var(--primary);
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        gap: 2rem;
+        gap: 0;
         z-index: 1000;
+        padding: 1rem 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
     nav ul.active {
         display: flex;
     }
 
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
     nav ul li a {
-        font-size: 1.3rem;
-        padding: 0.5rem 1rem;
+        font-size: 1.1rem;
+        padding: 0.75rem 1rem;
+        display: block;
+    }
+
+    nav ul li a:hover {
+        background: var(--primary-light);
     }
 
     .case-refs {
