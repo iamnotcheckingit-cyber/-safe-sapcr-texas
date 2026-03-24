@@ -51,6 +51,15 @@
                 menuToggle.setAttribute('aria-expanded', isOpen);
             });
 
+            // Close menu when a nav link is clicked
+            navMenu.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+
             // Close menu when clicking outside
             document.addEventListener('click', function(e) {
                 if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {

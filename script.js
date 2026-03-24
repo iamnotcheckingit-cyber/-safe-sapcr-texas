@@ -40,55 +40,8 @@ function updateCounters() {
     }
 }
 
-// Mobile menu toggle
-function initMobileMenu() {
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
-
-    if (menuToggle && navMenu) {
-        function toggleMenu() {
-            const isActive = menuToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            menuToggle.setAttribute('aria-expanded', isActive);
-        }
-
-        function closeMenu() {
-            menuToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-        }
-
-        menuToggle.addEventListener('click', toggleMenu);
-
-        // Keyboard support - Enter and Space to toggle
-        menuToggle.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleMenu();
-            }
-        });
-
-        // Close menu when a link is clicked
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
-                closeMenu();
-            }
-        });
-
-        // Close menu on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && menuToggle.classList.contains('active')) {
-                closeMenu();
-                menuToggle.focus();
-            }
-        });
-    }
-}
+// Mobile menu toggle - handled by /js/header.js
+// This function is intentionally empty to avoid duplicate event handlers
 
 // Smooth scroll for navigation links
 function initSmoothScroll() {
@@ -115,5 +68,4 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCounters();
     setInterval(updateCounters, 1000);
     initSmoothScroll();
-    initMobileMenu();
 });
