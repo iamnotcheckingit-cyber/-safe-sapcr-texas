@@ -774,6 +774,15 @@ footer a:hover {
     color: #ecc94b;
 }
 
+p.snippet {
+    background: var(--bg-alt, #f8f9fa);
+    border-left: 4px solid var(--accent, #d4a429);
+    padding: 1rem 1.25rem;
+    margin: 0.75rem 0 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
 .footer-nav {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
