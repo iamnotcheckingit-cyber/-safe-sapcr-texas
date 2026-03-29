@@ -12,9 +12,9 @@
                 <span></span>
             </button>
             <ul id="navMenu">
-                <li><a href="/sapcr-texas-guide">SAPCR Guide</a></li>
+                <li><a href="/get-started">Start Here</a></li>
+                <li><a href="/learning-center">Your Rights</a></li>
                 <li><a href="/legislation">Legislation</a></li>
-                <li><a href="/legislators">Legislators</a></li>
                 <li><a href="/case-study">Case Study</a></li>
                 <li><a href="/resources">Resources</a></li>
                 <li><a href="/petition">Petition</a></li>

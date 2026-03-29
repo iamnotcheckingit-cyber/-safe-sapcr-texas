@@ -140,6 +140,26 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Learning Center & Checklists -->
+  <url>
+    <loc>https://safesapcrtx.org/learning-center</loc>
+    <lastmod>2026-03-28T00:00:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://safesapcrtx.org/sapcr-response-checklist</loc>
+    <lastmod>2026-03-28T00:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://safesapcrtx.org/fraud-documentation-checklist</loc>
+    <lastmod>2026-03-28T00:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Other states -->
   <url>
     <loc>https://safesapcrtx.org/other-states</loc>
