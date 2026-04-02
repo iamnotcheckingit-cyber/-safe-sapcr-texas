@@ -369,21 +369,19 @@ nav a.nav-donate:hover {
 /* Content Sections */
 .content-section {
     padding: 5rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.content-section.alt-bg {
-    background: var(--bg-alt);
-    max-width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.content-section.alt-bg > * {
+.content-section > * {
     max-width: 1200px;
     width: 100%;
+}
+
+.content-section.alt-bg {
+    background: var(--bg-alt);
 }
 
 .content-section h2 {
