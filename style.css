@@ -384,6 +384,18 @@ nav a.nav-donate:hover {
     margin-right: auto;
 }
 
+.content-section.alt-bg .problem-grid,
+.content-section.alt-bg .solution-grid,
+.content-section.alt-bg .action-grid,
+.content-section.alt-bg .stories-container,
+.content-section.alt-bg .resources-grid,
+.content-section.alt-bg .faq-container,
+.content-section.alt-bg .sb2794-grid {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .content-section h2 {
     font-size: 2.2rem;
     color: var(--primary);
@@ -1173,6 +1185,23 @@ p.snippet {
 
 .bill-links a:hover {
     background: var(--primary-dark);
+}
+
+/* Tablet landscape (Samsung tablets ~1024-1280px) */
+@media (min-width: 969px) and (max-width: 1280px) {
+    .content-section {
+        padding: 4rem 3rem;
+    }
+
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+
+    .problem-grid,
+    .solution-grid,
+    .action-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* Responsive */
