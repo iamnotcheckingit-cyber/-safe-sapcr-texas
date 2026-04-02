@@ -376,24 +376,14 @@ nav a.nav-donate:hover {
 .content-section.alt-bg {
     background: var(--bg-alt);
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .content-section.alt-bg > * {
     max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.content-section.alt-bg .problem-grid,
-.content-section.alt-bg .solution-grid,
-.content-section.alt-bg .action-grid,
-.content-section.alt-bg .stories-container,
-.content-section.alt-bg .resources-grid,
-.content-section.alt-bg .faq-container,
-.content-section.alt-bg .sb2794-grid {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
 }
 
 .content-section h2 {
