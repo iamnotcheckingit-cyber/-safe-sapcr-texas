@@ -49,6 +49,17 @@
 /api/keys.json  /api/keys.json.html  200
 /get-started    /get-started.html    200
 
+# PHP scanner traps - redirect to honeypot sink
+/info.php       /env-honeypot.html   200
+/phpinfo.php    /env-honeypot.html   200
+/test.php       /env-honeypot.html   200
+/admin.php      /env-honeypot.html   200
+/c99.php        /env-honeypot.html   200
+
+# Git config exposure - block and redirect to honeypot
+/.git/config    /env-honeypot.html   200
+/.git/*         /env-honeypot.html   200
+
 # Transparency API
 /api/case              /.netlify/functions/api-case              200
 /api/timeline          /.netlify/functions/api-timeline          200
