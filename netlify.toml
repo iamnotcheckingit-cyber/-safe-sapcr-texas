@@ -508,3 +508,37 @@
   from = "/discovery"
   to = "https://qbbxof4ndhw2ok7b2yxzw6jw6m0ogsxw.lambda-url.us-east-2.on.aws"
   status = 200
+
+# Block author enumeration
+[[redirects]]
+  from = "/?author=*"
+  to = "/"
+  status = 301
+  force = true
+
+# Block vscode sftp config probe
+[[redirects]]
+  from = "/.vscode/sftp.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/sftp-config.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Block REST API user enum routes
+[[redirects]]
+  from = "/?rest_route=/wp/v2/users*"
+  to = "/404.html"
+  status = 403
+  force = true
+
+# Block webhook log public access
+[[redirects]]
+  from = "/webhook-log"
+  to = "/404.html"
+  status = 403
+  force = true
