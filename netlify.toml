@@ -91,6 +91,45 @@
   status = 301
   force = true
 
+# Security: block env file exposure
+[[redirects]]
+  from = "/.env"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.env.local"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.env.production"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.env.development"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Silence traffic-advice 404 noise
+[[redirects]]
+  from = "/.well-known/traffic-advice"
+  to = "/404.html"
+  status = 410
+  force = true
+
+# Silence sitemap_index.xml 404 noise
+[[redirects]]
+  from = "/sitemap_index.xml"
+  to = "/sitemap.xml"
+  status = 301
+  force = true
+
 # WordPress scanner traps - redirect to honeypots
 [[redirects]]
   from = "/wp-admin/*"
@@ -110,11 +149,11 @@
   status = 410
   force = true
 
-# XML-RPC block - return 410 Gone
+# Security: block xmlrpc
 [[redirects]]
   from = "/xmlrpc.php"
-  to = "/404"
-  status = 410
+  to = "/404.html"
+  status = 403
   force = true
 
 # Staging honeypot

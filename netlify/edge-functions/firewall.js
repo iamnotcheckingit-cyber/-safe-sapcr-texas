@@ -5,6 +5,7 @@ const BLOCKED_IPS = new Set([
   "172.215.218.102",
   "20.169.78.137",
   "192.178.15.68",
+  "52.190.190.201",
 ]);
 
 const BLOCKED_PREFIXES = [
