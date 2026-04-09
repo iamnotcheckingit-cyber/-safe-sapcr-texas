@@ -41,6 +41,7 @@
 /learning-center  /learning-center.html  200
 /sapcr-response-checklist  /sapcr-response-checklist.html  200
 /fraud-documentation-checklist  /fraud-documentation-checklist.html  200
+/privacy-policy  /privacy-policy.html  200
 
 # Honeypot files - cryptic messages with secure contact
 /.env           /env-honeypot.html           200
