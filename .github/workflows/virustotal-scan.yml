@@ -2,17 +2,31 @@ name: VirusTotal Security Scan
 
 on:
   schedule:
-    # Run every hour at minute 0
-    - cron: '0 * * * *'
+    # Run once per day at 06:00 UTC
+    - cron: '0 6 * * *'
   workflow_dispatch:  # Manual trigger option
 
 jobs:
   scan-site:
     runs-on: ubuntu-latest
     steps:
+      - name: Verify API key is configured
+        env:
+          VT_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+        run: |
+          if [ -z "$VT_API_KEY" ]; then
+            echo "::warning::VIRUSTOTAL_API_KEY secret is not set — skipping scan."
+            echo "To enable: get a free key at https://www.virustotal.com/gui/my-apikey"
+            echo "then add it under Settings → Secrets and variables → Actions"
+            echo "with the name VIRUSTOTAL_API_KEY."
+            exit 0
+          fi
+          echo "API key present, proceeding with scan."
+
       - name: Scan safesapcrtx.org with VirusTotal
         env:
           VT_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+        if: ${{ env.VT_API_KEY != '' }}
         run: |
           echo "Starting VirusTotal scan at $(date)"
 
@@ -64,6 +78,7 @@ jobs:
       - name: Scan additional pages
         env:
           VT_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+        if: ${{ env.VT_API_KEY != '' }}
         run: |
           # Scan key pages (with rate limiting - VT allows 4 req/min on free tier)
           PAGES=("https://safesapcrtx.org/media.html" "https://safesapcrtx.org/contact.html")
