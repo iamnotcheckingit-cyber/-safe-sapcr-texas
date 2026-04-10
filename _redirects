@@ -4,6 +4,9 @@ http://www.safesapcrtx.org/*   https://safesapcrtx.org/:splat   301!
 https://www.safesapcrtx.org/*  https://safesapcrtx.org/:splat   301!
 http://safesapcrtx.org/*       https://safesapcrtx.org/:splat   301!
 
+# Removed pages — return 410 Gone so Google drops the stale index entry
+/media.html  /404.html  410
+
 # Pretty URLs - serve .html files without extension
 /legislation    /legislation.html    200
 /legislators    /legislators.html    200
