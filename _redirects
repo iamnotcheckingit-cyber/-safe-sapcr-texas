@@ -1,3 +1,9 @@
+# Force apex domain (canonical) — defense in depth so the redirect
+# survives even if Netlify platform-level domain config drifts.
+http://www.safesapcrtx.org/*   https://safesapcrtx.org/:splat   301!
+https://www.safesapcrtx.org/*  https://safesapcrtx.org/:splat   301!
+http://safesapcrtx.org/*       https://safesapcrtx.org/:splat   301!
+
 # Pretty URLs - serve .html files without extension
 /faq            /faq.html            200
 /legislation    /legislation.html    200
