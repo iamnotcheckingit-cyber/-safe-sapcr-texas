@@ -1,3 +1,9 @@
+# Force apex domain (canonical) — fixes Search Console redirect failures
+# for http(s)://www.safesapcrtx.org/* and http://safesapcrtx.org/*
+http://www.safesapcrtx.org/*   https://safesapcrtx.org/:splat   301!
+https://www.safesapcrtx.org/*  https://safesapcrtx.org/:splat   301!
+http://safesapcrtx.org/*       https://safesapcrtx.org/:splat   301!
+
 # Pretty URLs - serve .html files without extension
 /legislation    /legislation.html    200
 /legislators    /legislators.html    200
