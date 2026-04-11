@@ -25,8 +25,9 @@
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 
   # Cross-Origin policies
+  # NOTE: COEP removed — was blocking AdSense iframes (googleads.g.doubleclick.net)
+  # COOP and CORP still enforced for security.
   Cross-Origin-Opener-Policy: same-origin
-  Cross-Origin-Embedder-Policy: credentialless
   Cross-Origin-Resource-Policy: same-origin
 
   # Prevent browser caching of sensitive data
