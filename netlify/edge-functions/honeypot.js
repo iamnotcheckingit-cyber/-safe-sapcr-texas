@@ -26,21 +26,10 @@ export const config = {
     "/donate",
     "/pricing",
 
-    // Environment file probes
-    "/.env",
-    "/env.production.",
-    "/env.production.local.",
-    "/env.prod.",
-    "/env.stage.",
-    "/env.development.",
-    "/env.staging.",
-    "/env.local.",
-    "/env.dev.",
-    "/env.dist.",
-    "/server/.env",
-    "/backend/.env",
-    "/backup/.env",
-    "/.vscode/.env",
+    // Environment file probes — removed from honeypot.
+    // These are handled by netlify.toml with status 404 (not 301).
+    // The edge function was intercepting first and returning 301,
+    // which is wrong for .env files — they should hard-404.
 
     // Git/config probes
     "/.git/config",
