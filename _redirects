@@ -50,7 +50,7 @@ http://safesapcrtx.org/*       https://safesapcrtx.org/:splat   301!
 /privacy-policy  /privacy-policy.html  200
 
 # Honeypot files - cryptic messages with secure contact
-/.env           /env-honeypot.html           200
+/.env           /404.html                    404
 /backup.sql     /backup.sql.html     200
 /api/keys.json  /api/keys.json.html  200
 /get-started    /get-started.html    200
@@ -63,8 +63,8 @@ http://safesapcrtx.org/*       https://safesapcrtx.org/:splat   301!
 /c99.php        /env-honeypot.html   200
 
 # Git config exposure - block and redirect to honeypot
-/.git/config    /env-honeypot.html   200
-/.git/*         /env-honeypot.html   200
+/.git/config    /404.html   404
+/.git/*         /404.html   404
 
 # Transparency API
 /api/case              /.netlify/functions/api-case              200
