@@ -1,5 +1,4 @@
-# Force apex domain (canonical) — defense in depth so the redirect
-# survives even if Netlify platform-level domain config drifts.
+# Force apex domain (canonical)
 http://www.safesapcrtx.org/*   https://safesapcrtx.org/:splat   301!
 https://www.safesapcrtx.org/*  https://safesapcrtx.org/:splat   301!
 http://safesapcrtx.org/*       https://safesapcrtx.org/:splat   301!
@@ -48,22 +47,11 @@ http://safesapcrtx.org/*       https://safesapcrtx.org/:splat   301!
 /sapcr-response-checklist  /sapcr-response-checklist.html  200
 /fraud-documentation-checklist  /fraud-documentation-checklist.html  200
 /privacy-policy  /privacy-policy.html  200
-
-# Honeypot files - cryptic messages with secure contact
-/.env           /404.html                    404
-/backup.sql     /backup.sql.html     200
-/api/keys.json  /api/keys.json.html  200
 /get-started    /get-started.html    200
 
-# PHP scanner traps - redirect to honeypot sink
-/info.php       /env-honeypot.html   200
-/phpinfo.php    /env-honeypot.html   200
-/test.php       /env-honeypot.html   200
-/admin.php      /env-honeypot.html   200
-/c99.php        /env-honeypot.html   200
-
-# Git config exposure - block and redirect to honeypot
-/.git/config    /404.html   404
+# Security - block sensitive paths
+/.env           /404.html   404
+/.env.*         /404.html   404
 /.git/*         /404.html   404
 
 # Transparency API
@@ -73,9 +61,9 @@ http://safesapcrtx.org/*       https://safesapcrtx.org/:splat   301!
 /api/evidence          /.netlify/functions/api-evidence          200
 /api/criminal-referral /.netlify/functions/api-criminal-referral 200
 
-# Catch-all for API probes - MUST be after specific routes
-/api            /.netlify/functions/api-probe-log  200
-/api/*          /.netlify/functions/api-probe-log  200
+# Block unknown API probes
+/api            /404.html   404
+/api/*          /404.html   404
 
 # Language pages
 /es             /es/index.html       200

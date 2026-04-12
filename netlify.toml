@@ -1,5 +1,4 @@
 # Netlify configuration for safesapcrtx.org
-# Optimized for SEO, security, and performance
 
 [build]
   publish = "."
@@ -29,10 +28,8 @@
 # ============================================
 
 [functions]
-  # Node.js version for serverless functions
   node_bundler = "esbuild"
 
-  # Rate limiting for functions (abuse prevention)
   [functions."chat"]
     rate_limit = { window_size = 60, window_limit = 10 }
 
@@ -48,9 +45,6 @@
   [functions."membership-notify"]
     rate_limit = { window_size = 60, window_limit = 3 }
 
-  [functions."honeypot-sink"]
-    rate_limit = { window_size = 60, window_limit = 20 }
-
   [functions."webhook-callback"]
     rate_limit = { window_size = 60, window_limit = 30 }
 
@@ -60,11 +54,8 @@
   [functions."outreach-stats"]
     rate_limit = { window_size = 60, window_limit = 30 }
 
-  [functions."tor-detection"]
-    rate_limit = { window_size = 60, window_limit = 100 }
-
 # ============================================
-# EDGE FUNCTIONS CONFIGURATION
+# EDGE FUNCTIONS
 # ============================================
 
 [[edge_functions]]
@@ -72,9 +63,8 @@
   path = "/*"
 
 [[edge_functions]]
-  path = "/*"
-  function = "tor-watcher"
-  excludedPath = ["/assets/*", "/images/*", "/css/*", "/js/*", "/.netlify/*", "/fonts/*", "/*.ico", "/*.png", "/*.jpg", "/*.svg", "/*.woff*"]
+  function = "rate-limit"
+  path = "/case-study"
 
 [[edge_functions]]
   path = "/*"
@@ -82,7 +72,7 @@
   excludedPath = ["/assets/*", "/images/*", "/css/*", "/js/*", "/.netlify/*", "/fonts/*", "/*.ico", "/*.png", "/*.jpg", "/*.svg", "/*.woff*"]
 
 # ============================================
-# REDIRECTS - Clean URLs handled by _redirects file
+# REDIRECTS
 # ============================================
 
 [[redirects]]
@@ -91,7 +81,7 @@
   status = 301
   force = true
 
-# Security: block env file exposure
+# Security: block sensitive paths
 [[redirects]]
   from = "/.env"
   to = "/404.html"
@@ -104,107 +94,29 @@
   status = 404
   force = true
 
-# Silence traffic-advice 404 noise
 [[redirects]]
   from = "/.well-known/traffic-advice"
   to = "/404.html"
   status = 410
   force = true
 
-# Silence sitemap_index.xml 404 noise
 [[redirects]]
   from = "/sitemap_index.xml"
   to = "/sitemap.xml"
   status = 301
   force = true
 
-# WordPress scanner traps - redirect to honeypots
-[[redirects]]
-  from = "/wp-admin/*"
-  to = "/wp-admin/index.html"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/wordpress/*"
-  to = "/wordpress/wp-admin/index.html"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/*wlwmanifest.xml"
-  to = "/404"
-  status = 410
-  force = true
-
-# Security: block xmlrpc
 [[redirects]]
   from = "/xmlrpc.php"
   to = "/404.html"
   status = 403
   force = true
 
-# Staging honeypot
 [[redirects]]
-  from = "/staging"
-  to = "/staging.html"
-  status = 200
+  from = "/*wlwmanifest.xml"
+  to = "/404.html"
+  status = 410
   force = true
-
-[[redirects]]
-  from = "/staging/*"
-  to = "/staging.html"
-  status = 200
-  force = true
-
-# Database dump honeypot
-[[redirects]]
-  from = "/dump.sql"
-  to = "/dump.html"
-  status = 200
-  force = true
-
-# Shell honeypot
-[[redirects]]
-  from = "/shell/*"
-  to = "/shell/index.html"
-  status = 200
-  force = true
-
-# Members honeypot
-[[redirects]]
-  from = "/members/*"
-  to = "/members/export/index.html"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/members"
-  to = "/members/export/index.html"
-  status = 200
-  force = true
-
-# Case files honeypot
-[[redirects]]
-  from = "/case-files/confidential/*"
-  to = "/case-files/confidential/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/case-files/*"
-  to = "/case-files/confidential/index.html"
-  status = 200
-
-# Finance honeypot
-[[redirects]]
-  from = "/finance/reports/*"
-  to = "/finance/reports/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/finance/*"
-  to = "/finance/reports/index.html"
-  status = 200
 
 # Favicon fallback
 [[redirects]]
@@ -219,7 +131,6 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    # Security headers
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     X-XSS-Protection = "1; mode=block"
@@ -229,9 +140,7 @@
     Cross-Origin-Opener-Policy = "same-origin"
     X-Permitted-Cross-Domain-Policies = "none"
     Cross-Origin-Resource-Policy = "same-origin"
-    # Content Security Policy - strict but functional
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdn.auth0.com https://www.googletagmanager.com https://www.google-analytics.com https://uynnupaoafbwouvgcedj.supabase.co https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://googleads.g.doubleclick.net https://www.googletagservices.com https://partner.googleadservices.com https://adservice.google.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://uynnupaoafbwouvgcedj.supabase.co https://*.auth0.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.netlify.app https://*.netlify.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://*.googlesyndication.com https://*.doubleclick.net https://ipapi.co https://ep1.adtrafficquality.google https://*.adtrafficquality.google https://ingesteer.services-prod.nsvcs.net https://cdn.jsdelivr.net; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.googlesyndication.com https://*.doubleclick.net https://*.adtrafficquality.google; frame-ancestors 'none'; form-action 'self' https://*.auth0.com https://uynnupaoafbwouvgcedj.supabase.co; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
-    # SEO headers
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdn.auth0.com https://www.googletagmanager.com https://www.google-analytics.com https://uynnupaoafbwouvgcedj.supabase.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://uynnupaoafbwouvgcedj.supabase.co https://*.auth0.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.netlify.app https://*.netlify.com https://ipapi.co https://ingesteer.services-prod.nsvcs.net https://cdn.jsdelivr.net; frame-ancestors 'none'; form-action 'self' https://*.auth0.com https://uynnupaoafbwouvgcedj.supabase.co; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
     X-Robots-Tag = "index, follow, max-image-preview:large"
 
 [[headers]]
@@ -284,103 +193,10 @@
   [plugins.inputs]
     buildDir = "."
     exclude = [
-      # Netlify/build directories
       "./.netlify/**",
       "./netlify/**",
       "./node_modules/**",
-
-      # WordPress honeypots
-      "./wp-admin/**",
-      "./wp-content/**",
-      "./wp-includes/**",
-      "./wp-login.php",
-      "./wp-login.php.html",
-      "**/wp-login.php",
-      "**/wp-login.php.html",
-      "wp-login.php",
-      "wp-login.php.html",
-      "./wp-login/**",
-      "./wordpress/**",
-      "./xmlrpc/**",
-      "./xmlrpc.html",
-
-      # CMS/Admin honeypots
       "./admin.html",
-      "./admin/**",
-      "./administrator/**",
-      "./backend/**",
-      "./cms/**",
-      "./console/**",
-      "./control/**",
-      "./controlpanel/**",
-      "./cpanel/**",
-      "./dashboard/**",
-      "./filemanager/**",
-      "./godmode/**",
-      "./godmode.html",
-      "./install/**",
-      "./login/**",
-      "./manage/**",
-      "./manager/**",
-      "./panel/**",
-      "./setup/**",
-      "./shell/**",
-      "./siteadmin/**",
-      "./uploads/**",
-      "./webadmin/**",
-      "./webmail/**",
-
-      # Database honeypots
-      "./phpmyadmin/**",
-      "./phpMyAdmin/**",
-      "./pma/**",
-      "./mysql/**",
-      "./dump.html",
-      "./dump/**",
-      "./backup.sql.html",
-      "./database/**",
-      "./database.html",
-
-      # Debug/dev honeypots
-      "./backup/**",
-      "./debug/**",
-      "./dev/**",
-      "./hidden-admin/**",
-      "./internal-api/**",
-      "./staging/**",
-      "./staging.html",
-      "./test/**",
-      "./api/**",
-
-      # Environment file honeypots
-      "./env-honeypot.html",
-      "./env-honeypot/**",
-
-      # Sensitive data honeypots
-      "./case-files/**",
-      "./court/**",
-      "./credentials/**",
-      "./documents/**",
-      "./documents-leaked.html",
-      "./donors/**",
-      "./employees/**",
-      "./finance/**",
-      "./accounting/**",
-      "./hr/**",
-      "./legal/**",
-      "./members/**",
-      "./payroll/**",
-      "./secrets/**",
-      "./staff/**",
-      "./user-data/**",
-
-      # Webhook/logging honeypots
-      "./webhook-log/**",
-      "./webhook-log.html",
-
-      # Misc honeypots
-      "./well.known/**",
-      "./nosetoprose/**",
     ]
     changeFreq = "weekly"
     priority = 0.8
@@ -405,56 +221,7 @@
   status = 200
   force = true
 
-# Hidden admin backchannel
-[[redirects]]
-  from = "/hidden-admin/*"
-  to = "/hidden-admin/index.html"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/hidden-admin"
-  to = "/hidden-admin/index.html"
-  status = 200
-  force = true
-
-# Documents leaked honeypot
-[[redirects]]
-  from = "/documents/leaked/*"
-  to = "/documents-leaked.html"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/documents/leaked"
-  to = "/documents-leaked.html"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/leaked/*"
-  to = "/documents-leaked.html"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/leaked"
-  to = "/documents-leaked.html"
-  status = 200
-  force = true
-
-# well.known redirects
-[[redirects]]
-  from = "/well.known/*"
-  to = "/well.known/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/well.known"
-  to = "/well.known/index.html"
-  status = 200
-
-# NodeInfo for fediverse discovery
+# ActivityPub / Fediverse
 [[redirects]]
   from = "/.well-known/nodeinfo"
   to = "/.well-known/nodeinfo"
@@ -469,7 +236,6 @@
   force = true
   headers = {Content-Type = "application/json"}
 
-# WebFinger for ActivityPub
 [[redirects]]
   from = "/.well-known/webfinger"
   to = "/.well-known/webfinger"
@@ -477,7 +243,6 @@
   force = true
   headers = {Content-Type = "application/jrd+json"}
 
-# ActivityPub Actor
 [[redirects]]
   from = "/actor"
   to = "/actor.json"
@@ -485,7 +250,6 @@
   force = true
   headers = {Content-Type = "application/activity+json"}
 
-# Also support standard .well-known
 [[redirects]]
   from = "/.well-known/*"
   to = "/well.known/:splat"
@@ -497,14 +261,13 @@
   to = "https://qbbxof4ndhw2ok7b2yxzw6jw6m0ogsxw.lambda-url.us-east-2.on.aws"
   status = 200
 
-# Block author enumeration
+# Security: block common probes
 [[redirects]]
   from = "/?author=*"
   to = "/"
   status = 301
   force = true
 
-# Block vscode sftp config probe
 [[redirects]]
   from = "/.vscode/sftp.json"
   to = "/404.html"
@@ -517,16 +280,8 @@
   status = 404
   force = true
 
-# Block REST API user enum routes
 [[redirects]]
   from = "/?rest_route=/wp/v2/users*"
-  to = "/404.html"
-  status = 403
-  force = true
-
-# Block webhook log public access
-[[redirects]]
-  from = "/webhook-log"
   to = "/404.html"
   status = 403
   force = true

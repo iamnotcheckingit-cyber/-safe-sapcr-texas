@@ -1,109 +1,68 @@
 /*
-  # ============================================
-  # SECURITY HEADERS - COMPREHENSIVE
-  # ============================================
-
-  # Prevent clickjacking attacks
+  # Security headers
   X-Frame-Options: DENY
-
-  # Prevent MIME type sniffing
   X-Content-Type-Options: nosniff
-
-  # XSS Protection (legacy browsers)
   X-XSS-Protection: 1; mode=block
-
-  # Control referrer information
   Referrer-Policy: strict-origin-when-cross-origin
-
-  # Permissions Policy - restrict browser features
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), autoplay=(), encrypted-media=(self), fullscreen=(self), picture-in-picture=(self)
-
-  # Content Security Policy — single source of truth is in netlify.toml
-  # Removed duplicate CSP from _headers to avoid drift and conflicts.
-
-  # Strict Transport Security - force HTTPS for 2 years
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-
-  # Cross-Origin policies
-  # NOTE: COEP removed — was blocking AdSense iframes (googleads.g.doubleclick.net)
-  # COOP and CORP still enforced for security.
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
-
-  # Prevent browser caching of sensitive data
   X-Permitted-Cross-Domain-Policies: none
-
-  # DNS prefetch control
   X-DNS-Prefetch-Control: on
+  # CSP is in netlify.toml (single source of truth)
 
-# ============================================
-# SEO & CRAWLER OPTIMIZATION
-# ============================================
-
-# HTML pages - crawler friendly
+# SEO & crawler optimization
 /*.html
   X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
   Cache-Control: public, max-age=0, must-revalidate
 
-# Homepage
 /
   X-Robots-Tag: index, follow, max-image-preview:large
   Link: <https://safesapcrtx.org/>; rel="canonical"
   Cache-Control: public, max-age=0, must-revalidate
 
-# Case study - priority indexing
 /case-study
   X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1
   Link: <https://safesapcrtx.org/case-study>; rel="canonical"
   Cache-Control: public, max-age=0, must-revalidate
 
-# Legislation page
 /legislation
   X-Robots-Tag: index, follow, max-image-preview:large
   Link: <https://safesapcrtx.org/legislation>; rel="canonical"
 
-# FAQ page
 /faq
   X-Robots-Tag: index, follow, max-image-preview:large
   Link: <https://safesapcrtx.org/faq>; rel="canonical"
 
-# Greek translation
 /el/
   X-Robots-Tag: index, follow, max-image-preview:large
   Link: <https://safesapcrtx.org/el/>; rel="canonical"
   Cache-Control: public, max-age=0, must-revalidate
 
-# Hebrew translation
 /he/
   X-Robots-Tag: index, follow, max-image-preview:large
   Link: <https://safesapcrtx.org/he/>; rel="canonical"
   Cache-Control: public, max-age=0, must-revalidate
 
-# Petition page
 /petition
   X-Robots-Tag: index, follow
   Link: <https://safesapcrtx.org/petition>; rel="canonical"
 
-# Resources page
 /resources
   X-Robots-Tag: index, follow
   Link: <https://safesapcrtx.org/resources>; rel="canonical"
 
-# Sitemap - XML content type
 /sitemap.xml
   Content-Type: application/xml; charset=utf-8
   Cache-Control: public, max-age=3600
   X-Robots-Tag: noindex
 
-# Robots.txt
 /robots.txt
   Content-Type: text/plain; charset=utf-8
   Cache-Control: public, max-age=86400
 
-# ============================================
-# STATIC ASSETS - AGGRESSIVE CACHING
-# ============================================
-
+# Static assets
 /images/*
   Cache-Control: public, max-age=31536000, immutable
   X-Robots-Tag: index
@@ -118,10 +77,7 @@
   X-Robots-Tag: index, follow
   Cache-Control: public, max-age=604800
 
-# ============================================
-# API/FUNCTION SECURITY
-# ============================================
-
+# API/function security
 /.netlify/functions/*
   Access-Control-Allow-Origin: https://safesapcrtx.org
   Access-Control-Allow-Methods: GET, POST, OPTIONS
@@ -129,190 +85,18 @@
   Access-Control-Max-Age: 86400
   X-Content-Type-Options: nosniff
 
-# ============================================
-# HONEYPOT PATHS - BLOCK & LOG ATTACKERS
-# ============================================
-
-/wp-admin/*
-  X-Robots-Tag: noindex, nofollow
-  X-Frame-Options: DENY
-
-/wp-content/*
-  X-Robots-Tag: noindex, nofollow
-  X-Frame-Options: DENY
-
-/wp-includes/*
-  X-Robots-Tag: noindex, nofollow
-  X-Frame-Options: DENY
-
-/wp-login.php
-  X-Robots-Tag: noindex, nofollow
-  X-Frame-Options: DENY
-
-/xmlrpc.php
-  X-Robots-Tag: noindex, nofollow
-  X-Frame-Options: DENY
-
-/.env
-  X-Robots-Tag: noindex, nofollow
-  X-Frame-Options: DENY
-
-/admin/*
-  X-Robots-Tag: noindex, nofollow
-  X-Frame-Options: DENY
-
-/phpmyadmin/*
-  X-Robots-Tag: noindex, nofollow
-  X-Frame-Options: DENY
-
-/.git/*
-  X-Robots-Tag: noindex, nofollow
-  X-Frame-Options: DENY
-
-/config/*
-  X-Robots-Tag: noindex, nofollow
-  X-Frame-Options: DENY
-
+# Block sensitive paths from indexing
 /.netlify/*
   X-Robots-Tag: noindex, nofollow
 
-# Block common attack vectors
-/shell.php
+/.git/*
   X-Robots-Tag: noindex, nofollow
 
-/backup.sql
-  X-Robots-Tag: noindex, nofollow
-
-/api/keys.json
-  X-Robots-Tag: noindex, nofollow
-
-/.htaccess
-  X-Robots-Tag: noindex, nofollow
-
-/.htpasswd
-  X-Robots-Tag: noindex, nofollow
-
-/web.config
-  X-Robots-Tag: noindex, nofollow
-
-/composer.json
+/.env
   X-Robots-Tag: noindex, nofollow
 
 /package.json
   X-Robots-Tag: noindex, nofollow
 
-# ============================================
-# ADDITIONAL ATTACK VECTOR BLOCKING
-# ============================================
-
-# Common exploit paths
-/cgi-bin/*
-  X-Robots-Tag: noindex, nofollow
-
-/scripts/*
-  X-Robots-Tag: noindex, nofollow
-
 /.well-known/security.txt
   Content-Type: text/plain
-
-# Block common scanners
-/actuator/*
-  X-Robots-Tag: noindex, nofollow
-
-/api/v1/*
-  X-Robots-Tag: noindex, nofollow
-
-/console/*
-  X-Robots-Tag: noindex, nofollow
-
-/debug/*
-  X-Robots-Tag: noindex, nofollow
-
-/test/*
-  X-Robots-Tag: noindex, nofollow
-
-/temp/*
-  X-Robots-Tag: noindex, nofollow
-
-/tmp/*
-  X-Robots-Tag: noindex, nofollow
-
-/logs/*
-  X-Robots-Tag: noindex, nofollow
-
-/log/*
-  X-Robots-Tag: noindex, nofollow
-
-/.svn/*
-  X-Robots-Tag: noindex, nofollow
-
-/.hg/*
-  X-Robots-Tag: noindex, nofollow
-
-/CVS/*
-  X-Robots-Tag: noindex, nofollow
-
-/.DS_Store
-  X-Robots-Tag: noindex, nofollow
-
-/Thumbs.db
-  X-Robots-Tag: noindex, nofollow
-
-# Database files
-/*.sql
-  X-Robots-Tag: noindex, nofollow
-
-/*.db
-  X-Robots-Tag: noindex, nofollow
-
-/*.sqlite
-  X-Robots-Tag: noindex, nofollow
-
-# Config files
-/*.yml
-  X-Robots-Tag: noindex, nofollow
-
-/*.yaml
-  X-Robots-Tag: noindex, nofollow
-
-/*.ini
-  X-Robots-Tag: noindex, nofollow
-
-/*.conf
-  X-Robots-Tag: noindex, nofollow
-
-/*.config
-  X-Robots-Tag: noindex, nofollow
-
-# Backup files
-/*.bak
-  X-Robots-Tag: noindex, nofollow
-
-/*.backup
-  X-Robots-Tag: noindex, nofollow
-
-/*.old
-  X-Robots-Tag: noindex, nofollow
-
-/*.orig
-  X-Robots-Tag: noindex, nofollow
-
-/*.swp
-  X-Robots-Tag: noindex, nofollow
-
-# Archive files that shouldn't be public
-/*.tar
-  X-Robots-Tag: noindex, nofollow
-
-/*.tar.gz
-  X-Robots-Tag: noindex, nofollow
-
-/*.zip
-  X-Robots-Tag: noindex, nofollow
-
-/*.rar
-  X-Robots-Tag: noindex, nofollow
-
-# Log files
-/*.log
-  X-Robots-Tag: noindex, nofollow
