@@ -745,8 +745,9 @@ footer {
 }
 
 .footer-content {
-    max-width: 800px;
+    max-width: 1100px;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 .footer-logo {
