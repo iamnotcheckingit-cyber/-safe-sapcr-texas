@@ -291,3 +291,10 @@
   to = "/404.html"
   status = 403
   force = true
+
+# Block .well.known- traffic-advice probe (dot-dash variant)
+[[redirects]]
+  from = "/.well.known-/traffic-advice"
+  to = "/404.html"
+  status = 410
+  force = true
