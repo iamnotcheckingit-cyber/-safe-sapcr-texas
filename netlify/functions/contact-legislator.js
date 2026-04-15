@@ -1,4 +1,89 @@
 // Netlify Function to send emails to legislators via Resend
+const { createClient } = require('@supabase/supabase-js');
+const LEGISLATORS = require('./legislators.json');
+
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://uynnupaoafbwouvgcedj.supabase.co';
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
+
+const getDaysSeparated = () => Math.floor((new Date() - new Date('2023-12-27')) / 86400000);
+
+const SCHEDULED_SUBJECT = () =>
+  `Texas SAPCR Fraud: Father Separated ${getDaysSeparated()}+ Days — Please Support the SAFE SAPCR Act`;
+
+const SCHEDULED_HTML = (name) => `
+  <div style="font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto; color: #222; line-height: 1.55;">
+    <p>Dear ${name},</p>
+    <p>I'm writing as a Texas constituent and a father who lost custody through a default SAPCR judgment based on a knowingly false Certificate of Last Known Address. I've now been separated from my daughter for over ${getDaysSeparated()} days.</p>
+    <p>This isn't an isolated incident. Texas family courts routinely enter default custody judgments without any address verification, creating an open lane for service-of-process fraud.</p>
+    <p>The <strong>SAFE SAPCR Act</strong> would close that gap by requiring courts to verify addresses before entering default judgments in custody cases. Full documentation, proposed legislative text, and supporting case records are at <a href="https://safesapcrtx.org">safesapcrtx.org</a>.</p>
+    <p>I would be grateful for a few minutes of your time to discuss sponsorship or co-sponsorship.</p>
+    <p>Respectfully,<br>
+    Scott Willis<br>
+    Founder, SAFE SAPCR Texas<br>
+    <a href="mailto:iamnotcheckingit@gmail.com">iamnotcheckingit@gmail.com</a></p>
+  </div>
+`;
+
+async function sendScheduledBatch(RESEND_API_KEY, batchSize = 5, cooldownDays = 30) {
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  // Pull recent contact log to enforce a cooldown per legislator
+  const cutoff = new Date(Date.now() - cooldownDays * 86400000).toISOString();
+  const { data: recent } = await supabase
+    .from('outreach_log')
+    .select('email, sent_at')
+    .gte('sent_at', cutoff);
+
+  const recentEmails = new Set((recent || []).map(r => r.email));
+  const queue = LEGISLATORS
+    .filter(l => !recentEmails.has(l.email))
+    .sort((a, b) => (b.priority || 0) - (a.priority || 0))
+    .slice(0, batchSize);
+
+  if (queue.length === 0) {
+    return { sent: 0, skipped: LEGISLATORS.length, message: 'All legislators within cooldown window' };
+  }
+
+  const results = [];
+  const errors = [];
+
+  for (let i = 0; i < queue.length; i++) {
+    const lg = queue[i];
+    try {
+      const resp = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          from: 'Scott Willis - SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
+          to: lg.email,
+          reply_to: 'iamnotcheckingit@gmail.com',
+          subject: SCHEDULED_SUBJECT(),
+          html: SCHEDULED_HTML(lg.name)
+        })
+      });
+
+      const payload = await resp.json();
+      if (!resp.ok) throw new Error(payload?.message || `status ${resp.status}`);
+
+      results.push({ email: lg.email, id: payload?.id });
+
+      await supabase.from('outreach_log').insert({
+        outlet: `${lg.name} (${lg.chamber})`,
+        email: lg.email,
+        sent_at: new Date().toISOString(),
+        status: 'sent',
+        resend_id: payload?.id
+      }).catch(() => {});
+
+      if (i < queue.length - 1) await new Promise(r => setTimeout(r, 1500));
+    } catch (err) {
+      errors.push({ email: lg.email, error: err.message });
+    }
+  }
+
+  return { sent: results.length, failed: errors.length, results, errors };
+}
+
 exports.handler = async (event, context) => {
   // CORS headers
   const headers = {
@@ -31,7 +116,13 @@ exports.handler = async (event, context) => {
   try {
     const body = JSON.parse(event.body);
     const clientIP = event.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
-    console.log(JSON.stringify({ form_type: 'LEGISLATOR_CONTACT', ip: clientIP, legislator: body.legislatorName, timestamp: new Date().toISOString() }));
+    console.log(JSON.stringify({ form_type: 'LEGISLATOR_CONTACT', ip: clientIP, legislator: body.legislatorName, scheduled: !!body.scheduled, timestamp: new Date().toISOString() }));
+
+    // Scheduled cron trigger: batch-send to pending legislators
+    if (body.scheduled) {
+      const result = await sendScheduledBatch(RESEND_API_KEY, body.batchSize, body.cooldownDays);
+      return { statusCode: 200, headers, body: JSON.stringify({ success: true, ...result }) };
+    }
 
     const {
       legislatorName,

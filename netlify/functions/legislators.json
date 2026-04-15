@@ -1,0 +1,20 @@
+[
+  { "name": "Angela Paxton", "email": "angela.paxton@senate.texas.gov", "chamber": "senate", "priority": 10 },
+  { "name": "Bryan Hughes", "email": "bryan.hughes@senate.texas.gov", "chamber": "senate", "priority": 5 },
+  { "name": "Bob Hall", "email": "bob.hall@senate.texas.gov", "chamber": "senate", "priority": 5 },
+  { "name": "Tan Parker", "email": "tan.parker@senate.texas.gov", "chamber": "senate", "priority": 5 },
+  { "name": "Royce West", "email": "royce.west@senate.texas.gov", "chamber": "senate", "priority": 5 },
+  { "name": "John Whitmire", "email": "john.whitmire@senate.texas.gov", "chamber": "senate", "priority": 5 },
+  { "name": "Joan Huffman", "email": "joan.huffman@senate.texas.gov", "chamber": "senate", "priority": 5 },
+  { "name": "Kelly Hancock", "email": "kelly.hancock@senate.texas.gov", "chamber": "senate", "priority": 5 },
+  { "name": "Mayes Middleton", "email": "mayes.middleton@senate.texas.gov", "chamber": "senate", "priority": 5 },
+  { "name": "Phil King", "email": "phil.king@senate.texas.gov", "chamber": "senate", "priority": 5 },
+  { "name": "Jeff Leach", "email": "jeff.leach@house.texas.gov", "chamber": "house", "priority": 8 },
+  { "name": "Gene Wu", "email": "gene.wu@house.texas.gov", "chamber": "house", "priority": 5 },
+  { "name": "Victoria Neave Criado", "email": "victoria.neave@house.texas.gov", "chamber": "house", "priority": 5 },
+  { "name": "Matt Shaheen", "email": "matt.shaheen@house.texas.gov", "chamber": "house", "priority": 5 },
+  { "name": "Rafael Anchia", "email": "rafael.anchia@house.texas.gov", "chamber": "house", "priority": 5 },
+  { "name": "Tony Tinderholt", "email": "tony.tinderholt@house.texas.gov", "chamber": "house", "priority": 5 },
+  { "name": "Jared Patterson", "email": "jared.patterson@house.texas.gov", "chamber": "house", "priority": 5 },
+  { "name": "Briscoe Cain", "email": "briscoe.cain@house.texas.gov", "chamber": "house", "priority": 5 }
+]
