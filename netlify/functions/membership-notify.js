@@ -51,8 +51,8 @@ exports.handler = async (event, context) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'SAFE SAPCR Texas <info@safesapcrtx.org>',
-        to: 'info@safesapcrtx.org',
+        from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
+        to: 'iamnotcheckingit@gmail.com',
         subject: `New Member Signup: ${first_name} ${last_name}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -127,7 +127,7 @@ exports.handler = async (event, context) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'SAFE SAPCR Texas <info@safesapcrtx.org>',
+        from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
         to: email,
         subject: 'Welcome to SAFE SAPCR Texas!',
         html: `
@@ -151,7 +151,7 @@ exports.handler = async (event, context) => {
                 <a href="https://safesapcrtx.org/legislators" style="display: inline-block; background: #e08a3c; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold;">Contact Your Legislator Now</a>
               </div>
 
-              <p style="color: #666; font-size: 14px;">Questions? Reply to this email or contact us at info@safesapcrtx.org</p>
+              <p style="color: #666; font-size: 14px;">Questions? Reply to this email or contact us at iamnotcheckingit@gmail.com</p>
             </div>
             <div style="background: #f5f5f5; padding: 20px; text-align: center; font-size: 12px; color: #666;">
               <p style="margin: 0;">You're receiving this because you joined at safesapcrtx.org</p>

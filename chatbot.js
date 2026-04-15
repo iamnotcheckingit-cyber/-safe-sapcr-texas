@@ -100,7 +100,7 @@
                 contactForm.classList.remove('hidden');
             }
         } catch (err) {
-            addMessage('Sorry, there was an error. Please try again or email info@safesapcrtx.org', false);
+            addMessage('Sorry, there was an error. Please try again or email iamnotcheckingit@gmail.com', false);
         }
     }
 

@@ -201,8 +201,8 @@ exports.handler = async (event, context) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            from: 'SAFE SAPCR Texas <info@safesapcrtx.org>',
-            to: 'info@safesapcrtx.org',
+            from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
+            to: 'iamnotcheckingit@gmail.com',
             subject: `Chat Request: ${userInfo.name || 'Website Visitor'}`,
             html: `
               <h2>Someone wants to connect via chat</h2>
@@ -220,7 +220,7 @@ exports.handler = async (event, context) => {
         statusCode: 200,
         headers: securityHeaders,
         body: JSON.stringify({
-          reply: "I'll connect you with our team. Please provide your contact info and we'll reach out shortly. You can also email us directly at **info@safesapcrtx.org**.",
+          reply: "I'll connect you with our team. Please provide your contact info and we'll reach out shortly. You can also email us directly at **iamnotcheckingit@gmail.com**.",
           requestContact: true
         })
       };

@@ -150,7 +150,7 @@ I discovered this 14 months later when my ex texted me a photo of the order.
 ## Links
 
 - **Main Site:** https://safesapcrtx.org
-- **Contact:** info@safesapcrtx.org
+- **Contact:** iamnotcheckingit@gmail.com
 
 ---
 

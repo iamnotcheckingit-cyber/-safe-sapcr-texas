@@ -95,7 +95,7 @@ exports.handler = async (event, context) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'SAFE SAPCR Texas <info@safesapcrtx.org>',
+        from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
         to: email,
         subject: 'Welcome to SAFE SAPCR Texas Updates',
         html: `
@@ -117,7 +117,7 @@ exports.handler = async (event, context) => {
               <div style="text-align: center; margin: 30px 0;">
                 <a href="https://safesapcrtx.org/legislators" style="display: inline-block; background: #1a365d; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold;">Contact Your Legislator</a>
               </div>
-              <p style="color: #666; font-size: 14px;">Questions? Reply to this email or contact us at info@safesapcrtx.org</p>
+              <p style="color: #666; font-size: 14px;">Questions? Reply to this email or contact us at iamnotcheckingit@gmail.com</p>
             </div>
             <div style="background: #f5f5f5; padding: 20px; text-align: center; font-size: 12px; color: #666;">
               <p>You're receiving this because you subscribed at safesapcrtx.org</p>
@@ -136,8 +136,8 @@ exports.handler = async (event, context) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'SAFE SAPCR Texas <info@safesapcrtx.org>',
-        to: 'info@safesapcrtx.org',
+        from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
+        to: 'iamnotcheckingit@gmail.com',
         subject: 'New Newsletter Subscriber',
         html: `
           <div style="font-family: Arial, sans-serif;">

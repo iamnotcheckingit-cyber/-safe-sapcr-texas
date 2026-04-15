@@ -27,7 +27,7 @@ exports.handler = async (event, context) => {
 
         for (const to of recipients) {
             const emailPayload = {
-                from: `${from_name || 'SAFE SAPCR Texas'} <info@safesapcrtx.org>`,
+                from: `${from_name || 'SAFE SAPCR Texas'} <iamnotcheckingit@gmail.com>`,
                 to: to,
                 subject: subject,
                 html: body

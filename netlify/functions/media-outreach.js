@@ -33,7 +33,7 @@ const DEFAULT_HTML_TEMPLATE = `
 <p>Best regards,<br>
 Scott Willis<br>
 Founder, SAFE SAPCR Texas<br>
-info@safesapcrtx.org</p>
+iamnotcheckingit@gmail.com</p>
 `;
 
 exports.handler = async (event) => {
@@ -93,7 +93,7 @@ exports.handler = async (event) => {
 
         try {
             const emailPayload = {
-                from: 'Scott Willis - SAFE SAPCR Texas <info@safesapcrtx.org>',
+                from: 'Scott Willis - SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
                 to: recipient.email,
                 subject: subject,
                 html: htmlBody.replace('{{outlet}}', recipient.outlet || 'News Desk')

@@ -106,7 +106,7 @@ ${formattedMessage}
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'SAFE SAPCR Texas <info@safesapcrtx.org>',
+        from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
         to: legislatorEmail,
         reply_to: senderEmail,
         subject: subject || 'Constituent Message: Support for SAFE SAPCR Act',
@@ -133,7 +133,7 @@ ${formattedMessage}
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          from: 'SAFE SAPCR Texas <info@safesapcrtx.org>',
+          from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
           to: senderEmail,
           subject: `Copy: Your message to ${legislatorName}`,
           html: `
@@ -179,8 +179,8 @@ ${formattedMessage}
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'SAFE SAPCR Texas <info@safesapcrtx.org>',
-        to: 'info@safesapcrtx.org',
+        from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
+        to: 'iamnotcheckingit@gmail.com',
         subject: `Legislator Contact: ${legislatorName}`,
         html: `
           <div style="font-family: Arial, sans-serif;">
