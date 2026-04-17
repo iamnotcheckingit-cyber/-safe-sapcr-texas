@@ -26,6 +26,9 @@ http://safesapcrtx.org/*       https://safesapcrtx.org/:splat   301!
 /outreach       /outreach.html       200
 /press-release  /press-release.html  200
 /perjury        /perjury.html        200
+/public-records /public-records.html 200
+/public-records/ /public-records.html 200
+/public-records/* /public-records.html 301
 /rule-239a-texas          /rule-239a-texas.html          200
 /default-judgment-custody-texas  /default-judgment-custody-texas.html  200
 /kerr-wilson-pc           /kerr-wilson-pc.html           200

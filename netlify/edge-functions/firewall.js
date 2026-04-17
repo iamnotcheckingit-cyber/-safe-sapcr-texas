@@ -20,6 +20,14 @@ export default async (request, context) => {
   const ip = context.ip;
   if (BLOCKED_IPS.has(ip)) return new Response("Forbidden", { status: 403 });
   if (BLOCKED_PREFIXES.some(prefix => ip.startsWith(prefix))) return new Response("Forbidden", { status: 403 });
+
+  // WP user enumeration probe: /?author=1, /?author=2, etc.
+  // Netlify [[redirects]] doesn't match query strings by default, so handle here.
+  const url = new URL(request.url);
+  if (url.searchParams.has("author")) {
+    return new Response("Not Found", { status: 404 });
+  }
+
   return context.next();
 };
 
