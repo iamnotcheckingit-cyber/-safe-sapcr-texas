@@ -298,3 +298,71 @@
   to = "/404.html"
   status = 410
   force = true
+
+# Block well.known- traffic-advice variants (all dot/dash combos)
+[[redirects]]
+  from = "/.well.known.-/traffic-advice"
+  to = "/404.html"
+  status = 410
+  force = true
+
+# Block well.known- apple-app-site-association
+[[redirects]]
+  from = "/.well.known-/apple-app-site-association"
+  to = "/404.html"
+  status = 410
+  force = true
+
+# Block config.json public access
+[[redirects]]
+  from = "/config.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Block wp-admin install.php (Campaign B new variant)
+[[redirects]]
+  from = "/wp-admin/install.php"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/wordpress/wp-admin/install.php"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Block FTP config variants
+[[redirects]]
+  from = "/ftp-config.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/ftp-sync.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Block states/texas 404 noise (page doesn't exist)
+[[redirects]]
+  from = "/states/texas"
+  to = "/resources"
+  status = 301
+  force = true
+
+# Block phpmyadmin probe
+[[redirects]]
+  from = "/phpmyadmin/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Block enhancecp probe
+[[redirects]]
+  from = "/enhancecp"
+  to = "/404.html"
+  status = 404
+  force = true
