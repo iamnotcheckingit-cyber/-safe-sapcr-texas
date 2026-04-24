@@ -24,7 +24,7 @@ export default async (request, context) => {
   // WP user enumeration probe: /?author=1, /?author=2, etc.
   // Netlify [[redirects]] doesn't match query strings by default, so handle here.
   const url = new URL(request.url);
-  if (url.searchParams.has("author")) {
+  if (url.searchParams.has("author") || url.searchParams.has("rest_route")) {
     return new Response("Not Found", { status: 404 });
   }
 

@@ -366,3 +366,49 @@
   to = "/404.html"
   status = 404
   force = true
+
+# Block states/arizona 404 noise
+[[redirects]]
+  from = "/states/arizona"
+  to = "/resources"
+  status = 301
+  force = true
+
+# Block .git probes
+[[redirects]]
+  from = "/.git/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Block debug/profiler probes
+[[redirects]]
+  from = "/_profiler/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/_ignition/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/actuator/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Block Swagger/API doc probes
+[[redirects]]
+  from = "/swagger*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/api-docs/*"
+  to = "/404.html"
+  status = 404
+  force = true
