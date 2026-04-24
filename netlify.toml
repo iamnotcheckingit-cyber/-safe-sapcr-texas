@@ -269,12 +269,6 @@
 
 # Security: block common probes
 [[redirects]]
-  from = "/?author=*"
-  to = "/"
-  status = 301
-  force = true
-
-[[redirects]]
   from = "/.vscode/sftp.json"
   to = "/404.html"
   status = 404
@@ -286,11 +280,6 @@
   status = 404
   force = true
 
-[[redirects]]
-  from = "/?rest_route=/wp/v2/users*"
-  to = "/404.html"
-  status = 403
-  force = true
 
 # Block .well.known- traffic-advice probe (dot-dash variant)
 [[redirects]]
