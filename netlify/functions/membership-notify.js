@@ -51,7 +51,7 @@ exports.handler = async (event, context) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
+        from: 'SAFE SAPCR Texas <onboarding@resend.dev>',
         to: 'iamnotcheckingit@gmail.com',
         subject: `New Member Signup: ${first_name} ${last_name}`,
         html: `
@@ -127,7 +127,8 @@ exports.handler = async (event, context) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
+        from: 'SAFE SAPCR Texas <onboarding@resend.dev>',
+        reply_to: 'iamnotcheckingit@gmail.com',
         to: email,
         subject: 'Welcome to SAFE SAPCR Texas!',
         html: `

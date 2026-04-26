@@ -40,7 +40,8 @@ exports.handler = async (event, context) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
+            from: 'SAFE SAPCR Texas <onboarding@resend.dev>',
+            reply_to: 'iamnotcheckingit@gmail.com',
             to: recipient.email,
             subject: subject,
             html: `

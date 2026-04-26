@@ -201,7 +201,7 @@ exports.handler = async (event, context) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
+            from: 'SAFE SAPCR Texas <onboarding@resend.dev>',
             to: 'iamnotcheckingit@gmail.com',
             subject: `Chat Request: ${userInfo.name || 'Website Visitor'}`,
             html: `

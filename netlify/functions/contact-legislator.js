@@ -54,7 +54,7 @@ async function sendScheduledBatch(RESEND_API_KEY, batchSize = 5, cooldownDays = 
         method: 'POST',
         headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          from: 'Scott Willis - SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
+          from: 'Scott Willis - SAFE SAPCR Texas <onboarding@resend.dev>',
           to: lg.email,
           reply_to: 'iamnotcheckingit@gmail.com',
           subject: SCHEDULED_SUBJECT(),
@@ -197,7 +197,7 @@ ${formattedMessage}
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
+        from: 'SAFE SAPCR Texas <onboarding@resend.dev>',
         to: legislatorEmail,
         reply_to: senderEmail,
         subject: subject || 'Constituent Message: Support for SAFE SAPCR Act',
@@ -224,7 +224,8 @@ ${formattedMessage}
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
+          from: 'SAFE SAPCR Texas <onboarding@resend.dev>',
+          reply_to: 'iamnotcheckingit@gmail.com',
           to: senderEmail,
           subject: `Copy: Your message to ${legislatorName}`,
           html: `
@@ -270,7 +271,7 @@ ${formattedMessage}
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'SAFE SAPCR Texas <iamnotcheckingit@gmail.com>',
+        from: 'SAFE SAPCR Texas <onboarding@resend.dev>',
         to: 'iamnotcheckingit@gmail.com',
         subject: `Legislator Contact: ${legislatorName}`,
         html: `
