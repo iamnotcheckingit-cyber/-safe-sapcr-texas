@@ -17,6 +17,12 @@ const BLOCKED_PREFIXES = [
 ];
 
 export default async (request, context) => {
+  // Allow Meta crawlers (Facebook, Instagram, Messenger link previews).
+  const ua = request.headers.get("user-agent") || "";
+  if (ua.includes("facebookexternalhit") || ua.includes("Facebot")) {
+    return context.next();
+  }
+
   const ip = context.ip;
   if (BLOCKED_IPS.has(ip)) return new Response("Forbidden", { status: 403 });
   if (BLOCKED_PREFIXES.some(prefix => ip.startsWith(prefix))) return new Response("Forbidden", { status: 403 });
