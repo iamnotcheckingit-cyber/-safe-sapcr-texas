@@ -52,9 +52,9 @@ http://safesapcrtx.org/*       https://safesapcrtx.org/:splat   301!
 /privacy-policy  /privacy-policy.html  200
 /get-started    /get-started.html    200
 
-# Security - block sensitive paths
-/.env           /404.html   404
-/.env.*         /404.html   404
+# Security - block sensitive paths (config-harvest: 410 Gone, others: 404)
+/.env           /404.html   410
+/.env.*         /404.html   410
 /.git/*         /404.html   404
 
 # Transparency API

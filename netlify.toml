@@ -81,17 +81,76 @@
   status = 301
   force = true
 
-# Security: block sensitive paths
+# ============================================
+# Config-harvest paths - return 410 Gone
+# Scanners probe these for credential exposure.
+# 410 tells them the resource is permanently gone.
+# ============================================
 [[redirects]]
-  from = "/.env"
+  from = "/config.json"
   to = "/404.html"
-  status = 404
+  status = 410
   force = true
 
 [[redirects]]
+  from = "/config.yml"
+  to = "/404.html"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/config.yaml"
+  to = "/404.html"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/config.js"
+  to = "/404.html"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/config/.env"
+  to = "/404.html"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/.env"
+  to = "/404.html"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/.env.local"
+  to = "/404.html"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/.env.production"
+  to = "/404.html"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/app.config.js"
+  to = "/404.html"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/settings.json"
+  to = "/404.html"
+  status = 410
+  force = true
+
+# Wildcard catch-all for other dotenv variants (.development, .staging, etc.)
+[[redirects]]
   from = "/.env.*"
   to = "/404.html"
-  status = 404
+  status = 410
   force = true
 
 [[redirects]]
@@ -203,6 +262,16 @@
       "./netlify/**",
       "./node_modules/**",
       "./admin.html",
+      "./well.known.html",
+      "./contact-pgp.html",
+      "./ar/**",
+      "./de/**",
+      "./el/**",
+      "./es/**",
+      "./he/**",
+      "./hi/**",
+      "./ja/**",
+      "./zh/**",
     ]
     changeFreq = "weekly"
     priority = 0.8
@@ -300,13 +369,6 @@
   from = "/.well.known-/apple-app-site-association"
   to = "/404.html"
   status = 410
-  force = true
-
-# Block config.json public access
-[[redirects]]
-  from = "/config.json"
-  to = "/404.html"
-  status = 404
   force = true
 
 # Block wp-admin install.php (Campaign B new variant)
