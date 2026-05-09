@@ -38,7 +38,19 @@ AuthKey_*.p8
 # Sensitive exports
 membership*.csv
 visitor-log*.csv
+tor_sessions*.csv
+Supabase*Lints*.csv
 *.sql
+
+# Credentials
+.htpasswd
+
+# Archive blobs
+*.zip
+
+# git-filter-repo / git-filter-branch scratch dirs
+.git-rewrite/
+.git/filter-repo/
 
 export-evidence.js
 check-honeypot-logs.js
