@@ -1,0 +1,12 @@
+{
+  "_comment": "Edit values below, then run ./update-site.sh. Keys must match SECTION:<id>-start/end markers in the target file.",
+
+  "index.html": {
+    "hero": "<h1>Protecting Parental Due Process in Texas SAPCR Cases</h1>\n                <p class=\"tagline\">Texas parents deserve reliable notice when their parental rights are at stake. The SAFE SAPCR Act proposes common-sense reforms to strengthen service-of-process safeguards under Texas Rule of Civil Procedure 239a and protect families from default judgments entered without actual notice.</p>",
+    "disclaimer": "<aside class=\"site-disclaimer\" style=\"max-width:780px;margin:1.5rem auto 0;padding:1rem 1.25rem;background:#fff8e1;border-left:4px solid #c9a227;border-radius:4px;font-size:0.95rem;line-height:1.55;text-align:left;color:#3a2a00;\"><strong>About this site:</strong> This site reflects one parent's experience with Texas family-law procedures and advocates for legislative improvements. All case references are drawn from public court records. This is not legal advice. Consult a licensed Texas attorney for your situation.</aside>"
+  },
+
+  "legislation.html": {
+    "reform-language": "<h3>Section 2A: Cross-Reference Requirement for Related Cases</h3>\n        <p>In any SAPCR where a prior related family proceeding (such as a habeas corpus case) involving the same parties and children was pending or dismissed within the preceding 12 months in the same county, the petitioner's attorney would be required to certify that a reasonable search was made of the related court file for current contact information. This closes a specific gap: attorneys are not currently required to check files from closely related cases in the same court for known service addresses, even when those addresses are recent and reliable.</p>"
+  }
+}
