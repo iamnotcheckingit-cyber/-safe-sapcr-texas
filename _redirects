@@ -31,7 +31,8 @@ http://safesapcrtx.org/*       https://safesapcrtx.org/:splat   301!
 /public-records/* /public-records.html 301
 /rule-239a-texas          /rule-239a-texas.html          200
 /default-judgment-custody-texas  /default-judgment-custody-texas.html  200
-/kerr-wilson-pc           /kerr-wilson-pc.html           200
+/defense-filings-2025-95850 /defense-filings-2025-95850.html 200
+/kerr-wilson-pc            /defense-filings-2025-95850     301!
 /extrinsic-fraud-texas    /extrinsic-fraud-texas.html    200
 /attorney-bar-complaint-texas  /attorney-bar-complaint-texas.html  200
 /sapcr-texas-guide  /sapcr-texas-guide.html  200
