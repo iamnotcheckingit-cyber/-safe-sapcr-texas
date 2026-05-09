@@ -42,9 +42,6 @@ tor_sessions*.csv
 Supabase*Lints*.csv
 *.sql
 
-# Credentials
-.htpasswd
-
 # Archive blobs
 *.zip
 
