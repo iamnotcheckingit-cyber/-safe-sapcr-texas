@@ -18,6 +18,7 @@ http://safesapcrtx.org/*       https://safesapcrtx.org/:splat   301!
 /evidence       /evidence.html       200
 /case-study     /case-study.html     200
 /correspondence /correspondence.html 200
+/bill-of-review-update-2026-06-22  /bill-of-review-update-2026-06-22.html  200
 
 # State pages
 /states/california    /states/california.html    200
