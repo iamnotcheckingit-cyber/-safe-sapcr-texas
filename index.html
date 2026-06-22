@@ -164,6 +164,72 @@
     <noscript><link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
 </head>
 <body>
+    <!-- Dismissible Announcement Banner -->
+    <div id="announcement-banner" class="announcement-banner" role="region" aria-label="Site announcement">
+        <a href="/bill-of-review-update-2026-06-22" class="announcement-banner__text">📢 Case Update — June 22, 2026: Letter hand-delivered to 311th District Court addressing case misclassification, Ex Parte withdrawal, and trial reset request.</a>
+        <button type="button" id="announcement-banner-close" class="announcement-banner__close" aria-label="Dismiss announcement">&times;</button>
+    </div>
+    <style>
+        .announcement-banner {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--primary);
+            color: #fff;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            padding: 0.65rem 1.25rem;
+            border-bottom: 3px solid var(--accent);
+        }
+        .announcement-banner.is-hidden { display: none; }
+        .announcement-banner__text {
+            flex: 1;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .announcement-banner__text:hover {
+            color: var(--accent-light);
+            text-decoration: underline;
+        }
+        .announcement-banner__close {
+            flex-shrink: 0;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1.6rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0 0.25rem;
+            opacity: 0.85;
+            transition: opacity 0.2s, color 0.2s;
+        }
+        .announcement-banner__close:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
+    </style>
+    <script>
+        (function () {
+            var KEY = 'announcement-dismissed-2026-06-22';
+            var banner = document.getElementById('announcement-banner');
+            if (!banner) return;
+            try {
+                if (localStorage.getItem(KEY) === '1') {
+                    banner.classList.add('is-hidden');
+                    return;
+                }
+            } catch (e) {}
+            var closeBtn = document.getElementById('announcement-banner-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function () {
+                    banner.classList.add('is-hidden');
+                    try { localStorage.setItem(KEY, '1'); } catch (e) {}
+                });
+            }
+        })();
+    </script>
     <header></header>
     <script src="/js/header.js" defer></script>
 
